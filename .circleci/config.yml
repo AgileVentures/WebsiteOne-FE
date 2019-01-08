@@ -16,6 +16,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
+      - run: yarn build
       - run:
           name: Collect test coverage
           command: yarn coveralls
