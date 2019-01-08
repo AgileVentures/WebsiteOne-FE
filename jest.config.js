@@ -7,8 +7,13 @@ module.exports = {
     "**/*.{js,jsx}",
     "!**/*.{config}.{js}",
     "!**/node_modules/**",
+    "!**/dist/**",
     "!**/vendor/**",
     "!**/coverage/**",
     "!**/src/index.js"
-  ]
+  ],
+  "transform": {
+    "^.+\\.js$": "babel-jest",
+    ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+  }
 };
