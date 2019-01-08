@@ -1,0 +1,22 @@
+{
+  "name": "WebsiteOne-FE",
+  "version": "1.0.0",
+  "description": "Front end for WebsiteOne",
+  "main": "index.js",
+  "repository": "git@github.com:AgileVentures/WebsiteOne-FE.git",
+  "author": "AgileVentures",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "semantic-ui-react": "^0.84.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
