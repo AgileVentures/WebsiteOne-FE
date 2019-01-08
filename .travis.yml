@@ -8,5 +8,5 @@ install: true
 script:
   - yarn
   - yarn test
-  - yarn run build
+  - yarn build
   - yarn coveralls
