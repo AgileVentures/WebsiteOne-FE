@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/AgileVentures/WebsiteOne-FE/badge.svg?branch=develop)](https://coveralls.io/github/AgileVentures/WebsiteOne-FE?branch=develop)
