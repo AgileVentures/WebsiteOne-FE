@@ -19,7 +19,7 @@ const User = ({ item: user }) => {
         </Link>
         <p>{user.title_list.length ? user.title_list.map(title => title + " ") : null}</p>
         <p className="card-footer">
-          <Icon name='fire' size="large" /> {}
+          <Icon name='fire' /> {}
           {user.karma_total}
         </p>
       </Card.Content>
