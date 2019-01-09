@@ -8,7 +8,7 @@ Then remove the dependency from package.json and delete the package-lock.json fi
 This will create a new semantic folder
 and copy our defaut file:
 
-`cp site.variables semantic/src/site/globals/` 
+`cp site.variables semantic/src/site/globals/`
 
 Then you can build semantic-ui
 `gulp build` or `./../node_modules/gulp/bin/gulp.js build`
