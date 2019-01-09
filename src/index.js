@@ -11,6 +11,8 @@ import "./assets/semantic.css"
 import axios from 'axios';
 axios.defaults.baseURL = 'https://develop.websiteone.agileventures.org/';
 
+import "./assets/semantic.css"
+
 render(
   <BrowserRouter>
     <Provider store={store}>
