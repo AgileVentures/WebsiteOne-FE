@@ -28,6 +28,7 @@
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.2.0.tgz#b03e42eeddf5898e00646e4c840fa07ba8dcad7f"
+  integrity sha512-oouEibCbHMVdZSDlJBO6bZmID/zA/G/Qx3H1d3rSNPTD+L8UNKvCat7aKWSJ74zYbm5zWGh0GQN0hKj8zYFTCg==
   dependencies:
     regenerator-runtime "^0.12.0"
 
@@ -845,6 +846,7 @@ babel-plugin-syntax-flow@^6.18.0:
 babel-plugin-syntax-jsx@^6.18.0, babel-plugin-syntax-jsx@^6.3.13, babel-plugin-syntax-jsx@^6.8.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
+  integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
 babel-plugin-syntax-object-rest-spread@^6.13.0:
   version "6.13.0"
@@ -1915,10 +1917,6 @@ cosmiconfig@^4.0.0:
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 083e88f398aeab43d830565e70b8d55d6fe14b5b
-=======
->>>>>>> Add pagination, user component
 cosmiconfig@^5.0.5:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.0.7.tgz#39826b292ee0d78eda137dfa3173bd1c21a43b04"
@@ -1929,11 +1927,6 @@ cosmiconfig@^5.0.5:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-=======
->>>>>>> Bg fix style loader (#8)
-=======
->>>>>>> Add pagination, user component
 coveralls@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-3.0.2.tgz#f5a0bcd90ca4e64e088b710fa8dda640aea4884f"
@@ -2905,6 +2898,14 @@ figgy-pudding@^3.5.1:
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
   integrity sha512-vNKxJHTEKNThjfrdJwHc7brvM6eVevuO5nTj6ez8ZQ1qbXTvGthucRF7S4vf2cr71QVnT70V34v0S1DyQsti0w==
 
+file-loader@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-3.0.1.tgz#f8e0ba0b599918b51adfe45d66d1e771ad560faa"
+  integrity sha512-4sNIOXgtH/9WZq4NvlfU3Opn5ynUsqBwSLyM+I7UOwdGigTBYfVVQEwe/msZNX/j4pCJTIM14Fsw66Svo1oVrw==
+  dependencies:
+    loader-utils "^1.0.2"
+    schema-utils "^1.0.0"
+
 filename-regex@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
@@ -3434,23 +3435,11 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 6c4ae071926e3ee846031d975a2d80c94ca663d5
 hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
-=======
-hoist-non-react-statics@^2.5.0:
->>>>>>> Add UsersList container, test
-=======
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
->>>>>>> Add pagination, user component
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 6c4ae071926e3ee846031d975a2d80c94ca663d5
-=======
->>>>>>> Add pagination, user component
 hoist-non-react-statics@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
@@ -3458,11 +3447,6 @@ hoist-non-react-statics@^3.2.1:
   dependencies:
     react-is "^16.3.2"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-=======
->>>>>>> Add UsersList container, test
-=======
->>>>>>> Add pagination, user component
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -3656,10 +3640,6 @@ import-cwd@^2.0.0:
   dependencies:
     import-from "^2.1.0"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 083e88f398aeab43d830565e70b8d55d6fe14b5b
-=======
->>>>>>> Add pagination, user component
 import-fresh@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-2.0.0.tgz#d81355c15612d386c61f9ddd3922d4304822a546"
@@ -3668,11 +3648,6 @@ import-fresh@^2.0.0:
     caller-path "^2.0.0"
     resolve-from "^3.0.0"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-=======
->>>>>>> Bg fix style loader (#8)
-=======
->>>>>>> Add pagination, user component
 import-from@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-from/-/import-from-2.1.0.tgz#335db7f2a7affd53aaa471d4b8021dee36b7f3b1"
@@ -4838,15 +4813,7 @@ loglevel@^1.4.1:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
   integrity sha1-4PyVEztu8nbNyIh82vJKpvFW+Po=
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 6c4ae071926e3ee846031d975a2d80c94ca663d5
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
-=======
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
->>>>>>> Add UsersList container, test
-=======
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
->>>>>>> Add pagination, user component
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -6124,15 +6091,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 6c4ae071926e3ee846031d975a2d80c94ca663d5
 prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2:
-=======
-prop-types@^15.6.1, prop-types@^15.6.2:
->>>>>>> Add UsersList container, test
-=======
-prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2:
->>>>>>> Add pagination, user component
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -6317,10 +6276,6 @@ react-is@^16.3.2, react-is@^16.6.1, react-is@^16.6.3, react-is@^16.7.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 6c4ae071926e3ee846031d975a2d80c94ca663d5
-=======
->>>>>>> Add pagination, user component
 react-lifecycles-compat@^3.0.2:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -6338,11 +6293,6 @@ react-redux@^6.0.0:
     prop-types "^15.6.2"
     react-is "^16.6.3"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-=======
->>>>>>> Add UsersList container, test
-=======
->>>>>>> Add pagination, user component
 react-router-dom@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
@@ -6368,10 +6318,6 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-<<<<<<< 6c4ae071926e3ee846031d975a2d80c94ca663d5
-=======
->>>>>>> Add pagination, user component
 react-spinners@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.5.1.tgz#fc2d66ba36e52c8769b119de0f4a79591fc8313d"
@@ -6381,11 +6327,6 @@ react-spinners@^0.5.1:
     prop-types "^15.5.10"
     recompose "0.27.1 - 0.30.0"
 
-<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
-=======
->>>>>>> Add UsersList container, test
-=======
->>>>>>> Add pagination, user component
 react-test-renderer@^16.0.0-0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.7.0.tgz#1ca96c2b450ab47c36ba92cd8c03fcefc52ea01c"

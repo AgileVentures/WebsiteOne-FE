@@ -8,18 +8,29 @@ const User = ({ item: user }) => {
     <Card className="user-card" raised={true}>
       <Card.Content>
         <Link to={`/users/${user.id}`}>
-          <Image src={`${user.gravatar_url}`} floated="left" rounded={true} size="tiny" />
+          <Image
+            src={`${user.gravatar_url}`}
+            floated="left"
+            rounded={true}
+            size="tiny"
+          />
           <big className="card-header">
             <Card.Header>
               {user.first_name
-                ? user.first_name + " " + user.last_name
+                ? fullName(user).length >= 12
+                  ? fullName(user).substring(0, 10) + "..."
+                  : fullName(user)
                 : user.slug.substring(0, 15)}
             </Card.Header>
           </big>
         </Link>
-        <p>{user.title_list.length ? user.title_list.map(title => title + " ") : null}</p>
+        <p>
+          {user.title_list.length
+            ? user.title_list.map(title => title + " ")
+            : null}
+        </p>
         <p className="card-footer">
-          <Icon name='fire' /> {}
+          <Icon name="fire" /> {}
           {user.karma_total}
         </p>
       </Card.Content>
@@ -27,4 +38,7 @@ const User = ({ item: user }) => {
   );
 };
 
+const fullName = user => {
+  return user.first_name + " " + user.last_name;
+};
 export default User;

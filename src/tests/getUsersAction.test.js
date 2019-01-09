@@ -22,7 +22,7 @@ describe("fetchUsers action", () => {
   it("fetches users from an external api", () => {
     const expectedActions = [{ type: GET_USERS, payload: usersResponse }];
     moxios.stubRequest(
-      "https://develop.websiteone.agileventures.org/api/v1/users",
+      "/api/v1/users",
       {
         status: 200,
         response: { users: usersResponse, gravatar_url: gravatarUrl, karma_total: karmaTotal }
