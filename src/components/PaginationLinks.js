@@ -24,19 +24,9 @@ const PaginationLinks = ({
   return (
     <div className="center">
       <div className="pagination">
-        <span
-          onClick={handlePageSelect(selectedPage - 1)}
-          className={firstPage ? "hide-button" : undefined}
-        >
-          previous
-        </span>
+        <span onClick={handlePageSelect(selectedPage - 1)} className={firstPage ? "hide-button" : undefined} >previous</span>
         {pageItems}
-        <span
-          onClick={handlePageSelect(selectedPage + 1)}
-          className={lastPage ? "hide-button" : undefined}
-        >
-          next
-        </span>
+        <span onClick={handlePageSelect(selectedPage + 1)} className={lastPage ? "hide-button" : undefined} >next</span>
       </div>
     </div>
   );
