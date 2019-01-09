@@ -10,6 +10,8 @@ module.exports = {
     "!**/dist/**",
     "!**/vendor/**",
     "!**/coverage/**",
+    "!**/src/assets/**",
+    "!**/semantic/**",
     "!**/src/index.js"
   ],
   "transform": {

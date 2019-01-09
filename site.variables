@@ -1,0 +1,45 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@fontName          : 'Ubuntu';
+@googleFontSizes   : '400,500,400i,500i';
+@bold              : 500;
+@emSize   : 16px;
+@fontSize : 16px;
+@primaryColor        : @orange;
+@secondaryColor      : @teal;
+@lightPrimaryColor   : @lightOrange;
+@lightSecondaryColor : @lightTeal;
+@headerLineHeight : unit((20 / 14), em);
+@h1 : unit((35 / 14), rem);
+@h2 : unit((30 / 14), rem);
+@h3 : unit((26 / 14), rem);
+@h4 : unit((21 / 14), rem);
+@h5 : unit((18 / 14), rem);
+@lineHeight          : 1.4127em;
+@textColor           : rgba(0, 0, 1, 0.72);
+@linkColor           : @orange;
+@blue             : #337AB7;
+@green            : #5Cb85C;
+@olive            : #9CA780;
+@orange           : #EE7335;
+@pink             : #D9499A;
+@purple           : #A24096;
+@red              : #E7603B;
+@teal             : #6BABA1;
+@yellow           : #E0A32E;
+@darkBlue         : #34495E;
+@brown            : #A5673F;
+@white            : #FFFFFF;
+@lightBlue        : lighten( @blue, 5);
+@lightGreen       : lighten( @green, 5);
+@lightOrange      : lighten( @orange, 5);
+@lightPink        : #FF8EDF;
+@lightPurple      : #CDC6FF;
+@lightRed         : lighten( @red, 5);
+@lightTeal        : lighten( @teal, 5);
+@lightYellow      : lighten( @yellow, 5);
+@lightOlive       : lighten( @olive, 5);
+@primaryColor     : @orange;
+@secondaryColor   : @darkBlue;
