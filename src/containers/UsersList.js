@@ -1,9 +1,13 @@
 import React, { Component, Fragment } from "react";
+<<<<<<< a7f8d14d750645e4934e72e0fa669a09e87ece57
 <<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
 import { Header, Card, Grid } from "semantic-ui-react";
 =======
 import { Header, Card } from "semantic-ui-react";
 >>>>>>> Add pagination, user component
+=======
+import { Header, Card, Grid } from "semantic-ui-react";
+>>>>>>> Add Grid, styling
 import Paginate from "../components/Paginate";
 import PaginationLinks from "../components/PaginationLinks";
 import { connect } from "react-redux";
@@ -76,7 +80,10 @@ export class UsersList extends Component {
     } = this.state;
     return (
       <Fragment>
+<<<<<<< a7f8d14d750645e4934e72e0fa669a09e87ece57
 <<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
+=======
+>>>>>>> Add Grid, styling
         <Grid>
           <Grid.Row>
             <Grid.Column width={12}>
@@ -98,6 +105,7 @@ export class UsersList extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+<<<<<<< a7f8d14d750645e4934e72e0fa669a09e87ece57
 =======
         <Header as="h1">Volunteers Directory</Header>
         <Card.Group centered itemsPerRow={3}>
@@ -111,6 +119,8 @@ export class UsersList extends Component {
           selectedPage={selectedPage}
         />
 >>>>>>> Add pagination, user component
+=======
+>>>>>>> Add Grid, styling
       </Fragment>
     );
   }
