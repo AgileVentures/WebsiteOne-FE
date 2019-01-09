@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Homepage from "./components/homepage/Homepage";
 import "./assets/semantic.css"
 
+import "./assets/semantic.css"
+
 render(
   <BrowserRouter>
     <Switch>
