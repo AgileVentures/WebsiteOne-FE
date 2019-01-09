@@ -5,7 +5,7 @@ import homepageModals from '../fixtures/homepageModals';
 import { Modal } from "semantic-ui-react";
 
 describe("HomepageModal", () => {
-    let modal = homepageModals[0]
+    const modal = homepageModals[0]
     const homepageModal = (props) => mount(<HomepageModal modal={props} />)
 
     describe("renders the HomepageModal component", () => {
@@ -23,15 +23,12 @@ describe("HomepageModal", () => {
 })
 
 describe("HomepageModal open", () => {
-    let modal = homepageModals[0];
-    let homepageModal = (props) => mount(<HomepageModal modal={props} />)
-    let wrapper;
-    beforeEach(() => {
-    })
+    const modal = homepageModals[0];
+    const homepageModal = (props) => mount(<HomepageModal modal={props} />)
 
     describe("renders the HomepageModal component component", () => {
         it("renders without errors", () => {
-            wrapper = homepageModal(modal)
+            const wrapper = homepageModal(modal)
             expect(wrapper.find(Modal).length).toBe(1);
         })
     })
