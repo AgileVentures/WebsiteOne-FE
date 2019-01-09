@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -8,6 +8,8 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
+  devServer: { historyApiFallback: true },
+  output: { publicPath: '/' },
   module: {
     rules: [
       {
