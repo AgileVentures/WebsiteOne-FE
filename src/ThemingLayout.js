@@ -3,6 +3,7 @@ import { Button, Container, Divider, Grid, Header, Image, Menu, Segment } from '
 
 const ThemingLayout = () => (
   <Container style={{ marginTop: '3em' }}>
+    <span>😉</span>
     <Header as='h1'>Theming Examples</Header>
 
     <Header as='h2' dividing>
