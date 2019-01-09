@@ -13,15 +13,22 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
+    "react-spinners": "^0.5.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.84.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
     "babel-loader": "7",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "coveralls": "^3.0.2",
@@ -32,7 +39,9 @@
     "jest": "^23.6.0",
     "jest-transform-css": "^2.0.0",
     "mini-css-extract-plugin": "^0.5.0",
+    "moxios": "^0.4.0",
     "node-sass": "^4.11.0",
+    "redux-mock-store": "^1.5.3",
     "regenerator-runtime": "^0.13.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
