@@ -3,6 +3,8 @@ import { render } from "react-dom";
 import { UsersList } from "./containers/UsersList";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+import "./assets/semantic.css"
+
 render(
   <BrowserRouter>
     <Switch>
