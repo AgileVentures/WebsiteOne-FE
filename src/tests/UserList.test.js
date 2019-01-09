@@ -7,7 +7,7 @@ import { StaticRouter } from "react-router";
 describe("UsersList", () => {
   let wrapper;
   const context = {};
-  
+
   wrapper = mount(
     <StaticRouter context={context}>
       <UsersList

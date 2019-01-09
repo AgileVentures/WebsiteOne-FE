@@ -1,5 +1,9 @@
 import React, { Component, Fragment } from "react";
+<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
 import { Header, Card, Grid } from "semantic-ui-react";
+=======
+import { Header, Card } from "semantic-ui-react";
+>>>>>>> Add pagination, user component
 import Paginate from "../components/Paginate";
 import PaginationLinks from "../components/PaginationLinks";
 import { connect } from "react-redux";
@@ -72,6 +76,7 @@ export class UsersList extends Component {
     } = this.state;
     return (
       <Fragment>
+<<<<<<< 4483b3b222a0faa1de30040e23a55fcb0e1a5133
         <Grid>
           <Grid.Row>
             <Grid.Column width={12}>
@@ -93,6 +98,19 @@ export class UsersList extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+=======
+        <Header as="h1">Volunteers Directory</Header>
+        <Card.Group centered itemsPerRow={3}>
+          <Paginate items={usersList} Component={User} pageCount={pageCount} />
+        </Card.Group>
+        <PaginationLinks
+          handlePageSelect={this.handlePageSelect}
+          firstPage={firstPage}
+          lastPage={lastPage}
+          pageCount={pageCount}
+          selectedPage={selectedPage}
+        />
+>>>>>>> Add pagination, user component
       </Fragment>
     );
   }
