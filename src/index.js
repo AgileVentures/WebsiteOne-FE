@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { Container } from "semantic-ui-react";
 import Homepage from "./components/homepage/Homepage";
-import Login from "./Login";
+import Login from "./containers/Login";
 import "./assets/semantic.css";
 import axios from "axios";
 axios.defaults.baseURL = "https://develop.websiteone.agileventures.org/";
