@@ -1,3 +1,4 @@
+# Contributing Guide
 ### Choosing Stories/tickets.
 
 When deciding on an issue to work on, look for the  `Help Wanted` or `Good First Issue` tags.
