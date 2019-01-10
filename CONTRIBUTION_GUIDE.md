@@ -64,6 +64,7 @@ git commit -m "Implement user login"
 ### Pull Requests
 
 For your Pull Requests, ensure you have a proper title describing your task.
-Make sure to add a link to the ticket you've worked on.
+Make sure to add a link to the ticket you've worked on and add any screenshots if necessary.
 
-For example:
+
+Your pull request needs to be reviewed by at least two people in the team for it to be merged in `delop` branch.
