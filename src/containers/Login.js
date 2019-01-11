@@ -1,32 +1,24 @@
 import React, { Component, Fragment } from "react";
 import { Button, Form, Header, Grid, Checkbox } from "semantic-ui-react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { postLoginInfo } from "../actions/postLoginInfoAction";
 import iziToast from "../assets/iziToast.min.js";
 import "../assets/iziToast.min.css";
 import "../assets/Login.scss";
 
-export default class Login extends Component {
+export class Login extends Component {
   state = {
     email: "",
     password: ""
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
-  handleLogin = e => {
+  handleLogin = async e => {
+    const { email, password } = this.state;
     e.preventDefault();
-    axios({
-      method: "post",
-      url: "http://localhost:3000/users/sign_in",
-      data: {
-        user: {
-          email: this.state.email,
-          password: this.state.password
-        }
-      },
-      withCredentials: true
-    })
-      .then(response => {
-        sessionStorage.setItem("jwt-token", response.headers.authorization);
+    await this.props
+      .postLoginInfo({ email, password })
+      .then(() => {
         iziToast.show({
           theme: "light",
           title: "Success",
@@ -100,3 +92,9 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = store => ({ users: store.users });
+export default connect(
+  mapStateToProps,
+  { postLoginInfo }
+)(Login);

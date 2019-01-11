@@ -11,4 +11,15 @@ describe("Store", () => {
       users: ["Run the tests"]
     });
   });
+
+  it("should update after login", async () => {
+    await store.dispatch({
+      type: "POST_LOGIN_INFO",
+      payload: ["Rerun them"]
+    });
+
+    expect(store.getState()).toEqual({
+      users: ["Rerun them"]
+    });
+  });
 });

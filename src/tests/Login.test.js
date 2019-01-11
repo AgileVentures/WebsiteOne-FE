@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../containers/Login";
+import { Login } from "../containers/Login";
 import { mount } from "enzyme";
 
 describe("Login", () => {
@@ -14,5 +14,25 @@ describe("Login", () => {
 
   it("should have a Form", () => {
     expect(wrapper.find("Form")).toHaveLength(1);
+  });
+
+  it("should update the state when email input value changes", () => {
+    const emailInput = wrapper.find("input").filterWhere(item => {
+      return item.prop("name") === "email";
+    });
+    emailInput.simulate("change", {
+      target: { value: "existing-user@example.com" }
+    });
+    expect(wrapper.state().email).toBe("existing-user@example.com")
+  });
+
+  it("should update the state when password input value changes", () => {
+    const passwordInput = wrapper.find("input").filterWhere(item => {
+      return item.prop("name") === "password";
+    });
+    passwordInput.simulate("change", {
+      target: { value: "password" }
+    });
+    expect(wrapper.state().password).toBe("password")
   });
 });
