@@ -14,7 +14,6 @@ export let postLoginInfo = props => dispatch => {
       }
     }
   }).then(response => {
-    console.log(response.data)
     dispatch(getUser(response.data));
     if (response.data.authorization) {
       sessionStorage.setItem("jwt-token", response.headers.authorization);

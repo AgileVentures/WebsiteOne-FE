@@ -35,4 +35,14 @@ describe("Login", () => {
     });
     expect(wrapper.state().password).toBe("password")
   });
+
+  it("should call handleLogin when the form is submitted", () => {
+    const spy = jest.spyOn(wrapper.instance(), "handleLogin");
+    wrapper.instance().forceUpdate();
+    const submitButton = wrapper.find("Button")
+    submitButton.simulate("click");
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  })
 });
+
