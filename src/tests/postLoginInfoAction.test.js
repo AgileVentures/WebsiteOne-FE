@@ -2,7 +2,7 @@ import moxios from "moxios";
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 import { postLoginInfo } from "../actions/postLoginInfoAction";
-import {  POST_LOGIN_INFO } from "../types";
+import { POST_LOGIN_INFO } from "../types";
 import loginResponse from "../fixtures/login";
 
 const middlewares = [thunk];
@@ -20,7 +20,9 @@ describe("postLoginInfo action", () => {
   });
 
   it("posts login info to an external api", () => {
-    const expectedActions = [{ type: POST_LOGIN_INFO, payload: loginResponse }];
+    const expectedActions = [
+      { type: POST_LOGIN_INFO, payload: loginResponse }
+    ];
     moxios.stubRequest("http://localhost:3000/users/sign_in", {
       status: 200,
       response: loginResponse

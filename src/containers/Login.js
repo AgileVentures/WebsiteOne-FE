@@ -31,11 +31,11 @@ export class Login extends Component {
         });
         this.props.history.push("/");
       })
-      .catch(error => {
+      .catch(e => {
         iziToast.show({
           theme: "light",
           title: "Sorry",
-          message: "please try again",
+          message: `${e.message}` + " please try again",
           position: "topRight",
           color: "red",
           backgroundColor: "lightcoral",
