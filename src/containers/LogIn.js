@@ -53,7 +53,7 @@ export class LogIn extends Component {
           Log In
         </Header>
         <Header as="h4" textAlign="center" className="login-h4">
-          Don't have an account? <a href="/sign_up">Sign up</a>
+          Don't have an account? <a href="/signup">Sign Up</a>
         </Header>
         <Header as="h4" textAlign="center">
           <a href="/users/password/new">Forgot your password?</a>
