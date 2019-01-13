@@ -83,7 +83,7 @@ export class LogIn extends Component {
                 <Form.Field>
                   <Checkbox label="Remember me" />
                 </Form.Field>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Log In</Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
