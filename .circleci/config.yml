@@ -17,6 +17,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
       - run: yarn build
+      - run: yarn e2e:ci
       - run:
           name: Collect test coverage
           command: yarn coveralls
