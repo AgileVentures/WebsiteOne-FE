@@ -7,6 +7,7 @@ import store from './store'
 import { Container } from 'semantic-ui-react'
 import Homepage from './components/homepage/Homepage'
 import LogIn from './containers/LogIn'
+import SignUp from "./containers/SignUp";
 import './assets/semantic.css'
 import axios from 'axios'
 axios.defaults.baseURL = 'https://develop.websiteone.agileventures.org/'
@@ -19,6 +20,7 @@ render(
           <Route path='/' exact component={Homepage} />
           <Route path='/login' component={LogIn} />
           <Route path='/users' component={UsersList} />
+          <Route path="/signup" component={SignUp} />
         </Switch>
       </Container>
     </Provider>
