@@ -91,7 +91,7 @@ export class SignUp extends Component {
                 <Form.Field>
                   <Checkbox label="I give permission for AV to send me occasional emails." />
                 </Form.Field>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Sign Up</Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
