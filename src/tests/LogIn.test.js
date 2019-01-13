@@ -1,10 +1,10 @@
 import React from "react";
-import { Login } from "../containers/Login";
+import { LogIn } from "../containers/LogIn";
 import { mount } from "enzyme";
 
-describe("Login", () => {
+describe("LogIn", () => {
   let wrapper = mount(
-    <Login postLoginInfo={jest.fn(() => Promise.resolve({}))} />
+    <LogIn postLogInInfo={jest.fn(() => Promise.resolve({}))} />
   );
 
   const emailInput = wrapper.find("input").filterWhere(item => {
@@ -15,7 +15,7 @@ describe("Login", () => {
     return item.prop("name") === "password";
   });
 
-  it("should have a Login Header", () => {
+  it("should have a LogIn Header", () => {
     const mainHeader = wrapper.find("Header").filterWhere(item => {
       return item.text() === "Log In";
     });
@@ -40,8 +40,8 @@ describe("Login", () => {
     expect(wrapper.state().password).toBe("password");
   });
 
-  it("should call handleLogin and postLoginInfo when the form is submitted", async () => {
-    const spy = jest.spyOn(wrapper.instance(), "handleLogin");
+  it("should call handleLogIn and postLogInInfo when the form is submitted", async () => {
+    const spy = jest.spyOn(wrapper.instance(), "handleLogIn");
     wrapper.instance().forceUpdate();
 
     emailInput.simulate("change", {
@@ -56,6 +56,6 @@ describe("Login", () => {
     submitForm.simulate("submit");
 
     expect(spy).toHaveBeenCalledTimes(1);
-    await expect(wrapper.instance().props.postLoginInfo).toBeCalledTimes(1);
+    await expect(wrapper.instance().props.postLogInInfo).toBeCalledTimes(1);
   });
 });

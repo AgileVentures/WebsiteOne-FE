@@ -3,7 +3,7 @@ import { POST_LOGIN_INFO } from "../types";
 
 export let getUser = user => ({ type: POST_LOGIN_INFO, payload: user });
 
-export let postLoginInfo = props => dispatch => {
+export let postLogInInfo = props => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:3000/users/sign_in",

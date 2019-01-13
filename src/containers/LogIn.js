@@ -1,23 +1,23 @@
 import React, { Component, Fragment } from "react";
 import { Button, Form, Header, Grid, Checkbox } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { postLoginInfo } from "../actions/postLoginInfoAction";
+import { postLogInInfo } from "../actions/postLogInInfoAction";
 import iziToast from "../assets/iziToast.min.js";
 import "../assets/iziToast.min.css";
-import "../assets/Login.scss";
+import "../assets/LogIn.scss";
 
-export class Login extends Component {
+export class LogIn extends Component {
   state = {
     email: "",
     password: ""
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
-  handleLogin = async e => {
+  handleLogIn = async e => {
     const { email, password } = this.state;
     e.preventDefault();
     await this.props
-      .postLoginInfo({ email, password })
+      .postLogInInfo({ email, password })
       .then(() => {
         iziToast.show({
           theme: "light",
@@ -62,7 +62,7 @@ export class Login extends Component {
           <Grid.Row>
             <Grid.Column width={8}>
               <Form
-                onSubmit={this.handleLogin}
+                onSubmit={this.handleLogIn}
                 className="login-form"
                 size="large"
               >
@@ -96,5 +96,5 @@ export class Login extends Component {
 const mapStateToProps = store => ({ users: store.users });
 export default connect(
   mapStateToProps,
-  { postLoginInfo }
-)(Login);
+  { postLogInInfo }
+)(LogIn);

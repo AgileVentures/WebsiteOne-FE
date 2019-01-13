@@ -1,7 +1,7 @@
 import moxios from "moxios";
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
-import { postLoginInfo } from "../actions/postLoginInfoAction";
+import { postLogInInfo } from "../actions/postLogInInfoAction";
 import { POST_LOGIN_INFO } from "../types";
 import loginResponse from "../fixtures/login";
 
@@ -9,7 +9,7 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 let store;
 
-describe("postLoginInfo action", () => {
+describe("postLogInInfo action", () => {
   beforeEach(() => {
     moxios.install();
     store = mockStore({});
@@ -30,7 +30,7 @@ describe("postLoginInfo action", () => {
 
     return store
       .dispatch(
-        postLoginInfo({ email: "premium@premi.um", password: "premium123" })
+        postLogInInfo({ email: "premium@premi.um", password: "premium123" })
       )
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
