@@ -9,11 +9,12 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "test": "jest",
+    "test": "standard && jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "global": "^4.3.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "7",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -45,10 +47,20 @@
     "redux-mock-store": "^1.5.3",
     "regenerator-runtime": "^0.13.1",
     "sass-loader": "^7.1.0",
+    "standard": "^12.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "src/assets/*"
+    ],
+    "env": [
+      "jest"
+    ]
   }
 }
