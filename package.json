@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "global": "^4.3.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "7",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -53,9 +55,12 @@
     "webpack-dev-server": "^3.1.10"
   },
   "standard": {
+    "parser": "babel-eslint",
     "ignore": [
       "src/assets/*"
     ],
-    "env": [ "jest" ]
+    "env": [
+      "jest"
+    ]
   }
 }

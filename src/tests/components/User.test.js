@@ -29,10 +29,9 @@ describe('User', () => {
   })
 
   it("should display a user's title if it exists", () => {
-    let userWithTitle = wrapper.find('p').filterWhere(item => {
-      return item.text() === 'Mentor'
-    })
-    expect(userWithTitle).toExist
+    expect(wrapper.find('CardDescription').text()).toEqual(
+      user.title_list.toString() + ' '
+    )
   })
 
   it("should display a user's slug if they don't have a name registered", () => {
@@ -43,5 +42,17 @@ describe('User', () => {
       </StaticRouter>
     )
     expect(wrapper.find('CardHeader').text()).toEqual(user.slug)
+  })
+
+  it('should truncate long names', () => {
+    user = usersFixture[2]
+    wrapper = mount(
+      <StaticRouter context={context}>
+        <User item={user} />
+      </StaticRouter>
+    )
+    expect(wrapper.find('CardHeader').text()).toEqual(
+      (user.first_name + ' ' + user.last_name).substring(0, 10) + '...'
+    )
   })
 })

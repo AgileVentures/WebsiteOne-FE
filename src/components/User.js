@@ -24,11 +24,11 @@ const User = ({ item: user }) => {
             </Card.Header>
           </big>
         </Link>
-        <p>
+        <Card.Description>
           {user.title_list.length
             ? user.title_list.map(title => title + ' ')
             : null}
-        </p>
+        </Card.Description>
         <p className='card-footer'>
           <Icon name='fire' /> {}
           {user.karma_total}

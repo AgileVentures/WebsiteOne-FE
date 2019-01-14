@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from "react";
-import { Header, Card, Grid } from "semantic-ui-react";
-import Paginate from "../components/Paginate";
-import PaginationLinks from "../components/PaginationLinks";
-import { connect } from "react-redux";
-import { fetchUsers } from "../actions/getUsersAction";
-import User from "../components/User";
-import "../assets/UsersList.css";
+import React, { Component, Fragment } from 'react'
+import { Header, Card, Grid } from 'semantic-ui-react'
+import Paginate from '../components/Paginate'
+import PaginationLinks from '../components/PaginationLinks'
+import { connect } from 'react-redux'
+import { fetchUsers } from '../actions/getUsersAction'
+import User from '../components/User'
+import '../assets/UsersList.css'
 export class UsersList extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       firstPage: true,
@@ -16,36 +16,35 @@ export class UsersList extends Component {
       usersList: [],
       users: {},
       selectedPage: 1
-    };
+    }
   }
 
-
-  componentDidMount() {
+  componentDidMount () {
     if (!this.props.users.length) {
-      this.props.fetchUsers();
+      this.props.fetchUsers()
     } else {
-      this.normalizeUsers(this.props.users);
+      this.normalizeUsers(this.props.users)
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props.users.length !== nextProps.users.length) {
-      this.normalizeUsers(nextProps.users);
+      this.normalizeUsers(nextProps.users)
     }
   }
 
-  normalizeUsers(users) {
-    let pageCount = Math.ceil(users.length / 12);
-    let normalizedUsers = {};
-    let lastIndex = 0;
+  normalizeUsers (users) {
+    let pageCount = Math.ceil(users.length / 12)
+    let normalizedUsers = {}
+    let lastIndex = 0
 
     for (let i = 1; i <= pageCount; i++) {
       if (i === 1) {
-        normalizedUsers[i] = users.slice(i - 1, i + 11);
-        lastIndex = i + 11;
+        normalizedUsers[i] = users.slice(i - 1, i + 11)
+        lastIndex = i + 11
       } else {
-        normalizedUsers[i] = users.slice(lastIndex, lastIndex + 12);
-        lastIndex += 12;
+        normalizedUsers[i] = users.slice(lastIndex, lastIndex + 12)
+        lastIndex += 12
       }
     }
     this.setState({
@@ -53,34 +52,34 @@ export class UsersList extends Component {
       pageCount,
       usersList: normalizedUsers[1],
       lastPage: false
-    });
+    })
   }
 
   /* eslint-disable-next-line */
   handlePageSelect = selectedPage => e => {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
       usersList: this.state.users[selectedPage],
       selectedPage,
-      firstPage: selectedPage - 1 < 1 ? true : false,
-      lastPage: selectedPage + 1 > this.state.pageCount ? true : false
-    });
+      firstPage: selectedPage - 1 < 1,
+      lastPage: selectedPage + 1 > this.state.pageCount
+    })
   };
 
-  render() {
+  render () {
     let {
       firstPage,
       lastPage,
       pageCount,
       usersList,
       selectedPage
-    } = this.state;
+    } = this.state
     return (
       <Fragment>
         <Grid>
           <Grid.Row>
             <Grid.Column width={12}>
-              <Header as="h1">Volunteers Directory</Header>
+              <Header as='h1'>Volunteers Directory</Header>
               <Card.Group centered itemsPerRow={3}>
                 <Paginate
                   items={usersList}
@@ -99,12 +98,12 @@ export class UsersList extends Component {
           </Grid.Row>
         </Grid>
       </Fragment>
-    );
+    )
   }
 }
 
-const mapStateToProps = store => ({ users: store.users });
+const mapStateToProps = store => ({ users: store.users })
 export default connect(
   mapStateToProps,
   { fetchUsers }
-)(UsersList);
+)(UsersList)

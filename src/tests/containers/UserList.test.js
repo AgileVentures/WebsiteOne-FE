@@ -77,4 +77,10 @@ describe('UsersList', () => {
     wrapper.setProps({ users: ['something'] })
     expect(wrapper.instance().state.users).toEqual({ '1': ['something'] })
   })
+
+  it('should test componentWillReceiveProps', () => {
+    const wrapper = shallow(<UsersList users={usersFixture} fetchUsers={() => {}} />)
+    wrapper.setProps(usersFixture)
+    expect(wrapper.instance().state.users[1][0]).toEqual(usersFixture[0])
+  })
 })
