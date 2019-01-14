@@ -23,7 +23,7 @@ describe("postSignUpInfo action", () => {
     const expectedActions = [
       { type: POST_SIGNUP_INFO, payload: signUpResponse }
     ];
-    moxios.stubRequest("http://localhost:3000/users", {
+    moxios.stubRequest("/users", {
       status: 200,
       response: signUpResponse
     });
