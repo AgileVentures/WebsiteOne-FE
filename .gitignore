@@ -3,3 +3,5 @@ node_modules/
 /dist
 /semantic
 package-lock.json
+cypress/videos
+cypress/screenshots
