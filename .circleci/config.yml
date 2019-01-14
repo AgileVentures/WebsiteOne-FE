@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/WebsiteOne-FE
     docker:
-      - image: circleci/node:8
+      - image: cypress/browsers:chrome69
     steps:
       - checkout
       - restore_cache:
