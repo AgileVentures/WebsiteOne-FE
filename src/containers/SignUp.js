@@ -10,7 +10,7 @@ export class SignUp extends Component {
   state = {
     email: "",
     password: "",
-    password_confirmation: ""
+    passwordConfirmation: ""
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -47,7 +47,7 @@ export class SignUp extends Component {
   };
 
   render() {
-    const { password, email, password_confirmation } = this.state;
+    const { password, email, passwordConfirmation } = this.state;
     return (
       <Fragment>
         <Header as="h1" textAlign="center" className="signup-h1">
@@ -80,13 +80,15 @@ export class SignUp extends Component {
                   name="password"
                   value={password}
                   onChange={this.handleChange}
+                  type="password"
                 />
                 <Form.Input
                   label="Confirm Password"
                   placeholder="Repeat password"
-                  name="password_confirmation"
-                  value={password}
+                  name="passwordConfirmation"
+                  value={passwordConfirmation}
                   onChange={this.handleChange}
+                  type="password"
                 />
                 <Form.Field>
                   <Checkbox label="I give permission for AV to send me occasional emails." />
