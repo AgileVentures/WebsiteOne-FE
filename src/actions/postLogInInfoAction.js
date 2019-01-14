@@ -15,8 +15,5 @@ export let postLogInInfo = props => dispatch => {
     }
   }).then(response => {
     dispatch(getUser(response.data));
-    if (response.data.authorization) {
-      sessionStorage.setItem("jwt-token", response.headers.authorization);
-    }
   });
 };
