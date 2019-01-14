@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState } from "react";
 import { Header, Card, Grid } from "semantic-ui-react";
 import Paginate from "../components/Paginate";
 import PaginationLinks from "../components/PaginationLinks";
@@ -6,31 +6,16 @@ import { connect } from "react-redux";
 import { fetchUsers } from "../actions/getUsersAction";
 import User from "../components/User";
 import "../assets/UsersList.css";
-export class UsersList extends Component {
-  state = {
-    firstPage: true,
-    lastPage: true,
-    pageCount: null,
-    usersList: [],
-    users: {},
-    selectedPage: 1
-  };
 
-  componentDidMount() {
-    if (!this.props.users.length) {
-      this.props.fetchUsers();
-    } else {
-      this.normalizeUsers(this.props.users);
-    }
-  }
+const UsersList = () => {
+  const [selectedPage, setSelectedPage] = useState(1);
+  const [usersList, setUsersList] = useState([]);
+  const [firstPage, setFirstPage] = useState(true);
+  const [lastPage, setLastPage] = useState(true);
+  const [pageCount, setPageCount] = useState(null);
+  const [users, setUsers] = useState({});
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.users.length !== nextProps.users.length) {
-      this.normalizeUsers(nextProps.users);
-    }
-  }
-
-  normalizeUsers(users) {
+  normalizeUsers = users => {
     let pageCount = Math.ceil(users.length / 12);
     let normalizedUsers = {};
     let lastIndex = 0;
@@ -44,59 +29,61 @@ export class UsersList extends Component {
         lastIndex += 12;
       }
     }
-    this.setState({
-      users: normalizedUsers,
-      pageCount,
-      usersList: normalizedUsers[1],
-      lastPage: false
-    });
+    setUsers(normalizedUsers);
+    setUsersList(normalizedUsers[1]);
+    setPageCount(pageCount)
+    setLastPage(false)
+
   }
 
   handlePageSelect = selectedPage => e => {
     e.preventDefault();
-    this.setState({
-      usersList: this.state.users[selectedPage],
-      selectedPage,
-      firstPage: selectedPage - 1 < 1 ? true : false,
-      lastPage: selectedPage + 1 > this.state.pageCount ? true : false
-    });
+    setSelectedPage(selectedPage)
+    setUsersList(users[selectedPage])
+    setFirstPage(selectedPage - 1 < 1 ? true : false)
+    setLastPage(selectedPage + 1 > this.state.pageCount ? true : false)
   };
-
-  render() {
-    let {
-      firstPage,
-      lastPage,
-      pageCount,
-      usersList,
-      selectedPage
-    } = this.state;
-    return (
-      <Fragment>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={12}>
-              <Header as="h1">Volunteers Directory</Header>
-              <Card.Group centered itemsPerRow={3}>
-                <Paginate
-                  items={usersList}
-                  Component={User}
-                  pageCount={pageCount}
-                />
-              </Card.Group>
-              <PaginationLinks
-                handlePageSelect={this.handlePageSelect}
-                firstPage={firstPage}
-                lastPage={lastPage}
+  
+  return (
+    <Fragment>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={12}>
+            <Header as="h1">Volunteers Directory</Header>
+            <Card.Group centered itemsPerRow={3}>
+              <Paginate
+                items={usersList}
+                Component={User}
                 pageCount={pageCount}
-                selectedPage={selectedPage}
               />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Fragment>
-    );
-  }
+            </Card.Group>
+            <PaginationLinks
+              handlePageSelect={this.handlePageSelect}
+              firstPage={firstPage}
+              lastPage={lastPage}
+              pageCount={pageCount}
+              selectedPage={selectedPage}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Fragment>
+  )
 }
+  
+  // componentDidMount() {
+  //   if (!this.props.users.length) {
+  //     this.props.fetchUsers();
+  //   } else {
+  //     this.normalizeUsers(this.props.users);
+  //   }
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.users.length !== nextProps.users.length) {
+  //     this.normalizeUsers(nextProps.users);
+  //   }
+  // }
 
 const mapStateToProps = store => ({ users: store.users });
 export default connect(
