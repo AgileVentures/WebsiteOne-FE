@@ -12,6 +12,7 @@
     "test": "jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "cypress:ci": "cypress run",
+    "cypress:install": "cypress install",
     "e2e:local": "cypress run --headed",
     "e2e:ci": "npm-run-all --parallel --race start:ci 'cypress:ci --config baseUrl=http://localhost:8082'",
     "start:ci": "webpack-dev-server --config ./webpack.config.js --port 8082 --mode production"
