@@ -12,7 +12,8 @@ module.exports = {
     "!**/coverage/**",
     "!**/src/assets/**",
     "!**/semantic/**",
-    "!**/src/index.js"
+    "!**/src/index.js",
+    "!**/cypress/**"
   ],
   "transform": {
     "^.+\\.js$": "babel-jest",
