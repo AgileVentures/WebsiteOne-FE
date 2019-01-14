@@ -7,14 +7,18 @@ import { fetchUsers } from "../actions/getUsersAction";
 import User from "../components/User";
 import "../assets/UsersList.css";
 export class UsersList extends Component {
-  state = {
-    firstPage: true,
-    lastPage: true,
-    pageCount: null,
-    usersList: [],
-    users: {},
-    selectedPage: 1
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstPage: true,
+      lastPage: true,
+      pageCount: null,
+      usersList: [],
+      users: {},
+      selectedPage: 1
+    };
+  }
+
 
   componentDidMount() {
     if (!this.props.users.length) {
@@ -52,6 +56,7 @@ export class UsersList extends Component {
     });
   }
 
+  /* eslint-disable-next-line */
   handlePageSelect = selectedPage => e => {
     e.preventDefault();
     this.setState({
