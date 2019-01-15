@@ -2,3 +2,4 @@ node_modules/
 /coverage
 /dist
 /semantic
+package-lock.json

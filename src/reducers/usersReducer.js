@@ -8,8 +8,8 @@ const usersReducer = (state = initialState.users, action) => {
     case POST_SIGNUP_INFO:
       return [...action.payload];
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default usersReducer;
+export default usersReducer

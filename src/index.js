@@ -14,7 +14,7 @@ axios.defaults.baseURL = 'https://develop.websiteone.agileventures.org/';
 render(
   <BrowserRouter>
     <Provider store={store}>
-      <Container className="main-content">
+      <Container className='main-content'>
         <Switch>
           <Route path="/" exact={true} component={Homepage} />
           <Route path="/users" component={UsersList} />
@@ -23,5 +23,5 @@ render(
       </Container>
     </Provider>
   </BrowserRouter>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
