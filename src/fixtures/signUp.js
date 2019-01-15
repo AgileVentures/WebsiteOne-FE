@@ -1,14 +1,14 @@
 export default [
   {
     id: 107,
-    email: "newuser2@user.com",
-    created_at: "2019-01-13T13:10:59.803Z",
-    updated_at: "2019-01-13T13:10:59.803Z",
+    email: 'newuser2@user.com',
+    created_at: '2019-01-13T13:10:59.803Z',
+    updated_at: '2019-01-13T13:10:59.803Z',
     first_name: null,
     last_name: null,
     display_email: null,
     youtube_id: null,
-    slug: "newuser2",
+    slug: 'newuser2',
     display_profile: true,
     latitude: null,
     longitude: null,
@@ -29,4 +29,4 @@ export default [
     skill_list: [],
     title_list: []
   }
-];
+]
