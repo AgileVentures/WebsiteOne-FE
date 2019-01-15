@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 import { Container } from 'semantic-ui-react'
+import ProjectsList from './containers/ProjectsList'
 import Homepage from './components/homepage/Homepage'
 import './assets/semantic.css'
 import axios from 'axios'
@@ -17,6 +18,7 @@ render(
         <Switch>
           <Route path='/' exact component={Homepage} />
           <Route path='/users' component={UsersList} />
+          <Route path='/projects' component={ProjectsList} />
         </Switch>
       </Container>
     </Provider>
