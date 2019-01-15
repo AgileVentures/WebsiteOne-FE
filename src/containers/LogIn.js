@@ -79,6 +79,7 @@ export class LogIn extends Component {
                   name='password'
                   value={password}
                   onChange={this.handleChange}
+                  type='password'
                 />
                 <Form.Field>
                   <Checkbox label='Remember me' />
