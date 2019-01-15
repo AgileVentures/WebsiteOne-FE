@@ -1,39 +1,39 @@
-import moxios from "moxios";
-import thunk from "redux-thunk";
-import configureMockStore from "redux-mock-store";
-import { postLogInInfo } from "../actions/postLogInInfoAction";
-import { POST_LOGIN_INFO } from "../types";
-import logInResponse from "../fixtures/logIn";
+import moxios from 'moxios'
+import thunk from 'redux-thunk'
+import configureMockStore from 'redux-mock-store'
+import { postLogInInfo } from '../actions/postLogInInfoAction'
+import { POST_LOGIN_INFO } from '../types'
+import logInResponse from '../fixtures/logIn'
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-let store;
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
+let store
 
-describe("postLogInInfo action", () => {
+describe('postLogInInfo action', () => {
   beforeEach(() => {
-    moxios.install();
-    store = mockStore({});
-  });
+    moxios.install()
+    store = mockStore({})
+  })
 
   afterEach(() => {
-    moxios.uninstall();
-  });
+    moxios.uninstall()
+  })
 
-  it("posts login info to an external api", () => {
+  it('posts login info to an external api', () => {
     const expectedActions = [
       { type: POST_LOGIN_INFO, payload: logInResponse }
-    ];
-    moxios.stubRequest("http://localhost:3000/users/sign_in", {
+    ]
+    moxios.stubRequest('http://localhost:3000/users/sign_in', {
       status: 200,
       response: logInResponse
-    });
+    })
 
     return store
       .dispatch(
-        postLogInInfo({ email: "premium@premi.um", password: "premium123" })
+        postLogInInfo({ email: 'premium@premi.um', password: 'premium123' })
       )
       .then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
-      });
-  });
-});
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+  })
+})

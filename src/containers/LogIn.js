@@ -1,100 +1,100 @@
-import React, { Component, Fragment } from "react";
-import { Button, Form, Header, Grid, Checkbox } from "semantic-ui-react";
-import { connect } from "react-redux";
-import { postLogInInfo } from "../actions/postLogInInfoAction";
-import iziToast from "../assets/iziToast.min.js";
-import "../assets/iziToast.min.css";
-import "../assets/LogIn.scss";
+import React, { Component, Fragment } from 'react'
+import { Button, Form, Header, Grid, Checkbox } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { postLogInInfo } from '../actions/postLogInInfoAction'
+import iziToast from '../assets/iziToast.min.js'
+import '../assets/iziToast.min.css'
+import '../assets/LogIn.scss'
 
 export class LogIn extends Component {
   state = {
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
   handleLogIn = async e => {
-    const { email, password } = this.state;
-    e.preventDefault();
+    const { email, password } = this.state
+    e.preventDefault()
     await this.props
       .postLogInInfo({ email, password })
       .then(() => {
         iziToast.show({
-          theme: "light",
-          title: "Success",
-          message: "Have a look around",
-          position: "topRight",
-          color: "green",
-          backgroundColor: "lime",
+          theme: 'light',
+          title: 'Success',
+          message: 'Have a look around',
+          position: 'topRight',
+          color: 'green',
+          backgroundColor: 'lime',
           timeout: 3000,
           balloon: true
-        });
-        this.props.history.push("/");
+        })
+        this.props.history.push('/')
       })
       .catch(e => {
         iziToast.show({
-          theme: "light",
-          title: "Sorry",
-          message: `${e.message}` + " please try again",
-          position: "topRight",
-          color: "red",
-          backgroundColor: "lightcoral",
+          theme: 'light',
+          title: 'Sorry',
+          message: `${e.message}` + ' please try again',
+          position: 'topRight',
+          color: 'red',
+          backgroundColor: 'lightcoral',
           timeout: 3000,
           balloon: true
-        });
-      });
+        })
+      })
   };
 
-  render() {
-    const { password, email } = this.state;
+  render () {
+    const { password, email } = this.state
     return (
       <Fragment>
-        <Header as="h1" textAlign="center" className="login-h1">
+        <Header as='h1' textAlign='center' className='login-h1'>
           Log In
         </Header>
-        <Header as="h4" textAlign="center" className="login-h4">
-          Don't have an account? <a href="/signup">Sign Up</a>
+        <Header as='h4' textAlign='center' className='login-h4'>
+          Don't have an account? <a href='/signup'>Sign Up</a>
         </Header>
-        <Header as="h4" textAlign="center">
-          <a href="/users/password/new">Forgot your password?</a>
+        <Header as='h4' textAlign='center'>
+          <a href='/users/password/new'>Forgot your password?</a>
         </Header>
-        <Grid centered={true}>
+        <Grid centered>
           <Grid.Row>
             <Grid.Column width={8}>
               <Form
                 onSubmit={this.handleLogIn}
-                className="login-form"
-                size="large"
+                className='login-form'
+                size='large'
               >
                 <Form.Input
-                  label="Email"
-                  placeholder="Email"
-                  name="email"
+                  label='Email'
+                  placeholder='Email'
+                  name='email'
                   value={email}
                   onChange={this.handleChange}
                 />
                 <Form.Input
-                  label="Password"
-                  placeholder="Password"
-                  name="password"
+                  label='Password'
+                  placeholder='Password'
+                  name='password'
                   value={password}
                   onChange={this.handleChange}
                 />
                 <Form.Field>
-                  <Checkbox label="Remember me" />
+                  <Checkbox label='Remember me' />
                 </Form.Field>
-                <Button type="submit">Log In</Button>
+                <Button type='submit'>Log In</Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Fragment>
-    );
+    )
   }
 }
 
-const mapStateToProps = store => ({ users: store.users });
+const mapStateToProps = store => ({ users: store.users })
 export default connect(
   mapStateToProps,
   { postLogInInfo }
-)(LogIn);
+)(LogIn)

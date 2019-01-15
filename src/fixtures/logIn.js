@@ -1,18 +1,18 @@
 export default [
   {
     id: 2,
-    email: "premium@premi.um",
-    created_at: "2019-01-09T23:29:28.825Z",
-    updated_at: "2019-01-11T14:39:33.221Z",
-    first_name: "Retha",
-    last_name: "Dietrich",
+    email: 'premium@premi.um',
+    created_at: '2019-01-09T23:29:28.825Z',
+    updated_at: '2019-01-11T14:39:33.221Z',
+    first_name: 'Retha',
+    last_name: 'Dietrich',
     display_email: null,
     youtube_id: null,
-    slug: "retha-dietrich",
+    slug: 'retha-dietrich',
     display_profile: true,
     latitude: null,
     longitude: null,
-    country_name: "Falkland Islands (malvinas)",
+    country_name: 'Falkland Islands (malvinas)',
     city: null,
     region: null,
     youtube_user_name: null,
@@ -20,7 +20,7 @@ export default [
     display_hire_me: null,
     bio: null,
     receive_mailings: false,
-    country_code: "FK",
+    country_code: 'FK',
     timezone_offset: null,
     status_count: 0,
     deleted_at: null,
@@ -29,4 +29,4 @@ export default [
     skill_list: [],
     title_list: []
   }
-];
+]
