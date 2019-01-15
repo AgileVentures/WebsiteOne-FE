@@ -26,4 +26,12 @@ describe('ProjectsList', () => {
   it('should have a header Volunteers Directory', () => {
     expect(wrapper.find('Header').text()).toBe('List of Projects')
   })
+
+  it('should have a Paginate component', () => {
+    expect(wrapper.find('Paginate')).toHaveLength(1)
+  })
+
+  it('should have a PaginationLinks component', () => {
+    expect(wrapper.find('PaginationLinks')).toHaveLength(1)
+  })
 })
