@@ -1,5 +1,5 @@
 import React from 'react'
-import { SignUp } from '../containers/SignUp'
+import { SignUp } from '../../containers/SignUp'
 import { mount } from 'enzyme'
 
 describe('SignUp', () => {

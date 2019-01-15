@@ -1,9 +1,9 @@
 import moxios from 'moxios'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
-import { postSignUpInfo } from '../actions/postSignUpInfoAction'
-import { POST_SIGNUP_INFO } from '../types'
-import signUpResponse from '../fixtures/signUp'
+import { postSignUpInfo } from '../../actions/postSignUpInfoAction'
+import { POST_SIGNUP_INFO } from '../../types'
+import signUpResponse from '../../fixtures/signUp'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
