@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { Header } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { fetchProjects } from '../actions/getProjectsAction'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
+
 export class ProjectsList extends Component {
   state = { firstPage: true, lastPage: true }
 
@@ -29,3 +32,9 @@ export class ProjectsList extends Component {
     )
   }
 }
+
+const mapStateToProps = store => ({ projects: store.projects })
+export default connect(
+  mapStateToProps,
+  { fetchProjects }
+)(ProjectsList)
