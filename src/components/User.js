@@ -14,7 +14,7 @@ const User = ({ item: user }) => {
             rounded
             size='tiny'
           />
-          <big className='card-header'>
+          <big className='user-card-header'>
             <Card.Header>
               {user.first_name
                 ? fullName(user).length >= 12
@@ -29,7 +29,7 @@ const User = ({ item: user }) => {
             ? user.title_list.map(title => title + ' ')
             : null}
         </Card.Description>
-        <p className='card-footer'>
+        <p className='user-card-footer'>
           <Icon name='fire' /> {}
           {user.karma_total}
         </p>

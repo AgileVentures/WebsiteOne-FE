@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card } from 'semantic-ui-react'
+import { Header, Card, Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
 import { Link } from 'react-router-dom'
@@ -22,7 +22,7 @@ export class ProjectsList extends Component {
     totalProjects: null,
     selectedLanguage: null,
     languages: []
-  }
+  };
 
   componentDidMount () {
     if (!this.props.projects.length) {
@@ -152,40 +152,50 @@ export class ProjectsList extends Component {
 
     return (
       <Fragment>
-        <Header as='h1'>List of Projects</Header>
-        <div>
-          <p>
-            To get involved in any of the projects, join one of the
-            <Link to={`/events`}> srums </Link>and reach out to us, or send us
-            an email at
-            <a href='mailto:info@agileventures.org'> info@agileventures.org</a>.
-          </p>
-        </div>
-        <div className='search-dropdown'>
-          <Select
-            value={selectedLanguage}
-            options={this.handlePopulateLanguagesDropdown()}
-            onChange={this.handleFilterProjects}
-            placeholder='Search for project by programming language...'
-            isClearable
-          />
-        </div>
-        <Card.Group centered itemsPerRow={3}>
-          <Paginate
-            items={filteredProjectsList || projectsList}
-            Component={Project}
-            pageCount={pageCount}
-          />
-        </Card.Group>
-        {!(pageCount === 1) ? (
-          <PaginationLinks
-            pageCount={pageCount}
-            selectedPage={this.state.selectedPage}
-            handlePageSelect={this.handlePageSelect}
-            firstPage={this.state.firstPage}
-            lastPage={this.state.lastPage}
-          />
-        ) : null}
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={12}>
+              <Header as='h1'>List of Projects</Header>
+              <div>
+                <p>
+                  To get involved in any of the projects, join one of the
+                  <Link to={`/events`}> srums </Link>and reach out to us, or
+                  send us an email at
+                  <a href='mailto:info@agileventures.org'>
+                    {' '}
+                    info@agileventures.org
+                  </a>
+                  .
+                </p>
+              </div>
+              <div className='search-dropdown'>
+                <Select
+                  value={selectedLanguage}
+                  options={this.handlePopulateLanguagesDropdown()}
+                  onChange={this.handleFilterProjects}
+                  placeholder='Search for project by programming language...'
+                  isClearable
+                />
+              </div>
+              <Card.Group centered itemsPerRow={3}>
+                <Paginate
+                  items={filteredProjectsList || projectsList}
+                  Component={Project}
+                  pageCount={pageCount}
+                />
+              </Card.Group>
+              {!(pageCount === 1) ? (
+                <PaginationLinks
+                  pageCount={pageCount}
+                  selectedPage={this.state.selectedPage}
+                  handlePageSelect={this.handlePageSelect}
+                  firstPage={this.state.firstPage}
+                  lastPage={this.state.lastPage}
+                />
+              ) : null}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Fragment>
     )
   }
