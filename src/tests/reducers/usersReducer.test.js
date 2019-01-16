@@ -6,13 +6,16 @@ describe('reduces users', () => {
     expect(usersReducer(undefined, {})).toEqual([])
   })
 
-  it('reduces users', () => {
+  it('reduces users after getting them', () => {
     expect(
       usersReducer([], {
         type: GET_USERS,
         payload: ['User to be added to store']
       })
     ).toEqual(['User to be added to store'])
+  })
+
+  it('reduces incoming user after successful login', () => {
     expect(
       usersReducer([], {
         type: POST_LOGIN_INFO,

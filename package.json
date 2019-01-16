@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "izitoast": "^1.4.0",
     "global": "^4.3.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

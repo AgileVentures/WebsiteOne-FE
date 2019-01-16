@@ -19,23 +19,23 @@ export class LogIn extends Component {
     await this.props
       .postLogInInfo({ email, password })
       .then(() => {
+        this.props.history.push('/')
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Have a look around',
+          message: 'Welcome back, ' + `${this.props.users[0].name}`,
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',
           timeout: 3000,
           balloon: true
         })
-        this.props.history.push('/')
       })
       .catch(e => {
         iziToast.show({
           theme: 'light',
           title: 'Sorry',
-          message: `${e.message}` + ' please try again',
+          message: 'Username and/or Password do no match',
           position: 'topRight',
           color: 'red',
           backgroundColor: 'lightcoral',
