@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Header } from 'semantic-ui-react'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
-export default class ProjectsList extends Component {
+export class ProjectsList extends Component {
   state = { firstPage: true, lastPage: true }
 
   handlePageSelect = selectedPage => e => {
