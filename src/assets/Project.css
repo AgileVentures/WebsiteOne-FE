@@ -1,10 +1,9 @@
-ul.card-footer {
+.project-card-footer {
   display: flex;
-  padding-left: 0px !important;
 }
 
-.card-footer li {
-  margin: 20px 20px 0px 0px;
+.project-card-footer i {
+  margin: auto !important;
 }
 
 .project-image {
