@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/WebsiteOne-FE
     docker:
-      - image: circleci/node:8
+      - image: cypress/browsers:chrome69
     steps:
       - checkout
       - restore_cache:
@@ -17,6 +17,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
       - run: yarn build
+      - run: yarn cypress:install && yarn e2e:ci
       - run:
           name: Collect test coverage
           command: yarn coveralls
