@@ -4,15 +4,20 @@ module.exports = {
   setupTestFrameworkScriptFile: '<rootDir>/src/tests/setupTests.js',
   coverageReporters: ['text', 'lcov'],
   collectCoverageFrom: [
-    '**/*.{js,jsx}',
-    '!**/*.{config}.{js}',
-    '!**/node_modules/**',
-    '!**/dist/**',
-    '!**/vendor/**',
-    '!**/coverage/**',
-    '!**/src/assets/**',
-    '!**/semantic/**',
-    '!**/src/index.js'
+    "**/*.{js,jsx}",
+    "!**/*.{config}.{js}",
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/vendor/**",
+    "!**/coverage/**",
+    "!**/src/assets/**",
+    "!**/semantic/**",
+    "!**/src/index.js",
+    "!**/cypress/**"
+  ],
+  testPathIgnorePatterns: [
+    "<rootDir>/cypress/",
+    "<rootDir>/node_modules/"
   ],
   'transform': {
     '^.+\\.js$': 'babel-jest',
