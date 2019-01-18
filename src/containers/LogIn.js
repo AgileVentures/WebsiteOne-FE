@@ -15,15 +15,9 @@ export class LogIn extends Component {
     if (props.loggedInUser.length === state.loggedInUser.length) {
       return null
     }
-    console.log('props:' + `${props.loggedInUser}`)
     return {
       loggedInUser: props.loggedInUser
     }
-  }
-
-  componentDidCatch (error, info) {
-    console.log(error)
-    console.log(info)
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -33,11 +27,11 @@ export class LogIn extends Component {
     await this.props
       .postLogInInfo({ email, password })
       .then(() => {
-        // this.props.history.push('/')
+        this.props.history.push('/')
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Welcome back, anonymous user',
+          message: 'Welcome back, ' + `${this.state.loggedInUser[0].slug}`,
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',
@@ -45,7 +39,7 @@ export class LogIn extends Component {
           balloon: true
         })
       })
-      .catch(e => {
+      .catch(() => {
         iziToast.show({
           theme: 'light',
           title: 'Sorry',
