@@ -7,17 +7,7 @@ import '../assets/LogIn.scss'
 export class LogIn extends Component {
   state = {
     email: '',
-    password: '',
-    loggedInUser: []
-  }
-
-  static getDerivedStateFromProps (props, state) {
-    if (props.loggedInUser.length === state.loggedInUser.length) {
-      return null
-    }
-    return {
-      loggedInUser: props.loggedInUser
-    }
+    password: ''
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -31,7 +21,7 @@ export class LogIn extends Component {
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Welcome back, ' + `${this.state.loggedInUser[0].slug}`,
+          message: 'Welcome back, ' + `${this.props.loggedInUser.slug}`,
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',

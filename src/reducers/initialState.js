@@ -1,4 +1,4 @@
 export default {
   users: [],
-  loggedInUser: []
+  loggedInUser: {}
 }

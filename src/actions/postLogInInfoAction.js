@@ -6,7 +6,7 @@ export let getUser = user => ({ type: POST_LOGIN_INFO, payload: user })
 export let postLogInInfo = props => dispatch => {
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/users/sign_in',
+    url: '/users/sign_in',
     data: {
       user: {
         email: props.email,
@@ -14,7 +14,6 @@ export let postLogInInfo = props => dispatch => {
       }
     }
   }).then(response => {
-    console.log(response.data)
     dispatch(getUser(response.data))
   })
 }

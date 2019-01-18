@@ -4,7 +4,7 @@ import initialState from './initialState'
 const loggedInUserReducer = (state = initialState.loggedInUser, action) => {
   switch (action.type) {
     case POST_LOGIN_INFO:
-      return [ ...state, action.payload ]
+      return { ...action.payload }
     default:
       return state
   }
