@@ -2,15 +2,29 @@ import React, { Component, Fragment } from 'react'
 import { Button, Form, Header, Grid, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { postLogInInfo } from '../actions/postLogInInfoAction'
-import iziToast from '../assets/iziToast.min.js'
-import '../assets/iziToast.min.css'
+import iziToast from 'izitoast'
 import '../assets/LogIn.scss'
-
 export class LogIn extends Component {
   state = {
     email: '',
-    password: ''
-  };
+    password: '',
+    loggedInUser: []
+  }
+
+  static getDerivedStateFromProps (props, state) {
+    if (props.loggedInUser.length === state.loggedInUser.length) {
+      return null
+    }
+    console.log('props:' + `${props.loggedInUser}`)
+    return {
+      loggedInUser: props.loggedInUser
+    }
+  }
+
+  componentDidCatch (error, info) {
+    console.log(error)
+    console.log(info)
+  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
   handleLogIn = async e => {
@@ -19,11 +33,11 @@ export class LogIn extends Component {
     await this.props
       .postLogInInfo({ email, password })
       .then(() => {
-        this.props.history.push('/')
+        // this.props.history.push('/')
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Welcome back, ' + `${this.props.users[0].name}`,
+          message: 'Welcome back, anonymous user',
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',
@@ -94,7 +108,7 @@ export class LogIn extends Component {
   }
 }
 
-const mapStateToProps = store => ({ users: store.users })
+const mapStateToProps = store => ({ loggedInUser: store.loggedInUser })
 export default connect(
   mapStateToProps,
   { postLogInInfo }
