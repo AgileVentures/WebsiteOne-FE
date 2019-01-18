@@ -1,8 +1,8 @@
 import usersReducer from '../../reducers/usersReducer'
-import { GET_USERS, POST_SIGNUP_INFO } from '../../types'
+import { GET_USERS } from '../../types'
 
 describe('reduces users', () => {
-  it('defaults to empty projects if none are passed in', () => {
+  it('defaults to empty users if none are passed in', () => {
     expect(usersReducer(undefined, {})).toEqual([])
   })
 
@@ -14,10 +14,4 @@ describe('reduces users', () => {
       })
     ).toEqual(['User to be added to store'])
   })
-  expect(
-    usersReducer([], {
-      type: POST_SIGNUP_INFO,
-      payload: ['User to be added to store']
-    })
-  ).toEqual(['User to be added to store'])
 })

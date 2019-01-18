@@ -10,7 +10,7 @@ export class SignUp extends Component {
     email: '',
     password: '',
     passwordConfirmation: ''
-  };
+  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
   handleSignUp = async e => {
@@ -23,7 +23,7 @@ export class SignUp extends Component {
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Welcome, take a look around',
+          message: 'Welcome, ' + `${this.props.signedUpUser.slug}` + ', take a look around',
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',
@@ -53,7 +53,7 @@ export class SignUp extends Component {
           Sign Up
         </Header>
         <Header as='h4' textAlign='center' className='signup-h4'>
-        Already a member? <a href='/login'>Log In</a>
+          Already a member? <a href='/login'>Log In</a>
         </Header>
         <Header as='h4' textAlign='center'>
           <a href='/users/password/new'>Forgot your password?</a>
@@ -102,7 +102,7 @@ export class SignUp extends Component {
   }
 }
 
-const mapStateToProps = store => ({ users: store.users })
+const mapStateToProps = store => ({ signedUpUser: store.signedUpUser })
 export default connect(
   mapStateToProps,
   { postSignUpInfo }
