@@ -3,7 +3,6 @@ import { Button, Form, Header, Grid, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { postSignUpInfo } from '../actions/postSignUpInfoAction'
 import iziToast from 'izitoast'
-import '../assets/iziToast.min.css'
 import '../assets/SignUp.scss'
 
 export class SignUp extends Component {
