@@ -49,7 +49,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -68,14 +68,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch:
-      "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 5,
@@ -88,13 +87,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 6,
@@ -107,13 +106,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 7,
@@ -126,7 +125,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -145,13 +144,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 9,
@@ -164,13 +163,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 10,
@@ -183,13 +182,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 11,
@@ -202,7 +201,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -221,7 +220,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -240,7 +239,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -259,13 +258,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 15,
@@ -278,13 +277,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 16,
@@ -297,13 +296,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 17,
@@ -316,13 +315,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 18,
@@ -335,7 +334,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -354,7 +353,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -373,13 +372,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 21,
@@ -392,14 +391,15 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
-  }, {
+    languages: ['JavaScript']
+  },
+  {
     id: 22,
     title: 'Open edX',
     description: 'edX is an open source system for delivering courses online. See more at http://code.edx.org',
@@ -410,13 +410,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 23,
@@ -429,7 +429,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -448,7 +448,7 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
@@ -467,13 +467,13 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   },
   {
     id: 26,
@@ -486,12 +486,12 @@ export default [
     slug: 'edx',
     github_url: 'https://github.com/edx',
     pivotaltracker_url: '',
-    pitch: "<p><img src='http://code.edx.org/assets/images/logo-edx-openedx.png'><br></p><p></p>",
+    pitch: null,
     commit_count: null,
     image_url: null,
     last_github_update: null,
     slack_channel_name: null,
     tag_list: [],
-    languages: []
+    languages: ['JavaScript']
   }
 ]

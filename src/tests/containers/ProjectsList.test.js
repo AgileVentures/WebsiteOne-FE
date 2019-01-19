@@ -2,30 +2,28 @@ import React from 'react'
 import { mount, shallow } from 'enzyme'
 import { StaticRouter } from 'react-router'
 import { ProjectsList } from '../../containers/ProjectsList'
+import normalizedProjectsFixture from '../../fixtures/normalizedProjects'
 import projectsFixture from '../../fixtures/projects'
 
 describe('ProjectsList', () => {
+  let e = { preventDefault: jest.fn() }
   let wrapper
   const context = {}
-
+  const props = {
+    projects: projectsFixture,
+    fetchProjects: () =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve('promise')
+        }, 300)
+      }),
+    filteredProjectsList: null
+  }
   wrapper = mount(
     <StaticRouter context={context}>
-      <ProjectsList
-        projects={projectsFixture}
-        fetchProjects={() =>
-          new Promise(function (resolve, reject) {
-            setTimeout(function () {
-              resolve('promise')
-            }, 300)
-          })
-        }
-      />
+      <ProjectsList {...props} />
     </StaticRouter>
   )
-
-  it('should have a header Volunteers Directory', () => {
-    expect(wrapper.find('Header').text()).toBe('List of Projects')
-  })
 
   it('should have a Paginate component', () => {
     expect(wrapper.find('Paginate')).toHaveLength(1)
@@ -45,6 +43,29 @@ describe('ProjectsList', () => {
     expect(projectsList.instance().state.selectedPage).toEqual(2)
     expect(projectsList.instance().state.lastPage).toBe(false)
     expect(projectsList.instance().state.firstPage).toBe(false)
+  })
+
+  it('should call handlePageSelect when projects are filtered', () => {
+    const wrapper = shallow(
+      <ProjectsList
+        projects={normalizedProjectsFixture}
+        fetchProjects={() => {}}
+      />
+    )
+    wrapper.setState(
+      {
+        selectedLanguage: { value: 'JavaScript' },
+        projects: normalizedProjectsFixture
+      },
+      () => {
+        wrapper.instance().handlePageSelect(2)(e)
+      }
+    )
+    wrapper.instance().forceUpdate()
+    console.log('force update', wrapper.instance().state.selectedLanguage)
+    expect(wrapper.instance().state.filteredProjectsList).toBe(
+      normalizedProjectsFixture['JavaScript']['2']
+    )
   })
 
   it('should set lastPage to true when the selectedPage is the last', () => {
@@ -68,7 +89,7 @@ describe('ProjectsList', () => {
   it("shouldn't render a Project component without projects", () => {
     const wrapper = mount(
       <StaticRouter context={context}>
-        <ProjectsList projects={[]} fetchProjects={() => {}} />
+        <ProjectsList projects={{ 1: [] }} fetchProjects={() => {}} />
       </StaticRouter>
     )
     expect(wrapper.find('Project')).toHaveLength(0)
@@ -82,5 +103,29 @@ describe('ProjectsList', () => {
     expect(wrapper.instance().state.projects).toEqual({
       '1': [{ id: 1, languages: [] }]
     })
+  })
+
+  it('should call normalizeFilteredProjects', () => {
+    const wrapper = shallow(
+      <ProjectsList projects={[]} fetchProjects={() => {}} />
+    )
+    wrapper.setProps({ projects: projectsFixture })
+    expect(wrapper.instance().state.projects).toEqual(
+      normalizedProjectsFixture
+    )
+  })
+
+  it('should filter projects', () => {
+    const wrapper = shallow(<ProjectsList {...props} />)
+    wrapper.instance().handleFilterProjects({ value: 'Ruby' })
+    expect(wrapper.instance().state.filteredProjectsList).toEqual(
+      normalizedProjectsFixture['Ruby']['1']
+    )
+  })
+
+  it('should allow clearing of filteredProjects', () => {
+    const wrapper = shallow(<ProjectsList {...props} />)
+    wrapper.instance().handleFilterProjects(null)
+    expect(wrapper.instance().state.filteredProjectsList).toEqual(null)
   })
 })
