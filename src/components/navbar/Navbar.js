@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Menu, Container, Image } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
-import logo from "../../images/av-logo.svg";
-import "./Navbar.css";
+import React, { Component } from 'react'
+import { Menu, Container, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import logo from '../../images/av-logo.svg'
+import './Navbar.css'
 
 export class Navbar extends Component {
 
@@ -11,12 +11,12 @@ export class Navbar extends Component {
     // this.props.location.split("/") returns ["", ""] when on homepage
     // and ["", "users", "123"] when on /users/123
     // This function is used to highlight the nav link
-    const pathArray = this.props.location.pathname.split("/");
-    return pathArray[1];
+    const pathArray = this.props.location.pathname.split("/")
+    return pathArray[1]
   }
 
   render() {
-    const activeItem = this.currentPath();
+    const activeItem = this.currentPath()
 
     return (
       <Menu stackable borderless inverted as="div" className="navbar">
@@ -54,7 +54,7 @@ export class Navbar extends Component {
           </Menu.Menu>
         </Container>
       </Menu>
-    );
+    )
   }
 }
-export default withRouter(Navbar);
+export default withRouter(Navbar)

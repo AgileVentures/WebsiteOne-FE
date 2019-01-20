@@ -22,6 +22,6 @@ render(
         </Switch>
       </Container>
     </Provider>
-  </BrowserRouter>,
+  </BrowserRouter>
   document.getElementById('root')
 )
