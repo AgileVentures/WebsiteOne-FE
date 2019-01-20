@@ -15,13 +15,13 @@ render(
   <BrowserRouter>
     <Provider store={store}>
       <Navbar></Navbar>
-      <Container className='main-content'>
         <Switch>
           <Route path='/' exact component={Homepage} />
-          <Route path='/users' component={UsersList} />
+          <Container className='main-content'>
+            <Route path='/users' component={UsersList} />
+          </Container>
         </Switch>
-      </Container>
     </Provider>
-  </BrowserRouter>
+  </BrowserRouter>,
   document.getElementById('root')
 )
