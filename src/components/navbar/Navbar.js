@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import logo from "../../images/av-logo.svg";
 import "./Navbar.css";
 
-class Navbar extends Component {
+export class Navbar extends Component {
 
   currentPath() {
     // this.props.location.split("/") returns ["", ""] when on homepage
