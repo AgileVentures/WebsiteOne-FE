@@ -9,6 +9,7 @@ describe('Store', () => {
 
     expect(store.getState()).toEqual({
       loggedInUser: { id: 2, email: 'someEmail@example.com' },
+      signedUpUser: {},
       users: []
     })
   })
