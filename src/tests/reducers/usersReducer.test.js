@@ -6,7 +6,7 @@ describe('reduces users', () => {
     expect(usersReducer(undefined, {})).toEqual([])
   })
 
-  it('reduces users', () => {
+  it('reduces users after getting them', () => {
     expect(
       usersReducer([], {
         type: GET_USERS,
