@@ -1,4 +1,4 @@
-const configs = {
+const config = {
   production: {
     AUTH_API: "https://www.agileventures.org/login",
     APP_URL: "https://www.agileventures.org/",
@@ -21,5 +21,5 @@ const configs = {
   }
 };
 
-const config = configs[process.env.NODE_ENV];
-export default config;
+export default  config[process.env.NODE_ENV || 'development'];
+
