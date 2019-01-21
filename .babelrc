@@ -3,6 +3,7 @@
   "plugins": [
     "transform-class-properties",
     ["transform-runtime", { "polyfill": false, "regenerator": true }],
-    ["emotion"]
+    ["emotion"],
+    ["babel-plugin-dotenv", { "replacedModuleName": "babel-dotenv" }]
   ]
 }

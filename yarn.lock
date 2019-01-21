@@ -890,6 +890,13 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-dotenv@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-dotenv/-/babel-plugin-dotenv-0.1.1.tgz#9c8faea67a7c034fe7e94099187ab2e7573400bc"
+  integrity sha1-nI+upnp8A0/n6UCZGHqy51c0ALw=
+  dependencies:
+    dotenv "^2.0.0"
+
 babel-plugin-emotion@^10.0.6:
   version "10.0.6"
   resolved "https://registry.yarnpkg.com/babel-plugin-emotion/-/babel-plugin-emotion-10.0.6.tgz#fd9bb4a5dc6cf2289b656215dbbc80469fd251b3"
@@ -2618,6 +2625,11 @@ domutils@^1.5.1:
   dependencies:
     dom-serializer "0"
     domelementtype "1"
+
+dotenv@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
+  integrity sha1-vXWcNXqqcDZeAclrewvsCKbg2Uk=
 
 dotenv@^6.2.0:
   version "6.2.0"
@@ -6390,10 +6402,10 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
-paypal-checkout@^4.0.241:
-  version "4.0.241"
-  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.241.tgz#fb218d9e821fd56f39237d2a95001a89bf71dc4c"
-  integrity sha512-d0F3pHlPxD2AzG2qNZ1ruw6vcKQKokp303HYnjlu7kc1BXYpB0+RXJiY3vr4KrUPCyL13orDXThpJiap6TfvKg==
+paypal-checkout@^4.0.247:
+  version "4.0.247"
+  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.247.tgz#67d2de8dd5f826b5748a8bace0120e5999af2d32"
+  integrity sha512-yB9QVhCeKrYr2ozJBrFSnCdhxQKEE4lVLUpfW7DfMMOERlOrcanrgweNvtTNdGGeFec3ePrDbvfEX/SN73/a8w==
   dependencies:
     Base64 "^1.0.0"
     beaver-logger "^3.0.6"

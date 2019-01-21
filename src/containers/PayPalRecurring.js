@@ -1,24 +1,72 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import paypal from 'paypal-checkout'
+import { PAYPAL_CLIENT_ID_SANDBOX, PAYPAL_CLIENT_ID_PRODUCTION } from 'babel-dotenv'
 const PayPalButton = paypal.Button.driver('react', { React, ReactDOM })
+
 let client = {
-  sandbox: process.env.PAYPAL_CLIENT_ID_SANDBOX
+  sandbox: PAYPAL_CLIENT_ID_SANDBOX,
+  production: PAYPAL_CLIENT_ID_PRODUCTION
 }
-let payment = () => {}
-let onAuthorize = (data, actions) => {}
+
+const ENV = process.env.NODE_ENV === 'production' ? 'production' : 'sandbox'
+let billingAgreement = () => {
+  // var links = {}
+
+  return paypal.rest.billingAgreement
+    .create(ENV, client, {
+      name: 'Premium Membership',
+      description: 'Monthly agreement with a regular monthly payment definition and 1-week trial payment definition.',
+      start_date: '2019-01-20T09:13:49Z',
+      plan:
+      {
+        type: 'MERCHANT_INITIATED_BILLING',
+        id: 'P-98S68313UK7404721NSNR7LI'
+        //  type: 'RECURRING_PAYMENTS'
+      },
+      payer:
+      {
+        payment_method: 'paypal'
+      }
+    }).then(billingAgreement => {
+      console.log(JSON.stringify(billingAgreement))
+      console.log('Billing Agreement Created Successfully')
+      return billingAgreement
+    })
+    .catch(error => {
+      console.error(JSON.stringify(error))
+      throw error
+    })
+}
+
+let onAuthorize = (data, actions) => {
+  console.log('data', data)
+  console.log('actions', actions)
+  // window.location.replace(data.returnUrl)
+  // actions.payment.execute()
+  // paypal.billingAgreement.execute(data.paymentToken, {}, (error, billingAgreement) => {
+  //   if (error) {
+  //     console.error(JSON.stringify(error))
+  //     throw error
+  //   } else {
+  //     console.log(JSON.stringify(billingAgreement))
+  //     console.log('Billing Agreement Created Successfully')
+  //   }
+  // })
+}
 
 class PayPalRecurring extends Component {
   render () {
     return (
-      <div className='shoppingCart'>
-        <p>Buy <strong>Full Body Lobster Onesie - $24.99</strong> now!</p>
-
+      <div>
         <PayPalButton
           client={client}
-          payment={payment}
+          payment={billingAgreement}
           commit
-          onAuthorize={onAuthorize} />
+          onAuthorize={onAuthorize}
+          env={ENV}
+          style={{ size: 'large' }}
+        />
       </div>
     )
   }
