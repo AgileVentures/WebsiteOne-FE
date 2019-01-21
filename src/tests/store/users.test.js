@@ -8,7 +8,8 @@ describe('Store', () => {
     })
 
     expect(store.getState()).toEqual({
-      users: ['Run the tests']
+      users: ['Run the tests'],
+      loggedInUser: {}
     })
   })
 })

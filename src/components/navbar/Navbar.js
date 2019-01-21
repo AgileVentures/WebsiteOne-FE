@@ -45,11 +45,10 @@ export class Navbar extends Component {
             </Menu.Item>
 
             <Menu.Item
-              name="sign-in"
-              active={activeItem === "sign-in"}
-              disabled
+              name="login"
+              active={activeItem === "login"}
             >
-              Sign-in
+              <Link to="/login">Login</Link>
             </Menu.Item>
           </Menu.Menu>
         </Container>
