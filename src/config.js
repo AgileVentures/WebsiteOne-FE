@@ -1,0 +1,25 @@
+const configs = {
+  production: {
+    AUTH_API: "https://www.agileventures.org/login",
+    APP_URL: "https://www.agileventures.org/",
+    API_BASE_URL: "https://www.agileventures.org/"
+  },
+  staging: {
+    AUTH_API: "https://staging.websiteone.agileventures.org/login",
+    APP_URL: "https://staging.websiteone.agileventures.org/",
+    API_BASE_URL: "https://staging.websiteone.agileventures.org/"
+  },
+  development: {
+    AUTH_API: "https://develop.websiteone.agileventures.org/login",
+    APP_URL: `http://localhost:${process.env.PORT}/`,
+    API_BASE_URL: "https://develop.websiteone.agileventures.org/"
+  },
+  testing: {
+    AUTH_API: "", // Todo add url for testing,
+    APP_URL: "", // Todo add url for testing,
+    API_BASE_URL: "" // Todo add url for testing,
+  }
+};
+
+const config = configs[process.env.NODE_ENV];
+export default config;

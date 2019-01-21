@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../helpers/http'
 import { POST_LOGIN_INFO } from '../types'
 
 export let getUser = user => ({ type: POST_LOGIN_INFO, payload: user })
