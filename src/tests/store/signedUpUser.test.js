@@ -1,15 +1,15 @@
 import store from '../../store'
 
 describe('Store', () => {
-  it('should update after login', async () => {
+  it('should update after signup', async () => {
     await store.dispatch({
-      type: 'POST_LOGIN_INFO',
+      type: 'POST_SIGNUP_INFO',
       payload: { id: 2, email: 'someEmail@example.com' }
     })
 
     expect(store.getState()).toEqual({
-      loggedInUser: { id: 2, email: 'someEmail@example.com' },
-      signedUpUser: {},
+      signedUpUser: { id: 2, email: 'someEmail@example.com' },
+      loggedInUser: {},
       users: []
     })
   })

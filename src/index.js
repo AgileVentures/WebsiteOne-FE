@@ -8,6 +8,7 @@ import { Container } from 'semantic-ui-react'
 import Homepage from './components/homepage/Homepage'
 import Navbar from './components/navbar/Navbar'
 import LogIn from './containers/LogIn'
+import SignUp from "./containers/SignUp"
 import './assets/semantic.css'
 import axios from 'axios'
 axios.defaults.baseURL = 'https://develop.websiteone.agileventures.org/'
@@ -15,12 +16,13 @@ axios.defaults.baseURL = 'https://develop.websiteone.agileventures.org/'
 render(
   <BrowserRouter>
     <Provider store={store}>
-      <Navbar></Navbar>
+      <Navbar/>
         <Switch>
           <Route path='/' exact component={Homepage} />
           <Container className='main-content'>
             <Route path='/users' component={UsersList} />
             <Route path='/login' component={LogIn} />
+            <Route path="/signup" component={SignUp} />
           </Container>
         </Switch>
     </Provider>
