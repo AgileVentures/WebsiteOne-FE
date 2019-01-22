@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { Container } from 'semantic-ui-react'
 import Homepage from './components/homepage/Homepage'
+import Navbar from './components/navbar/Navbar'
 import LogIn from './containers/LogIn'
 import SignUp from "./containers/SignUp"
 import './assets/semantic.css'
@@ -13,14 +14,15 @@ import './assets/semantic.css'
 render(
   <BrowserRouter>
     <Provider store={store}>
-      <Container className='main-content'>
+      <Navbar/>
         <Switch>
           <Route path='/' exact component={Homepage} />
-          <Route path='/login' component={LogIn} />
-          <Route path='/users' component={UsersList} />
-          <Route path="/signup" component={SignUp} />
+          <Container className='main-content'>
+            <Route path='/users' component={UsersList} />
+            <Route path='/login' component={LogIn} />
+            <Route path="/signup" component={SignUp} />
+          </Container>
         </Switch>
-      </Container>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')
