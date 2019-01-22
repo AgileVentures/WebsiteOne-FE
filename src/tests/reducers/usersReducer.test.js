@@ -6,7 +6,11 @@ describe('reduces users', () => {
     expect(usersReducer(undefined, {})).toEqual([])
   })
 
-  it('reduces users', () => {
+  it('defaults to empty users if none are passed in', () => {
+    expect(usersReducer(undefined, {})).toEqual([])
+  })
+
+  it('reduces users after getting them', () => {
     expect(
       usersReducer([], {
         type: GET_USERS,
