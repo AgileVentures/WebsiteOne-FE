@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../helpers/http'
 import { GET_USERS } from '../types'
 
 export let getUsers = users => ({ type: GET_USERS, payload: users })

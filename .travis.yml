@@ -9,4 +9,5 @@ script:
   - yarn
   - yarn test
   - yarn build
+  - yarn cypress:install && yarn e2e:ci
   - yarn coveralls
