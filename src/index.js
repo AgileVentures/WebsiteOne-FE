@@ -9,8 +9,6 @@ import Homepage from './components/homepage/Homepage'
 import LogIn from './containers/LogIn'
 import SignUp from "./containers/SignUp"
 import './assets/semantic.css'
-import axios from 'axios'
-axios.defaults.baseURL = 'https://develop.websiteone.agileventures.org/'
 
 render(
   <BrowserRouter>
