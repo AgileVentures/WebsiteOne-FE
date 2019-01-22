@@ -46,13 +46,12 @@ let billingAgreement = () => {
 let onAuthorize = (data, actions) => {
   console.log('data', data)
   console.log('actions', actions)
-  axios.post({
-    authorization: `Basic ${ACCESS_TOKEN}`,
-    url: `https://api.sandbox.paypal.com/v1/payments/billing-agreements/${data.paymentToken}/agreement-execute`
-  }).catch(error => {
-    console.error(JSON.stringify(error))
-    throw error
-  })
+  axios.defaults.headers.common.Authorization = `Basic ${ACCESS_TOKEN}`
+  axios.post(`https://api.sandbox.paypal.com/v1/payments/billing-agreements/${data.paymentToken}/agreement-execute`)
+    .catch(error => {
+      console.error(JSON.stringify(error))
+      throw error
+    })
 }
 
 class PayPalRecurring extends Component {
