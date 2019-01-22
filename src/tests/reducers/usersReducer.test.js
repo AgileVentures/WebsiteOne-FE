@@ -2,11 +2,11 @@ import usersReducer from '../../reducers/usersReducer'
 import { GET_USERS } from '../../types'
 
 describe('reduces users', () => {
-  it('defaults to empty projects if none are passed in', () => {
+  it('defaults to empty users if none are passed in', () => {
     expect(usersReducer(undefined, {})).toEqual([])
   })
 
-  it('reduces users', () => {
+  it('reduces users after getting them', () => {
     expect(
       usersReducer([], {
         type: GET_USERS,

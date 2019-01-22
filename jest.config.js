@@ -12,7 +12,12 @@ module.exports = {
     '!**/coverage/**',
     '!**/src/assets/**',
     '!**/semantic/**',
-    '!**/src/index.js'
+    '!**/src/index.js',
+    '!**/cypress/**'
+  ],
+  testPathIgnorePatterns: [
+    '<rootDir>/cypress/',
+    '<rootDir>/node_modules/'
   ],
   'transform': {
     '^.+\\.js$': 'babel-jest',

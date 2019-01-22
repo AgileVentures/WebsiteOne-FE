@@ -1,4 +1,4 @@
-import store from '../../store';
+import store from '../../store'
 
 describe('Store', () => {
   it('should update', async () => {
@@ -8,9 +8,9 @@ describe('Store', () => {
     })
 
     expect(store.getState()).toEqual({
+      users: ['Run the tests'],
       loggedInUser: {},
-      signedUpUser: {},
-      users: ['Run the tests']
+      signedUpUser: {}
     })
   })
 })
