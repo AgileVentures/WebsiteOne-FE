@@ -62,7 +62,6 @@ describe('ProjectsList', () => {
       }
     )
     wrapper.instance().forceUpdate()
-    console.log('force update', wrapper.instance().state.selectedLanguage)
     expect(wrapper.instance().state.filteredProjectsList).toBe(
       normalizedProjectsFixture['JavaScript']['2']
     )

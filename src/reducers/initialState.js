@@ -1,6 +1,6 @@
 export default {
   users: [],
-  projects: [],
   loggedInUser: {},
-  signedUpUser: {}
+  signedUpUser: {},
+  projects: []
 }
