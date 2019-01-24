@@ -2,7 +2,7 @@ import React from 'react'
 import { mount, shallow } from 'enzyme'
 import { StaticRouter } from 'react-router'
 import { ProjectsList } from '../../containers/ProjectsList'
-import normalizedProjectsFixture from '../../fixtures/normalizedProjects'
+import paginatedProjectsFixture from '../../fixtures/paginatedProjects'
 import projectsFixture from '../../fixtures/projects'
 
 describe('ProjectsList', () => {
@@ -48,14 +48,14 @@ describe('ProjectsList', () => {
   it('should call handlePageSelect when projects are filtered', () => {
     const wrapper = shallow(
       <ProjectsList
-        projects={normalizedProjectsFixture}
+        projects={paginatedProjectsFixture}
         fetchProjects={() => {}}
       />
     )
     wrapper.setState(
       {
         selectedLanguage: { value: 'JavaScript' },
-        projects: normalizedProjectsFixture
+        projects: paginatedProjectsFixture
       },
       () => {
         wrapper.instance().handlePageSelect(2)(e)
@@ -63,7 +63,7 @@ describe('ProjectsList', () => {
     )
     wrapper.instance().forceUpdate()
     expect(wrapper.instance().state.filteredProjectsList).toBe(
-      normalizedProjectsFixture['JavaScript']['2']
+      paginatedProjectsFixture['JavaScript']['2']
     )
   })
 
@@ -110,7 +110,7 @@ describe('ProjectsList', () => {
     )
     wrapper.setProps({ projects: projectsFixture })
     expect(wrapper.instance().state.projects).toEqual(
-      normalizedProjectsFixture
+      paginatedProjectsFixture
     )
   })
 
@@ -118,7 +118,7 @@ describe('ProjectsList', () => {
     const wrapper = shallow(<ProjectsList {...props} />)
     wrapper.instance().handleFilterProjects({ value: 'Ruby' })
     expect(wrapper.instance().state.filteredProjectsList).toEqual(
-      normalizedProjectsFixture['Ruby']['1']
+      paginatedProjectsFixture['Ruby']['1']
     )
   })
 

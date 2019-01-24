@@ -8,7 +8,7 @@ const Project = ({ item: project }) => {
   return (
     <Card className='project-card' raised>
       <Image
-        src={project.image_url ? project.image_url : fullLogo}
+        src={project.image_url || fullLogo}
         className='project-image'
       />
       <Card.Content>

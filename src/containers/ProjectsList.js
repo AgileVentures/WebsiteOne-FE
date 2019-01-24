@@ -9,6 +9,7 @@ import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import '../assets/ProjectsList.css'
 
+const projectsPerPage = 12
 export class ProjectsList extends Component {
   state = {
     firstPage: true,
@@ -28,31 +29,43 @@ export class ProjectsList extends Component {
     if (!this.props.projects.length) {
       this.props.fetchProjects()
     } else {
-      this.normalizeProjects(this.props.projects)
+      this.paginateProjects(this.props.projects)
     }
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.props.projects.length !== nextProps.projects.length) {
-      this.normalizeProjects(nextProps.projects)
+      this.paginateProjects(nextProps.projects)
     }
   }
 
-  normalizeProjects (projects) {
-    let pageCount = Math.ceil(projects.length / 12)
-    let normalizedProjects = {}
+  paginateProjects (projects) {
+    let pageCount = Math.ceil(projects.length / projectsPerPage)
+    let paginatedProjects = {}
     let lastIndex = 0
 
     for (let i = 1; i <= pageCount; i++) {
       if (i === 1) {
-        normalizedProjects[i] = projects.slice(i - 1, i + 11)
+        paginatedProjects[i] = projects.slice(i - 1, i + 11)
         lastIndex = i + 11
       } else {
-        normalizedProjects[i] = projects.slice(lastIndex, lastIndex + 12)
+        paginatedProjects[i] = projects.slice(lastIndex, lastIndex + 12)
         lastIndex += 12
       }
     }
 
+    this.addLanguagesToProjectsObject(projects, paginatedProjects)
+
+    this.setState({
+      projects: paginatedProjects,
+      pageCount,
+      projectsList: paginatedProjects[1],
+      totalProjects: projects.length,
+      lastPage: false
+    })
+  }
+
+  addLanguagesToProjectsObject (projects, paginatedProjects) {
     let languages = new Set()
     projects.forEach(project => {
       if (project.languages.length) {
@@ -64,26 +77,21 @@ export class ProjectsList extends Component {
       let filteredProjects = projects.filter(project =>
         project.languages.includes(lang)
       )
-      this.normalizeFilteredProjects(
+      this.paginateProjectsByLanguage(
         filteredProjects,
         lang,
-        normalizedProjects
+        paginatedProjects
       )
     })
-    this.setState({
-      projects: normalizedProjects,
-      pageCount,
-      projectsList: normalizedProjects[1],
-      totalProjects: projects.length,
-      lastPage: false,
-      languages: [...languages]
-    })
+    this.setState({ languages: [...languages] })
   }
 
-  normalizeFilteredProjects = (items, lang, normalizedProjects) => {
+  paginateProjectsByLanguage = (items, lang, paginatedProjects) => {
     let lastIndex = 0
-    let pageCount = [...Array(Math.floor(items.length / 12 + 1)).keys()]
-    normalizedProjects[lang] = pageCount.reduce((acc, next) => {
+    let pageCount = [
+      ...Array(Math.floor(items.length / projectsPerPage + 1)).keys()
+    ]
+    paginatedProjects[lang] = pageCount.reduce((acc, next) => {
       if (next === 0) {
         acc = { [next + 1]: items.slice(next, next + 12) }
         lastIndex = next + 12
@@ -96,7 +104,7 @@ export class ProjectsList extends Component {
     }, {})
   };
 
-  handlePopulateLanguagesDropdown () {
+  populateLanguagesDropdown () {
     return this.state.languages.map(lang => ({ label: lang, value: lang }))
   }
 
@@ -113,7 +121,7 @@ export class ProjectsList extends Component {
         lastPage: !(pageCount > 1)
       })
     } else {
-      let pageCount = Math.ceil(this.props.projects.length / 12)
+      let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.setState({
         selectedLanguage: null,
         pageCount,
@@ -171,7 +179,7 @@ export class ProjectsList extends Component {
               <div className='search-dropdown'>
                 <Select
                   value={selectedLanguage}
-                  options={this.handlePopulateLanguagesDropdown()}
+                  options={this.populateLanguagesDropdown()}
                   onChange={this.handleFilterProjects}
                   placeholder='Search for project by programming language...'
                   isClearable

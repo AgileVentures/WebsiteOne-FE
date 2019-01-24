@@ -5,7 +5,6 @@ import { StaticRouter } from 'react-router'
 import projectsFixture from '../../fixtures/projects'
 import fullLogo from '../../images/full_logo2_agile_ventures.png'
 
-// mount Project component
 describe('Project', () => {
   let wrapper
   const context = {}
