@@ -6,49 +6,48 @@ import logo from '../../images/av-logo.svg'
 import './Navbar.css'
 
 export class Navbar extends Component {
-
-  currentPath() {
+  currentPath () {
     // this.props.location.split("/") returns ["", ""] when on homepage
     // and ["", "users", "123"] when on /users/123
     // This function is used to highlight the nav link
-    const pathArray = this.props.location.pathname.split("/")
+    const pathArray = this.props.location.pathname.split('/')
     return pathArray[1]
   }
 
-  render() {
+  render () {
     const activeItem = this.currentPath()
 
     return (
-      <Menu stackable borderless inverted as="div" className="navbar">
+      <Menu stackable borderless inverted as='div' className='navbar'>
         <Container>
-          <Menu.Item header name="" active={activeItem === ""}>
-            <Link to="/">
+          <Menu.Item header name='' active={activeItem === ''}>
+            <Link to='/'>
               <Image src={logo} avatar />
               AgileVentures
             </Link>
           </Menu.Item>
 
-          <Menu.Menu position="right">
-            <Menu.Item name="users" active={activeItem === "users"}>
-              <Link to="/users">Users</Link>
+          <Menu.Menu position='right'>
+            <Menu.Item name='users' active={activeItem === 'users'}>
+              <Link to='/users'>Users</Link>
             </Menu.Item>
 
             <Menu.Item
-              name="projects"
-              active={activeItem === "projects"}
+              name='projects'
+              active={activeItem === 'projects'}
               disabled
             >
               Projects
             </Menu.Item>
-            <Menu.Item name="events" active={activeItem === "events"} disabled>
+            <Menu.Item name='events' active={activeItem === 'events'} disabled>
               Events
             </Menu.Item>
 
             <Menu.Item
-              name="login"
-              active={activeItem === "login"}
+              name='login'
+              active={activeItem === 'login'}
             >
-              <Link to="/login">Login</Link>
+              <Link to='/login'>Login</Link>
             </Menu.Item>
           </Menu.Menu>
         </Container>
