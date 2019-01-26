@@ -167,7 +167,7 @@ export class ProjectsList extends Component {
               <div>
                 <p>
                   To get involved in any of the projects, join one of the
-                  <Link to={`/events`}> srums </Link>and reach out to us, or
+                  <Link to={`/events`}> scrums </Link>and reach out to us, or
                   send us an email at
                   <a href='mailto:info@agileventures.org'>
                     {' '}
