@@ -7,6 +7,7 @@ import Select from 'react-select'
 import Project from '../components/Project'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
+import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
 
 const projectsPerPage = 12
@@ -22,19 +23,27 @@ export class ProjectsList extends Component {
     filteredProjects: {},
     totalProjects: null,
     selectedLanguage: null,
-    languages: []
+    languages: [],
+    error: false
   };
 
-  componentDidMount () {
+  componentDidMount = async () => {
     if (!this.props.projects.length) {
-      this.props.fetchProjects()
+      await this.props.fetchProjects()
+      if (this.props.projects[0].error) {
+        console.log(this.props.projects)
+        this.setState({ error: <div /> })
+      }
     } else {
       this.paginateProjects(this.props.projects)
     }
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.projects.length !== nextProps.projects.length) {
+    if (
+      this.props.projects.length !== nextProps.projects.length &&
+      !nextProps.projects[0].error
+    ) {
       this.paginateProjects(nextProps.projects)
     }
   }
@@ -155,7 +164,8 @@ export class ProjectsList extends Component {
       projectsList,
       filteredProjectsList,
       selectedLanguage,
-      pageCount
+      pageCount,
+      error
     } = this.state
 
     return (
@@ -190,6 +200,7 @@ export class ProjectsList extends Component {
                   items={filteredProjectsList || projectsList}
                   Component={Project}
                   pageCount={pageCount}
+                  error={error}
                 />
               </Card.Group>
               {!(pageCount === 1) ? (

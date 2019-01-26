@@ -5,6 +5,8 @@ const projectsReducer = (state = initialState.projects, action) => {
   switch (action.type) {
     case GET_PROJECTS:
       return [ ...action.payload ]
+    case FETCH_PROJECTS_FAILURE:
+      return [ ...state, { error: action.message } ]
     default:
       return state
   }
