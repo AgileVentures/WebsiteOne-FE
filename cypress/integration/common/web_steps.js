@@ -5,7 +5,7 @@ Then(`I should see {string}`, (textToFind) => {
 })
 
 Given(`I am at the {string} page`, (pageName) => {
-  if(pageName === "Home") {
+  if (pageName === 'Home') {
     cy.visit('/')
   } else {
     cy.fail('unknown page \'' + pageName + '\'')

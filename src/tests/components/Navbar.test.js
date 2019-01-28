@@ -4,8 +4,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Navbar } from '../../components/navbar/Navbar'
 
 describe('Navbar', () => {
-  const props = {location: {pathname: "/users"}}
-  const homepage = (props) => mount(<Router><Navbar {...props}/></Router>)
+  const props = { location: { pathname: '/users' } }
+  const homepage = (props) => mount(<Router><Navbar {...props} /></Router>)
 
   describe('renders the Navbar component', () => {
     it('renders without errors', () => {
@@ -28,7 +28,7 @@ describe('Navbar', () => {
       expect(wrapper.find('.active').find('Link').length).toEqual(1)
     })
     it('renders 2 disabled Link element', () => {
-      //This test can be deleted after all items are working
+      // This test can be deleted after all items are working
       const wrapper = homepage(props)
       expect(wrapper.find('.disabled').length).toEqual(2)
     })
