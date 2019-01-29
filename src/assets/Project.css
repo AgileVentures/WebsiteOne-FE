@@ -1,0 +1,17 @@
+.project-card-footer {
+  display: flex;
+}
+
+.project-card-footer i {
+  margin: auto !important;
+}
+
+.project-image {
+  height: 222px;
+  max-width: 222px;
+}
+
+.project-card {
+  max-width: 222px !important;
+  margin: 15px 25px !important;
+}

@@ -9,7 +9,7 @@ import ProjectsList from './containers/ProjectsList'
 import Homepage from './components/homepage/Homepage'
 import Navbar from './components/navbar/Navbar'
 import LogIn from './containers/LogIn'
-import SignUp from "./containers/SignUp"
+import SignUp from './containers/SignUp'
 import './assets/semantic.css'
 
 render(
@@ -21,7 +21,7 @@ render(
         <Container className='main-content'>
           <Route path='/users' component={UsersList} />
           <Route path='/login' component={LogIn} />
-          <Route path="/signup" component={SignUp} />
+          <Route path='/signup' component={SignUp} />
           <Route path='/projects' component={ProjectsList} />
         </Container>
       </Switch>
