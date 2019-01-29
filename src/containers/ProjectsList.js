@@ -7,6 +7,7 @@ import Select from 'react-select'
 import Project from '../components/Project'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
+import ErrorBoundary from '../components/ErrorBoundary'
 import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
 
@@ -30,9 +31,8 @@ export class ProjectsList extends Component {
   componentDidMount = async () => {
     if (!this.props.projects.length) {
       await this.props.fetchProjects()
-      if (this.props.projects[0].error) {
-        console.log(this.props.projects)
-        this.setState({ error: <div /> })
+      if (this.props.error) {
+        this.setState({ error: true })
       }
     } else {
       this.paginateProjects(this.props.projects)
@@ -200,7 +200,7 @@ export class ProjectsList extends Component {
                   items={filteredProjectsList || projectsList}
                   Component={Project}
                   pageCount={pageCount}
-                  error={error}
+                  error={error ? <ErrorBoundary /> : false}
                 />
               </Card.Group>
               {!(pageCount === 1) ? (
@@ -220,7 +220,7 @@ export class ProjectsList extends Component {
   }
 }
 
-const mapStateToProps = store => ({ projects: store.projects })
+const mapStateToProps = store => ({ projects: store.projects, error: store.error })
 export default connect(
   mapStateToProps,
   { fetchProjects }

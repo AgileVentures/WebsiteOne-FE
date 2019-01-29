@@ -2,5 +2,6 @@ export default {
   users: [],
   loggedInUser: {},
   signedUpUser: {},
-  projects: []
+  projects: [],
+  error: []
 }

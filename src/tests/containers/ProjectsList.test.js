@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router'
 import { ProjectsList } from '../../containers/ProjectsList'
 import paginatedProjectsFixture from '../../fixtures/paginatedProjects'
 import projectsFixture from '../../fixtures/projects'
+import ErrorBoundary from '../../components/ErrorBoundary'
 
 describe('ProjectsList', () => {
   let e = { preventDefault: jest.fn() }
@@ -17,7 +18,8 @@ describe('ProjectsList', () => {
           resolve('promise')
         }, 300)
       }),
-    filteredProjectsList: null
+    filteredProjectsList: null,
+    error: false
   }
   wrapper = mount(
     <StaticRouter context={context}>
@@ -126,5 +128,13 @@ describe('ProjectsList', () => {
     const wrapper = shallow(<ProjectsList {...props} />)
     wrapper.instance().handleFilterProjects(null)
     expect(wrapper.instance().state.filteredProjectsList).toEqual(null)
+  })
+
+  it('adds error to the state if fetchProjects fails', async () => {
+    const wrapper = shallow(
+      <ProjectsList projects={[]} error={[]} fetchProjects={() => {}} />
+    )
+    await wrapper.instance().componentDidMount()
+    await expect(wrapper.state().error).toEqual(true)
   })
 })
