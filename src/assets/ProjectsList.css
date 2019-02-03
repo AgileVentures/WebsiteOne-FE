@@ -1,3 +1,7 @@
 .search-dropdown {
   margin: 20px 0px;
 }
+
+.projects-list-header {
+  padding-left: 0px !important;
+}

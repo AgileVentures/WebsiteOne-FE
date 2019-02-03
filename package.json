@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "fix":"standard --fix",
+    "fix": "standard --fix",
     "test": "export NODE_ENV=testing && standard && jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "cypress:ci": "cypress run",
@@ -17,12 +17,14 @@
     "e2e:local": "cypress run --headed",
     "e2e:ci": "npm-run-all --parallel --race start:ci 'cypress:ci --config baseUrl=http://localhost:8082'",
     "start:ci": "webpack-dev-server --config ./webpack.config.js --port 8082 --mode production"
- 
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.14",
+    "@fortawesome/free-solid-svg-icons": "^5.7.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "global": "^4.3.2",
@@ -78,6 +80,8 @@
     "env": [
       "jest"
     ],
-    "globals": ["cy"]
+    "globals": [
+      "cy"
+    ]
   }
 }
