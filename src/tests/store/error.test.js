@@ -7,12 +7,6 @@ describe('Store', () => {
       message: 'Network Error'
     })
 
-    expect(store.getState()).toEqual({
-      users: [],
-      projects: [],
-      loggedInUser: {},
-      signedUpUser: {},
-      error: ['Network Error']
-    })
+    expect(store.getState().error).toEqual(['Network Error'])
   })
 })
