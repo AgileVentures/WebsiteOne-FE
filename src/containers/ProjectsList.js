@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Header, Card, Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import Project from '../components/Project'
@@ -37,7 +38,8 @@ export class ProjectsList extends Component {
     } else {
       this.paginateProjects(this.props.projects)
     }
-  };
+    this.props.setLastLocation(this.props)
+  }
 
   componentWillReceiveProps (nextProps) {
     if (
@@ -223,5 +225,5 @@ export class ProjectsList extends Component {
 const mapStateToProps = store => ({ projects: store.projects, error: store.error })
 export default connect(
   mapStateToProps,
-  { fetchProjects }
+  { fetchProjects, setLastLocation }
 )(ProjectsList)

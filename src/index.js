@@ -18,9 +18,14 @@ render(
       <Navbar />
       <Switch>
         <Route path='/' exact component={Homepage} />
-        <Container className='main-content'>
+        <Container>
           <Route path='/users' component={UsersList} />
-          <Route path='/login' component={LogIn} />
+          <Route
+            path='/login'
+            render={props => {
+              return <LogIn {...props} lastLocation={props} />
+            }}
+          />
           <Route path='/signup' component={SignUp} />
           <Route path='/projects' component={ProjectsList} />
         </Container>

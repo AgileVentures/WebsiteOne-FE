@@ -18,7 +18,8 @@ describe('ProjectsList', () => {
         }, 300)
       }),
     filteredProjectsList: null,
-    error: false
+    error: false,
+    setLastLocation: () => {}
   }
   wrapper = mount(
     <StaticRouter context={context}>
@@ -51,6 +52,7 @@ describe('ProjectsList', () => {
       <ProjectsList
         projects={paginatedProjectsFixture}
         fetchProjects={() => {}}
+        setLastLocation={() => {}}
       />
     )
     wrapper.setState(
@@ -89,7 +91,7 @@ describe('ProjectsList', () => {
   it("shouldn't render a Project component without projects", () => {
     const wrapper = mount(
       <StaticRouter context={context}>
-        <ProjectsList projects={{ 1: [] }} fetchProjects={() => {}} />
+        <ProjectsList projects={{ 1: [] }} fetchProjects={() => {}} setLastLocation={() => {}} />
       </StaticRouter>
     )
     expect(wrapper.find('Project')).toHaveLength(0)
@@ -97,7 +99,7 @@ describe('ProjectsList', () => {
 
   it('should test componentWillReceiveProps', () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} fetchProjects={() => {}} />
+      <ProjectsList projects={[]} fetchProjects={() => {}} setLastLocation={() => {}} />
     )
     wrapper.setProps({ projects: [{ id: 1, languages: [] }] })
     expect(wrapper.instance().state.projects).toEqual({
@@ -107,7 +109,7 @@ describe('ProjectsList', () => {
 
   it('should call normalizeFilteredProjects', () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} fetchProjects={() => {}} />
+      <ProjectsList projects={[]} fetchProjects={() => {}} setLastLocation={() => {}} />
     )
     wrapper.setProps({ projects: projectsFixture })
     expect(wrapper.instance().state.projects).toEqual(
@@ -131,7 +133,7 @@ describe('ProjectsList', () => {
 
   it('adds error to the state if fetchProjects fails', async () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} error={[]} fetchProjects={() => {}} />
+      <ProjectsList projects={[]} error={[]} fetchProjects={() => {}} setLastLocation={() => {}} />
     )
     await wrapper.instance().componentDidMount()
     expect(wrapper.state().error).toEqual(true)

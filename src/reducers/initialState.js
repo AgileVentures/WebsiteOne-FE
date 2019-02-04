@@ -3,5 +3,6 @@ export default {
   loggedInUser: {},
   signedUpUser: {},
   projects: [],
-  error: []
+  error: [],
+  lastLocation: ''
 }
