@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PROJECTS } from '../types'
+import { GET_PROJECTS, FETCH_PROJECTS_FAILURE } from '../types'
 import '../assets/LogIn.scss'
 
 export let getProjects = projects => ({
@@ -12,6 +12,11 @@ export let fetchProjects = () => dispatch => {
     let { projects, languages, followers, documents } = response.data
     updateProjectsObject(projects, languages, followers, documents)
     dispatch(getProjects(projects))
+  }).catch(error => {
+    dispatch({
+      type: FETCH_PROJECTS_FAILURE,
+      message: error.message
+    })
   })
 }
 

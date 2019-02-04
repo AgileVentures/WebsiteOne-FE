@@ -11,7 +11,8 @@ describe('Store', () => {
       loggedInUser: { id: 2, email: 'someEmail@example.com' },
       signedUpUser: {},
       users: [],
-      projects: []
+      projects: [],
+      error: []
     })
   })
 })

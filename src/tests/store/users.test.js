@@ -11,7 +11,8 @@ describe('Store', () => {
       users: ['Run the tests'],
       loggedInUser: {},
       signedUpUser: {},
-      projects: []
+      projects: [],
+      error: []
     })
   })
 })

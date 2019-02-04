@@ -1,17 +1,26 @@
 .project-card-footer {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
 }
 
-.project-card-footer i {
-  margin: auto !important;
+.project-card-footer-div {
+  display: flex;
+  width: 80px;
 }
 
+.project-card-footer-github-div {
+  display: flex;
+  align-self: flex-end;
+}
 .project-image {
-  height: 222px;
-  max-width: 222px;
+  height: 265px;
+  max-width: 265px;
 }
 
 .project-card {
-  max-width: 222px !important;
-  margin: 15px 25px !important;
+  width: 265px !important;
+  margin: 15px 10px !important;
 }
