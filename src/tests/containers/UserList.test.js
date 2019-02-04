@@ -18,6 +18,7 @@ describe('UsersList', () => {
             }, 300)
           })
         }
+        setLastLocation={() => {}}
       />
     </StaticRouter>
   )
@@ -66,20 +67,20 @@ describe('UsersList', () => {
   it("shouldn't render a Project component without users", () => {
     const wrapper = mount(
       <StaticRouter context={context}>
-        <UsersList users={[]} fetchUsers={() => {}} />
+        <UsersList users={[]} fetchUsers={() => {}} setLastLocation={() => {}} />
       </StaticRouter>
     )
     expect(wrapper.find('User')).toHaveLength(0)
   })
 
   it('should test componentWillReceiveProps', () => {
-    const wrapper = shallow(<UsersList users={[]} fetchUsers={() => {}} />)
+    const wrapper = shallow(<UsersList users={[]} fetchUsers={() => {}} setLastLocation={() => {}} />)
     wrapper.setProps({ users: ['something'] })
     expect(wrapper.instance().state.users).toEqual({ '1': ['something'] })
   })
 
   it('should test componentWillReceiveProps', () => {
-    const wrapper = shallow(<UsersList users={usersFixture} fetchUsers={() => {}} />)
+    const wrapper = shallow(<UsersList users={usersFixture} fetchUsers={() => {}} setLastLocation={() => {}} />)
     wrapper.setProps(usersFixture)
     expect(wrapper.instance().state.users[1][0]).toEqual(usersFixture[0])
   })

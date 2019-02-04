@@ -4,6 +4,7 @@ import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../actions/getUsersAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import User from '../components/User'
 import '../assets/UsersList.css'
 export class UsersList extends Component {
@@ -25,6 +26,7 @@ export class UsersList extends Component {
     } else {
       this.normalizeUsers(this.props.users)
     }
+    this.props.setLastLocation(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -105,5 +107,5 @@ export class UsersList extends Component {
 const mapStateToProps = store => ({ users: store.users })
 export default connect(
   mapStateToProps,
-  { fetchUsers }
+  { fetchUsers, setLastLocation }
 )(UsersList)
