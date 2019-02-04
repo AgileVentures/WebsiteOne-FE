@@ -7,12 +7,6 @@ describe('Store', () => {
       payload: ['Run the tests']
     })
 
-    expect(store.getState()).toEqual({
-      users: ['Run the tests'],
-      loggedInUser: {},
-      signedUpUser: {},
-      projects: [],
-      error: []
-    })
+    expect(store.getState().users).toEqual(['Run the tests'])
   })
 })
