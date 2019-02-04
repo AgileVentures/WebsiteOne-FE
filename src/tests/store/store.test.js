@@ -8,18 +8,10 @@ describe('Store', () => {
     })
 
     expect(store.getState()).toEqual({
-      users: ['Run the tests']
-    })
-  })
-
-  it('should update after signup', async () => {
-    await store.dispatch({
-      type: 'POST_SIGNUP_INFO',
-      payload: ['Rerun them']
-    })
-
-    expect(store.getState()).toEqual({
-      users: ['Rerun them']
+      users: ['Run the tests'],
+      projects: [],
+      loggedInUser: {},
+      signedUpUser: {}
     })
   })
 })
