@@ -7,12 +7,6 @@ describe('Store', () => {
       payload: { id: 2, email: 'someEmail@example.com' }
     })
 
-    expect(store.getState()).toEqual({
-      signedUpUser: { id: 2, email: 'someEmail@example.com' },
-      loggedInUser: {},
-      users: [],
-      projects: [],
-      error: []
-    })
+    expect(store.getState().signedUpUser).toEqual({ id: 2, email: 'someEmail@example.com' })
   })
 })

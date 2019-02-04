@@ -25,7 +25,7 @@ describe('fetchProjects action', () => {
       '/api/v1/projects',
       {
         status: 200,
-        response: { projects: projectsResponse, languages: { 'Autograder': [] }, followers: [], documents: [] }
+        response: { projects: projectsResponse, languages: { 'Autograder': ['Ruby'] }, followers: [], documents: [] }
       }
     )
 
