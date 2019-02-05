@@ -5,12 +5,10 @@
       { "src": "package.json", "use": "@now/static-build" }
   ],
   "routes": [
-      {"src": "^/static/(.*)", "dest": "/static/$1"},
-      {"src": "^/favicon.ico", "dest": "/favicon.ico"},
-      {"src": "^/asset-manifest.json", "dest": "/asset-manifest.json"},
-      {"src": "^/manifest.json", "dest": "/manifest.json"},
-      {"src": "^/service-worker.js", "headers": {"cache-control": "s-maxage=0"}, "dest": "/service-worker.js"},
-      {"src": "^/precache-manifest.(.*)", "dest": "/precache-manifest.$1"},
+      {"src": "^/(.*).svg", "dest": "/$1.svg"},
+      {"src": "^/(.*).eot", "dest": "/$1.eot"},
+      {"src": "^/(.*).ttf", "dest": "/$1.ttf"},
+      {"src": "^/main.js", "headers": {"cache-control": "s-maxage=0"}, "dest": "/main.js"},
       {"src": "^/(.*)", "dest": "/index.html"}
   ]
 }
