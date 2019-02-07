@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid } from 'semantic-ui-react'
+import { Header, Card, Grid, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import Project from '../components/Project'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
+import ErrorBoundary from '../components/ErrorBoundary'
+import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
 
 const projectsPerPage = 12
@@ -22,19 +25,27 @@ export class ProjectsList extends Component {
     filteredProjects: {},
     totalProjects: null,
     selectedLanguage: null,
-    languages: []
+    languages: [],
+    error: false
   };
 
-  componentDidMount () {
+  componentDidMount = async () => {
     if (!this.props.projects.length) {
-      this.props.fetchProjects()
+      await this.props.fetchProjects()
+      if (this.props.error) {
+        this.setState({ error: true })
+      }
     } else {
       this.paginateProjects(this.props.projects)
     }
+    this.props.setLastLocation(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.projects.length !== nextProps.projects.length) {
+    if (
+      this.props.projects.length !== nextProps.projects.length &&
+      !nextProps.projects[0].error
+    ) {
       this.paginateProjects(nextProps.projects)
     }
   }
@@ -155,62 +166,66 @@ export class ProjectsList extends Component {
       projectsList,
       filteredProjectsList,
       selectedLanguage,
-      pageCount
+      pageCount,
+      error
     } = this.state
 
     return (
       <Fragment>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={12}>
-              <Header as='h1'>List of Projects</Header>
-              <div>
-                <p>
+        <Container>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={12}>
+                <Header as='h1'>List of Projects</Header>
+                <div>
+                  <p>
                   To get involved in any of the projects, join one of the
-                  <Link to={`/events`}> srums </Link>and reach out to us, or
+                    <Link to={`/events`}> scrums </Link>and reach out to us, or
                   send us an email at
-                  <a href='mailto:info@agileventures.org'>
-                    {' '}
+                    <a href='mailto:info@agileventures.org'>
+                      {' '}
                     info@agileventures.org
-                  </a>
+                    </a>
                   .
-                </p>
-              </div>
-              <div className='search-dropdown'>
-                <Select
-                  value={selectedLanguage}
-                  options={this.populateLanguagesDropdown()}
-                  onChange={this.handleFilterProjects}
-                  placeholder='Search for project by programming language...'
-                  isClearable
-                />
-              </div>
-              <Card.Group centered itemsPerRow={3}>
-                <Paginate
-                  items={filteredProjectsList || projectsList}
-                  Component={Project}
-                  pageCount={pageCount}
-                />
-              </Card.Group>
-              {!(pageCount === 1) ? (
-                <PaginationLinks
-                  pageCount={pageCount}
-                  selectedPage={this.state.selectedPage}
-                  handlePageSelect={this.handlePageSelect}
-                  firstPage={this.state.firstPage}
-                  lastPage={this.state.lastPage}
-                />
-              ) : null}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+                  </p>
+                </div>
+                <div className='search-dropdown'>
+                  <Select
+                    value={selectedLanguage}
+                    options={this.populateLanguagesDropdown()}
+                    onChange={this.handleFilterProjects}
+                    placeholder='Search for project by programming language...'
+                    isClearable
+                  />
+                </div>
+                <Card.Group centered itemsPerRow={3}>
+                  <Paginate
+                    items={filteredProjectsList || projectsList}
+                    Component={Project}
+                    pageCount={pageCount}
+                    error={error ? <ErrorBoundary /> : false}
+                  />
+                </Card.Group>
+                {!(pageCount === 1) ? (
+                  <PaginationLinks
+                    pageCount={pageCount}
+                    selectedPage={this.state.selectedPage}
+                    handlePageSelect={this.handlePageSelect}
+                    firstPage={this.state.firstPage}
+                    lastPage={this.state.lastPage}
+                  />
+                ) : null}
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
       </Fragment>
     )
   }
 }
 
-const mapStateToProps = store => ({ projects: store.projects })
+const mapStateToProps = store => ({ projects: store.projects, error: store.error })
 export default connect(
   mapStateToProps,
-  { fetchProjects }
+  { fetchProjects, setLastLocation }
 )(ProjectsList)

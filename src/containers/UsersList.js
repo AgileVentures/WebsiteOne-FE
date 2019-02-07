@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid } from 'semantic-ui-react'
+import { Header, Card, Grid, Container } from 'semantic-ui-react'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../actions/getUsersAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import User from '../components/User'
 import '../assets/UsersList.css'
 export class UsersList extends Component {
@@ -25,6 +26,7 @@ export class UsersList extends Component {
     } else {
       this.normalizeUsers(this.props.users)
     }
+    this.props.setLastLocation(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -76,27 +78,29 @@ export class UsersList extends Component {
     } = this.state
     return (
       <Fragment>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={12}>
-              <Header as='h1'>Volunteers Directory</Header>
-              <Card.Group centered itemsPerRow={3}>
-                <Paginate
-                  items={usersList}
-                  Component={User}
+        <Container>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={12}>
+                <Header as='h1'>Volunteers Directory</Header>
+                <Card.Group centered itemsPerRow={3}>
+                  <Paginate
+                    items={usersList}
+                    Component={User}
+                    pageCount={pageCount}
+                  />
+                </Card.Group>
+                <PaginationLinks
+                  handlePageSelect={this.handlePageSelect}
+                  firstPage={firstPage}
+                  lastPage={lastPage}
                   pageCount={pageCount}
+                  selectedPage={selectedPage}
                 />
-              </Card.Group>
-              <PaginationLinks
-                handlePageSelect={this.handlePageSelect}
-                firstPage={firstPage}
-                lastPage={lastPage}
-                pageCount={pageCount}
-                selectedPage={selectedPage}
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
       </Fragment>
     )
   }
@@ -105,5 +109,5 @@ export class UsersList extends Component {
 const mapStateToProps = store => ({ users: store.users })
 export default connect(
   mapStateToProps,
-  { fetchUsers }
+  { fetchUsers, setLastLocation }
 )(UsersList)

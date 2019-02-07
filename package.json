@@ -16,7 +16,8 @@
     "cypress:install": "cypress install",
     "e2e:local": "cypress run --headed",
     "e2e:ci": "npm-run-all --parallel --race start:ci 'cypress:ci --config baseUrl=http://localhost:8082'",
-    "start:ci": "webpack-dev-server --config ./webpack.config.js --port 8082 --mode production"
+    "start:ci": "webpack-dev-server --config ./webpack.config.js --port 8082 --mode production",
+    "now-build": "yarn build"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
@@ -28,7 +29,9 @@
     "global": "^4.3.2",
     "izitoast": "^1.4.0",
     "paypal-checkout": "^4.0.254",
+    "query-string": "^6.2.0",
     "react": "^16.7.0",
+    "react-cookie": "^3.0.8",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

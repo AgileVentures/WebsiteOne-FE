@@ -2,23 +2,24 @@ import React, { Component, Fragment } from 'react'
 import { Button, Form, Header, Grid, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { postLogInInfo } from '../actions/postLogInInfoAction'
-import { Redirect } from 'react-router'
 import iziToast from 'izitoast'
 import '../assets/LogIn.scss'
 export class LogIn extends Component {
   state = {
     email: '',
     password: ''
-  }
+  };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
   handleLogIn = async e => {
     const { email, password } = this.state
-    const { from } = this.props.location.state || { from: { pathname: '/' } } 
     e.preventDefault()
     await this.props
       .postLogInInfo({ email, password })
       .then(() => {
+        const { cookies, loggedInUser } = this.props
+        cookies.set('_WebsiteOne_session', loggedInUser.headers.authorization, { path: '/' })
+        this.props.history.push(this.props.lastLocation)
         iziToast.show({
           theme: 'light',
           title: 'Success',
@@ -29,7 +30,6 @@ export class LogIn extends Component {
           timeout: 3000,
           balloon: true
         })
-        return <Redirect to={from} />
       })
       .catch(() => {
         iziToast.show({
@@ -47,7 +47,6 @@ export class LogIn extends Component {
 
   render () {
     const { password, email } = this.state
-    console.log(this.props)
     return (
       <Fragment>
         <Header as='h1' textAlign='center' className='login-h1'>
@@ -95,7 +94,11 @@ export class LogIn extends Component {
   }
 }
 
-const mapStateToProps = store => ({ loggedInUser: store.loggedInUser })
+const mapStateToProps = (store, ownProps) => ({
+  loggedInUser: store.loggedInUser,
+  lastLocation: store.lastLocation,
+  cookies: ownProps.cookies
+})
 export default connect(
   mapStateToProps,
   { postLogInInfo }

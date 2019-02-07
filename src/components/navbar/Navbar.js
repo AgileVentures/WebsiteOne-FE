@@ -35,9 +35,8 @@ export class Navbar extends Component {
             <Menu.Item
               name='projects'
               active={activeItem === 'projects'}
-              disabled
             >
-              Projects
+              <Link to='/projects'>Projects</Link>
             </Menu.Item>
             <Menu.Item name='events' active={activeItem === 'events'} disabled>
               Events
@@ -46,7 +45,6 @@ export class Navbar extends Component {
             <Menu.Item
               name='login'
               active={activeItem === 'login'}
-              history={this.currentPath}
             >
               <Link to='/login'>Login</Link>
             </Menu.Item>

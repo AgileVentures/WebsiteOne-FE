@@ -17,14 +17,20 @@ const Project = ({ item: project }) => {
             <Card.Header>{project.title}</Card.Header>
           </big>
         </Link>
-      </Card.Content>
-      <Card.Content className='project-card-footer'>
-        <Icon name='users' size='large' /> {}
-        {project.followers}
-        <Icon name='file alternate outline' size='large' /> {}
-        {project.documents}
-        <Icon name='github alternate' size='large' /> {}
-        {project.commit_count}
+        <div className='project-card-footer'>
+          <div className='project-card-footer-div'>
+            <Icon name='users' size='large' /> {}
+            {project.followers}
+          </div>
+          <div className='project-card-footer-div'>
+            <Icon name='file alternate outline' size='large' /> {}
+            {project.documents}
+          </div>
+          <div className='project-card-footer-github-div'>
+            <Icon name='github alternate' size='large' /> {}
+            {project.commit_count}
+          </div>
+        </div>
       </Card.Content>
     </Card>
   )
