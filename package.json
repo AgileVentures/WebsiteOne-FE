@@ -35,8 +35,7 @@
     "react-spinners": "^0.5.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.84.0",
-    "url": "^0.11.0"
+    "semantic-ui-react": "^0.84.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
