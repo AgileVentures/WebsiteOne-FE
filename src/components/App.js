@@ -6,8 +6,8 @@ import Homepage from '../components/homepage/Homepage'
 import Navbar from './navbar/Navbar'
 import LogIn from '../containers/LogIn'
 import SignUp from '../containers/SignUp'
-import Subscriptions from '../containers/Subscriptions'
-import PayPalSuccess from '../containers/PayPalSuccess'
+import Subscriptions from './Subscriptions'
+import PayPalSuccess from './PayPalSuccess'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setLastLocation } from '../actions/setLastLocationAction'
 import { Header, Container, Segment, Grid } from 'semantic-ui-react'
-import PayPalAgreementNew from '../components/PayPalAgreementNew'
+import PayPalAgreementNew from './PayPalAgreementNew'
 import createBillingAgreement from '../helpers/createBillingAgreement'
 import queryString from 'query-string'
 import '../assets/Subscriptions.css'
@@ -20,9 +20,13 @@ const Subscriptions = props => {
   return (
     <Fragment>
       <Container>
-        <Header as='h1'>AgileVentures {plan.charAt(0).toUpperCase() + plan.slice(1)} Membership</Header>
+        <Header as='h1'>
+          AgileVentures {plan.charAt(0).toUpperCase() + plan.slice(1)}{' '}
+          Membership
+        </Header>
         <Header as='h5'>
-          The price for {plan.charAt(0).toUpperCase() + plan.slice(1)} Membership is £10.00/Month
+          The price for {plan.charAt(0).toUpperCase() + plan.slice(1)}{' '}
+          Membership is £10.00/Month
         </Header>
         <Header as='h5'>7 day free trial! No charge for 7 days</Header>
         <Grid columns={2} divided className='payment-section'>

@@ -1,9 +1,6 @@
 import axios from 'axios'
-import queryString from 'query-string'
 
-export default async props => {
-  const params = queryString.parse(props.location.search)
-  const cookies = props.cookies.get('_WebsiteOne_session')
+export default async (props, params) => {
   try {
     let response = await axios({
       method: 'GET',
@@ -14,7 +11,7 @@ export default async props => {
         token: params.token
       },
       headers: {
-        Authorization: cookies
+        Authorization: props.cookies.get('_WebsiteOne_session')
       }
     })
     if (response.status === 200) {
@@ -22,8 +19,7 @@ export default async props => {
       console.log(response)
     }
     // Don't forget to return something
-    return response.data
   } catch (err) {
-    console.error(err)
+    console.log(err)
   }
 }
