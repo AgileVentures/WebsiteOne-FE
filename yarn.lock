@@ -4369,6 +4369,11 @@ eslint-plugin-promise@~4.0.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
   integrity sha512-Si16O0+Hqz1gDHsys6RtFRrW7cCTB6P7p3OJmKp3Y3dxpQE2qwOA7d3xnV+0mBmrPoi0RBnxlCKvqu70te6wjg==
 
+eslint-plugin-react-hooks@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.0.1.tgz#76b6fb4edafab02eab0090078977687157605dd9"
+  integrity sha512-yNhvY7EFBp0mq0Bt8BHoS57GwJ4e1qSYdvDFSfPnjmiSmyGUfQFQGcQs4K0JQFDGopWkURWq58psbUJIhWZ2Kg==
+
 eslint-plugin-react@~7.11.1:
   version "7.11.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.11.1.tgz#c01a7af6f17519457d6116aa94fc6d2ccad5443c"
@@ -8874,14 +8879,15 @@ react-cookie@^3.0.8:
     hoist-non-react-statics "^3.0.0"
     universal-cookie "^3.0.7"
 
-react-dom@^16.7.0:
-  version "16.7.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.7.0.tgz#a17b2a7ca89ee7390bc1ed5eb81783c7461748b8"
+react-dom@16.8.0:
+  version "16.8.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.0.tgz#18f28d4be3571ed206672a267c66dd083145a9c4"
+  integrity sha512-dBzoAGYZpW9Yggp+CzBPC7q1HmWSeRc93DWrwbskmG1eHJWznZB/p0l/Sm+69leIGUS91AXPB/qB3WcPnKx8Sw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.12.0"
+    scheduler "^0.13.0"
 
 react-input-autosize@^2.2.1:
   version "2.2.1"
@@ -8979,14 +8985,15 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@^16.7.0:
-  version "16.7.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.7.0.tgz#b674ec396b0a5715873b350446f7ea0802ab6381"
+react@16.8.0:
+  version "16.8.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.0.tgz#8533f0e4af818f448a276eae71681d09e8dd970a"
+  integrity sha512-g+nikW2D48kqgWSPwNo0NH9tIGG3DsQFlrtrQ1kj6W77z5ahyIHG0w8kPpz4Sdj6gyLnz0lEd/xsjOoGge2MYQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.12.0"
+    scheduler "^0.13.0"
 
 read-only-stream@^2.0.0:
   version "2.0.0"
@@ -9562,6 +9569,14 @@ sax@^1.2.4:
 scheduler@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.12.0.tgz#8ab17699939c0aedc5a196a657743c496538647b"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.13.0:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.1.tgz#1a217df1bfaabaf4f1b92a9127d5d732d85a9591"
+  integrity sha512-VJKOkiKIN2/6NOoexuypwSrybx13MY7NSy9RNt8wPvZDMRT1CW6qlpF5jXRToXNHz3uWzbm2elNpZfXfGPqP9A==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

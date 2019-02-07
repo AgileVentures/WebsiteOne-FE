@@ -6,7 +6,7 @@ import Homepage from '../components/homepage/Homepage'
 import Navbar from './navbar/Navbar'
 import LogIn from '../containers/LogIn'
 import SignUp from '../containers/SignUp'
-import PayPalRecurring from '../containers/PayPalRecurring'
+import Subscriptions from '../containers/Subscriptions'
 import PayPalSuccess from '../containers/PayPalSuccess'
 import { withCookies } from 'react-cookie'
 
@@ -32,9 +32,9 @@ class App extends Component {
           />
           <Route path='/signup' component={SignUp} />
           <Route path='/projects' component={ProjectsList} />
-          <Route exact path='/subscriptions' render={props => {
+          <Route exact path='/subscriptions/new' render={props => {
             return (
-              <PayPalRecurring
+              <Subscriptions
                 {...props}
                 cookies={this.props.cookies}
               />)
