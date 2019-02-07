@@ -15,12 +15,10 @@ export default cookies => async event => {
       }
     })
     if (response.status === 200) {
-      // test for status you want, etc
       window.location.assign(response.data.redirect_url)
     }
-    // Don't forget to return something
     return response.data
   } catch (err) {
-    console.error(err)
+    console.log(err)
   }
 }
