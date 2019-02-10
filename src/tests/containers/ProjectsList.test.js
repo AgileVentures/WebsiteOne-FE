@@ -19,7 +19,8 @@ describe('ProjectsList', () => {
       }),
     filteredProjectsList: null,
     error: false,
-    setLastLocation: () => {}
+    setLastLocation: () => {},
+    location: { pathname: '/projects' }
   }
   wrapper = mount(
     <StaticRouter context={context}>
@@ -133,7 +134,7 @@ describe('ProjectsList', () => {
 
   it('adds error to the state if fetchProjects fails', async () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} error={[]} fetchProjects={() => {}} setLastLocation={() => {}} />
+      <ProjectsList projects={[]} error={[]} fetchProjects={() => {}} setLastLocation={() => {}} location={{ pathname: '/projects' }} />
     )
     await wrapper.instance().componentDidMount()
     expect(wrapper.state().error).toEqual(true)

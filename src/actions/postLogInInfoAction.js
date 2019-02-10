@@ -14,6 +14,6 @@ export let postLogInInfo = props => dispatch => {
       }
     }
   }).then(response => {
-    dispatch(getUser(response.data))
+    dispatch(getUser(response))
   })
 }

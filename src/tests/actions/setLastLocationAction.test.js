@@ -13,8 +13,11 @@ describe('setLastLocation action', () => {
   })
 
   it('sets last location to /users', () => {
-    let props = { location: { pathname: '/users' } }
-    store.dispatch(setLastLocation(props))
-    expect(store.getActions()).toEqual([{ type: SET_LAST_LOCATION, payload: '/users' }])
+    let path = '/users'
+    let search = '?user=jimmy'
+    store.dispatch(setLastLocation(path, search))
+    expect(store.getActions()).toEqual([
+      { type: SET_LAST_LOCATION, payload: { path, search } }
+    ])
   })
 })
