@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "WebsiteOne-FE",
+  "builds": [
+      { "src": "package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+      {"src": "^/(.*).svg", "dest": "/$1.svg"},
+      {"src": "^/(.*).eot", "dest": "/$1.eot"},
+      {"src": "^/(.*).ttf", "dest": "/$1.ttf"},
+      {"src": "^/main.js", "headers": {"cache-control": "s-maxage=0"}, "dest": "/main.js"},
+      {"src": "^/(.*)", "dest": "/index.html"}
+  ]
+}

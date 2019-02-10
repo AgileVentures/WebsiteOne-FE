@@ -17,7 +17,7 @@ export class LogIn extends Component {
     await this.props
       .postLogInInfo({ email, password })
       .then(() => {
-        this.props.history.push('/')
+        this.props.history.push(this.props.lastLocation)
         iziToast.show({
           theme: 'light',
           title: 'Success',
@@ -92,7 +92,7 @@ export class LogIn extends Component {
   }
 }
 
-const mapStateToProps = store => ({ loggedInUser: store.loggedInUser })
+const mapStateToProps = store => ({ loggedInUser: store.loggedInUser, lastLocation: store.lastLocation })
 export default connect(
   mapStateToProps,
   { postLogInInfo }

@@ -2,11 +2,14 @@ import React, { Component, Fragment } from 'react'
 import { Card, Header, Button, Grid, Popup, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
 import Project from '../components/Project'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
+import ErrorBoundary from '../components/ErrorBoundary'
+import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
 
 const projectsPerPage = 12
@@ -22,19 +25,27 @@ export class ProjectsList extends Component {
     filteredProjects: {},
     totalProjects: null,
     selectedLanguage: null,
-    languages: []
+    languages: [],
+    error: false
   };
 
-  componentDidMount () {
+  componentDidMount = async () => {
     if (!this.props.projects.length) {
-      this.props.fetchProjects()
+      await this.props.fetchProjects()
+      if (this.props.error) {
+        this.setState({ error: true })
+      }
     } else {
       this.paginateProjects(this.props.projects)
     }
+    this.props.setLastLocation(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.projects.length !== nextProps.projects.length) {
+    if (
+      this.props.projects.length !== nextProps.projects.length &&
+      !nextProps.projects[0].error
+    ) {
       this.paginateProjects(nextProps.projects)
     }
   }
@@ -155,7 +166,8 @@ export class ProjectsList extends Component {
       projectsList,
       filteredProjectsList,
       selectedLanguage,
-      pageCount
+      pageCount,
+      error
     } = this.state
 
     return (
@@ -188,7 +200,7 @@ export class ProjectsList extends Component {
               <div>
                 <p>
                   To get involved in any of the projects, join one of the
-                  <Link to={`/events`}> srums </Link>and reach out to us, or
+                  <Link to={`/events`}> scrums </Link>and reach out to us, or
                   send us an email at
                   <a href='mailto:info@agileventures.org'>
                     {' '}
@@ -211,6 +223,7 @@ export class ProjectsList extends Component {
                   items={filteredProjectsList || projectsList}
                   Component={Project}
                   pageCount={pageCount}
+                  error={error ? <ErrorBoundary /> : false}
                 />
               </Card.Group>
               {!(pageCount === 1) ? (
@@ -230,8 +243,8 @@ export class ProjectsList extends Component {
   }
 }
 
-const mapStateToProps = store => ({ projects: store.projects })
+const mapStateToProps = store => ({ projects: store.projects, error: store.error })
 export default connect(
   mapStateToProps,
-  { fetchProjects }
+  { fetchProjects, setLastLocation }
 )(ProjectsList)
