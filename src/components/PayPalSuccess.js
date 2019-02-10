@@ -5,7 +5,7 @@ import { Header, Container, Segment } from 'semantic-ui-react'
 import queryString from 'query-string'
 import '../assets/PayPalSuccess.css'
 
-const PayPalSuccess = props => {
+export const PayPalSuccess = props => {
   const params = queryString.parse(props.location.search)
   useEffect(() => {
     executeBillingAgreement(props, params)
