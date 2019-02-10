@@ -38,6 +38,6 @@ describe('createBillingAgreement helper', () => {
     createBillingAgreement(cookies)(event).then(
       window.location.assign(billingAgreementResponse.data.redirect_url)
     )
-    expect(window.location.assign).toHaveBeenCalled()
+    expect(window.location.assign).toHaveBeenCalledWith(billingAgreementResponse.data.redirect_url)
   })
 })

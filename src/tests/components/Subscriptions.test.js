@@ -3,7 +3,6 @@ import { mount } from 'enzyme'
 import { Subscriptions } from '../../components/Subscriptions'
 
 describe('Subscriptions', () => {
-  let wrapper
   const props = {
     cookies: { get: () => {} },
     setLastLocation: jest.fn(),
@@ -13,11 +12,7 @@ describe('Subscriptions', () => {
   }
 
   beforeEach(() => {
-    wrapper = mount(<Subscriptions {...props} />)
-  })
-
-  it('should render PayPalAgreementNew', () => {
-    expect(wrapper.find('PayPalAgreementNew')).toBeTruthy()
+    mount(<Subscriptions {...props} />)
   })
 
   it('should call setLastLocation', () => {
