@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid } from 'semantic-ui-react'
+import { Card, Header, Button, Grid, Popup, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
@@ -175,7 +175,28 @@ export class ProjectsList extends Component {
         <Grid>
           <Grid.Row>
             <Grid.Column width={12}>
-              <Header as='h1'>List of Projects</Header>
+              <Grid columns={2}>
+                <Grid.Row>
+                  <Grid.Column floated='left' width={9}>
+                    <Header className='projects-list-header' as='h1'>
+                      List of Projects
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column floated='right' width={3}>
+                    <a href='/projects/new'>
+                      <Popup
+                        position='right center'
+                        trigger={
+                          <Button basic style={{ marginTop: '16px' }}>
+                            <Icon name='plus' id='new-proj-icon' />
+                          </Button>
+                        }
+                        content='New Project!'
+                      />
+                    </a>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
               <div>
                 <p>
                   To get involved in any of the projects, join one of the

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "fix":"standard --fix",
+    "fix": "standard --fix",
     "test": "export NODE_ENV=testing && standard && jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "cypress:ci": "cypress run",
@@ -78,6 +78,8 @@
     "env": [
       "jest"
     ],
-    "globals": ["cy"]
+    "globals": [
+      "cy"
+    ]
   }
 }
