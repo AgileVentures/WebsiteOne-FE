@@ -23,7 +23,6 @@
     "nonGlobalStepDefinitions": true
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.14",
     "axios": "^0.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "global": "^4.3.2",
