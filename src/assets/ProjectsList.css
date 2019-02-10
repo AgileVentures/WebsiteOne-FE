@@ -5,3 +5,10 @@
 .projects-list-header {
   padding-left: 0px !important;
 }
+
+#new-proj-icon {
+  font-size: 25px;
+  padding-left: 10px;
+  padding-top: 6px;
+  color: #ee7335;
+}

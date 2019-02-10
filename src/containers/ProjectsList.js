@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Card, Header, Button, Grid, Popup } from "semantic-ui-react";
+import { Card, Header, Button, Grid, Popup, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchProjects } from "../actions/getProjectsAction";
 import { Link } from "react-router-dom";
@@ -8,8 +8,6 @@ import Project from "../components/Project";
 import Paginate from "../components/Paginate";
 import PaginationLinks from "../components/PaginationLinks";
 import "../assets/ProjectsList.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const projectsPerPage = 12;
 export class ProjectsList extends Component {
@@ -178,11 +176,7 @@ export class ProjectsList extends Component {
                         position="right center"
                         trigger={
                           <Button basic style={{ marginTop: "16px" }}>
-                            <FontAwesomeIcon
-                              icon={faPlus}
-                              size="2x"
-                              color="#ee7335"
-                            />
+                            <Icon name="plus" id="new-proj-icon" />
                           </Button>
                         }
                         content="New Project!"
