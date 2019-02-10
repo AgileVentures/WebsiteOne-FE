@@ -7,14 +7,15 @@ import createBillingAgreement from '../helpers/createBillingAgreement'
 import queryString from 'query-string'
 import '../assets/Subscriptions.css'
 
-const Subscriptions = props => {
+export const Subscriptions = props => {
   useEffect(() => {
-    props.setLastLocation(props)
+    const path = props.location.pathname
+    const search = props.location.search
+    props.setLastLocation(path, search)
+    if (!props.loggedInUser.data || !props.cookies.get('_WebsiteOne_session')) {
+      props.history.push({ pathname: '/login' })
+    }
   })
-
-  if (!props.cookies.get('_WebsiteOne_session')) {
-    props.history.push('/login')
-  }
 
   const { plan } = queryString.parse(props.location.search)
   return (
@@ -48,7 +49,10 @@ const Subscriptions = props => {
     </Fragment>
   )
 }
-const mapStateToProps = (_, ownProps) => ({ cookies: ownProps.cookies })
+const mapStateToProps = (store, ownProps) => ({
+  loggedInUser: store.loggedInUser,
+  cookies: ownProps.cookies
+})
 export default connect(
   mapStateToProps,
   { setLastLocation }

@@ -26,7 +26,7 @@ export class UsersList extends Component {
     } else {
       this.normalizeUsers(this.props.users)
     }
-    this.props.setLastLocation(this.props)
+    this.props.setLastLocation(this.props.location.pathname)
   }
 
   componentWillReceiveProps (nextProps) {

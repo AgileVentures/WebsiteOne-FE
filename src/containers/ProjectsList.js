@@ -38,7 +38,7 @@ export class ProjectsList extends Component {
     } else {
       this.paginateProjects(this.props.projects)
     }
-    this.props.setLastLocation(this.props)
+    this.props.setLastLocation(this.props.location.pathname)
   }
 
   componentWillReceiveProps (nextProps) {

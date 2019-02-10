@@ -11,19 +11,20 @@ export class LogIn extends Component {
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
-  handleLogIn = async e => {
+  handleLogIn = event => {
+    event.preventDefault()
     const { email, password } = this.state
-    e.preventDefault()
-    await this.props
-      .postLogInInfo({ email, password })
+    const { cookies, loggedInUser, history, lastLocation, postLogInInfo } = this.props
+    postLogInInfo({ email, password })
       .then(() => {
-        const { cookies, loggedInUser } = this.props
-        cookies.set('_WebsiteOne_session', loggedInUser.headers.authorization, { path: '/' })
-        this.props.history.push(this.props.lastLocation)
+        history.push(lastLocation.path + lastLocation.search)
+        cookies.set('_WebsiteOne_session', this.props.loggedInUser.headers.authorization, {
+          path: '/'
+        })
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Welcome back, ' + `${this.props.loggedInUser.slug}`,
+          message: 'Welcome back, ' + `${loggedInUser.slug}`,
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',
@@ -32,6 +33,7 @@ export class LogIn extends Component {
         })
       })
       .catch(() => {
+        console.log('error')
         iziToast.show({
           theme: 'light',
           title: 'Sorry',

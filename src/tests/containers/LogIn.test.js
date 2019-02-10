@@ -10,6 +10,8 @@ describe('LogIn', () => {
   }
   const props = {
     history: { push: jest.fn() },
+    lastLocation: { path: '/subscriptions/new', search: '?plan=premium' },
+    cookies: { set: jest.fn() },
     postLogInInfo: jest.fn(
       logInInfo =>
         new Promise((resolve, reject) => {
@@ -49,25 +51,37 @@ describe('LogIn', () => {
     submitForm.simulate('submit')
 
     expect(spy).toHaveBeenCalledTimes(1)
-    expect(wrapper.instance().props.postLogInInfo).toBeCalledTimes(1)
   })
 
   it('returns the user if postLogInInfo is called with the correct credentials', async () => {
-    expect.assertions(2)
-    const loggingInUser = await wrapper.instance().props.postLogInInfo({
+    expect.assertions(1)
+    const loggingInUser = await props.postLogInInfo({
       email: 'existing-user@example.com',
       password: 'password'
     })
     expect(loggingInUser).toEqual(user)
-    expect(wrapper.instance().props.history.push).toBeCalledTimes(1)
   })
 
   it('throws an error if postLogInInfo is called with incorrect credentials', async () => {
     expect.assertions(1)
     try {
-      await wrapper.instance().props.postLogInInfo({ email: '', password: '' })
+      await props.postLogInInfo({ email: '', password: '' })
     } catch (e) {
       expect(e).toEqual(Error('Username and/or Password do no match'))
     }
+  })
+
+  it('redirects back to last location', async () => {
+    expect.assertions(1)
+    await props
+      .postLogInInfo({
+        email: 'existing-user@example.com',
+        password: 'password'
+      })
+      .then(() => {
+        expect(props.history.push).toBeCalledWith(
+          props.lastLocation.path + props.lastLocation.search
+        )
+      })
   })
 })
