@@ -13,7 +13,8 @@ module.exports = {
     '!**/src/assets/**',
     '!**/semantic/**',
     '!**/src/index.js',
-    '!**/cypress/**'
+    '!**/cypress/**',
+    '!**/src/components/App.js'
   ],
   testPathIgnorePatterns: [
     '<rootDir>/cypress/',
