@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { FETCH_PROJECTS_FAILURE } from '../types'
 
-export default cookies => event => {
+export default (cookies, dispatch) => event => {
   event.preventDefault()
   return axios({
     method: 'POST',
@@ -14,4 +15,10 @@ export default cookies => event => {
     }
   })
     .then(response => window.location.assign(response.data.redirect_url))
+    .catch(error => {
+      dispatch({
+        type: FETCH_PROJECTS_FAILURE,
+        message: error.message
+      })
+    })
 }

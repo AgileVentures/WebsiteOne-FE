@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { FETCH_PROJECTS_FAILURE } from '../types'
 
 export default (props, params) => {
   return axios({
@@ -13,4 +14,10 @@ export default (props, params) => {
       Authorization: props.cookies.get('_WebsiteOne_session')
     }
   })
+    .catch(error => {
+      props.dispatch({
+        type: FETCH_PROJECTS_FAILURE,
+        message: error.message
+      })
+    })
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Segment, Header } from 'semantic-ui-react'
 
-export default ({ cookies, createBillingAgreement, setLoading }) => (
+export default ({ cookies, createBillingAgreement, setLoading, dispatch }) => (
   <Segment padded='very' className='paypal-section' raised>
     <Header as='h5'>Get Premium via Paypal:</Header>
-    <form onClick={setLoading} onSubmit={createBillingAgreement(cookies)}>
+    <form onClick={setLoading} onSubmit={createBillingAgreement(cookies, dispatch)}>
       <input
         type='image'
         name='submit'

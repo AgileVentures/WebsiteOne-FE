@@ -3,20 +3,25 @@ import { connect } from 'react-redux'
 import { setLastLocation } from '../actions/setLastLocationAction'
 import { Header, Container, Segment, Grid } from 'semantic-ui-react'
 import PayPalAgreementNew from './PayPalAgreementNew'
-import createBillingAgreement from '../helpers/createBillingAgreement'
+import createBillingAgreement from '../actions/createBillingAgreement'
 import queryString from 'query-string'
 import LoadingOverlay from 'react-loading-overlay'
 import { RingLoader } from 'react-spinners'
 import '../assets/Subscriptions.css'
+import ErrorBoundary from './ErrorBoundary'
 
 export const Subscriptions = props => {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
   useEffect(() => {
     const path = props.location.pathname
     const search = props.location.search
-    props.setLastLocation(path, search)
+    setLastLocation(path, search)
     if (!props.loggedInUser || !props.cookies.get('_WebsiteOne_session')) {
       props.history.push({ pathname: '/login' })
+    }
+    if (props.error.length) {
+      setError(true)
     }
   })
 
@@ -24,7 +29,7 @@ export const Subscriptions = props => {
   return (
     <Fragment>
       <Container>
-        <LoadingOverlay
+        {!error ? <LoadingOverlay
           active={loading}
           styles={{
             overlay: (base) => ({
@@ -50,6 +55,7 @@ export const Subscriptions = props => {
                   cookies={props.cookies}
                   createBillingAgreement={createBillingAgreement}
                   setLoading={setLoading}
+                  dispatch={props.dispatch}
                 />
               </Grid.Column>
               <Grid.Column>
@@ -61,16 +67,16 @@ export const Subscriptions = props => {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </LoadingOverlay>
+        </LoadingOverlay> : <ErrorBoundary />}
       </Container>
     </Fragment>
   )
 }
 const mapStateToProps = (store, ownProps) => ({
+  error: store.error,
   loggedInUser: store.loggedInUser,
   cookies: ownProps.cookies
 })
 export default connect(
-  mapStateToProps,
-  { setLastLocation }
+  mapStateToProps
 )(Subscriptions)
