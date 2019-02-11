@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Component, Fragment, useState, useEffect } from "react";
 import { Header, Card, Grid } from "semantic-ui-react";
 import Paginate from "../components/Paginate";
 import PaginationLinks from "../components/PaginationLinks";
@@ -7,41 +7,48 @@ import { fetchUsers } from "../actions/getUsersAction";
 import User from "../components/User";
 import "../assets/UsersList.css";
 
-const UsersList = () => {
-  const [selectedPage, setSelectedPage] = useState(1);
-  const [usersList, setUsersList] = useState([]);
-  const [firstPage, setFirstPage] = useState(true);
-  const [lastPage, setLastPage] = useState(true);
-  const [pageCount, setPageCount] = useState(null);
-  const [users, setUsers] = useState({});
+const UsersList = props => {
+  const [selectedPage, setSelectedPage] = useState(1)
+  const [usersList, setUsersList] = useState([])
+  const [firstPage, setFirstPage] = useState(true)
+  const [lastPage, setLastPage] = useState(true)
+  const [pageCount, setPageCount] = useState(null)
+  const [users, setUsers] = useState({})
+  
+  useEffect(() => {
+      if (!props.users.length) {
+        props.fetchUsers()
+      } else {
+        paginateUsers(props.users)
+      }
+  }, [props.users])
 
-  normalizeUsers = users => {
+  const paginateUsers = users => {
     let pageCount = Math.ceil(users.length / 12);
-    let normalizedUsers = {};
+    let paginatedUsers = {};
     let lastIndex = 0;
 
     for (let i = 1; i <= pageCount; i++) {
       if (i === 1) {
-        normalizedUsers[i] = users.slice(i - 1, i + 11);
+        paginatedUsers[i] = users.slice(i - 1, i + 11);
         lastIndex = i + 11;
       } else {
-        normalizedUsers[i] = users.slice(lastIndex, lastIndex + 12);
+        paginatedUsers[i] = users.slice(lastIndex, lastIndex + 12);
         lastIndex += 12;
       }
     }
-    setUsers(normalizedUsers);
-    setUsersList(normalizedUsers[1]);
+    setUsers(paginatedUsers);
+    setUsersList(paginatedUsers[1]);
     setPageCount(pageCount)
     setLastPage(false)
-
   }
 
-  handlePageSelect = selectedPage => e => {
-    e.preventDefault();
+  const handlePageSelect = selectedPage => event => {
+    event.preventDefault();
     setSelectedPage(selectedPage)
     setUsersList(users[selectedPage])
     setFirstPage(selectedPage - 1 < 1 ? true : false)
-    setLastPage(selectedPage + 1 > this.state.pageCount ? true : false)
+    setLastPage(selectedPage + 1 > pageCount ? true : false)
   };
   
   return (
@@ -58,7 +65,7 @@ const UsersList = () => {
               />
             </Card.Group>
             <PaginationLinks
-              handlePageSelect={this.handlePageSelect}
+              handlePageSelect={handlePageSelect}
               firstPage={firstPage}
               lastPage={lastPage}
               pageCount={pageCount}
@@ -70,23 +77,9 @@ const UsersList = () => {
     </Fragment>
   )
 }
-  
-  // componentDidMount() {
-  //   if (!this.props.users.length) {
-  //     this.props.fetchUsers();
-  //   } else {
-  //     this.normalizeUsers(this.props.users);
-  //   }
-  // }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.users.length !== nextProps.users.length) {
-  //     this.normalizeUsers(nextProps.users);
-  //   }
-  // }
-
-const mapStateToProps = store => ({ users: store.users });
+const mapStateToProps = store => ({ users: store.users })
 export default connect(
   mapStateToProps,
   { fetchUsers }
-)(UsersList);
+)(UsersList)
