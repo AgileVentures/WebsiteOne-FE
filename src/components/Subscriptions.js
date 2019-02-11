@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setLastLocation } from '../actions/setLastLocationAction'
-import { Header, Container, Segment, Grid } from 'semantic-ui-react'
+import { Header, Container, Grid } from 'semantic-ui-react'
 import PayPalAgreementNew from './PayPalAgreementNew'
+import StripeAgreementNew from './StripeAgreementNew'
 import createBillingAgreement from '../helpers/createBillingAgreement'
 import queryString from 'query-string'
 import '../assets/Subscriptions.css'
@@ -13,7 +14,7 @@ export const Subscriptions = props => {
     const search = props.location.search
     props.setLastLocation(path, search)
     if (!props.loggedInUser.data || !props.cookies.get('_WebsiteOne_session')) {
-      props.history.push({ pathname: '/login' })
+      // props.history.push({ pathname: '/login' })
     }
   })
 
@@ -39,9 +40,11 @@ export const Subscriptions = props => {
               />
             </Grid.Column>
             <Grid.Column>
-              <Segment>
-                <Header as='h5'>Get Premium Mob via Credit/Debit Card:</Header>
-              </Segment>
+              <StripeAgreementNew
+                key='ENTER_A_KEY'
+                amount={1000}
+                name='Premium Mob Membership'
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
