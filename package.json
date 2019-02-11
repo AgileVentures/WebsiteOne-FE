@@ -9,15 +9,29 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "test": "jest",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "fix": "standard --fix",
+    "test": "export NODE_ENV=testing && standard && jest",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cypress:ci": "cypress run",
+    "cypress:install": "cypress install",
+    "e2e:local": "cypress run --headed",
+    "e2e:ci": "npm-run-all --parallel --race start:ci 'cypress:ci --config baseUrl=http://localhost:8082'",
+    "start:ci": "webpack-dev-server --config ./webpack.config.js --port 8082 --mode production",
+    "now-build": "yarn build"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "global": "^4.3.2",
+    "izitoast": "^1.4.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
+    "react-select": "^2.3.0",
     "react-spinners": "^0.5.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
@@ -25,6 +39,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "7",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -33,6 +48,8 @@
     "babel-preset-react": "^6.24.1",
     "coveralls": "^3.0.2",
     "css-loader": "^2.0.1",
+    "cypress": "^3.1.4",
+    "cypress-cucumber-preprocessor": "^1.9.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "file-loader": "^3.0.1",
@@ -42,13 +59,27 @@
     "mini-css-extract-plugin": "^0.5.0",
     "moxios": "^0.4.0",
     "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
     "redux-mock-store": "^1.5.3",
     "regenerator-runtime": "^0.13.1",
     "sass-loader": "^7.1.0",
+    "standard": "^12.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "src/assets/*"
+    ],
+    "env": [
+      "jest"
+    ],
+    "globals": [
+      "cy"
+    ]
   }
 }

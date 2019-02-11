@@ -1,23 +1,22 @@
-import React, { Component, Fragment } from "react";
-import { Grid } from "semantic-ui-react";
+import React, { Component, Fragment } from 'react'
+import { Grid } from 'semantic-ui-react'
 import HomepageModal from './HomepageModal'
-import "./Homepage.css";
-import modals from "./modals";
+import './Homepage.css'
+import modals from './modals'
 
 export class Homepage extends Component {
-
-  renderModals() {
+  renderModals () {
     return modals.map((modal, id) => {
       return (
         <HomepageModal key={id} modal={modal} />
-      );
-    });
+      )
+    })
   };
 
-  render() {
+  render () {
     return (
       <Fragment>
-        <Grid columns={16} stretched className="landing-page-background">
+        <Grid columns={16} stretched className='landing-page-background'>
           <Grid.Row style={{ height: '500px' }}>
           </Grid.Row>
           {this.renderModals()}
@@ -25,8 +24,8 @@ export class Homepage extends Component {
           </Grid.Row>
         </Grid>
       </Fragment>
-    );
+    )
   }
 }
 
-export default Homepage;
+export default Homepage

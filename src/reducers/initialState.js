@@ -1,3 +1,8 @@
 export default {
-  users: []
+  users: [],
+  loggedInUser: {},
+  signedUpUser: {},
+  projects: [],
+  error: [],
+  lastLocation: ''
 }
