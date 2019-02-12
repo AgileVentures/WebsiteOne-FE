@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import { CREATE_BILLING_AGREEMENT_FAILURE } from '../../types'
 
-describe('createBillingAgreement helper', () => {
+describe('createBillingAgreement action', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
   let store
@@ -50,7 +50,8 @@ describe('createBillingAgreement helper', () => {
     expect(window.location.assign).toHaveBeenCalledWith(billingAgreementResponse.data.redirect_url)
   })
 
-  it('dispatches if an error is returned', () => {
+  it('dispatches if an error is returned', async () => {
+    expect.assertions(1)
     const error = new Error('Error: Request failed with status code 500')
     const errorMessage = {
       type: CREATE_BILLING_AGREEMENT_FAILURE,
@@ -62,7 +63,7 @@ describe('createBillingAgreement helper', () => {
     })
 
     store.dispatch(errorMessage)
-    createBillingAgreement(cookies, dispatch)(event).then(() => {
+    await createBillingAgreement(cookies, dispatch)(event).then(() => {
       expect(store.getActions()).toEqual([errorMessage])
     })
   })
