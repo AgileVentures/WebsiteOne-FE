@@ -1,7 +1,10 @@
 import axios from 'axios'
-import { FETCH_PROJECTS_FAILURE } from '../types'
+import { EXECUTE_BILLING_AGREEMENT_FAILURE } from '../types'
 
-export default (props, params) => {
+export default (cookies, params, dispatch) => {
+  console.log('cookies', cookies)
+  console.log('params', params)
+  console.log('dispatch', dispatch)
   return axios({
     method: 'GET',
     timeout: 50000,
@@ -11,12 +14,12 @@ export default (props, params) => {
       token: params.token
     },
     headers: {
-      Authorization: props.cookies.get('_WebsiteOne_session')
+      Authorization: cookies.get('_WebsiteOne_session')
     }
   })
     .catch(error => {
-      props.dispatch({
-        type: FETCH_PROJECTS_FAILURE,
+      dispatch({
+        type: EXECUTE_BILLING_AGREEMENT_FAILURE,
         message: error.message
       })
     })

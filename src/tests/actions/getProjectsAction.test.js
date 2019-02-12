@@ -21,13 +21,15 @@ describe('fetchProjects action', () => {
 
   it('fetches projects from an external api', () => {
     const expectedActions = [{ type: GET_PROJECTS, payload: projectsResponse }]
-    moxios.stubRequest(
-      '/api/v1/projects',
-      {
-        status: 200,
-        response: { projects: projectsResponse, languages: { 'Autograder': ['Ruby'] }, followers: [], documents: [] }
+    moxios.stubRequest('/api/v1/projects', {
+      status: 200,
+      response: {
+        projects: projectsResponse,
+        languages: { Autograder: ['Ruby'] },
+        followers: [],
+        documents: []
       }
-    )
+    })
 
     return store.dispatch(fetchProjects()).then(() => {
       expect(store.getActions()).toEqual(expectedActions)

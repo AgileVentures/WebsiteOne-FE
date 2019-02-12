@@ -67,7 +67,7 @@ export const Subscriptions = props => {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </LoadingOverlay> : <ErrorBoundary />}
+        </LoadingOverlay> : <ErrorBoundary error />}
       </Container>
     </Fragment>
   )

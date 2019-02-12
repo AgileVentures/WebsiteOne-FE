@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_PROJECTS_FAILURE } from '../types'
+import { CREATE_BILLING_AGREEMENT_FAILURE } from '../types'
 
 export default (cookies, dispatch) => event => {
   event.preventDefault()
@@ -16,9 +16,9 @@ export default (cookies, dispatch) => event => {
   })
     .then(response => window.location.assign(response.data.redirect_url))
     .catch(error => {
-      dispatch({
-        type: FETCH_PROJECTS_FAILURE,
+      dispatch(dispatch({
+        type: CREATE_BILLING_AGREEMENT_FAILURE,
         message: error.message
-      })
+      }))
     })
 }

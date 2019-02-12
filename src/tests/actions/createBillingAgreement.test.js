@@ -1,17 +1,26 @@
 import moxios from 'moxios'
 import billingAgreementResponse from '../../fixtures/billingAgreementResponse'
-import createBillingAgreement from '../../helpers/createBillingAgreement'
+import createBillingAgreement from '../../actions/createBillingAgreement'
+import thunk from 'redux-thunk'
+import configureMockStore from 'redux-mock-store'
+import { CREATE_BILLING_AGREEMENT_FAILURE } from '../../types'
 
 describe('createBillingAgreement helper', () => {
+  const middlewares = [thunk]
+  const mockStore = configureMockStore(middlewares)
+  let store
+  const dispatch = jest.fn()
   const cookies = { get: jest.fn() }
   const event = { preventDefault: jest.fn() }
   const { assign } = window.location
+
   beforeEach(() => {
     moxios.install()
     Object.defineProperty(window.location, 'assign', {
       configurable: true
     })
     window.location.assign = jest.fn()
+    store = mockStore({})
   })
 
   afterEach(() => {
@@ -39,5 +48,22 @@ describe('createBillingAgreement helper', () => {
       window.location.assign(billingAgreementResponse.data.redirect_url)
     )
     expect(window.location.assign).toHaveBeenCalledWith(billingAgreementResponse.data.redirect_url)
+  })
+
+  it('dispatches if an error is returned', () => {
+    const error = new Error('Error: Request failed with status code 500')
+    const errorMessage = {
+      type: CREATE_BILLING_AGREEMENT_FAILURE,
+      message: error.message
+    }
+    moxios.stubRequest('/paypal/new.json', {
+      status: 500,
+      response: { error }
+    })
+
+    store.dispatch(errorMessage)
+    createBillingAgreement(cookies, dispatch)(event).then(() => {
+      expect(store.getActions()).toEqual([errorMessage])
+    })
   })
 })

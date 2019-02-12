@@ -13,14 +13,14 @@ export const PayPalSuccess = props => {
     if (props.error.length) {
       setError(true)
     } else {
-      executeBillingAgreement(props, params)
+      executeBillingAgreement(props.cookies, params, props.dispatch)
     }
   })
   return (
     <Fragment>
       <Container>
-        {!error ? (
-          <Segment padded='very' className='payment-complete' raised>
+        {!error
+          ? <Segment padded='very' className='payment-complete' raised>
             <Header as='h2' textAlign='center'>
               Thanks, you're now an AgileVentures {}
               {params.plan.charAt(0).toUpperCase() + params.plan.slice(1)}{' '}
@@ -34,10 +34,7 @@ export const PayPalSuccess = props => {
               An AgileVentures mentor will be in touch shortly to help you
               receive all of your membership benefits.
             </Header>
-          </Segment>
-        ) : (
-          <ErrorBoundary />
-        )}
+          </Segment> : <ErrorBoundary error />}
       </Container>
     </Fragment>
   )

@@ -3,19 +3,20 @@ import { mount } from 'enzyme'
 import { Subscriptions } from '../../components/Subscriptions'
 
 describe('Subscriptions', () => {
+  let wrapper
   const props = {
+    error: ['Network Error'],
     cookies: { get: () => {} },
-    setLastLocation: jest.fn(),
     location: { pathname: 'subscriptions/new', search: '?plan=premium' },
     history: { push: jest.fn() },
     loggedInUser: { data: {} }
   }
 
   beforeEach(() => {
-    mount(<Subscriptions {...props} />)
+    wrapper = mount(<Subscriptions {...props} />)
   })
 
-  it('should call setLastLocation', () => {
-    expect(props.setLastLocation).toHaveBeenCalledTimes(1)
+  it('should render ErrorBoundary', () => {
+    expect(wrapper.find('ErrorBoundary').props().error).toBe(true)
   })
 })
