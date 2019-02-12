@@ -54,6 +54,7 @@ describe('ProjectsList', () => {
         projects={paginatedProjectsFixture}
         fetchProjects={() => {}}
         setLastLocation={() => {}}
+        location={{ pathname: '/projects' }}
       />
     )
     wrapper.setState(
@@ -92,7 +93,12 @@ describe('ProjectsList', () => {
   it("shouldn't render a Project component without projects", () => {
     const wrapper = mount(
       <StaticRouter context={context}>
-        <ProjectsList projects={{ 1: [] }} fetchProjects={() => {}} setLastLocation={() => {}} />
+        <ProjectsList
+          projects={{ 1: [] }}
+          fetchProjects={() => {}}
+          setLastLocation={() => {}}
+          location={{ pathname: '/projects' }}
+        />
       </StaticRouter>
     )
     expect(wrapper.find('Project')).toHaveLength(0)
@@ -100,7 +106,12 @@ describe('ProjectsList', () => {
 
   it('should test componentWillReceiveProps', () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} fetchProjects={() => {}} setLastLocation={() => {}} />
+      <ProjectsList
+        projects={[]}
+        fetchProjects={() => {}}
+        setLastLocation={() => {}}
+        location={{ pathname: '/projects' }}
+      />
     )
     wrapper.setProps({ projects: [{ id: 1, languages: [] }] })
     expect(wrapper.instance().state.projects).toEqual({
@@ -110,12 +121,15 @@ describe('ProjectsList', () => {
 
   it('should call normalizeFilteredProjects', () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} fetchProjects={() => {}} setLastLocation={() => {}} />
+      <ProjectsList
+        projects={[]}
+        fetchProjects={() => {}}
+        setLastLocation={() => {}}
+        location={{ pathname: '/projects' }}
+      />
     )
     wrapper.setProps({ projects: projectsFixture })
-    expect(wrapper.instance().state.projects).toEqual(
-      paginatedProjectsFixture
-    )
+    expect(wrapper.instance().state.projects).toEqual(paginatedProjectsFixture)
   })
 
   it('should filter projects', () => {
@@ -134,7 +148,13 @@ describe('ProjectsList', () => {
 
   it('adds error to the state if fetchProjects fails', async () => {
     const wrapper = shallow(
-      <ProjectsList projects={[]} error={[]} fetchProjects={() => {}} setLastLocation={() => {}} location={{ pathname: '/projects' }} />
+      <ProjectsList
+        projects={[]}
+        error={[]}
+        fetchProjects={() => {}}
+        setLastLocation={() => {}}
+        location={{ pathname: '/projects' }}
+      />
     )
     await wrapper.instance().componentDidMount()
     expect(wrapper.state().error).toEqual(true)

@@ -24,11 +24,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-plugin-dotenv": "^0.1.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "global": "^4.3.2",
     "izitoast": "^1.4.0",
-    "paypal-checkout": "^4.0.254",
     "query-string": "^6.2.0",
     "react": "16.8.0",
     "react-cookie": "^3.0.8",
@@ -40,7 +38,8 @@
     "react-spinners": "^0.5.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.84.0"
+    "semantic-ui-react": "^0.84.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

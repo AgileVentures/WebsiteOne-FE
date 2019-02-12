@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid, Container } from 'semantic-ui-react'
+import { Card, Header, Button, Grid, Popup, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
@@ -172,53 +172,72 @@ export class ProjectsList extends Component {
 
     return (
       <Fragment>
-        <Container>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column width={12}>
-                <Header as='h1'>List of Projects</Header>
-                <div>
-                  <p>
-                  To get involved in any of the projects, join one of the
-                    <Link to={`/events`}> scrums </Link>and reach out to us, or
-                  send us an email at
-                    <a href='mailto:info@agileventures.org'>
-                      {' '}
-                    info@agileventures.org
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={12}>
+              <Grid columns={2}>
+                <Grid.Row>
+                  <Grid.Column floated='left' width={9}>
+                    <Header className='projects-list-header' as='h1'>
+                      List of Projects
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column floated='right' width={3}>
+                    <a href='/projects/new'>
+                      <Popup
+                        position='right center'
+                        trigger={
+                          <Button basic style={{ marginTop: '16px' }}>
+                            <Icon name='plus' id='new-proj-icon' />
+                          </Button>
+                        }
+                        content='New Project!'
+                      />
                     </a>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <div>
+                <p>
+                  To get involved in any of the projects, join one of the
+                  <Link to={`/events`}> scrums </Link>and reach out to us, or
+                  send us an email at
+                  <a href='mailto:info@agileventures.org'>
+                    {' '}
+                    info@agileventures.org
+                  </a>
                   .
-                  </p>
-                </div>
-                <div className='search-dropdown'>
-                  <Select
-                    value={selectedLanguage}
-                    options={this.populateLanguagesDropdown()}
-                    onChange={this.handleFilterProjects}
-                    placeholder='Search for project by programming language...'
-                    isClearable
-                  />
-                </div>
-                <Card.Group centered itemsPerRow={3}>
-                  <Paginate
-                    items={filteredProjectsList || projectsList}
-                    Component={Project}
-                    pageCount={pageCount}
-                    error={error ? <ErrorBoundary /> : false}
-                  />
-                </Card.Group>
-                {!(pageCount === 1) ? (
-                  <PaginationLinks
-                    pageCount={pageCount}
-                    selectedPage={this.state.selectedPage}
-                    handlePageSelect={this.handlePageSelect}
-                    firstPage={this.state.firstPage}
-                    lastPage={this.state.lastPage}
-                  />
-                ) : null}
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
+                </p>
+              </div>
+              <div className='search-dropdown'>
+                <Select
+                  value={selectedLanguage}
+                  options={this.populateLanguagesDropdown()}
+                  onChange={this.handleFilterProjects}
+                  placeholder='Search for project by programming language...'
+                  isClearable
+                />
+              </div>
+              <Card.Group centered itemsPerRow={3}>
+                <Paginate
+                  items={filteredProjectsList || projectsList}
+                  Component={Project}
+                  pageCount={pageCount}
+                  error={error ? <ErrorBoundary /> : false}
+                />
+              </Card.Group>
+              {!(pageCount === 1) ? (
+                <PaginationLinks
+                  pageCount={pageCount}
+                  selectedPage={this.state.selectedPage}
+                  handlePageSelect={this.handlePageSelect}
+                  firstPage={this.state.firstPage}
+                  lastPage={this.state.lastPage}
+                />
+              ) : null}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Fragment>
     )
   }

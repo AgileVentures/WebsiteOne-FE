@@ -5,12 +5,13 @@ import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import { CREATE_BILLING_AGREEMENT_FAILURE } from '../../types'
 
-describe('createBillingAgreement helper', () => {
+describe('createBillingAgreement action', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
   let store
-  const dispatch = jest.fn()
   const cookies = { get: jest.fn() }
+  const dispatch = jest.fn()
+  const id = 1
   const event = { preventDefault: jest.fn() }
   const { assign } = window.location
 
@@ -33,7 +34,7 @@ describe('createBillingAgreement helper', () => {
       status: 200,
       response: billingAgreementResponse
     })
-    createBillingAgreement(cookies)(event)
+    createBillingAgreement(cookies, id, dispatch)(event)
     expect(billingAgreementResponse.data.redirect_url).toEqual(
       'https://www.sandbox.paypal.com/cgi-bin/webscr'
     )
@@ -44,13 +45,14 @@ describe('createBillingAgreement helper', () => {
       status: 200,
       response: billingAgreementResponse
     })
-    createBillingAgreement(cookies)(event).then(
+    createBillingAgreement(cookies, id, dispatch)(event).then(
       window.location.assign(billingAgreementResponse.data.redirect_url)
     )
     expect(window.location.assign).toHaveBeenCalledWith(billingAgreementResponse.data.redirect_url)
   })
 
-  it('dispatches if an error is returned', () => {
+  it('dispatches if an error is returned', async () => {
+    expect.assertions(1)
     const error = new Error('Error: Request failed with status code 500')
     const errorMessage = {
       type: CREATE_BILLING_AGREEMENT_FAILURE,
@@ -62,7 +64,7 @@ describe('createBillingAgreement helper', () => {
     })
 
     store.dispatch(errorMessage)
-    createBillingAgreement(cookies, dispatch)(event).then(() => {
+    await createBillingAgreement(cookies, id, dispatch)(event).then(() => {
       expect(store.getActions()).toEqual([errorMessage])
     })
   })

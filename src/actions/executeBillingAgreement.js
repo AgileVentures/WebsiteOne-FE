@@ -2,13 +2,10 @@ import axios from 'axios'
 import { EXECUTE_BILLING_AGREEMENT_FAILURE } from '../types'
 
 export default (cookies, params, dispatch) => {
-  console.log('cookies', cookies)
-  console.log('params', params)
-  console.log('dispatch', dispatch)
   return axios({
     method: 'GET',
-    timeout: 50000,
-    url: '/paypal/create.json',
+    timeout: 20000,
+    url: '/paypal/create',
     params: {
       plan: params.plan,
       token: params.token

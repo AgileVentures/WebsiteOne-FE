@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import executeBillingAgreement from '../actions/executeBillingAgreement'
 import { Header, Container, Segment } from 'semantic-ui-react'
 import queryString from 'query-string'
-import '../assets/PayPalSuccess.css'
 import ErrorBoundary from './ErrorBoundary'
+import '../assets/PayPalSuccess.css'
 
 export const PayPalSuccess = props => {
   const params = queryString.parse(props.location.search)
@@ -45,5 +45,6 @@ const mapStateToProps = (store, ownProps) => ({
   error: store.error
 })
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  null
 )(PayPalSuccess)
