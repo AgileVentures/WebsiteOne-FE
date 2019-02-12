@@ -7,6 +7,17 @@ import createBillingAgreement from '../helpers/createBillingAgreement'
 import queryString from 'query-string'
 import '../assets/Subscriptions.css'
 
+let membership = props => {
+  let info
+  if (queryString.parse(props.location.search).plan === 'premiummob') {
+    info = { id: 2, name: 'Premium Mob', price: '£25.00' }
+  } else if (queryString.parse(props.location.search).plan === 'premiumf2f') {
+    info = { id: 3, name: 'Premium F2F', price: '£50.00' }
+  } else {
+    info = { id: 1, name: 'Premium', price: '£10.00' }
+  }
+  return info
+}
 export const Subscriptions = props => {
   useEffect(() => {
     const path = props.location.pathname
@@ -17,17 +28,16 @@ export const Subscriptions = props => {
     }
   })
 
-  const { plan } = queryString.parse(props.location.search)
   return (
     <Fragment>
       <Container>
         <Header as='h1'>
-          AgileVentures {plan.charAt(0).toUpperCase() + plan.slice(1)}{' '}
+          AgileVentures {membership(props).name}{' '}
           Membership
         </Header>
         <Header as='h5'>
-          The price for {plan.charAt(0).toUpperCase() + plan.slice(1)}{' '}
-          Membership is £10.00/Month
+          The price for {membership(props).name}{' '}
+          Membership is {membership(props).price}/Month
         </Header>
         <Header as='h5'>7 day free trial! No charge for 7 days</Header>
         <Grid columns={2} divided className='payment-section'>
@@ -36,11 +46,12 @@ export const Subscriptions = props => {
               <PayPalAgreementNew
                 cookies={props.cookies}
                 createBillingAgreement={createBillingAgreement}
+                plan={membership(props)}
               />
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Header as='h5'>Get Premium Mob via Credit/Debit Card:</Header>
+                <Header as='h5'>Get {membership(props).name} via Credit/Debit Card:</Header>
               </Segment>
             </Grid.Column>
           </Grid.Row>

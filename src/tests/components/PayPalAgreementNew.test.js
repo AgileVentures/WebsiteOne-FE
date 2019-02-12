@@ -5,6 +5,7 @@ import PayPalAgreementNew from '../../components/PayPalAgreementNew'
 describe('PayPalAgreementNew', () => {
   let wrapper
   const props = {
+    plan: { name: 'premium', price: '10' },
     cookies: () => {},
     createBillingAgreement: jest.fn()
   }
