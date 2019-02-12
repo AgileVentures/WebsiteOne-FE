@@ -8,7 +8,7 @@ export class LogIn extends Component {
   state = {
     email: '',
     password: ''
-  }
+  };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
   handleLogIn = event => {
@@ -33,7 +33,6 @@ export class LogIn extends Component {
         })
       })
       .catch(() => {
-        console.log('error')
         iziToast.show({
           theme: 'light',
           title: 'Sorry',
@@ -96,7 +95,11 @@ export class LogIn extends Component {
   }
 }
 
-const mapStateToProps = store => ({ loggedInUser: store.loggedInUser, lastLocation: store.lastLocation })
+const mapStateToProps = (store, ownProps) => ({
+  loggedInUser: store.loggedInUser,
+  lastLocation: store.lastLocation,
+  cookies: ownProps.cookies
+})
 export default connect(
   mapStateToProps,
   { postLogInInfo }
