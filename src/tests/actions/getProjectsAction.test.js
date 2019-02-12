@@ -21,16 +21,36 @@ describe('fetchProjects action', () => {
 
   it('fetches projects from an external api', () => {
     const expectedActions = [{ type: GET_PROJECTS, payload: projectsResponse }]
-    moxios.stubRequest(
-      '/api/v1/projects',
-      {
-        status: 200,
-        response: { projects: projectsResponse, languages: { 'Autograder': ['Ruby'] }, followers: [], documents: [] }
+    moxios.stubRequest('/api/v1/projects', {
+      status: 200,
+      response: {
+        projects: projectsResponse,
+        languages: { Autograder: ['Ruby'] },
+        followers: [],
+        documents: []
       }
-    )
+    })
 
     return store.dispatch(fetchProjects()).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
+    })
+  })
+
+  it('dispatches if an error is returned from fetch', () => {
+    const error = new Error('Error: Request failed with status code 500')
+
+    moxios.stubRequest('/api/v1/projects', {
+      status: 500,
+      response: { error }
+    })
+
+    return store.dispatch(fetchProjects()).then(() => {
+      expect(store.getActions()).toEqual([
+        {
+          message: 'Request failed with status code 500',
+          type: 'FETCH_PROJECTS_FAILURE'
+        }
+      ])
     })
   })
 })
