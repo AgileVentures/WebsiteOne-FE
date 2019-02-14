@@ -9,9 +9,10 @@ import '../assets/Subscriptions.css'
 
 let membership = props => {
   let info
-  if (queryString.parse(props.location.search).plan === 'premiummob') {
+  let plan = queryString.parse(props.location.search).plan
+  if (plan === 'premiummob') {
     info = { id: 2, name: 'Premium Mob', price: '£25.00' }
-  } else if (queryString.parse(props.location.search).plan === 'premiumf2f') {
+  } else if (plan === 'premiumf2f') {
     info = { id: 3, name: 'Premium F2F', price: '£50.00' }
   } else {
     info = { id: 1, name: 'Premium', price: '£10.00' }
@@ -19,6 +20,8 @@ let membership = props => {
   return info
 }
 export const Subscriptions = props => {
+  let name = membership(props).name
+
   useEffect(() => {
     const path = props.location.pathname
     const search = props.location.search
@@ -31,15 +34,13 @@ export const Subscriptions = props => {
   return (
     <Fragment>
       <Container>
-        <Header as='h1'>
-          AgileVentures {membership(props).name}{' '}
-          Membership
+        <Header as='h1'>AgileVentures {name} Membership</Header>
+        <Header as='h5'>
+          The price for {name} Membership is {membership(props).price}/Month
         </Header>
         <Header as='h5'>
-          The price for {membership(props).name}{' '}
-          Membership is {membership(props).price}/Month
+          {name === 'Premium' ? '7 day free trial! No charge for 7 days' : null}
         </Header>
-        <Header as='h5'>7 day free trial! No charge for 7 days</Header>
         <Grid columns={2} divided className='payment-section'>
           <Grid.Row>
             <Grid.Column>
@@ -51,7 +52,7 @@ export const Subscriptions = props => {
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Header as='h5'>Get {membership(props).name} via Credit/Debit Card:</Header>
+                <Header as='h5'>Get {name} via Credit/Debit Card:</Header>
               </Segment>
             </Grid.Column>
           </Grid.Row>
