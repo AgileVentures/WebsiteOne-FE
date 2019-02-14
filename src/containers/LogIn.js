@@ -33,7 +33,6 @@ export class LogIn extends Component {
         })
       })
       .catch(() => {
-        console.log('error')
         iziToast.show({
           theme: 'light',
           title: 'Sorry',

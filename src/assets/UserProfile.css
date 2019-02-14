@@ -1,0 +1,5 @@
+@media only screen and (min-width: 1400px) {
+  .user-profile-container {
+    width: 1200px !important;
+  }
+}

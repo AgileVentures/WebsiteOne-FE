@@ -4,5 +4,6 @@ export default {
   signedUpUser: {},
   projects: [],
   error: [],
-  lastLocation: ''
+  lastLocation: '',
+  userInfo: {}
 }
