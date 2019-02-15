@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setLastLocation } from '../actions/setLastLocationAction'
-import { Header, Container, Segment, Grid } from 'semantic-ui-react'
+import { Header, Container, Grid } from 'semantic-ui-react'
 import PayPalAgreementNew from './PayPalAgreementNew'
 import StripeAgreementNew from './StripeAgreementNew'
 import createBillingAgreement from '../helpers/createBillingAgreement'
@@ -11,12 +11,21 @@ import '../assets/Subscriptions.css'
 let membership = props => {
   let info
   let plan = queryString.parse(props.location.search).plan
-  if (plan === 'premiummob') {
-    info = { id: 2, name: 'Premium Mob', price: '£25.00' }
-  } else if (plan === 'premiumf2f') {
-    info = { id: 3, name: 'Premium F2F', price: '£50.00' }
-  } else {
-    info = { id: 1, name: 'Premium', price: '£10.00' }
+
+  // thing to note, 1 GBP = 100 stripePrice
+
+  switch (plan) {
+    case 'premiummob': {
+      info = { id: 2, name: 'Premium Mob', price: '£25.00', stripePrice: 2500 }
+      break
+    }
+    case 'premiumf2f': {
+      info = { id: 3, name: 'Premium F2F', price: '£50.00', stripePrice: 5000 }
+      break
+    }
+    default: {
+      info = { id: 1, name: 'Premium', price: '£10.00', stripePrice: 1000 }
+    }
   }
   return info
 }
@@ -53,9 +62,8 @@ export const Subscriptions = props => {
             </Grid.Column>
             <Grid.Column>
               <StripeAgreementNew
-                key='ENTER_A_KEY'
-                amount={1000}
-                name='Premium Mob Membership'
+                stripeKey='ENTER_A_KEY'
+                plan={membership(props)}
               />
             </Grid.Column>
           </Grid.Row>
