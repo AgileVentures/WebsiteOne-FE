@@ -5,25 +5,14 @@ import { Header, Container, Segment, Grid } from 'semantic-ui-react'
 import PayPalAgreementNew from './PayPalAgreementNew'
 import createBillingAgreement from '../actions/createBillingAgreement'
 import queryString from 'query-string'
+import membership from '../helpers/membershipInfo'
 import LoadingOverlay from 'react-loading-overlay'
 import { RingLoader } from 'react-spinners'
 import ErrorBoundary from './ErrorBoundary'
 import '../assets/Subscriptions.css'
 
-let membership = props => {
-  let info
-  let plan = queryString.parse(props.location.search).plan
-  if (plan === 'premiummob') {
-    info = { id: 2, name: 'Premium Mob', price: '£25.00' }
-  } else if (plan === 'premiumf2f') {
-    info = { id: 3, name: 'Premium F2F', price: '£50.00' }
-  } else {
-    info = { id: 1, name: 'Premium', price: '£10.00' }
-  }
-  return info
-}
 export const Subscriptions = props => {
-  let name = membership(props).name
+  let name = membership(props, queryString).name
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   useEffect(() => {
@@ -53,7 +42,7 @@ export const Subscriptions = props => {
         >
           <Header as='h1'>AgileVentures {name} Membership</Header>
           <Header as='h5'>
-          The price for {name} Membership is {membership(props).price}/Month
+          The price for {name} Membership is {membership(props, queryString).price}/Month
           </Header>
           <Header as='h5'>
             {name === 'Premium' ? '7 day free trial! No charge for 7 days' : null}
@@ -64,7 +53,7 @@ export const Subscriptions = props => {
                 <PayPalAgreementNew
                   cookies={props.cookies}
                   createBillingAgreement={createBillingAgreement}
-                  plan={membership(props)}
+                  plan={membership(props, queryString)}
                   setLoading={setLoading}
                   dispatch={props.dispatch}
                 />
