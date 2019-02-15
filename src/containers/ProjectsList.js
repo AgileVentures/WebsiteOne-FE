@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid, Container } from 'semantic-ui-react'
+import { Card, Header, Button, Grid, Popup, Icon, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
@@ -172,13 +172,33 @@ export class ProjectsList extends Component {
 
     return (
       <Fragment>
-        <Container>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column width={12}>
-                <Header as='h1'>List of Projects</Header>
-                <div>
-                  <p>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={12}>
+              <Grid columns={2}>
+                <Grid.Row>
+                  <Grid.Column floated='left' width={9}>
+                    <Header className='projects-list-header' as='h1'>
+                      List of Projects
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column floated='right' width={3}>
+                    <a href='/projects/new'>
+                      <Popup
+                        position='right center'
+                        trigger={
+                          <Button basic style={{ marginTop: '16px' }}>
+                            <Icon name='plus' id='new-proj-icon' />
+                          </Button>
+                        }
+                        content='New Project!'
+                      />
+                    </a>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <div>
+                <p>
                   To get involved in any of the projects, join one of the
                     <Link to={`/events`}> scrums </Link>and reach out to us, or
                   send us an email at

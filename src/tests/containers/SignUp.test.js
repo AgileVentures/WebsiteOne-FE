@@ -3,69 +3,52 @@ import { SignUp } from '../../containers/SignUp'
 import { mount } from 'enzyme'
 
 describe('SignUp', () => {
-  const existingUser = {
-    id: 1,
-    email: 'existing-user@example.com',
-    password: 'password'
-  }
+  let wrapper = mount(
+    <SignUp postSignUpInfo={jest.fn(() => Promise.resolve({}))} />
+  )
 
-  const newUser = {
-    id: 2,
-    email: 'new-user@example.com',
-    password: 'password'
-  }
-
-  let wrapper
-  let props
-  beforeEach(() => {
-    props = {
-      history: { push: jest.fn() },
-      postSignUpInfo: jest.fn(
-        signUpInfo =>
-          new Promise((resolve, reject) => {
-            if (
-              signUpInfo.email !== existingUser.email &&
-              signUpInfo.password.length >= 8 &&
-              signUpInfo.passwordConfirmation === signUpInfo.password
-            ) {
-              resolve(newUser)
-            } else {
-              reject(
-                new Error('This email already has an account, please sign in')
-              )
-            }
-          })
-      )
-    }
-    wrapper = mount(<SignUp {...props} />)
+  const emailInput = wrapper.find('input').filterWhere(item => {
+    return item.prop('name') === 'email'
   })
 
-  it('should call handleSignUp and postSignUpInfo when the form is submitted', () => {
-    const spy = jest.spyOn(wrapper.instance(), 'handleSignUp')
-    wrapper.instance().forceUpdate()
-    const emailInput = wrapper.find('input').filterWhere(item => {
-      return item.prop('name') === 'email'
+  const passwordInput = wrapper.find('input').filterWhere(item => {
+    return item.prop('name') === 'password'
+  })
+
+  it('should have a SignUp Header', () => {
+    const mainHeader = wrapper.find('Header').filterWhere(item => {
+      return item.text() === 'Sign Up'
     })
+    expect(mainHeader).toHaveLength(1)
+  })
 
-    const passwordInput = wrapper.find('input').filterWhere(item => {
-      return item.prop('name') === 'password'
-    })
+  it('should have a Form', () => {
+    expect(wrapper.find('Form')).toHaveLength(1)
+  })
 
-    const passwordConfirmationInput = wrapper
-      .find('input')
-      .filterWhere(item => {
-        return item.prop('name') === 'passwordConfirmation'
-      })
-
+  it('should update the state when email input value changes', () => {
     emailInput.simulate('change', {
-      target: { value: 'new-user@example.com' }
+      target: { value: 'existing-user@example.com' }
     })
+    expect(wrapper.state().email).toBe('existing-user@example.com')
+  })
 
+  it('should update the state when password input value changes', () => {
     passwordInput.simulate('change', {
       target: { value: 'password' }
     })
+    expect(wrapper.state().password).toBe('password')
+  })
 
-    passwordConfirmationInput.simulate('change', {
+  it('should call handleSignUp and postSignUpInfo when the form is submitted', async () => {
+    const spy = jest.spyOn(wrapper.instance(), 'handleSignUp')
+    wrapper.instance().forceUpdate()
+
+    emailInput.simulate('change', {
+      target: { value: 'existing-user@example.com' }
+    })
+
+    passwordInput.simulate('change', {
       target: { value: 'password' }
     })
 
@@ -73,33 +56,6 @@ describe('SignUp', () => {
     submitForm.simulate('submit')
 
     expect(spy).toHaveBeenCalledTimes(1)
-    expect(props.postSignUpInfo).toBeCalledTimes(1)
-  })
-
-  it('returns the user if postSignUpInfo is called with the correct credentials', () => {
-    expect.assertions(1)
-    props
-      .postSignUpInfo({
-        email: 'new-user@example.com',
-        password: 'password',
-        passwordConfirmation: 'password'
-      })
-      .then(() => expect(props.history.push).toBeCalledTimes(1))
-  })
-
-  it('throws an error if postSignUpInfo is called with incorrect credentials', () => {
-    expect.assertions(1)
-    const submitForm = wrapper.find('Form')
-    submitForm.simulate('submit')
-    props
-      .postSignUpInfo({
-        email: 'existing-user@example.com',
-        password: ''
-      })
-      .catch(e =>
-        expect(e).toEqual(
-          Error('This email already has an account, please sign in')
-        )
-      )
+    await expect(wrapper.instance().props.postSignUpInfo).toBeCalledTimes(1)
   })
 })
