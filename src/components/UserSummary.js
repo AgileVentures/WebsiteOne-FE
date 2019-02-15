@@ -77,6 +77,8 @@ const UserSummary = props => {
             <ul>
               {user.projects.map(project => {
                 return user.contributions.map(usersProject => {
+                  console.log('project', project)
+                  console.log('usersProject', usersProject)
                   if (usersProject.project_id === project.id) {
                     return (
                       <li key={user.id}>
@@ -153,7 +155,7 @@ const UserSummary = props => {
                         <p className='user-profile-name'>
                           {user.first_name
                             ? user.first_name + ' ' + user.last_name
-                            : user.slug.substring(0, 15)}{' '}
+                            : user.slug.substring(0, 15)}
                         </p>
                         <p className='user-profile-karma'>
                           <Icon name='fire' size='large' className='fire-icon' /> {}
@@ -163,9 +165,7 @@ const UserSummary = props => {
                     </Grid>
                   </Card.Header>
                   <Card.Meta>
-                    {user.title_list.length
-                      ? user.title_list.map(title => title + ' ')
-                      : null}
+                    {user.title_list.map(title => title + ' ')}
                   </Card.Meta>
                   <Card.Description>
                     <Grid>
@@ -189,10 +189,10 @@ const UserSummary = props => {
                           className='github-commit-count-icon'
                         />
                         <a href={user.github_profile_url}>
-                          {user.github_profile_url.replace(
+                          {user.github_profile_url ? user.github_profile_url.replace(
                             'https://github.com/',
                             ''
-                          )}
+                          ) : null}
                         </a>
                       </Grid.Row>
                     </Grid>

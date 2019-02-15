@@ -3,18 +3,19 @@ import { connect } from 'react-redux'
 import { fetchUserInfo } from '../actions/getUserInfoAction'
 import UserSummary from '../components/UserSummary'
 import { Container } from 'semantic-ui-react'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import '../assets/UserProfile.css'
 
 export class UserProfile extends Component {
   state = { user: null }
 
   componentDidMount () {
-    const user = Number(this.props.match.params.id)
-    console.log(Object.keys(this.props.user).length === 0)
+    const userId = Number(this.props.match.params.id)
+    this.props.setLastLocation(this.props.location.pathname)
     if (this.props.user.id === this.props.match.params.id) {
       this.setState({ user: this.props.user })
     } else {
-      this.props.fetchUserInfo(user)
+      this.props.fetchUserInfo(userId)
     }
   }
 
@@ -37,5 +38,5 @@ export class UserProfile extends Component {
 const mapStateToProps = store => ({ users: store.users, user: store.userInfo })
 export default connect(
   mapStateToProps,
-  { fetchUserInfo }
+  { fetchUserInfo, setLastLocation }
 )(UserProfile)
