@@ -7,12 +7,12 @@ import '../assets/UserSummary.css'
 const UserSummary = props => {
   let { user } = props
   if (user) {
-    const usersProjectsList = user.contributions
+    const latestUserContributionList = user.contributions
       .sort((a, b) => b - a)
       .slice(0, 6)
     const usersActiveProjects = []
     user.projects.map(project => {
-      usersProjectsList.map(usersProject => {
+      latestUserContributionList.map(usersProject => {
         if (usersProject.project_id === project.id) {
           usersActiveProjects.push(project)
         }
@@ -77,8 +77,6 @@ const UserSummary = props => {
             <ul>
               {user.projects.map(project => {
                 return user.contributions.map(usersProject => {
-                  console.log('project', project)
-                  console.log('usersProject', usersProject)
                   if (usersProject.project_id === project.id) {
                     return (
                       <li key={user.id}>
