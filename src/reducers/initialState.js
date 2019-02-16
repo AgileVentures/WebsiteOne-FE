@@ -5,5 +5,6 @@ export default {
   projects: [],
   error: [],
   lastLocation: '',
-  userInfo: {}
+  userInfo: {},
+  projectInfo: {}
 }

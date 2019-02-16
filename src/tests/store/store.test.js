@@ -14,7 +14,8 @@ describe('Store', () => {
       error: [],
       projects: [],
       lastLocation: '',
-      userInfo: {}
+      userInfo: {},
+      projectInfo: {}
     })
   })
 })
