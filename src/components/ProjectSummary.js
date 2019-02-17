@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import '../assets/ProjectSummary.css'
 
 const ProjectSummary = props => {
-  console.log(props)
   let { project } = props
   if (project) {
     return (
@@ -43,7 +42,7 @@ const ProjectSummary = props => {
                               </Grid>
                             </Fragment>
                           )
-                        }) || null}
+                        })}
                         {project.pivotaltracker_url ? (
                           <Fragment key={project.id}>
                             <Grid>
@@ -57,8 +56,8 @@ const ProjectSummary = props => {
                             </Grid>
                           </Fragment>
                         ) : null}
-                        {
-                          <Fragment key={project.id}>
+                        {project.slack_channel_name
+                          ? <Fragment key={project.slack_channel_name}>
                             <Grid>
                               <Grid.Row>
                                 <Icon name='slack hash' size='large' />
@@ -73,7 +72,7 @@ const ProjectSummary = props => {
                               </Grid.Row>
                             </Grid>
                           </Fragment>
-                        }
+                          : null}
                       </Card.Description>
                     </Card.Content>
                   </Card>
