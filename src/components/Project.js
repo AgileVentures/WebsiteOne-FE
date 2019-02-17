@@ -12,7 +12,7 @@ const Project = ({ item: project }) => {
         className='project-image'
       />
       <Card.Content>
-        <Link to={`/projects/${project.id}`} className='project-title'>
+        <Link to={`/projects/${project.slug}`} className='project-title'>
           <big>
             <Card.Header>{project.title}</Card.Header>
           </big>
