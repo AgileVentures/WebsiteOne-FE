@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import UsersList from '../containers/UsersList'
+import UserProfile from '../containers/UserProfile'
 import { Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import Homepage from '../components/homepage/Homepage'
@@ -17,7 +18,8 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route path='/' exact component={Homepage} />
-          <Route path='/users' component={UsersList} />
+          <Route exact path='/users' component={UsersList} />
+          <Route path='/users/:id' component={UserProfile} />
           <Route
             path='/login'
             render={props => {

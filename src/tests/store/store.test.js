@@ -13,7 +13,8 @@ describe('Store', () => {
       signedUpUser: {},
       error: [],
       projects: [],
-      lastLocation: ''
+      lastLocation: '',
+      userInfo: {}
     })
   })
 })

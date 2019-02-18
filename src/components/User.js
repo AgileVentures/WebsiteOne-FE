@@ -7,7 +7,7 @@ const User = ({ item: user }) => {
   return (
     <Card className='user-card' raised>
       <Card.Content>
-        <Link to={`/users/${user.id}`}>
+        <Link to={`/users/${user.id}`} >
           <Image
             src={`${user.gravatar_url}`}
             floated='left'
@@ -39,4 +39,5 @@ const User = ({ item: user }) => {
 const fullName = user => {
   return user.first_name + ' ' + user.last_name
 }
+
 export default User
