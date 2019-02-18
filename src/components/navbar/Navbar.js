@@ -38,6 +38,11 @@ export class Navbar extends Component {
             >
               <Link to='/projects'>Projects</Link>
             </Menu.Item>
+
+            <Menu.Item name='premium' active={activeItem === 'premium'}>
+              <Link to='/membership-plans'>Premium</Link>
+            </Menu.Item>
+
             <Menu.Item name='events' active={activeItem === 'events'} disabled>
               Events
             </Menu.Item>
