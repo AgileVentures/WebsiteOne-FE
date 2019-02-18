@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
 import { Provider } from 'react-redux'
 import store from './store'
-import './assets/semantic.css'
 import App from './components/App'
+import './assets/semantic.css'
 
 render(
   <CookiesProvider>

@@ -25,9 +25,7 @@ const User = ({ item: user }) => {
           </big>
         </Link>
         <Card.Description>
-          {user.title_list.length
-            ? user.title_list.map(title => title + ' ')
-            : null}
+          {user.title_list.map(title => title + ' ')}
         </Card.Description>
         <p className='user-card-footer'>
           <Icon name='fire' /> {}

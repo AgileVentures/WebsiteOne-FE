@@ -27,6 +27,7 @@ Run tests
 ```
 $ yarn test
 ```
+
 # Rebuild the semantic UI asserts
 ## This command needs to be run with npm - yarn does not support interactive prompt installs
 `# npm install --save-dev semantic-ui`
@@ -44,8 +45,6 @@ use the default values
 and copy the folder to our src folder
 
 `cp -R dist/* ../src/assets/`
-
-----
 
 ### [Code of Conduct](./CODE_OF_CONDUCT).
 ### [Contribution Guide](./CONTRIBUTION_GUIDE).

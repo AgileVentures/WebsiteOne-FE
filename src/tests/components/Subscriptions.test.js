@@ -5,22 +5,40 @@ import { Subscriptions } from '../../components/Subscriptions'
 describe('Subscriptions', () => {
   let wrapper
   const props = {
+    error: ['Network Error'],
     cookies: { get: () => {} },
-    setLastLocation: jest.fn(),
     location: { pathname: 'subscriptions/new', search: '?plan=premium' },
     history: { push: jest.fn() },
-    loggedInUser: { data: {} }
+    loggedInUser: { data: {} },
+    setLastLocation: jest.fn()
   }
 
   beforeEach(() => {
     wrapper = mount(<Subscriptions {...props} />)
   })
 
-  it('should render PayPalAgreementNew', () => {
-    expect(wrapper.find('PayPalAgreementNew')).toBeTruthy()
+  it('should render ErrorBoundary', () => {
+    wrapper.setProps({ error: ['Network Error'] })
+    expect(wrapper.find('ErrorBoundary').props().error).toBe(true)
   })
 
-  it('should call setLastLocation', () => {
-    expect(props.setLastLocation).toHaveBeenCalledTimes(1)
+  it('shows premium mob info', () => {
+    wrapper = mount(<Subscriptions error={[]}
+      cookies={{ get: () => {} }}
+      location={{ pathname: 'subscriptions/new', search: '?plan=premiummob' }}
+      history={{ push: jest.fn() }}
+      loggedInUser={{}}
+      setLastLocation={jest.fn()} />)
+    expect(wrapper.find('h1').text()).toEqual('AgileVentures Premium Mob Membership')
+  })
+
+  it('shows premium f2f info', () => {
+    wrapper = mount(<Subscriptions error={[]}
+      cookies={{ get: () => {} }}
+      location={{ pathname: 'subscriptions/new', search: '?plan=premiumf2f' }}
+      history={{ push: jest.fn() }}
+      loggedInUser={{ data: {} }}
+      setLastLocation={jest.fn()} />)
+    expect(wrapper.find('h1').text()).toEqual('AgileVentures Premium F2F Membership')
   })
 })
