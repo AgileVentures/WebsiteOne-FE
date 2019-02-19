@@ -9,7 +9,7 @@ import LogIn from '../containers/LogIn'
 import SignUp from '../containers/SignUp'
 import Subscriptions from './Subscriptions'
 import PayPalSuccess from './PayPalSuccess'
-import MembershipPlans from './MembershipPlans'
+import MembershipPlansPage from '../containers/MembershipPlansPage'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
@@ -51,7 +51,7 @@ class App extends Component {
               />)
           }}
           />
-          <Route path='/membership-plans' component={MembershipPlans} />
+          <Route path='/membership-plans' component={MembershipPlansPage} />
         </Switch>
       </Fragment>
     )
