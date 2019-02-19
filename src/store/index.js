@@ -8,6 +8,7 @@ import error from '../reducers/errorReducer'
 import lastLocation from '../reducers/lastLocationReducer'
 import userInfo from '../reducers/userInfoReducer'
 import projectInfo from '../reducers/projectInfoReducer'
+import events from '../reducers/eventsReducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   error,
   lastLocation,
   userInfo,
-  projectInfo
+  projectInfo,
+  events
 })
 
 export default createStore(
