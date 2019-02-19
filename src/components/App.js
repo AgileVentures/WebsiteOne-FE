@@ -11,6 +11,7 @@ import SignUp from '../containers/SignUp'
 import Subscriptions from './Subscriptions'
 import PayPalSuccess from './PayPalSuccess'
 import MembershipPlansPage from '../containers/MembershipPlansPage'
+import PremiumMembershipPage from '../containers/PremiumMembershipPage'
 import PremiumMobMembershipPage from '../containers/PremiumMobMembershipPage'
 import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import { withCookies } from 'react-cookie'
@@ -63,6 +64,7 @@ class App extends Component {
           }}
           />
           <Route path='/membership-plans' component={MembershipPlansPage} />
+          <Route path='/premium' component={PremiumMembershipPage} />
           <Route path='/premiummob' component={PremiumMobMembershipPage} />
           <Route path='/premiumf2f' component={PremiumF2FMembershipPage} />
         </Switch>
