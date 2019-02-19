@@ -1,16 +1,31 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import MembershipPlansPage from '../../containers/MembershipPlansPage'
+import moxios from 'moxios'
 
 describe('MembershipPlansPage', () => {
   let wrapper
   beforeEach(() => {
+    moxios.install()
     wrapper = mount(<MembershipPlansPage />)
   })
 
-  it('renders Membership Plans header when membersPlans state exists', async () => {
-    wrapper.setState({ membershipPlansPage: '<h1 id="membership-plans">Membership Plans</h1>' })
-    await expect(wrapper.html()).toContain('<h1 id="membership-plans">Membership Plans</h1>')
+  afterEach(() => {
+    moxios.uninstall()
+  })
+
+  it('fetches the membership-plans static page after component mounts', done => {
+    expect.assertions(1)
+    moxios.wait(() => {
+      let request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: '<h1 id="membership-plans">Membership Plans</h1>'
+      }).then(() => {
+        expect(wrapper.html()).toContain('<h1 id="membership-plans">Membership Plans</h1>')
+        done()
+      })
+    })
   })
 
   it('displays a spinner while fetching the static membership plans page', () => {
