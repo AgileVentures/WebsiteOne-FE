@@ -28,7 +28,10 @@ export class Navbar extends Component {
           </Menu.Item>
 
           <Menu.Menu position='right'>
-            <Menu.Item name='users' active={activeItem === 'users'}>
+            <Menu.Item
+              name='users'
+              active={activeItem === 'users'}
+            >
               <Link to='/users'>Users</Link>
             </Menu.Item>
 
@@ -43,8 +46,11 @@ export class Navbar extends Component {
               <Link to='/membership-plans'>Premium</Link>
             </Menu.Item>
 
-            <Menu.Item name='events' active={activeItem === 'events'} disabled>
-              Events
+            <Menu.Item
+              name='events'
+              active={activeItem === 'events'}
+            >
+              <Link to='/events'>Events</Link>
             </Menu.Item>
 
             <Menu.Item

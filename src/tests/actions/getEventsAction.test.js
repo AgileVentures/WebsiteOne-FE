@@ -21,13 +21,9 @@ describe('fetchEvents action', () => {
 
   it('fetches events from an external api', async (done) => {
     const expectedActions = [{ type: GET_EVENTS, payload: eventsResponse }]
-    moxios.stubRequest('/api/v1/events/upcoming', {
-      status: 200
-    })
-
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
-      request.resolve({ data: { events: eventsResponse } })
+      request.resolve({ data: eventsResponse })
     })
 
     await store.dispatch(fetchEvents()).then(() => {
