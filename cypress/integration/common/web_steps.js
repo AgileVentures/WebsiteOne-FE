@@ -18,7 +18,7 @@ When('I click on the LocalSupport project', () => {
   //   cy.route(/https:\/\/develop\.websiteone\.agileventures\.org\/api\/v1\/projects/, projects).as('getProjects')
   // })
   // cy.wait('@getProjects')
-  cy.get('div').contains('LocalSupport').click({ force: true })
+  cy.get('div', { timeout: 10000 }).contains('LocalSupport').click({ force: true })
 })
 
 Then("I should be on the LocalSupport Project's info page", () => {
