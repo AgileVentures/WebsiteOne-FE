@@ -13,24 +13,19 @@ describe('Navbar', () => {
       expect(wrapper.find('Navbar').length).toEqual(1)
     })
 
-    it('renders 5 MenuItem elements', () => {
+    it('renders 6 MenuItem elements', () => {
       const wrapper = homepage(props)
       expect(wrapper.find('MenuItem').length).toEqual(6)
     })
 
-    it('renders 4 Link elements', () => {
+    it('renders 6 Link elements', () => {
       const wrapper = homepage(props)
-      expect(wrapper.find('Link').length).toEqual(5)
+      expect(wrapper.find('Link').length).toEqual(6)
     })
 
     it('renders 1 active Link element', () => {
       const wrapper = homepage(props)
       expect(wrapper.find('.active').find('Link').length).toEqual(1)
-    })
-    it('renders 1 disabled Link element', () => {
-      // This test can be deleted after all items are working
-      const wrapper = homepage(props)
-      expect(wrapper.find('.disabled').length).toEqual(1)
     })
   })
 })

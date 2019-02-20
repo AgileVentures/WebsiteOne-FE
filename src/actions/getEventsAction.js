@@ -3,9 +3,13 @@ import { GET_EVENTS } from '../types'
 
 export let fetchEvents = () => dispatch => {
   return axios
-    .get('api/v1/events/upcoming')
+    .get('/events.json')
     .then(response => {
-      console.log(response)
-      dispatch({ type: GET_EVENTS, payload: response.data.events })
+      let events = response.data.map(event => {
+        event.start = new Date(event.start)
+        event.end = new Date(event.end)
+        return event
+      })
+      dispatch({ type: GET_EVENTS, payload: events })
     })
 }
