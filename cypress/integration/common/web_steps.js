@@ -16,7 +16,7 @@ Given('I am at the projects page', () => {
   cy.server()
   cy.fixture('projects').then(projects => {
     cy.route(
-      /https:\/\/develop\.websiteone\.agileventures\.org\/api\/v1\/projects/,
+      /\/api\/v1\/projects/,
       projects
     ).as('getProjects')
     cy.visit('/projects')
@@ -30,7 +30,7 @@ Given('I am at the projects page', () => {
 When('I click on the LocalSupport project', () => {
   cy.server()
   cy.fixture('project').then(project => {
-    cy.route(/https:\/\/develop\.websiteone\.agileventures\.org\/api\/v1\/projects\/localsupport/, project).as('getProject')
+    cy.route(/\/api\/v1\/projects\/localsupport/, project).as('getProject')
     cy.get('div')
       .contains('LocalSupport')
       .click({ force: true })
