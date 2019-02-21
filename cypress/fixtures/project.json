@@ -1,0 +1,149 @@
+{
+  "project": {
+    "id": 3,
+    "title": "LocalSupport",
+    "description": "VAH's Local Support site is at  www.harrowcn.org.uk",
+    "status": "Active",
+    "created_at": "2018-10-18T20:54:13.525Z",
+    "updated_at": "2018-10-18T20:54:13.525Z",
+    "user_id": 3,
+    "slug": "localsupport",
+    "github_url": "https://github.com/AgileVentures/LocalSupport/",
+    "pivotaltracker_url": "https://www.pivotaltracker.com/n/projects/742821",
+    "pitch": null,
+    "commit_count": 3655,
+    "image_url": null,
+    "last_github_update": null,
+    "slack_channel_name": null,
+    "tag_list": [],
+    "languages": ["Ruby"]
+  },
+  "sourceRepositories": [
+    {
+      "id": 87,
+      "url": "https://github.com/AgileVentures/LocalSupport/",
+      "project_id": 3,
+      "created_at": "2017-09-27T15:01:53.109Z",
+      "updated_at": "2017-09-27T15:01:53.109Z"
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "first_name": "Ellaria",
+      "last_name": "Sand"
+    },
+    {
+      "id": 2,
+      "slug": "brienne-of-tarth"
+    },
+    {
+      "id": 3,
+      "first_name": "Missandei"
+    },
+    {
+      "id": 4,
+      "first_name": "Daenerys",
+      "last_name": "Targaryen"
+    },
+    {
+      "id": 5,
+      "first_name": "Arya",
+      "last_name": "Stark"
+    }
+  ],
+  "membersGravatarUrl": {
+    "ellaria-sand": "https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro",
+    "brienne-of-tarth": "https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro",
+    "missandei": "https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro",
+    "daenerys-targaryen": "https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro",
+    "arya-stark": "https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro"
+  },
+  "videos": [
+    {
+      "id": 6703,
+      "event_id": 2695,
+      "title": "LocalSupport Kick Off/Retro - Thursday, 1st Mar at 04:30pm (UTC)",
+      "hangout_url": "https://hangouts.google.com/hangouts/_/ytl/q83BUQXt7X1whr7PAwNl8BSJ_A66k0-mrJmUMvK2Gok=",
+      "created_at": "2018-03-01T16:35:49.591Z",
+      "updated_at": "2018-03-01T16:36:05.691Z",
+      "uid": "300-48f3b016-4710-4466-b308-8fa058cf19cd",
+      "category": "Scrum",
+      "project_id": 3,
+      "user_id": 3,
+      "yt_video_id": "oXg6FcuJ6lw",
+      "participants": null,
+      "hoa_status": null,
+      "url_set_directly": true,
+      "youtube_tweet_sent": null
+    },
+    {
+      "id": 6704,
+      "event_id": 2695,
+      "title": "LocalSupport Kick Off/Retro - Thursday, 1st Mar at 04:30pm (UTC)",
+      "hangout_url": "https://hangouts.google.com/hangouts/_/ytl/q83BUQXt7X1whr7PAwNl8BSJ_A66k0-mrJmUMvK2Gok=",
+      "created_at": "2018-03-01T16:35:49.591Z",
+      "updated_at": "2018-03-01T16:36:05.691Z",
+      "uid": "300-48f3b016-4710-4466-b308-8fa058cf19cd",
+      "category": "Scrum",
+      "project_id": 3,
+      "user_id": 3,
+      "yt_video_id": "oXg6FcuJ6lw",
+      "participants": null,
+      "hoa_status": null,
+      "url_set_directly": true,
+      "youtube_tweet_sent": null
+    },
+    {
+      "id": 6705,
+      "event_id": 2695,
+      "title": "LocalSupport Kick Off/Retro - Thursday, 1st Mar at 04:30pm (UTC)",
+      "hangout_url": "https://hangouts.google.com/hangouts/_/ytl/q83BUQXt7X1whr7PAwNl8BSJ_A66k0-mrJmUMvK2Gok=",
+      "created_at": "2018-03-01T16:35:49.591Z",
+      "updated_at": "2018-03-01T16:36:05.691Z",
+      "uid": "300-48f3b016-4710-4466-b308-8fa058cf19cd",
+      "category": "Scrum",
+      "project_id": 3,
+      "user_id": 3,
+      "yt_video_id": "oXg6FcuJ6lw",
+      "participants": null,
+      "hoa_status": null,
+      "url_set_directly": true,
+      "youtube_tweet_sent": null
+    },
+    {
+      "id": 6706,
+      "event_id": 2695,
+      "title": "LocalSupport Kick Off/Retro - Thursday, 1st Mar at 04:30pm (UTC)",
+      "hangout_url": "https://hangouts.google.com/hangouts/_/ytl/q83BUQXt7X1whr7PAwNl8BSJ_A66k0-mrJmUMvK2Gok=",
+      "created_at": "2018-03-01T16:35:49.591Z",
+      "updated_at": "2018-03-01T16:36:05.691Z",
+      "uid": "300-48f3b016-4710-4466-b308-8fa058cf19cd",
+      "category": "Scrum",
+      "project_id": 3,
+      "user_id": 3,
+      "yt_video_id": "oXg6FcuJ6lw",
+      "participants": null,
+      "hoa_status": null,
+      "url_set_directly": true,
+      "youtube_tweet_sent": null
+    },
+    {
+      "id": 6707,
+      "event_id": 2695,
+      "title": "LocalSupport Kick Off/Retro - Thursday, 1st Mar at 04:30pm (UTC)",
+      "hangout_url": "https://hangouts.google.com/hangouts/_/ytl/q83BUQXt7X1whr7PAwNl8BSJ_A66k0-mrJmUMvK2Gok=",
+      "created_at": "2018-03-01T16:35:49.591Z",
+      "updated_at": "2018-03-01T16:36:05.691Z",
+      "uid": "300-48f3b016-4710-4466-b308-8fa058cf19cd",
+      "category": "Scrum",
+      "project_id": 3,
+      "user_id": 3,
+      "yt_video_id": "oXg6FcuJ6lw",
+      "participants": null,
+      "hoa_status": null,
+      "url_set_directly": true,
+      "youtube_tweet_sent": null
+    }
+  ]
+}
