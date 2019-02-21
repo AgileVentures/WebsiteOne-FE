@@ -21,6 +21,9 @@ module.exports = {
     '<rootDir>/cypress/',
     '<rootDir>/node_modules/'
   ],
+  'moduleNameMapper': {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
+  },
   'transform': {
     '^.+\\.js$': 'babel-jest',
     '.+\\.(css|styl|less|sass|scss)$': 'jest-transform-css',
