@@ -1,19 +1,25 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { setLastLocation } from '../actions/setLastLocationAction'
-import { Header, Container, Segment, Grid } from 'semantic-ui-react'
-import PayPalAgreementNew from './PayPalAgreementNew'
+import { Header, Container, Grid, Segment } from 'semantic-ui-react'
+import PayPalAgreementNew from '../components/PayPalAgreementNew'
 import createBillingAgreement from '../actions/createBillingAgreement'
 import queryString from 'query-string'
 import membership from '../helpers/membershipInfo'
 import LoadingOverlay from 'react-loading-overlay'
 import { RingLoader } from 'react-spinners'
-import ErrorBoundary from './ErrorBoundary'
+import ErrorBoundary from '../components/ErrorBoundary'
+import { STRIPE_KEY } from 'babel-dotenv'
+import StripeCheckout from 'react-stripe-checkout'
+import createStripeSubscription from '../actions/createStripeSubscription'
 import { bindActionCreators } from 'redux'
+import logo from '../images/av-logo.svg'
 import '../assets/Subscriptions.css'
 
 export const Subscriptions = props => {
   let name = membership(props, queryString).name
+  let slug = membership(props, queryString).slug
+  let stripePrice = membership(props, queryString).stripePrice
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   useEffect(() => {
@@ -27,6 +33,14 @@ export const Subscriptions = props => {
       setError(true)
     }
   })
+
+  const onToken = token => {
+    const { id, email } = token
+    createStripeSubscription(props.cookies, email, id, props.dispatch, slug)
+      .then(() => {
+        props.history.push(`/subscriptions/success?${name}`)
+      })
+  }
 
   return (
     <Fragment>
@@ -60,8 +74,18 @@ export const Subscriptions = props => {
                 />
               </Grid.Column>
               <Grid.Column>
-                <Segment>
+                <Segment padded='very' className='paypal-section' raised>
                   <Header as='h5'>Get {name} via Credit/Debit Card:</Header>
+                  <StripeCheckout
+                    label='Subscribe'
+                    name={name}
+                    description='Monthly Subscription'
+                    image={logo}
+                    amount={stripePrice}
+                    currency='GBP'
+                    stripeKey={STRIPE_KEY}
+                    token={onToken}
+                  />
                 </Segment>
               </Grid.Column>
             </Grid.Row>
@@ -82,7 +106,6 @@ const mapDispatchToProps = dispatch => {
     ...bindActionCreators({ setLastLocation }, dispatch)
   }
 }
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

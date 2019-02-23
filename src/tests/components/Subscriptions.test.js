@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { Subscriptions } from '../../components/Subscriptions'
+import { Subscriptions } from '../../containers/Subscriptions'
 
 describe('Subscriptions', () => {
   let wrapper
