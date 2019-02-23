@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { PayPalSuccess } from '../../components/PayPalSuccess'
+import { SubscriptionsSuccess } from '../../components/SubscriptionsSuccess'
 
-describe('PayPalSuccess', () => {
+describe('SubscriptionsSuccess', () => {
   let wrapper
   const props = {
     cookies: { get: () => {} },
@@ -11,7 +11,7 @@ describe('PayPalSuccess', () => {
     dispatch: jest.fn()
   }
   beforeEach(() => {
-    wrapper = mount(<PayPalSuccess {...props} />)
+    wrapper = mount(<SubscriptionsSuccess {...props} />)
   })
 
   it('renders a success segment', () => {

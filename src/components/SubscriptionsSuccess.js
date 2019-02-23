@@ -5,16 +5,16 @@ import { Header, Container, Segment } from 'semantic-ui-react'
 import queryString from 'query-string'
 import membership from '../helpers/membershipInfo'
 import ErrorBoundary from './ErrorBoundary'
-import '../assets/PayPalSuccess.css'
+import '../assets/SubscriptionsSuccess.css'
 
-export const PayPalSuccess = props => {
+export const SubscriptionsSuccess = props => {
   const params = queryString.parse(props.location.search)
   const [error, setError] = useState(false)
   let name = membership(props, queryString).name
   useEffect(() => {
     if (props.error.length) {
       setError(true)
-    } else {
+    } else if (params.token) {
       executeBillingAgreement(props.cookies, params, props.dispatch)
     }
   })
@@ -46,6 +46,5 @@ const mapStateToProps = (store, ownProps) => ({
   error: store.error
 })
 export default connect(
-  mapStateToProps,
-  null
-)(PayPalSuccess)
+  mapStateToProps
+)(SubscriptionsSuccess)
