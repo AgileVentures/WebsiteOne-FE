@@ -7,5 +7,6 @@ export default {
   lastLocation: '',
   userInfo: {},
   projectInfo: {},
-  events: []
+  events: [],
+  eventInfo: {}
 }
