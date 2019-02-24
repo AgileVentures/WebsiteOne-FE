@@ -5,7 +5,7 @@ export default (cookies, email, id, dispatch, slug) => {
   return axios({
     method: 'POST',
     timeout: 30000,
-    url: 'http://localhost:3000/subscriptions.json',
+    url: '/subscriptions.json',
     data: {
       stripeEmail: email,
       stripeToken: id,
