@@ -7,13 +7,23 @@ export let fetchEventInfo = slug => dispatch => {
     .then(response => {
       let {
         event,
-        video,
+        videos,
         creator,
-        modifier
+        creatorGravatarUrl,
+        createdAt,
+        modifier,
+        modifierGravatarUrl,
+        updatedAt,
+        nextScheduledEvent
       } = response.data
-      event.video = video
+      event.videos = videos
       event.creator = creator
+      event.creatorGravatarUrl = creatorGravatarUrl
       event.modifier = modifier
+      event.modifierGravatarUrl = modifierGravatarUrl
+      event.createdAt = createdAt
+      event.updatedAt = updatedAt
+      event.nextScheduledEvent = nextScheduledEvent
 
       dispatch({ type: GET_EVENT_INFO, payload: event })
     })
