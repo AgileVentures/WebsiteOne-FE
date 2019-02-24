@@ -11,10 +11,12 @@ export const SubscriptionsSuccess = props => {
   const params = queryString.parse(props.location.search)
   const [error, setError] = useState(false)
   let name = membership(props, queryString).name
+  let paypalToken = params.token
+
   useEffect(() => {
     if (props.error.length) {
       setError(true)
-    } else if (params.token) {
+    } else if (paypalToken) {
       executeBillingAgreement(props.cookies, params, props.dispatch)
     }
   })

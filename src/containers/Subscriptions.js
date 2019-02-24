@@ -38,7 +38,7 @@ export const Subscriptions = props => {
     const { id, email } = token
     createStripeSubscription(props.cookies, email, id, props.dispatch, slug)
       .then(() => {
-        props.history.push(`/subscriptions/success?${name}`)
+        props.history.push(`/subscriptions/success?plan=${name.toLowerCase()}`)
       })
   }
 
