@@ -15,6 +15,7 @@ import PremiumMembershipPage from '../containers/PremiumMembershipPage'
 import PremiumMobMembershipPage from '../containers/PremiumMobMembershipPage'
 import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import EventsList from '../containers/EventsList'
+import EventInfo from '../containers/EventInfo'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
@@ -68,7 +69,8 @@ class App extends Component {
           <Route path='/premium' component={PremiumMembershipPage} />
           <Route path='/premiummob' component={PremiumMobMembershipPage} />
           <Route path='/premiumf2f' component={PremiumF2FMembershipPage} />
-          <Route path='/events' component={EventsList} />
+          <Route exact path='/events' component={EventsList} />
+          <Route path='/events/:slug' component={EventInfo} />
         </Switch>
       </Fragment>
     )
