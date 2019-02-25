@@ -12,6 +12,52 @@ Given(`I am at the {string} page`, pageName => {
   }
 })
 
+When(`I click on the {string} link in the navbar`, link => {
+  cy.server()
+  cy.fixture('users').then(users => {
+    cy.route(
+      /\/api\/v1\/users/,
+      users
+    ).as('getUsers')
+    cy.get('a')
+      .contains(link)
+      .click()
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_USERS', payload: users })
+  })
+  cy.wait('@getUsers')
+})
+
+When("I click on a user's name", () => {
+  cy.server()
+  cy.fixture('user').then(user => {
+    cy.route(/\/api\/v1\/users\/1/, user).as('getUser')
+    cy.get('a')
+      .contains(`${user.first_name} ${user.last_name}`)
+      .click({ force: true })
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_USER_INFO', payload: user })
+  })
+  cy.wait('@getUser')
+})
+
+Then("I should see the user's info", () => {
+  cy.get('.user-profile-card')
+    .should('contain', 'Matt Tester')
+    .get('.user-profile-karma')
+    .should('contain', '108')
+    .get('a')
+    .should('contain', 'mattwr18@gmail.com')
+    .get('a').contains('Bio')
+    .get('.active')
+    .should('contain', "Love programming, let's pair?")
+    .get('a').contains('Skills')
+    .get('a').contains('Projects')
+    .get('a').contains('Activity')
+})
+
 Given('I am at the projects page', () => {
   cy.server()
   cy.fixture('projects').then(projects => {
@@ -25,6 +71,20 @@ Given('I am at the projects page', () => {
       .invoke('dispatch', { type: 'GET_PROJECTS', payload: projects })
   })
   cy.wait('@getProjects')
+})
+
+Then(`I should see 12 cards with basic user info`, () => {
+  cy.get('h1')
+    .should('contain', 'Volunteers Directory')
+    .get('.user-card')
+    .should('have.length', 12)
+})
+
+Then(`I should see 12 cards with basic project info`, () => {
+  cy.get('h1')
+    .should('contain', 'List of Projects')
+    .get('.project-card')
+    .should('have.length', 12)
 })
 
 When('I click on the LocalSupport project', () => {
