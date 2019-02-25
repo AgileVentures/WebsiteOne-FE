@@ -2,11 +2,15 @@ import React, { Fragment } from 'react'
 import { Header, Segment, Grid, Embed, Image, Icon } from 'semantic-ui-react'
 import { RingLoader } from 'react-spinners'
 import ReactHtmlParser from 'react-html-parser'
-import moment from 'moment'
+// import moment from 'moment'
+import moment from 'moment-timezone'
 
 const EventSummary = props => {
   let { event } = props
   if (event) {
+    let startTime = moment(event.nextScheduledEvent.time)
+    let endTime = startTime.clone().add(Number(event.duration), 'minutes')
+    let timeRange = `${startTime.format('HH:mm')} - ${endTime.format('HH:mm')}  ${moment.tz.guess()}`
     return (
       <Fragment>
         <Grid columns={2} stackable>
@@ -26,7 +30,11 @@ const EventSummary = props => {
                 <Grid.Column width={8}>
                   <Header as='h5'>Next scheduled event:</Header>
                   <Icon name='calendar plus outline' size='large' />
-                  {moment(event.nextScheduledEvent.time).format('MMMM Do YYYY, h:mm:ss a')}
+                  {moment(event.nextScheduledEvent.time).format('MMMM Do YYYY')}
+                  <br />
+                  <br />
+                  <Icon name='clock outline' size='large' />
+                  {timeRange}
                 </Grid.Column>
                 <Grid.Column width={8}>
                   <Grid columns={2} stackable>
