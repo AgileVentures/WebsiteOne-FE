@@ -19,12 +19,7 @@ describe('EventSummary', () => {
     expect(eventName.text()).toEqual(event.name)
   })
 
-  it("displays a event's description", () => {
-    let eventDescription = wrapper.find('Segment')
-    expect(eventDescription.text()).toEqual(event.description)
-  })
-
-  it("displays an event's latest 5 videos", () => {
+  it("displays an event's latest videos", () => {
     expect(wrapper.find('Embed')).toHaveLength(1)
   })
 
