@@ -1,10 +1,9 @@
 import axios from 'axios'
-import { CREATE_BILLING_AGREEMENT_FAILURE } from '../types'
+import { CREATE_STRIPE_SUBSCRIPTION_FAILURE } from '../types'
 
 export default (cookies, email, id, dispatch, slug) => {
   return axios({
     method: 'POST',
-    timeout: 30000,
     url: '/subscriptions.json',
     data: {
       stripeEmail: email,
@@ -17,7 +16,7 @@ export default (cookies, email, id, dispatch, slug) => {
   })
     .catch(error => {
       dispatch({
-        type: CREATE_BILLING_AGREEMENT_FAILURE,
+        type: CREATE_STRIPE_SUBSCRIPTION_FAILURE,
         message: error.message
       })
     })
