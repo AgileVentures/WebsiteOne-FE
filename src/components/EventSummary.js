@@ -11,28 +11,44 @@ const EventSummary = props => {
       <Fragment>
         <Grid columns={2} stackable>
           <Grid.Column width={12}>
-            <Header as='h2'>{event.name}</Header>
-            <Segment padded='very' raised>
+            <Segment vertical>
+              <Header as='h2'>{event.name}</Header>
+            </Segment>
+            <Segment padded='very' vertical>
               <Header as='h5'>{ReactHtmlParser(event.description)}</Header>
             </Segment>
-            <p>Event type: {event.category}</p>
-            <p>Event for: {event.for}</p>
-            <Grid columns={2} stackable>
-              <Grid.Column>
-                <Image src={event.creatorGravatarUrl} circular />
-                <p>created by: {} </p>
-                <p>{event.creator}</p>
-              </Grid.Column>
-              {event.modifier
-                ? (<Grid.Column>
-                  <Image src={event.modifierGravatarUrl} circular />
-                  <p>updated by:</p>
-                  <p>{event.modifier}</p>
-                </Grid.Column>) : null}
-            </Grid>
-            <Header as='h5'>Next scheduled event:</Header>
-            <Icon name='calendar plus outline' size='large' />
-            {moment(event.nextScheduledEvent.time).format('MMMM Do YYYY, h:mm:ss a')}
+            <Segment padded='very' vertical>
+              <p>Event type: {event.category}</p>
+              <p>Event for: {event.for}</p>
+            </Segment>
+            <Segment padded='very' vertical>
+              <Grid columns={2} stackable>
+                <Grid.Column width={8}>
+                  <Header as='h5'>Next scheduled event:</Header>
+                  <Icon name='calendar plus outline' size='large' />
+                  {moment(event.nextScheduledEvent.time).format('MMMM Do YYYY, h:mm:ss a')}
+                </Grid.Column>
+                <Grid.Column width={8}>
+                  <Grid columns={2} stackable>
+                    <Grid.Column>
+                      <Image src={event.creatorGravatarUrl} circular />
+                      <p>created by:</p>
+                      <p>{event.creator}</p>
+                    </Grid.Column>
+                    <Grid.Column>
+                      {event.modifier
+                        ? (
+                          <Fragment>
+                            <Image src={event.modifierGravatarUrl} circular />
+                            <p>updated by:</p>
+                            <p>{event.modifier}</p>
+                          </Fragment>
+                        ) : null}
+                    </Grid.Column>
+                  </Grid>
+                </Grid.Column>
+              </Grid>
+            </Segment>
           </Grid.Column>
           <Grid.Column width={4} className='event-info-videos'>
             {event.videos
