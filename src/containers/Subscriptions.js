@@ -9,7 +9,6 @@ import membership from '../helpers/membershipInfo'
 import LoadingOverlay from 'react-loading-overlay'
 import { RingLoader } from 'react-spinners'
 import ErrorBoundary from '../components/ErrorBoundary'
-import { STRIPE_KEY } from 'babel-dotenv'
 import StripeCheckout from 'react-stripe-checkout'
 import createStripeSubscription from '../actions/createStripeSubscription'
 import { bindActionCreators } from 'redux'
@@ -83,7 +82,7 @@ export const Subscriptions = props => {
                     image={logo}
                     amount={stripePrice}
                     currency='GBP'
-                    stripeKey={STRIPE_KEY}
+                    stripeKey={process.env.STRIPE_KEY}
                     token={onToken}
                   />
                 </Segment>
