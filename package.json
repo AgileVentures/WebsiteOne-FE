@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-plugin-dotenv": "^0.1.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "dotenv-webpack": "^1.7.0",
     "global": "^4.3.2",
     "izitoast": "^1.4.0",
     "moment-timezone": "^0.5.23",

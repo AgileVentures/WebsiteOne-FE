@@ -1,4 +1,5 @@
 const path = require('path')
+const Dotenv = require('dotenv-webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 require('mini-css-extract-plugin')
 
@@ -6,7 +7,6 @@ const htmlPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
   filename: './index.html'
 })
-
 module.exports = {
   devServer: { historyApiFallback: true },
   output: { publicPath: '/' },
@@ -27,5 +27,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin, new Dotenv()]
 }
