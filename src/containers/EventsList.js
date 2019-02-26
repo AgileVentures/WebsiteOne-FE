@@ -15,6 +15,10 @@ export class EventsList extends Component {
     }
   }
 
+  handleSelectEvent = event => {
+    this.props.history.push(`/events/${event.slug}`)
+  }
+
   render () {
     let { events } = this.props
     const localizer = BigCalendar.momentLocalizer(moment)
@@ -27,8 +31,7 @@ export class EventsList extends Component {
             events={events}
             views={['week', 'month', 'day']}
             defaultView={BigCalendar.Views.WEEK}
-            startAccessor='start'
-            endAccessor='end'
+            onSelectEvent={this.handleSelectEvent}
           />
         </Container>
       </Fragment>

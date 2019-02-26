@@ -1,12 +1,14 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { EventsList } from '../../containers/EventsList'
+import events from '../../fixtures/events'
 
 describe('Events List', () => {
   let wrapper
   const props = {
     events: [],
-    fetchEvents: jest.fn()
+    fetchEvents: jest.fn(),
+    history: { push: jest.fn() }
   }
   beforeEach(() => {
     wrapper = mount(<EventsList {...props} />)
@@ -18,5 +20,14 @@ describe('Events List', () => {
 
   it('displays a calendar for events', () => {
     expect(wrapper.find('Calendar')).toHaveLength(1)
+  })
+
+  it('redirects to event info page when an event is selected in the calendar', () => {
+    wrapper = mount(<EventsList {...props} events={events} />)
+    let eventToSelect = wrapper.find('div').filterWhere(item => {
+      return item.hasClass('rbc-event-content')
+    })
+    eventToSelect.simulate('click')
+    expect(props.history.push).toHaveBeenCalledWith(`/events/${events[0].slug}`)
   })
 })
