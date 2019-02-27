@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import { Header, Segment, Grid, Embed, Image, Icon } from 'semantic-ui-react'
 import { RingLoader } from 'react-spinners'
 import ReactHtmlParser from 'react-html-parser'
-// import moment from 'moment'
 import moment from 'moment-timezone'
 
 const EventSummary = props => {
