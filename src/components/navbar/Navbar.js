@@ -29,6 +29,13 @@ export class Navbar extends Component {
 
           <Menu.Menu position='right'>
             <Menu.Item
+              name='about'
+              active={activeItem === 'about'}
+            >
+              <Link to='/about'>About</Link>
+            </Menu.Item>
+
+            <Menu.Item
               name='users'
               active={activeItem === 'users'}
             >
