@@ -67,8 +67,8 @@ class App extends Component {
           />
           <Route path='/membership-plans' component={MembershipPlansPage} />
           <Route path='/premium' component={PremiumMembershipPage} />
-          <Route path='/premiummob' component={PremiumMobMembershipPage} />
-          <Route path='/premiumf2f' component={PremiumF2FMembershipPage} />
+          <Route path='/premium-mob' component={PremiumMobMembershipPage} />
+          <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
           <Route exact path='/events' component={EventsList} />
           <Route path='/events/:slug' component={EventInfo} />
         </Switch>
