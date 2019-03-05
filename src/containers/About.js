@@ -20,7 +20,10 @@ export class About extends React.Component {
     let { about } = this.state
 
     if (about) {
-      return (<div id='main'> {ReactHtmlParser(about)} </div>)
+      return (
+        <Container>
+          <div id='main'> {ReactHtmlParser(about)} </div>
+        </Container>)
     } else {
       return (
         <Container>
