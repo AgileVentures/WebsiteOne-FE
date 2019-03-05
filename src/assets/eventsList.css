@@ -5,3 +5,7 @@
 .rbc-toolbar-label {
   font-size: 24px !important;
 }
+
+.rbc-event-label {
+  display: none !important;
+}

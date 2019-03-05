@@ -16,7 +16,8 @@ describe('Store', () => {
       lastLocation: '',
       userInfo: {},
       projectInfo: {},
-      events: []
+      events: [],
+      eventInfo: {}
     })
   })
 })

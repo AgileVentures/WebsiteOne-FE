@@ -66,6 +66,13 @@ export class Navbar extends Component {
             >
               <Link to='/login'>Login</Link>
             </Menu.Item>
+
+            <Menu.Item
+              name='signup'
+              active={activeItem === 'signup'}
+            >
+              <Link to='/signup'>Sign up</Link>
+            </Menu.Item>
           </Menu.Menu>
         </Container>
       </Menu>

@@ -9,6 +9,7 @@ import membership from '../helpers/membershipInfo'
 import LoadingOverlay from 'react-loading-overlay'
 import { RingLoader } from 'react-spinners'
 import ErrorBoundary from './ErrorBoundary'
+import { bindActionCreators } from 'redux'
 import '../assets/Subscriptions.css'
 
 export const Subscriptions = props => {
@@ -75,7 +76,14 @@ const mapStateToProps = (store, ownProps) => ({
   cookies: ownProps.cookies,
   error: store.error
 })
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch,
+    ...bindActionCreators({ setLastLocation }, dispatch)
+  }
+}
+
 export default connect(
   mapStateToProps,
-  { setLastLocation }
+  mapDispatchToProps
 )(Subscriptions)

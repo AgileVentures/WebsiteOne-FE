@@ -20,11 +20,11 @@ describe('postLogInInfo action', () => {
   })
 
   it('posts login info to an external api', () => {
-    const expectedActions = { type: POST_LOGIN_INFO, payload: logInResponse }
+    const expectedActions = [{ type: POST_LOGIN_INFO, payload: logInResponse }]
 
-    moxios.stubRequest('/users/sign_in', {
-      status: 200,
-      response: logInResponse
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.resolve(logInResponse)
     })
 
     return store
@@ -32,7 +32,7 @@ describe('postLogInInfo action', () => {
         postLogInInfo({ email: 'premium@premi.um', password: 'premium123' })
       )
       .then(() => {
-        expect(store.getActions()[0].payload.data).toEqual(expectedActions.payload)
+        expect(store.getActions()).toEqual(expectedActions)
       })
   })
 })
