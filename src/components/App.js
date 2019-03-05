@@ -6,6 +6,7 @@ import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/homepage/Homepage'
 import Navbar from './navbar/Navbar'
+import About from '../containers/About'
 import LogIn from '../containers/LogIn'
 import SignUp from '../containers/SignUp'
 import Subscriptions from '../containers/Subscriptions'
@@ -25,6 +26,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route path='/' exact component={Homepage} />
+          <Route exact path='/about' component={About} />
           <Route exact path='/users' component={UsersList} />
           <Route path='/users/:id' component={UserProfile} />
           <Route
