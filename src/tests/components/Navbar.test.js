@@ -13,16 +13,6 @@ describe('Navbar', () => {
       expect(wrapper.find('Navbar').length).toEqual(1)
     })
 
-    it('renders 8 MenuItem elements', () => {
-      const wrapper = homepage(props)
-      expect(wrapper.find('MenuItem').length).toEqual(8)
-    })
-
-    it('renders 8 Link elements', () => {
-      const wrapper = homepage(props)
-      expect(wrapper.find('Link').length).toEqual(8)
-    })
-
     it('renders 1 active Link element', () => {
       const wrapper = homepage(props)
       expect(wrapper.find('.active').find('Link').length).toEqual(1)
