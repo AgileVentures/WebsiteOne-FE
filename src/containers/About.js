@@ -1,7 +1,7 @@
-import '../components/homepage/Homepage.css'
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import axios from 'axios'
+import { Container } from 'semantic-ui-react'
 import { RingLoader } from 'react-spinners'
 export class About extends React.Component {
   constructor (props) {
@@ -22,7 +22,11 @@ export class About extends React.Component {
     if (about) {
       return (<div id='main'> {ReactHtmlParser(about)} </div>)
     } else {
-      return (<RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />)
+      return (
+        <Container>
+          <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
+        </Container>
+      )
     }
   }
 }
