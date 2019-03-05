@@ -29,6 +29,13 @@ export class Navbar extends Component {
 
           <Menu.Menu position='right'>
             <Menu.Item
+              name='about'
+              active={activeItem === 'about'}
+            >
+              <Link to='/about'>About</Link>
+            </Menu.Item>
+
+            <Menu.Item
               name='users'
               active={activeItem === 'users'}
             >
@@ -53,6 +60,11 @@ export class Navbar extends Component {
               <Link to='/events'>Events</Link>
             </Menu.Item>
 
+            <Menu.Item name='getting-started' active={activeItem === 'getting-started'}>
+              <Link to='/getting-started'>
+                Getting Started
+              </Link>
+            </Menu.Item>
             <Menu.Item
               name='login'
               active={activeItem === 'login'}
