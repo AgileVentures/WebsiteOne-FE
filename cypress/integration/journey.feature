@@ -20,3 +20,4 @@ Feature: Journey test
     Then I should see a calendar with events
     When I click on an event in the calendar
     Then I should see the event's info
+

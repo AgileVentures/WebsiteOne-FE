@@ -1,4 +1,8 @@
-import { Then, Given, When } from 'cypress-cucumber-preprocessor/steps'
+import {
+  Then,
+  Given,
+  When
+} from 'cypress-cucumber-preprocessor/steps'
 
 Given('the server is running', () => {
   cy.server()
@@ -24,7 +28,10 @@ When(`I click on the Users link in the navbar`, () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_USERS', payload: users })
+      .invoke('dispatch', {
+        type: 'GET_USERS',
+        payload: users
+      })
   })
   cy.wait('@getUsers')
 })
@@ -46,10 +53,15 @@ When("I click on a user's name", () => {
     cy.route(/\/api\/v1\/users\/1/, user).as('getUser')
     cy.get('a')
       .contains(`${user.first_name} ${user.last_name}`)
-      .click({ force: true })
+      .click({
+        force: true
+      })
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_USER_INFO', payload: user })
+      .invoke('dispatch', {
+        type: 'GET_USER_INFO',
+        payload: user
+      })
   })
   cy.wait('@getUser')
 })
@@ -81,7 +93,10 @@ When(`I click on the Projects link in the navbar`, () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_PROJECTS', payload: projects })
+      .invoke('dispatch', {
+        type: 'GET_PROJECTS',
+        payload: projects
+      })
   })
   cy.wait('@getProjects')
 })
@@ -98,10 +113,15 @@ When("I click on the project's title", () => {
     cy.route(/\/api\/v1\/projects\/localsupport/, project).as('getProject')
     cy.get('div')
       .contains('LocalSupport')
-      .click({ force: true })
+      .click({
+        force: true
+      })
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: project })
+      .invoke('dispatch', {
+        type: 'GET_PROJECT_INFO',
+        payload: project
+      })
   })
   cy.wait('@getProject')
   cy.reload()
@@ -137,7 +157,10 @@ When(`I click on the Events link in the navbar`, () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_EVENTS', payload: events })
+      .invoke('dispatch', {
+        type: 'GET_EVENTS',
+        payload: events
+      })
   })
   cy.wait('@getEvents')
 })
@@ -151,10 +174,15 @@ When('I click on an event in the calendar', () => {
     cy.route(/\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/, event).as('getEvent')
     cy.get('.rbc-event-content')
       .contains("'Katherine Johson' Scrum")
-      .click({ force: true })
+      .click({
+        force: true
+      })
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: event })
+      .invoke('dispatch', {
+        type: 'GET_EVENT_INFO',
+        payload: event
+      })
   })
   cy.wait('@getEvent')
 })
@@ -198,7 +226,10 @@ Given('I am logged in', () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'POST_LOGIN_INFO', payload: loggedInUser })
+      .invoke('dispatch', {
+        type: 'POST_LOGIN_INFO',
+        payload: loggedInUser
+      })
   })
   cy.wait('@postLogInInfo')
 })
@@ -248,3 +279,48 @@ Then("I should see the newly created event's info", () => {
     .get('p')
     .should('contain', 'created by:')
 })
+
+Then('I should be able to create a new project', () => {
+  cy.fixture('newlyCreatedProjectInfo').then(newlyCreatedProject => {
+    cy.route({
+      method: 'POST',
+      url: /\/projects/,
+      response: newlyCreatedProject,
+      status: 200
+    }).as('newlyCreatedProject')
+    cy.visit('/projects/new')
+      .get('h1')
+      .should('contain', 'Creating a new Project')
+      .get('input[name=title]')
+      .type('NewProject')
+      .get('textarea[name=description]')
+      .type('A new project')
+      .get('button[type=submit]')
+      .click()
+      .url().should('include', '/projects/newproject')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: newlyCreatedProject })
+  })
+  cy.wait('@newlyCreatedProject')
+})
+
+When("I should be redirected to the project's info page", () => {
+  cy.fixture('newlyCreatedProjectInfo').then(newlyCreatedProjectInfo => {
+    cy.route(/\/api\/v1\/projects\/newproject/, newlyCreatedProjectInfo).as('getProject')
+    cy.visit('/projects/newproject')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: newlyCreatedProjectInfo })
+  })
+  cy.wait('@getProject')
+})
+
+Then("I should see the newly created project's info", () => {
+  cy.url().should('include', 'projects/newproject')
+    .get('h1')
+    .should('contain', 'NewProject')
+    .get('h5')
+    .should('contain', 'A new project')
+})
+
