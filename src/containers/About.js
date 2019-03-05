@@ -9,6 +9,7 @@ export class About extends React.Component {
     this.state = { about: null }
   }
   
+
   componentDidMount () {
     axios.get('api/v1/static-pages/about-us')
       .then(response => {
