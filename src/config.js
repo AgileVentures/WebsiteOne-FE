@@ -1,8 +1,8 @@
 const config = {
   production: {
-    AUTH_API: 'https://www.agileventures.org/login',
+    AUTH_API: 'https://staging.websiteone.agileventures.org/login',
     APP_URL: 'https://www.agileventures.org/',
-    API_BASE_URL: 'https://www.agileventures.org/'
+    API_BASE_URL: 'https://staging.websiteone.agileventures.org/'
   },
   staging: {
     AUTH_API: 'https://staging.websiteone.agileventures.org/login',
