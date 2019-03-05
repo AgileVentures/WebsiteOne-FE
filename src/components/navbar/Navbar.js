@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Menu, Container, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -16,7 +16,7 @@ export class Navbar extends Component {
 
   render () {
     const activeItem = this.currentPath()
-
+    const { cookies } = this.props
     return (
       <Menu stackable borderless inverted as='div' className='navbar'>
         <Container>
@@ -65,19 +65,23 @@ export class Navbar extends Component {
                 Getting Started
               </Link>
             </Menu.Item>
-            <Menu.Item
-              name='login'
-              active={activeItem === 'login'}
-            >
-              <Link to='/login'>Login</Link>
-            </Menu.Item>
+            {!cookies.get('_WebsiteOne_session')
+              ? <Fragment>
+                <Menu.Item
+                  name='login'
+                  active={activeItem === 'login'}
+                >
+                  <Link to='/login'>Login</Link>
+                </Menu.Item>
 
-            <Menu.Item
-              name='signup'
-              active={activeItem === 'signup'}
-            >
-              <Link to='/signup'>Sign up</Link>
-            </Menu.Item>
+                <Menu.Item
+                  name='signup'
+                  active={activeItem === 'signup'}
+                >
+                  <Link to='/signup'>Sign up</Link>
+                </Menu.Item>
+              </Fragment>
+              : null}
           </Menu.Menu>
         </Container>
       </Menu>
