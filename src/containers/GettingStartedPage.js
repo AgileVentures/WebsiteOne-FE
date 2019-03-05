@@ -8,7 +8,7 @@ export default class GettingStartedPage extends Component {
     state = { gettingStartedPage: null }
 
     componentDidMount () {
-      axios.get('api/v1/static/getting-started')
+      axios.get('api/v1/static-pages/getting-started')
         .then(response => {
           this.setState({ gettingStartedPage: response.data })
         })
