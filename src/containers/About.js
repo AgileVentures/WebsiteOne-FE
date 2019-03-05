@@ -17,7 +17,7 @@ export class About extends React.Component {
 
   render () {
     let { about } = this.state
-    
+
     if (about) {
       return (<div id='main'> {ReactHtmlParser(about)} </div>)
     } else {
