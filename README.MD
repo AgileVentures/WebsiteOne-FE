@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/AgileVentures/WebsiteOne-FE/badge.svg?branch=develop)](https://coveralls.io/github/AgileVentures/WebsiteOne-FE?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/AgileVentures/WebsiteOne-FE/badge.svg?branch=develop)](https://coveralls.io/github/AgileVentures/WebsiteOne-FE?branch=develop) [![CircleCI](https://circleci.com/gh/AgileVentures/WebsiteOne-FE.svg?style=svg)](https://circleci.com/gh/AgileVentures/WebsiteOne-FE)
 
 # AgileVentures Website React Front End
 
