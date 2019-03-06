@@ -1,6 +1,4 @@
-import React, { Component, Fragment } from 'react'
-import { Grid } from 'semantic-ui-react'
-import HomepageModal from './HomepageModal'
+import React, { Component } from 'react'
 import './Homepage.css'
 import Footer from '../footer/Footer'
 import Modal from './HomepageModal'
