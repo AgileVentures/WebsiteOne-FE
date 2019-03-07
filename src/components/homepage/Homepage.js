@@ -11,7 +11,7 @@ export class Homepage extends Component {
         <HomepageModal key={id} modal={modal} />
       )
     })
-  };
+  }
 
   render () {
     return (

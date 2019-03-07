@@ -7,7 +7,7 @@ describe('Navbar', () => {
   let wrapper
   const props = {
     location: { pathname: '/users' },
-    cookies: { get: jest.fn() }
+    cookies: { get: jest.fn(), remove: jest.fn() }
   }
 
   beforeEach(() => {
@@ -53,18 +53,18 @@ describe('Navbar', () => {
       expect(loginLink.text()).toEqual('Sign up')
     })
 
-    it('renders 9 menu items if a user is not signed in', () => {
-      expect(wrapper.find('MenuItem').length).toEqual(9)
-    })
-
-    it('renders 7 menu items if a user is signed in', () => {
+    it('renders a log out link when a user is signed in, which calls handleRemoveCookies function when clicked', () => {
       props.cookies.get.mockReturnValue(true)
       const wrapper = mount(
         <Router>
           <Navbar {...props} />
         </Router>
       )
-      expect(wrapper.find('MenuItem').length).toEqual(7)
+      const logOutLink = wrapper.find('a').filterWhere(item => {
+        return item.text() === 'Log out'
+      })
+      logOutLink.simulate('click')
+      expect(props.cookies.remove).toHaveBeenCalledTimes(1)
     })
   })
 })
