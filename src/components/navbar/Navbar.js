@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { Menu, Container, Image } from 'semantic-ui-react'
+import { Menu, Container, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import logo from '../../images/av-logo.svg'
 import './Navbar.css'
-
 export class Navbar extends Component {
   currentPath () {
     // this.props.location.split("/") returns ["", ""] when on homepage
@@ -14,9 +13,13 @@ export class Navbar extends Component {
     return pathArray[1]
   }
 
+  handleRemoveCookies = () => {
+    this.props.cookies.remove('_WebsiteOne_session')
+  }
+
   render () {
-    const activeItem = this.currentPath()
     const { cookies } = this.props
+    const activeItem = this.currentPath()
     return (
       <Menu stackable borderless inverted as='div' className='navbar'>
         <Container>
@@ -81,7 +84,15 @@ export class Navbar extends Component {
                   <Link to='/signup'>Sign up</Link>
                 </Menu.Item>
               </Fragment>
-              : null}
+              : <Menu.Item
+                name='signout'
+                active={activeItem === 'signout'}
+              >
+                <Link to='/' onClick={this.handleRemoveCookies}>
+                  <Icon name='sign-out' />
+                  Log out
+                </Link>
+              </Menu.Item>}
           </Menu.Menu>
         </Container>
       </Menu>
