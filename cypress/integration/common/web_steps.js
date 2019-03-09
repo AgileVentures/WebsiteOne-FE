@@ -248,3 +248,9 @@ Then("I should see the newly created event's info", () => {
     .get('p')
     .should('contain', 'created by:')
 })
+
+Then('I should be able to create new projects', () => {
+  cy.visit('/projects/new')
+    .get('h1')
+    .should('contain', 'Creating a new Project')
+})
