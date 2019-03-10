@@ -3,5 +3,5 @@ Feature: Create new project
     Given the server is running
   
   Scenario: Creating a new project
-    Given I am logged in
+    # Given I am logged in
     Then I should be able to create new projects
