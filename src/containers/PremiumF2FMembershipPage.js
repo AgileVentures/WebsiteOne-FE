@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { RingLoader } from 'react-spinners'
+import Custringloader  from './custringload'
 import { Container } from 'semantic-ui-react'
 import axios from 'axios'
 import ReactHtmlParser from 'react-html-parser'
@@ -24,10 +24,8 @@ export default class PremiumF2FMobMembershipPage extends Component {
         </Container>
       )
     } else {
-      return (
-        <Container>
-          <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
-        </Container>
+      return (        
+          <Custringloader sizeUnit={'px'} size={200} color={'#34495E'} />        
       )
     }
   }

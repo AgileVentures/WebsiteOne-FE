@@ -2,16 +2,16 @@ import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import axios from 'axios'
 import { Container } from 'semantic-ui-react'
-import { RingLoader } from 'react-spinners'
+import Custringloader  from './custringload'
 export class About extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { about: null }
-  }
+  
+    state = { about: null }
+  
 
   componentDidMount () {
     axios.get('api/v1/static-pages/about-us')
       .then(response => {
+		
         this.setState({ about: response.data })
       })
   }
@@ -22,14 +22,12 @@ export class About extends React.Component {
     if (about) {
       return (
         <Container>
-          <div id='main'> {ReactHtmlParser(about)} </div>
+          <div id='main'>{ ReactHtmlParser(about) }</div>
         </Container>)
     } else {
-      return (
-        <Container>
-          <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
-        </Container>
-      )
+         return(     
+          <Custringloader sizeUnit={'px'} size={200} color={'#34495E'} />        
+      	)	
     }
   }
 }
