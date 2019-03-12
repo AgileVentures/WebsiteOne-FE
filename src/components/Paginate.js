@@ -1,5 +1,5 @@
 import React from 'react'
-import Custringloader  from '../containers/custringload'
+import Custringloader from '../containers/custringload'
 
 const Paginate = ({ items, Component, error }) => {
   let itemsArray
