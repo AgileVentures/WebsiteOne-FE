@@ -7,7 +7,7 @@ import createBillingAgreement from '../actions/createBillingAgreement'
 import queryString from 'query-string'
 import membership from '../helpers/membershipInfo'
 import LoadingOverlay from 'react-loading-overlay'
-import { RingLoader } from 'react-spinners'
+import Custringloader  from './custringload'
 import ErrorBoundary from '../components/ErrorBoundary'
 import StripeCheckout from 'react-stripe-checkout'
 import createStripeSubscription from '../actions/createStripeSubscription'
@@ -52,7 +52,7 @@ export const Subscriptions = props => {
               background: 'rbg(255, 255, 255, 0.3)'
             })
           }}
-          text={<RingLoader sizeUnit={'px'} size={200} color={'#ee7335'} />}
+          text={<Custringloader sizeUnit={'px'} size={200} color={'#ee7335'} />}
         >
           <Header as='h1'>AgileVentures {name} Membership</Header>
           <Header as='h5'>
