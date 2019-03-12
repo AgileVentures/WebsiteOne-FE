@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Image, Grid, Card, Icon, Segment, Embed } from 'semantic-ui-react'
-import Custringloader  from './custringload'
+import Custringloader from '../containers/custringload'
 import { Link } from 'react-router-dom'
 import '../assets/ProjectSummary.css'
 
