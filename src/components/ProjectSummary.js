@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Image, Grid, Card, Icon, Segment, Embed } from 'semantic-ui-react'
-import { RingLoader } from 'react-spinners'
+import Custringloader  from './custringload'
 import { Link } from 'react-router-dom'
 import '../assets/ProjectSummary.css'
 
@@ -131,7 +131,7 @@ const ProjectSummary = props => {
       </Grid>
     )
   } else {
-    return <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
+    return <Custringloader sizeUnit={'px'} size={200} color={'#34495E'} />
   }
 }
 
