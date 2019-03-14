@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Card, Image, Grid, Label, Tab, Embed, Icon } from 'semantic-ui-react'
-import CustomRingLoader from './custringload'
+import CustomRingLoader from './customringloader'
 import moment from 'moment'
 import '../assets/UserSummary.css'
 

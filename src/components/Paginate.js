@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomRingLoader from './custringload'
+import CustomRingLoader from './customringloader'
 
 const Paginate = ({ items, Component, error }) => {
   let itemsArray

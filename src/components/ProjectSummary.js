@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Image, Grid, Card, Icon, Segment, Embed } from 'semantic-ui-react'
-import CustomRingLoader from './custringload'
+import CustomRingLoader from './customringloader'
 import { Link } from 'react-router-dom'
 import '../assets/ProjectSummary.css'
 
