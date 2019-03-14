@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Segment, Grid, Embed, Image, Icon } from 'semantic-ui-react'
-import Custringloader from '../containers/custringload'
+import CustomRingLoader from './custringload'
 import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment-timezone'
 
@@ -79,7 +79,7 @@ const EventSummary = props => {
       </Fragment>
     )
   } else {
-    return <Custringloader sizeUnit={'px'} size={200} color={'#34495E'} />
+    return <CustomRingLoader />
   }
 }
 

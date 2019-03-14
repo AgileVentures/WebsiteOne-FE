@@ -2,7 +2,7 @@ import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import axios from 'axios'
 import { Container } from 'semantic-ui-react'
-import Custringloader from './custringload'
+import CustomRingLoader from '../components/custringload'
 export class About extends React.Component {
     state = { about: null }
 
@@ -23,7 +23,7 @@ export class About extends React.Component {
           </Container>)
       } else {
         return (
-          <Custringloader sizeUnit={'px'} size={200} color={'#34495E'} />
+          <CustomRingLoader />
         )
       }
     }
