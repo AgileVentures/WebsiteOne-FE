@@ -5,7 +5,19 @@ import { fetchActiveProjects } from '../actions/fetchActiveProjectsAction'
 import EventForm from '../components/EventForm'
 
 export class CreateEventPage extends Component {
-  state = { activeProjects: null, startDate: new Date() }
+  state = {
+    activeProjects: null,
+    startDate: new Date(),
+    endDate: new Date(),
+    category: 'PairProgramming',
+    eventFor: 'All',
+    project: null,
+    repeats: null,
+    name: '',
+    description: '',
+    weekdays: [],
+    repeatEnds: 'on'
+  }
   componentDidMount () {
     this.props.fetchActiveProjects()
   }
@@ -15,16 +27,33 @@ export class CreateEventPage extends Component {
       this.setState({ projects: nextProps.projects })
     }
   }
-  handleSubmit = () => {
-    console.log('here')
+
+  handleSubmit = event => {
+    console.log(event)
   }
 
-  handleChange = date => {
+  handleDateChange = date => {
     this.setState({ startDate: date })
   }
 
+  handleChange = (e, { name, value }) => {
+    console.log('name', name, 'value', value)
+    this.setState({ [name]: value })
+  }
   render () {
-    const { projects, startDate } = this.state
+    const {
+      projects,
+      startDate,
+      endDate,
+      category,
+      eventFor,
+      project,
+      repeats,
+      name,
+      description,
+      weekdays,
+      repeatEnds
+    } = this.state
     return (
       <Container>
         <Header as='h1' textAlign='center'>
@@ -34,7 +63,17 @@ export class CreateEventPage extends Component {
           onSubmit={this.handleSubmit}
           projects={projects || []}
           startDate={startDate}
+          endDate={endDate}
           handleChange={this.handleChange}
+          handleSelect={this.handleSelect}
+          category={category}
+          eventFor={eventFor}
+          project={project}
+          repeats={repeats}
+          name={name}
+          description={description}
+          weekdays={weekdays}
+          repeatEnds={repeatEnds}
         />
       </Container>
     )
