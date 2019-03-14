@@ -175,3 +175,41 @@ Then("I should see the event's info", () => {
       cy.get('div.embed').should('have.length', 1)
     })
 })
+
+Given('I am logged in', () => {
+  cy.fixture('loggedInUser').then(loggedInUser => {
+    cy.route({
+      method: 'POST',
+      url: /\/users\/sign_in/,
+      response: loggedInUser,
+      status: 200
+    }).as('postLogInInfo')
+    cy.visit('/login')
+      .get('input[name=email]')
+      .type('username@user.com')
+      .get('input[name=password]')
+      .type('user1234')
+      .get('button[type=submit]')
+      .click()
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'POST_LOGIN_INFO', payload: loggedInUser })
+  })
+  cy.wait('@postLogInInfo')
+})
+
+Then('I should be able to create new events', () => {
+  cy.visit('/events/new')
+    .get('h1')
+    .should('contain', 'Creating a new Event')
+    .get('input[name=name]')
+    .type('NewEvent')
+    .get('textarea[name=description]')
+    .type('A new event')
+    .get('button[type=submit]')
+    .click()
+    .get('h1')
+    .should('contain', 'List of Projects')
+    .get('.project-card')
+    .should('have.length', 12)
+})
