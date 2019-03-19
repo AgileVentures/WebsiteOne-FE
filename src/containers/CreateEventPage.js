@@ -2,22 +2,27 @@ import React, { Component } from 'react'
 import { Header, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchActiveProjects } from '../actions/fetchActiveProjectsAction'
+import { createEvent } from '../actions/createEventAction'
 import EventForm from '../components/EventForm'
-
+import momentTZ from 'moment-timezone'
+import moment from 'moment'
 export class CreateEventPage extends Component {
   state = {
-    activeProjects: null,
+    projects: null,
     startDate: new Date(),
     endDate: new Date(),
+    name: '',
     category: 'PairProgramming',
     eventFor: 'All',
     project: null,
-    repeats: null,
-    name: '',
     description: '',
+    timezone: momentTZ.tz.guess(),
+    duration: '',
+    repeats: 'never',
     weekdays: [],
-    repeatEnds: 'on'
-  }
+    repeatEnds: ''
+  };
+
   componentDidMount () {
     this.props.fetchActiveProjects()
   }
@@ -28,29 +33,59 @@ export class CreateEventPage extends Component {
     }
   }
 
-  handleSubmit = event => {
-    console.log(event)
-  }
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  };
 
   handleDateChange = date => {
     this.setState({ startDate: date })
-  }
+  };
 
-  handleChange = (e, { name, value }) => {
-    console.log('name', name, 'value', value)
-    this.setState({ [name]: value })
-  }
+  handleSubmit = event => {
+    event.preventDefault()
+    const {
+      name,
+      category,
+      eventFor,
+      project,
+      description,
+      startDate,
+      timezone,
+      duration,
+      repeats
+    } = this.state
+    const startTime = moment(startDate).format('h:mm a')
+    const { history, createEvent } = this.props
+    const headers = this.props.cookies.get('_WebsiteOne_session')
+    createEvent({
+      headers,
+      history,
+      name,
+      category,
+      eventFor,
+      project,
+      description,
+      startDate,
+      startTime,
+      timezone,
+      duration,
+      repeats
+    })
+  };
+
   render () {
     const {
       projects,
       startDate,
       endDate,
+      name,
       category,
       eventFor,
       project,
-      repeats,
-      name,
       description,
+      timezone,
+      duration,
+      repeats,
       weekdays,
       repeatEnds
     } = this.state
@@ -60,18 +95,20 @@ export class CreateEventPage extends Component {
           Creating a new Event
         </Header>
         <EventForm
-          onSubmit={this.handleSubmit}
+          handleSubmit={this.handleSubmit}
           projects={projects || []}
           startDate={startDate}
           endDate={endDate}
           handleChange={this.handleChange}
-          handleSelect={this.handleSelect}
+          handleDateChange={this.handleDateChange}
+          name={name}
           category={category}
           eventFor={eventFor}
           project={project}
-          repeats={repeats}
-          name={name}
           description={description}
+          timezone={timezone}
+          duration={duration}
+          repeats={repeats}
           weekdays={weekdays}
           repeatEnds={repeatEnds}
         />
@@ -79,11 +116,11 @@ export class CreateEventPage extends Component {
     )
   }
 }
-const mapStateToProps = store => ({
+const mapStateToProps = (store, ownProps) => ({
   projects: store.projects,
-  error: store.error
+  cookies: ownProps.cookies
 })
 export default connect(
   mapStateToProps,
-  { fetchActiveProjects }
+  { fetchActiveProjects, createEvent }
 )(CreateEventPage)
