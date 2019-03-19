@@ -74,7 +74,14 @@ class App extends Component {
           <Route path='/premium-mob' component={PremiumMobMembershipPage} />
           <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
           <Route exact path='/events' component={EventsList} />
-          <Route path='/events/new' component={CreateEventPage} />
+          <Route path='/events/new' render={props => {
+            return (
+              <CreateEventPage
+                {...props}
+                cookies={this.props.cookies}
+              />)
+          }}
+          />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>

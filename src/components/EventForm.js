@@ -8,7 +8,6 @@ import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const EventForm = props => {
-  console.log(props)
   const categoryOptions = [
     { key: 'pp', text: 'PairProgramming', value: 'PairProgramming' },
     { key: 'scrum', text: 'Scrum', value: 'Scrum' },
@@ -16,7 +15,11 @@ const EventForm = props => {
   ]
   const eventForOptions = [
     { key: 'all', text: 'All', value: 'All' },
-    { key: 'premium', text: 'Premium Mob Members', value: 'Premium Mob Members' }
+    {
+      key: 'premium',
+      text: 'Premium Mob Members',
+      value: 'Premium Mob Members'
+    }
   ]
   const projectOptions = props.projects.map(project => {
     return { key: project.id, text: project.title, value: project.id }
@@ -78,14 +81,16 @@ const EventForm = props => {
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
-            <label>Start Date</label><br />
+            <label>Start Date</label>
+            <br />
             <DatePicker
               selected={props.startDate}
               onChange={props.handleDateChange}
             />
           </Grid.Column>
           <Grid.Column>
-            <label>Start Time</label><br />
+            <label>Start Time</label>
+            <br />
             <DatePicker
               selected={props.startDate}
               onChange={props.handleDateChange}
@@ -100,10 +105,18 @@ const EventForm = props => {
       </Grid>
       <Form.Select
         options={timeZonesOptions}
-        placeholder={momentTZ.tz.guess()}
         search
+        name='timezone'
+        value={props.timezone}
+        onChange={props.handleChange}
       />
-      <Form.Field label='Duration' control='input' type='number' />
+      <Form.Input
+        label='Duration'
+        name='duration'
+        type='number'
+        value={props.duration}
+        onChange={props.handleChange}
+      />
       <Form.Select
         label='Repeats'
         name='repeats'
@@ -131,14 +144,17 @@ const EventForm = props => {
           />
         </Fragment>
       ) : null}
-      {props.repeats && props.repeatEnds === 'on'
-        ? <Fragment>
-          <label>End Date</label><br />
-          <DatePicker selected={props.endDate}
+      {props.repeats && props.repeatEnds === 'on' ? (
+        <Fragment>
+          <label>End Date</label>
+          <br />
+          <DatePicker
+            selected={props.endDate}
             onChange={props.handleDateChange}
           />
         </Fragment>
-        : null}
+      ) : null}
+      <br />
       <Link to={'/events'}>
         <Button>Cancel</Button>
       </Link>
