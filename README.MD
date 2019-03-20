@@ -6,45 +6,58 @@
 Project Installation
 --------------------
 
+1. Fork the project by clicking on the Fork button on the top-right section of this page.
+2. Clone it using the following command in your local working directory
+```bash
+$ git clone https://github.com/[YOUR_GIT_USERNAME]/WebsiteOne-FE.git
+#or ( using ssh)
+$ git clone  git@github.com:[YOUR_GIT_USERNAME]/WebsiteOne-FE.git
 ```
-$ Fork this project by clicking on the Fork button on the top-right section of this page.
-$ Navigate to the forked project in your repo.
-$ git clone https://github.com/yourgithubusername/WebsiteOne-FE.git
+3. Install dependencies  
+```bash
 $ cd WebsiteOne-FE
-$ Run yarn install. Ensure you have yarn installed globally.
+$ yarn install
 ```
-
 Run the application
 -------------------
 
-```
+```bash
 $ yarn start
 ```
 
 Run tests
 ---------
 
-```
+```bash
 $ yarn test
 ```
 
-# Rebuild the semantic UI asserts
-## This command needs to be run with npm - yarn does not support interactive prompt installs
-`# npm install --save-dev semantic-ui`
+**Note :**  At this level, you should be able to run the project. In case an upgrade is needed for semantic UI, following the section below. 
+
+Rebuild the semantic UI asserts 
+----------------------------------
+This command needs to be run with **npm** - **yarn** does not support interactive prompt installs
+
+```bash
+$ npm install --save-dev semantic-ui`
+```
+
 Then remove the dependency from package.json and delete the package-lock.json file - we do not want it as a dependency for every user
 
 This will create a new semantic folder
 and copy our defaut file:
-
-`cp site.variables semantic/src/site/globals/`
-
+```bash
+cp site.variables semantic/src/site/globals/`
+```
 Then you can build semantic-ui
 `gulp build` or `./../node_modules/gulp/bin/gulp.js build`
 use the default values
 
 and copy the folder to our src folder
 
-`cp -R dist/* ../src/assets/`
+```bash
+cp -R dist/* ../src/assets/
+```
 
 ### [Code of Conduct](./CODE_OF_CONDUCT).
 ### [Contribution Guide](./CONTRIBUTION_GUIDE).
