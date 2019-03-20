@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { RingLoader } from 'react-spinners'
+import CustomRingLoader from '../components/CustomRingLoader'
 import { Container } from 'semantic-ui-react'
 import axios from 'axios'
 import ReactHtmlParser from 'react-html-parser'
@@ -26,9 +26,9 @@ export default class GettingStartedPage extends Component {
         )
       } else {
         return (
-          <Container>
-            <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
-          </Container>
+
+          <CustomRingLoader />
+
         )
       }
     }
