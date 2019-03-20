@@ -2,7 +2,7 @@ import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import axios from 'axios'
 import { Container } from 'semantic-ui-react'
-import CustomRingLoader from '../components/customringloader'
+import CustomRingLoader from '../components/CustomRingLoader'
 export class About extends React.Component {
     state = { about: null }
 

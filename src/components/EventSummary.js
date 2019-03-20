@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Segment, Grid, Embed, Image, Icon } from 'semantic-ui-react'
-import CustomRingLoader from './customringloader'
+import CustomRingLoader from './CustomRingLoader'
 import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment-timezone'
 

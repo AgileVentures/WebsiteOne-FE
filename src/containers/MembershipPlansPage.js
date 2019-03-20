@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CustomRingLoader from '../components/customringloader'
+import CustomRingLoader from '../components/CustomRingLoader'
 import { Container } from 'semantic-ui-react'
 import axios from 'axios'
 import ReactHtmlParser from 'react-html-parser'
