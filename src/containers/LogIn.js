@@ -59,6 +59,7 @@ export class LogIn extends Component {
         <Header as='h1' textAlign='center' className='login-h1'>
           Log In
         </Header>
+        <Button>with GitHub</Button>
         <Header as='h4' textAlign='center' className='login-h4'>
           Don't have an account? <a href='/signup'>Sign Up</a>
         </Header>
