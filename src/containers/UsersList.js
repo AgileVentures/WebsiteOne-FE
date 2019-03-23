@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid, Container } from 'semantic-ui-react'
+import { Header, Card, Grid, Container, Input } from 'semantic-ui-react'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import { connect } from 'react-redux'
@@ -83,6 +83,7 @@ export class UsersList extends Component {
             <Grid.Row>
               <Grid.Column width={12}>
                 <Header as='h1'>Volunteers Directory</Header>
+                <Input className='users-list-search-input' fluid icon='search' placeholder='Search...' />
                 <Card.Group centered itemsPerRow={3}>
                   <Paginate
                     items={usersList}
