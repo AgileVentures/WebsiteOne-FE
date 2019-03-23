@@ -68,6 +68,16 @@ export class UsersList extends Component {
     })
   };
 
+  handleSearchInput = e => {
+    const users = this.props.users.filter(user => {
+      const name = `${user.first_name} ${user.last_name}`
+
+      return name.includes(e.target.value)
+    })
+
+    this.normalizeUsers(users)
+  };
+
   render () {
     let {
       firstPage,
@@ -83,13 +93,23 @@ export class UsersList extends Component {
             <Grid.Row>
               <Grid.Column width={12}>
                 <Header as='h1'>Volunteers Directory</Header>
-                <Input className='users-list-search-input' fluid icon='search' placeholder='Search...' />
+                <Input
+                  onChange={this.handleSearchInput}
+                  className='users-list-search-input'
+                  fluid
+                  icon='search'
+                  placeholder='Search...'
+                />
                 <Card.Group centered itemsPerRow={3}>
-                  <Paginate
-                    items={usersList}
-                    Component={User}
-                    pageCount={pageCount}
-                  />
+                  {usersList ? (
+                    <Paginate
+                      items={usersList}
+                      Component={User}
+                      pageCount={pageCount}
+                    />
+                  ) : (
+                    'No users found.'
+                  )}
                 </Card.Group>
                 <PaginationLinks
                   handlePageSelect={this.handlePageSelect}
