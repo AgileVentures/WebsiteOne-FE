@@ -18,7 +18,7 @@ import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
-import CreateEventPage from '../containers/CreateEventPage'
+import CreateEventPage from '../components/CreateEventPage'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
