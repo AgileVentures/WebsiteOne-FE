@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Card, Image, Grid, Label, Tab, Embed, Icon } from 'semantic-ui-react'
-import { RingLoader } from 'react-spinners'
+import CustomRingLoader from './CustomRingLoader'
 import moment from 'moment'
 import '../assets/UserSummary.css'
 
@@ -244,7 +244,7 @@ const UserSummary = props => {
       </Fragment>
     )
   } else {
-    return <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
+    return <CustomRingLoader />
   }
 }
 

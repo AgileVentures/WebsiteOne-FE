@@ -1,5 +1,5 @@
 import React from 'react'
-import { RingLoader } from 'react-spinners'
+import CustomRingLoader from './CustomRingLoader'
 
 const Paginate = ({ items, Component, error }) => {
   let itemsArray
@@ -8,7 +8,7 @@ const Paginate = ({ items, Component, error }) => {
     itemsArray = items.map(item => <Component key={item.id} item={item} />)
   }
   return (
-    itemsArray || error || <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
+    itemsArray || error || <CustomRingLoader />
   )
 }
 
