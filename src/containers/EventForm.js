@@ -185,7 +185,7 @@ export class EventForm extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <TimezonesSelect timezones={timezones} />
+        <TimezonesSelect timezones={timezones} handleChange={this.handleChange} />
         <Form.Input
           label='Duration'
           name='duration'
