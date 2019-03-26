@@ -7,7 +7,7 @@ import momentTZ from 'moment-timezone'
 import { connect } from 'react-redux'
 import { fetchActiveProjects } from '../actions/fetchActiveProjectsAction'
 import { createEvent } from '../actions/createEventAction'
-import timezones from '../helpers/timezones'
+import TimezonesSelect from '../components/TimezonesSelect'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -25,20 +25,7 @@ const eventForOptions = [
     value: 'Premium Mob Members'
   }
 ]
-const timeZonesOptions = timezones.map((timeZone, i) => {
-  return { key: i, text: timeZone, value: timeZone }
-})
-// const benchmark = () => {
-//   const startTime = new Date()
-//   console.log(startTime)
-//   momentTZ.tz.names().map(timeZone => {
-//     return { key: timeZone, text: timeZone, value: timeZone }
-//   })
-//   const endTime = new Date()
-//   console.log(endTime)
-//   console.log(endTime - startTime)
-// }
-// benchmark()
+
 const repeatsOptions = [
   { key: 'never', text: 'never', value: 'never' },
   { key: 'weekly', text: 'weekly', value: 'weekly' },
@@ -61,7 +48,7 @@ export class EventForm extends Component {
     eventFor: 'All',
     project: null,
     description: '',
-    timezone: momentTZ.tz.guess(),
+    timezones: momentTZ.tz.guess(),
     duration: '',
     repeats: 'never',
     weekdays: [],
@@ -73,20 +60,13 @@ export class EventForm extends Component {
       this.props.fetchActiveProjects()
     }
   }
+
   componentWillReceiveProps (nextProps) {
     if (this.props.projects !== nextProps.projects) {
       this.setState({ projects: nextProps.projects })
     }
   }
-  // shouldComponentUpdate (nextState) {
-  //   console.log('nextState', nextState, 'state', this.state)
-  //   if (this.state.timezone !== nextState.timezone) {
-  //     console.log('true')
-  //     return true
-  //   }
-  //   console('im here')
-  //   return true
-  // }
+
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
   };
@@ -104,7 +84,7 @@ export class EventForm extends Component {
       project,
       description,
       startDate,
-      timezone,
+      timezones,
       duration,
       repeats
     } = this.state
@@ -121,11 +101,12 @@ export class EventForm extends Component {
       description,
       startDate,
       startTime,
-      timezone,
+      timezones,
       duration,
       repeats
     })
   };
+
   render () {
     projectOptions = this.state.projects ? this.state.projects.map(project => {
       return { key: project.id, text: project.title, value: project.id }
@@ -135,7 +116,7 @@ export class EventForm extends Component {
       description,
       startDate,
       endDate,
-      timezone,
+      timezones,
       duration,
       repeats,
       repeatEnds
@@ -204,14 +185,7 @@ export class EventForm extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Form.Select
-          options={timeZonesOptions}
-          search
-          name='timezone'
-          value={timezone}
-          onChange={this.handleChange}
-          lazyLoad
-        />
+        <TimezonesSelect timezones={timezones} />
         <Form.Input
           label='Duration'
           name='duration'
