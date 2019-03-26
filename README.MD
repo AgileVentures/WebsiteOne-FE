@@ -59,8 +59,8 @@ and copy the folder to our src folder
 cp -R dist/* ../src/assets/
 ```
 
-### [Code of Conduct](./CODE_OF_CONDUCT).
-### [Contribution Guide](./CONTRIBUTION_GUIDE).
+### [Code of Conduct](./CODE_OF_CONDUCT.md).
+### [Contribution Guide](./CONTRIBUTION_GUIDE.md).
 
 
 ### License
