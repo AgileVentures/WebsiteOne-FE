@@ -24,7 +24,7 @@ class App extends Component {
   render () {
     return (
       <Fragment>
-        <Navbar />
+        <Navbar cookies={this.props.cookies} />
         <Switch>
           <Route path='/' exact component={Homepage} />
           <Route exact path='/about' component={About} />

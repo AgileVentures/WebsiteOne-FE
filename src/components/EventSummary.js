@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Segment, Grid, Embed, Image, Icon } from 'semantic-ui-react'
-import { RingLoader } from 'react-spinners'
+import CustomRingLoader from './CustomRingLoader'
 import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment-timezone'
 
@@ -79,7 +79,7 @@ const EventSummary = props => {
       </Fragment>
     )
   } else {
-    return <RingLoader sizeUnit={'px'} size={200} color={'#34495E'} />
+    return <CustomRingLoader />
   }
 }
 

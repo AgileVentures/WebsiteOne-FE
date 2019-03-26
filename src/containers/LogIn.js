@@ -17,7 +17,7 @@ export class LogIn extends Component {
     const { cookies, loggedInUser, history, lastLocation, postLogInInfo } = this.props
     postLogInInfo({ email, password })
       .then(() => {
-        history.push(lastLocation.path + lastLocation.search)
+        lastLocation.path ? history.push(lastLocation.path + lastLocation.search) : history.push('/')
         cookies.set('_WebsiteOne_session', this.props.loggedInUser.headers.authorization, {
           path: '/'
         })
