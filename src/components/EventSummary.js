@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import { Header, Segment, Grid, Embed, Image, Icon } from 'semantic-ui-react'
+import { Header, Segment, Grid, Image, Icon } from 'semantic-ui-react'
 import CustomRingLoader from './CustomRingLoader'
+import Videos from './Videos'
 import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment-timezone'
 
@@ -57,24 +58,7 @@ const EventSummary = props => {
               </Grid>
             </Segment>
           </Grid.Column>
-          <Grid.Column width={4} className='event-info-videos'>
-            {event.videos
-              .filter(video => video.yt_video_id !== null)
-              .map(video => (
-                <Fragment key={video.id}>
-                  <Embed
-                    id={video.yt_video_id}
-                    placeholder={
-                      'https://img.youtube.com/vi/' +
-                        video.yt_video_id +
-                        '/3.jpg'
-                    }
-                    source='youtube'
-                  />
-                  <p>{video.title}</p>
-                </Fragment>
-              ))}
-          </Grid.Column>
+          <Videos name={event} id='event-info-videos' />
         </Grid>
       </Fragment>
     )
