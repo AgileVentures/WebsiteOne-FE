@@ -8,10 +8,10 @@ import { connect } from 'react-redux'
 import { fetchActiveProjects } from '../actions/fetchActiveProjectsAction'
 import { createEvent } from '../actions/createEventAction'
 import TimezonesSelect from '../components/TimezonesSelect'
+import ProjectsSelect from '../components/ProjectsSelect'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-let projectOptions
 const categoryOptions = [
   { key: 'pp', text: 'PairProgramming', value: 'PairProgramming' },
   { key: 'scrum', text: 'Scrum', value: 'Scrum' },
@@ -108,11 +108,9 @@ export class EventForm extends Component {
   };
 
   render () {
-    projectOptions = this.state.projects ? this.state.projects.map(project => {
-      return { key: project.id, text: project.title, value: project.id }
-    }) : []
     const {
       name,
+      projects,
       description,
       startDate,
       endDate,
@@ -145,15 +143,7 @@ export class EventForm extends Component {
           value={eventForOptions.value}
           onChange={this.handleChange}
         />
-        <Form.Select
-          label='Project'
-          name='project'
-          options={projectOptions}
-          placeholder={''}
-          value={projectOptions.value}
-          onChange={this.handleChange}
-          search
-        />
+        <ProjectsSelect projects={projects} onChange={this.handleChange} />
         <Form.TextArea
           label='Description'
           name='description'
