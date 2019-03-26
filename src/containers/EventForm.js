@@ -11,14 +11,10 @@ import TimezonesSelect from '../components/TimezonesSelect'
 import ProjectsSelect from '../components/ProjectsSelect'
 import EventCategorySelect from '../components/EventCategorySelect'
 import EventForSelect from '../components/EventForSelect'
+import EventRepeats from '../components/EventRepeats'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-const repeatsOptions = [
-  { key: 'never', text: 'never', value: 'never' },
-  { key: 'weekly', text: 'weekly', value: 'weekly' },
-  { key: 'biweekly', text: 'biweekly', value: 'biweekly' }
-]
 const daysOfTheWeek = moment.weekdays().map(weekday => {
   return { key: weekday, text: weekday, value: weekday }
 })
@@ -159,14 +155,7 @@ export class EventForm extends Component {
           value={duration}
           onChange={this.handleChange}
         />
-        <Form.Select
-          label='Repeats'
-          name='repeats'
-          options={repeatsOptions}
-          placeholder={repeatsOptions[0].text}
-          value={repeatsOptions.value}
-          onChange={this.handleChange}
-        />
+        <EventRepeats repeats={repeats} handleChange={this.handleChange} />
         {repeats && repeats !== 'never' ? (
           <Fragment>
             <Form.Select
