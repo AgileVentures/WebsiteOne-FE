@@ -12,12 +12,10 @@ import ProjectsSelect from '../components/ProjectsSelect'
 import EventCategorySelect from '../components/EventCategorySelect'
 import EventForSelect from '../components/EventForSelect'
 import EventRepeats from '../components/EventRepeats'
+import DaysOfTheWeek from '../components/DaysOfTheWeek'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-const daysOfTheWeek = moment.weekdays().map(weekday => {
-  return { key: weekday, text: weekday, value: weekday }
-})
 const repeatEndsOptions = [
   { key: 'on', text: 'on', value: 'on' },
   { key: 'never', text: 'never', value: 'never' }
@@ -158,13 +156,7 @@ export class EventForm extends Component {
         <EventRepeats repeats={repeats} handleChange={this.handleChange} />
         {repeats && repeats !== 'never' ? (
           <Fragment>
-            <Form.Select
-              label='Each'
-              name='weekdays'
-              options={daysOfTheWeek}
-              multiple
-              onChange={this.handleChange}
-            />
+            <DaysOfTheWeek handleChange={this.handleChange} />
             <Form.Select
               label='Repeat ends'
               name='repeatEnds'
