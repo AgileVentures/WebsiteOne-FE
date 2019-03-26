@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import {
-  Header,
-  Container
-} from 'semantic-ui-react'
-import {
-  connect
-} from 'react-redux'
+import { Header, Container } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import ProjectForm from '../components/ProjectForm'
 import { createProject } from '../actions/createProjectAction'
 export class CreateProjectPage extends Component {
@@ -23,24 +18,30 @@ export class CreateProjectPage extends Component {
   }
   handleSubmit = () => {
     this.props.createProject({
-      title: 'aaaa',
-      description: 'bbbb'
+      title: this.state.title,
+      description: this.state.description,
+      status: 'active'
       // this.state.title,
-      // state.description
+      // state.description,
+      // this.state.status
     })
   }
   render () {
     let {
-      title
+      title, description, status
     } = this.state
-    return (<Container >
-      <Header as='h1'
-        textAlign='center' > Creating a new Project </Header>
-      <ProjectForm
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
-        title={title}
-      /> </Container >
+    return (
+      <Container >
+        <Header as='h1'
+          textAlign='center' > Creating a new Project </Header>
+        <ProjectForm
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          title={title}
+          description={description}
+          status={status}
+        />
+      </Container >
     )
   }
 }

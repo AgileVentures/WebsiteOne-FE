@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Select,
-  Form
-} from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 const ProjectForm = props => {
   return (<Form onSubmit={
@@ -27,14 +23,23 @@ const ProjectForm = props => {
       onChange={
         props.onChange
       }
-    />  <Select name='status'
-      value={
-        props.status
-      }
+    />
+    <select name='status' id='status'
       onChange={
         props.onChange
       }
-      placeholder='Select status' /> <Button type='submit' > Submit </Button> </Form >
+    >
+      <option value='Active' >Active</option>
+      <option value='Inactive'>Inactive</option>
+    </select>
+    {/* <Form.Select fluid label='Gender'
+      options={options}
+      value={props.status} onChange={
+        props.onChange
+      }
+      name='status'
+      placeholder='Select status' /> */}
+    <Button type='submit' > Submit </Button> </Form >
   )
 }
 

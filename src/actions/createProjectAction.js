@@ -2,10 +2,7 @@ import axios from 'axios'
 import {
   CREATE_PROJECT
 } from '../types'
-let getProject = project => ({
-  type: CREATE_PROJECT,
-  payload: project
-})
+
 export let createProject = props => dispatch => {
   const {
     title,
@@ -27,6 +24,10 @@ export let createProject = props => dispatch => {
       Authorization: cookies.get('_WebsiteOne_session')
     }
   }).then(response => {
-    dispatch(getProject)
+    dispatch({
+      type: CREATE_PROJECT,
+      payload: response.data
+    })
+    console.log('++++++')
   })
 }

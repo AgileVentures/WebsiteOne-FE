@@ -289,7 +289,6 @@ Then('I should be able to create new projects', () => {
     .get('textarea[name=description]')
     .type('A new project')
     .get('select[name=status]')
-    .select('Active')
     .get('button[type=submit]')
     .click()
     .get('h1')
