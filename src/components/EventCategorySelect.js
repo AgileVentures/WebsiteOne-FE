@@ -3,7 +3,7 @@ import { Form } from 'semantic-ui-react'
 import { pure } from 'recompose'
 
 const EventCategorySelect = props => {
-  const { handleChange } = props
+  const { category, handleChange } = props
   const categoryOptions = [
     { key: 'pp', text: 'PairProgramming', value: 'PairProgramming' },
     { key: 'scrum', text: 'Scrum', value: 'Scrum' },
@@ -14,8 +14,7 @@ const EventCategorySelect = props => {
       label='Category'
       name='category'
       options={categoryOptions}
-      placeholder={categoryOptions[0].text}
-      value={categoryOptions.value}
+      value={category}
       onChange={handleChange}
     />
   )

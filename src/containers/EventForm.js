@@ -10,17 +10,9 @@ import { createEvent } from '../actions/createEventAction'
 import TimezonesSelect from '../components/TimezonesSelect'
 import ProjectsSelect from '../components/ProjectsSelect'
 import EventCategorySelect from '../components/EventCategorySelect'
+import EventForSelect from '../components/EventForSelect'
 
 import 'react-datepicker/dist/react-datepicker.css'
-
-const eventForOptions = [
-  { key: 'all', text: 'All', value: 'All' },
-  {
-    key: 'premium',
-    text: 'Premium Mob Members',
-    value: 'Premium Mob Members'
-  }
-]
 
 const repeatsOptions = [
   { key: 'never', text: 'never', value: 'never' },
@@ -107,6 +99,7 @@ export class EventForm extends Component {
     const {
       name,
       category,
+      eventFor,
       projects,
       description,
       startDate,
@@ -125,14 +118,7 @@ export class EventForm extends Component {
           onChange={this.handleChange}
         />
         <EventCategorySelect category={category} handleChange={this.handleChange} />
-        <Form.Select
-          label='For'
-          name='eventFor'
-          options={eventForOptions}
-          placeholder={eventForOptions[0].text}
-          value={eventForOptions.value}
-          onChange={this.handleChange}
-        />
+        <EventForSelect eventFor={eventFor} handleChange={this.handleChange} />
         <ProjectsSelect projects={projects} handleChange={this.handleChange} />
         <Form.TextArea
           label='Description'
