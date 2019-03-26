@@ -9,14 +9,10 @@ import { fetchActiveProjects } from '../actions/fetchActiveProjectsAction'
 import { createEvent } from '../actions/createEventAction'
 import TimezonesSelect from '../components/TimezonesSelect'
 import ProjectsSelect from '../components/ProjectsSelect'
+import EventCategorySelect from '../components/EventCategorySelect'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-const categoryOptions = [
-  { key: 'pp', text: 'PairProgramming', value: 'PairProgramming' },
-  { key: 'scrum', text: 'Scrum', value: 'Scrum' },
-  { key: 'client', text: 'ClientMeeting', value: 'ClientMeeting' }
-]
 const eventForOptions = [
   { key: 'all', text: 'All', value: 'All' },
   {
@@ -110,6 +106,7 @@ export class EventForm extends Component {
   render () {
     const {
       name,
+      category,
       projects,
       description,
       startDate,
@@ -127,14 +124,7 @@ export class EventForm extends Component {
           value={name}
           onChange={this.handleChange}
         />
-        <Form.Select
-          label='Category'
-          name='category'
-          options={categoryOptions}
-          placeholder={categoryOptions[0].text}
-          value={categoryOptions.value}
-          onChange={this.handleChange}
-        />
+        <EventCategorySelect category={category} handleChange={this.handleChange} />
         <Form.Select
           label='For'
           name='eventFor'
@@ -143,7 +133,7 @@ export class EventForm extends Component {
           value={eventForOptions.value}
           onChange={this.handleChange}
         />
-        <ProjectsSelect projects={projects} onChange={this.handleChange} />
+        <ProjectsSelect projects={projects} handleChange={this.handleChange} />
         <Form.TextArea
           label='Description'
           name='description'
