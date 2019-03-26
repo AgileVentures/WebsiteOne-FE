@@ -13,13 +13,10 @@ import EventCategorySelect from '../components/EventCategorySelect'
 import EventForSelect from '../components/EventForSelect'
 import EventRepeats from '../components/EventRepeats'
 import DaysOfTheWeek from '../components/DaysOfTheWeek'
+import EventRepeatEnds from '../components/EventRepeatEnds'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-const repeatEndsOptions = [
-  { key: 'on', text: 'on', value: 'on' },
-  { key: 'never', text: 'never', value: 'never' }
-]
 export class EventForm extends Component {
   state = {
     projects: null,
@@ -157,14 +154,7 @@ export class EventForm extends Component {
         {repeats && repeats !== 'never' ? (
           <Fragment>
             <DaysOfTheWeek handleChange={this.handleChange} />
-            <Form.Select
-              label='Repeat ends'
-              name='repeatEnds'
-              options={repeatEndsOptions}
-              placeholder={'on'}
-              value={repeatEnds}
-              onChange={this.handleChange}
-            />
+            <EventRepeatEnds handleChange={this.handleChange} />
           </Fragment>
         ) : null}
         {repeats && repeatEnds === 'on' ? (
