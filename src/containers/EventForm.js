@@ -16,7 +16,7 @@ import DaysOfTheWeek from '../components/DaysOfTheWeek'
 import EventRepeatEnds from '../components/EventRepeatEnds'
 
 import 'react-datepicker/dist/react-datepicker.css'
-
+import '../assets/eventForm.css'
 export class EventForm extends Component {
   state = {
     projects: null,
@@ -50,8 +50,12 @@ export class EventForm extends Component {
     this.setState({ [name]: value })
   };
 
-  handleDateChange = date => {
+  handleStartDateChange = date => {
     this.setState({ startDate: date })
+  };
+
+  handleEndDateChange = date => {
+    this.setState({ endDate: date })
   };
 
   handleSubmit = event => {
@@ -65,7 +69,10 @@ export class EventForm extends Component {
       startDate,
       timezones,
       duration,
-      repeats
+      repeats,
+      weekdays,
+      repeatEnds,
+      endDate
     } = this.state
     const startTime = moment(startDate).format('h:mm a')
     const { history, createEvent } = this.props
@@ -82,7 +89,10 @@ export class EventForm extends Component {
       startTime,
       timezones,
       duration,
-      repeats
+      repeats,
+      weekdays,
+      repeatEnds,
+      endDate
     })
   };
 
@@ -120,25 +130,28 @@ export class EventForm extends Component {
         <Grid columns={2}>
           <Grid.Row>
             <Grid.Column>
-              <label>Start Date</label>
-              <br />
-              <DatePicker
-                selected={startDate}
-                onChange={this.handleDateChange}
-              />
+              <div className='field'>
+                <label>Start Date</label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={this.handleStartDateChange}
+                />
+              </div>
             </Grid.Column>
             <Grid.Column>
-              <label>Start Time</label>
-              <br />
-              <DatePicker
-                selected={startDate}
-                onChange={this.handleDateChange}
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={15}
-                dateFormat='h:mm aa'
-                timeCaption='Time'
-              />
+              <div className='field'>
+                <label>Start Time</label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={this.handleStartDateChange}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  dateFormat='h:mm aa'
+                  timeCaption='Time'
+
+                />
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -159,19 +172,20 @@ export class EventForm extends Component {
         ) : null}
         {repeats && repeatEnds === 'on' ? (
           <Fragment>
-            <label>End Date</label>
-            <br />
-            <DatePicker
-              selected={endDate}
-              onChange={this.handleDateChange}
-            />
+            <div className='field'>
+              <label>End Date</label>
+              <DatePicker
+                selected={endDate}
+                onChange={this.handleEndDateChange}
+              />
+            </div>
           </Fragment>
         ) : null}
         <br />
         <Link to={'/events'}>
-          <Button>Cancel</Button>
+          <Button fluid className='event-cancel-button' primary>Cancel</Button>
         </Link>
-        <Button type='submit'>Save</Button>
+        <Button type='submit' fluid className='event-save-button' secondary>Save</Button>
       </Form>
     )
   }
