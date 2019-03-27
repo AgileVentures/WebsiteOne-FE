@@ -8,6 +8,7 @@ export class CreateProjectPage extends Component {
     title: '',
     description: ''
   }
+
   handleChange = (e, {
     name,
     value
@@ -16,16 +17,18 @@ export class CreateProjectPage extends Component {
       [name]: value
     })
   }
+
   handleSubmit = () => {
+    console.log('*******')
+    console.log(this.props.cookies)
     this.props.createProject({
       title: this.state.title,
       description: this.state.description,
-      status: 'active'
-      // this.state.title,
-      // state.description,
-      // this.state.status
+      status: 'active',
+      cookies: this.props.cookies
     })
   }
+
   render () {
     let {
       title, description, status
@@ -40,13 +43,14 @@ export class CreateProjectPage extends Component {
           title={title}
           description={description}
           status={status}
+          cookies={this.props.cookies}
         />
       </Container >
     )
   }
 }
-const mapStateToProps = store => ({
-  error: store.error
+const mapStateToProps = (store, ownProps) => ({
+  cookies: ownProps.cookies
 })
 export default connect(
   mapStateToProps, {

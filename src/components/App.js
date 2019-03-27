@@ -47,7 +47,12 @@ class App extends Component {
           />
           <Route path='/signup' component={SignUp} />
           <Route exact path='/projects' component={ProjectsList} />
-          <Route path='/projects/new' component={CreateProjectPage} />
+          <Route exact path='/projects/new' render={props => {
+            return (<CreateProjectPage {...props}
+              cookies={this.props.cookies}
+            />)
+          }}
+          />
           <Route path='/projects/:slug' render={props => {
             return (
               <ProjectInfo

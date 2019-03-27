@@ -10,6 +10,8 @@ export let createProject = props => dispatch => {
     status,
     cookies
   } = props
+  console.log('################')
+  console.log(cookies.get('_WebsiteOne_session'))
   return axios({
     method: 'POST',
     url: '/projects',
@@ -29,5 +31,6 @@ export let createProject = props => dispatch => {
       payload: response.data
     })
     console.log('++++++')
+    console.log(response)
   })
 }
