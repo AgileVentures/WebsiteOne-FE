@@ -84,6 +84,8 @@ export class EventForm extends Component {
       endDate
     } = this.state
     const startTime = moment(startDate).format('h:mm a')
+    const startDateFormatted = moment(startDate).format('YYYYMMDD')
+    const weekdaysLowerCase = weekdays.map(day => day.toLowerCase())
     const { history, createEvent } = this.props
     const headers = this.props.cookies.get('_WebsiteOne_session')
     createEvent({
@@ -95,11 +97,12 @@ export class EventForm extends Component {
       project,
       description,
       startDate,
+      startDateFormatted,
       startTime,
       timezones,
       duration,
       repeats,
-      weekdays,
+      weekdaysLowerCase,
       repeatEnds,
       endDate
     })
