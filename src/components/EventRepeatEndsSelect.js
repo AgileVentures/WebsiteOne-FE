@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 import { pure } from 'recompose'
 
-const EventRepeatEnds = props => {
+const EventRepeatEndsSelect = props => {
   const { repeatEnds, handleChange } = props
   const repeatEndsOptions = [
     { key: 'on', text: 'on', value: 'on' },
@@ -20,4 +20,4 @@ const EventRepeatEnds = props => {
   )
 }
 
-export default pure(EventRepeatEnds)
+export default pure(EventRepeatEndsSelect)

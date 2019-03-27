@@ -1,15 +1,11 @@
 import React from 'react'
-import { Header, Container } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 
-import EventForm from '../containers/EventForm'
 const CreateEventPage = () => {
   return (
-    <Container>
-      <Header as='h1' textAlign='center'>
+    <Header as='h1' textAlign='center'>
           Creating a new Event
-      </Header>
-      <EventForm />
-    </Container>
+    </Header>
   )
 }
 

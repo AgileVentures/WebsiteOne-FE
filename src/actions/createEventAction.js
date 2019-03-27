@@ -2,7 +2,6 @@ import axios from 'axios'
 import { GET_EVENT_INFO, CREATE_EVENT_FAILURE } from '../types'
 
 export let createEvent = props => dispatch => {
-  console.log('here')
   const {
     headers,
     history,
@@ -13,7 +12,7 @@ export let createEvent = props => dispatch => {
     startTime,
     project,
     description,
-    timezone,
+    timezones,
     duration,
     repeats,
     weekdays,
@@ -34,10 +33,10 @@ export let createEvent = props => dispatch => {
       next_date: startDate,
       start_time: startTime,
       project_id: project,
-      start_time_tz: timezone,
-      time_zone: timezone,
+      start_time_tz: timezones,
+      time_zone: timezones,
       repeats_weekly_each_days_of_the_week: weekdays,
-      repeat_ends: repeatEnds,
+      repeat_ends_string: repeatEnds,
       repeat_ends_on: endDate
     },
     headers: {
@@ -47,7 +46,7 @@ export let createEvent = props => dispatch => {
   })
     .then(response => {
       dispatch({ type: GET_EVENT_INFO, payload: response.data })
-      history.push(`/events/${response.data.event.id}`)
+      history.push(`/events/${response.data.event.slug}`)
     })
     .catch(error => {
       dispatch({

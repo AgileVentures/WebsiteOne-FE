@@ -3,7 +3,7 @@ import { Form } from 'semantic-ui-react'
 import moment from 'moment'
 import { pure } from 'recompose'
 
-const DaysOfTheWeek = props => {
+const DaysOfTheWeekSelect = props => {
   const { handleChange } = props
   const daysOfTheWeek = moment.weekdays().map(weekday => {
     return { key: weekday, text: weekday, value: weekday }
@@ -19,4 +19,4 @@ const DaysOfTheWeek = props => {
   )
 }
 
-export default pure(DaysOfTheWeek)
+export default pure(DaysOfTheWeekSelect)
