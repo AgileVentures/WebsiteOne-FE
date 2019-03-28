@@ -2,6 +2,6 @@ Feature: Create new event
   Background:
     Given the server is running
 
-  Scenario: Creating a new event
+  Scenario: Quick create
     Given I am logged in
-    Then I should be able to create new events
+    Then I should be able to create a new event quickly

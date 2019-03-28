@@ -198,6 +198,30 @@ Given('I am logged in', () => {
   cy.wait('@postLogInInfo')
 })
 
+Then('I should be able to create a new event quickly', () => {
+  cy.fixture('newlyCreatedEvent').then(newlyCreatedEvent => {
+    cy.route({
+      method: 'POST',
+      url: /\/events/,
+      response: newlyCreatedEvent,
+      status: 200
+    }).as('newlyCretedEvent')
+    cy.visit('/events/new')
+      .get('h1')
+      .should('contain', 'Creating a new Event')
+      .get('input[name=name]')
+      .type('NewEvent')
+      .get('button[type=submit]')
+      .click()
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEvent })
+  })
+  cy.wait('@newlyCretedEvent')
+    .get('h2')
+    .should('contain', 'NewEvent')
+})
+
 Then('I should be able to create new events', () => {
   cy.visit('/events/new')
     .get('h1')
