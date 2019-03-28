@@ -27,10 +27,10 @@ export class EventForm extends Component {
     name: '',
     category: 'PairProgramming',
     eventFor: 'All',
-    project: null,
+    projectId: 64,
     description: '',
     timezones: momentTZ.tz.guess(),
-    duration: '',
+    duration: 30,
     repeats: 'never',
     weekdays: [],
     repeatEnds: ''
@@ -73,7 +73,7 @@ export class EventForm extends Component {
       name,
       category,
       eventFor,
-      project,
+      projectId,
       description,
       startDate,
       timezones,
@@ -94,7 +94,7 @@ export class EventForm extends Component {
       name,
       category,
       eventFor,
-      project,
+      projectId,
       description,
       startDate,
       startDateFormatted,
@@ -114,6 +114,7 @@ export class EventForm extends Component {
       category,
       eventFor,
       projects,
+      projectId,
       description,
       startDate,
       endDate,
@@ -131,10 +132,11 @@ export class EventForm extends Component {
             name='name'
             value={name}
             onChange={this.handleChange}
+            required
           />
           <EventCategorySelect category={category} handleChange={this.handleChange} />
           <EventForSelect eventFor={eventFor} handleChange={this.handleChange} />
-          <ProjectsSelect projects={projects} handleChange={this.handleChange} />
+          <ProjectsSelect projectId={projectId} projects={projects} handleChange={this.handleChange} />
           <Form.TextArea
             label='Description'
             name='description'
@@ -176,6 +178,7 @@ export class EventForm extends Component {
             type='number'
             value={duration}
             onChange={this.handleChange}
+            required
           />
           <EventRepeatsSelect repeats={repeats} handleChange={this.handleChange} />
           {repeats && repeats !== 'never' ? (
@@ -196,10 +199,16 @@ export class EventForm extends Component {
             </Fragment>
           ) : null}
           <br />
-          <Link to={'/events'}>
-            <Button fluid className='event-cancel-button' primary>Cancel</Button>
-          </Link>
-          <Button type='submit' fluid className='event-save-button' secondary>Save</Button>
+          <Grid columns={2}>
+            <Grid.Column width={8}>
+              <Link to={'/events'}>
+                <Button fluid className='event-cancel-button' primary>Cancel</Button>
+              </Link>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Button type='submit' fluid className='event-save-button' secondary>Save</Button>
+            </Grid.Column>
+          </Grid>
         </Form>
       </Container>
     )

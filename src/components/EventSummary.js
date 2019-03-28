@@ -62,7 +62,7 @@ const EventSummary = props => {
             </Segment>
           </Grid.Column>
           <Grid.Column width={4} className='event-info-videos'>
-            {event.videos
+            {event.videos ? event.videos
               .filter(video => video.yt_video_id !== null)
               .map(video => (
                 <Fragment key={video.id}>
@@ -77,7 +77,7 @@ const EventSummary = props => {
                   />
                   <p>{video.title}</p>
                 </Fragment>
-              ))}
+              )) : null}
           </Grid.Column>
         </Grid>
       </Fragment>

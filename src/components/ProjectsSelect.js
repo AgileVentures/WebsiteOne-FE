@@ -3,7 +3,7 @@ import { Form } from 'semantic-ui-react'
 import { pure } from 'recompose'
 
 const ProjectsSelect = props => {
-  const { projects, handleChange } = props
+  const { projects, projectId, handleChange } = props
   const projectOptions = projects ? projects.map(project => {
     return { key: project.id, text: project.title, value: project.id }
   }) : []
@@ -12,8 +12,7 @@ const ProjectsSelect = props => {
       label='Project'
       name='project'
       options={projectOptions}
-      placeholder={''}
-      value={projectOptions.value}
+      value={projectId}
       onChange={handleChange}
       search
     />
