@@ -150,6 +150,7 @@ export class EventForm extends Component {
                       <DatePicker
                         selected={startDate}
                         onChange={this.handleStartDateChange}
+                        name='startDate'
                       />
                     </div>
                   </Grid.Column>
@@ -164,7 +165,6 @@ export class EventForm extends Component {
                         timeIntervals={15}
                         dateFormat='h:mm aa'
                         timeCaption='Time'
-
                       />
                     </div>
                   </Grid.Column>
@@ -198,6 +198,7 @@ export class EventForm extends Component {
                     <DatePicker
                       selected={endDate}
                       onChange={this.handleEndDateChange}
+                      name='endDate'
                     />
                   </div>
                 </Fragment>
