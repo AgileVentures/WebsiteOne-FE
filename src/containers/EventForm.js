@@ -127,79 +127,83 @@ export class EventForm extends Component {
       <Container>
         <CreateEventPage />
         <Form onSubmit={this.handleSubmit}>
-          <Form.Input
-            label='Name'
-            name='name'
-            value={name}
-            onChange={this.handleChange}
-            required
-          />
-          <EventCategorySelect category={category} handleChange={this.handleChange} />
-          <EventForSelect eventFor={eventFor} handleChange={this.handleChange} />
-          <ProjectsSelect projectId={projectId} projects={projects} handleChange={this.handleChange} />
-          <Form.TextArea
-            label='Description'
-            name='description'
-            value={description}
-            onChange={this.handleChange}
-          />
           <Grid columns={2}>
-            <Grid.Row>
-              <Grid.Column>
-                <div className='field'>
-                  <label>Start Date</label>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={this.handleStartDateChange}
-                  />
-                </div>
-              </Grid.Column>
-              <Grid.Column>
-                <div className='field'>
-                  <label>Start Time</label>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={this.handleStartDateChange}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeIntervals={15}
-                    dateFormat='h:mm aa'
-                    timeCaption='Time'
+            <Grid.Column width={8}>
+              <Form.Input
+                label='Name'
+                name='name'
+                value={name}
+                onChange={this.handleChange}
+                required
+              />
+              <Form.TextArea
+                label='Description'
+                name='description'
+                value={description}
+                onChange={this.handleChange}
+              />
+              <Grid columns={2}>
+                <Grid.Row>
+                  <Grid.Column>
+                    <div className='field'>
+                      <label>Start Date</label>
+                      <DatePicker
+                        selected={startDate}
+                        onChange={this.handleStartDateChange}
+                      />
+                    </div>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <div className='field'>
+                      <label>Start Time</label>
+                      <DatePicker
+                        selected={startDate}
+                        onChange={this.handleStartDateChange}
+                        showTimeSelect
+                        showTimeSelectOnly
+                        timeIntervals={15}
+                        dateFormat='h:mm aa'
+                        timeCaption='Time'
 
-                  />
-                </div>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <TimezonesSelect timezones={timezones} handleChange={this.handleChange} />
-          <Form.Input
-            label='Duration'
-            name='duration'
-            type='number'
-            value={duration}
-            onChange={this.handleChange}
-            required
-          />
-          <EventRepeatsSelect repeats={repeats} handleChange={this.handleChange} />
-          {repeats && repeats !== 'never' ? (
-            <Fragment>
-              <DaysOfTheWeekSelect handleChange={this.handleChange} />
-              <EventRepeatEndsSelect handleChange={this.handleChange} />
-            </Fragment>
-          ) : null}
-          {repeats && repeatEnds === 'on' ? (
-            <Fragment>
-              <div className='field'>
-                <label>End Date</label>
-                <DatePicker
-                  selected={endDate}
-                  onChange={this.handleEndDateChange}
-                />
-              </div>
-            </Fragment>
-          ) : null}
-          <br />
-          <Grid columns={2}>
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <TimezonesSelect timezones={timezones} handleChange={this.handleChange} />
+              <Form.Input
+                label='Duration'
+                name='duration'
+                type='number'
+                value={duration}
+                onChange={this.handleChange}
+                required
+              />
+            </Grid.Column>
+            <Grid.Column width={8} >
+              <EventCategorySelect category={category} handleChange={this.handleChange} />
+              <EventForSelect eventFor={eventFor} handleChange={this.handleChange} />
+              <ProjectsSelect projectId={projectId} projects={projects} handleChange={this.handleChange} />
+              <EventRepeatsSelect repeats={repeats} handleChange={this.handleChange} />
+              {repeats && repeats !== 'never' ? (
+                <Fragment>
+                  <DaysOfTheWeekSelect handleChange={this.handleChange} />
+                  <EventRepeatEndsSelect handleChange={this.handleChange} />
+                </Fragment>
+              ) : null}
+              {repeats && repeatEnds === 'on' ? (
+                <Fragment>
+                  <div className='field'>
+                    <label>End Date</label>
+                    <DatePicker
+                      selected={endDate}
+                      onChange={this.handleEndDateChange}
+                    />
+                  </div>
+                </Fragment>
+              ) : null}
+              <br />
+            </Grid.Column>
             <Grid.Column width={8}>
               <Link to={'/events'}>
                 <Button fluid className='event-cancel-button' primary>Cancel</Button>
