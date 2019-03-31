@@ -78,6 +78,10 @@ export class UsersList extends Component {
     this.normalizeUsers(users)
   };
 
+  sanitizeInput = input => {
+    return input.toLowerCase().trim()
+  };
+
   render () {
     let {
       firstPage,
