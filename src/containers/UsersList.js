@@ -70,9 +70,10 @@ export class UsersList extends Component {
 
   handleSearchInput = e => {
     const users = this.props.users.filter(user => {
-      const name = `${user.first_name} ${user.last_name}`
+      const name = this.sanitizeInput(`${user.first_name} ${user.last_name}`)
+      const query = this.sanitizeInput(e.target.value)
 
-      return name.includes(e.target.value)
+      return name.includes(query)
     })
 
     this.normalizeUsers(users)
