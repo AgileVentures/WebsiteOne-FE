@@ -36,6 +36,19 @@ describe('UsersList', () => {
     expect(wrapper.find('PaginationLinks')).toHaveLength(1)
   })
 
+  it('should have an Input search bar component', () => {
+    expect(wrapper.find('Input')).toHaveLength(1)
+  })
+
+  it('should normalize users for pagination', () => {
+    let usersList = wrapper.find('UsersList')
+    let users = usersList.instance().state.users
+
+    expect(Object.keys(users).length).toEqual(3)
+    expect(users[1]).toHaveLength(12)
+    expect(users[3]).toHaveLength(2)
+  })
+
   it('should call handlePageSelect when a pagination link is clicked', () => {
     let paginationLink2 = wrapper.find('span').filterWhere(item => {
       return item.text() === '2'
@@ -63,6 +76,20 @@ describe('UsersList', () => {
     paginationLink2.simulate('click')
     let usersList = wrapper.find('UsersList')
     expect(usersList.instance().state.firstPage).toBe(true)
+  })
+
+  it('should limit the users list after query is entered in search box', () => {
+    let usersList = wrapper.find('UsersList')
+    let searchBox = wrapper.find('Input')
+
+    expect(usersList.instance().state.users[1]).toHaveLength(12)
+
+    // For some reason `searchBox.simulate('change', ...)` was not
+    // triggering the event.
+    searchBox.props().onChange({ target: { value: 'gordon' } })
+
+    expect(usersList.instance().state.users[1]).toHaveLength(1)
+    expect(usersList.instance().state.users[1][0].first_name).toEqual('Gordon')
   })
 
   it("shouldn't render a Project component without users", () => {
