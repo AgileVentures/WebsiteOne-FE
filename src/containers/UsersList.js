@@ -116,13 +116,15 @@ export class UsersList extends Component {
                     'No users found.'
                   )}
                 </Card.Group>
-                <PaginationLinks
-                  handlePageSelect={this.handlePageSelect}
-                  firstPage={firstPage}
-                  lastPage={lastPage}
-                  pageCount={pageCount}
-                  selectedPage={selectedPage}
-                />
+                {pageCount !== 1 ? (
+                  <PaginationLinks
+                    handlePageSelect={this.handlePageSelect}
+                    firstPage={firstPage}
+                    lastPage={lastPage}
+                    pageCount={pageCount}
+                    selectedPage={selectedPage}
+                  />
+                ) : null}
               </Grid.Column>
             </Grid.Row>
           </Grid>
