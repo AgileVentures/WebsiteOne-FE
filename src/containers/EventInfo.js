@@ -34,9 +34,9 @@ export class EventInfo extends Component {
   }
 }
 
-const mapStateToProps = (store, ownProps) => ({
-  events: store.event,
-  event: store.eventInfo
+const mapStateToProps = (state, ownProps) => ({
+  events: state.event,
+  event: state.eventInfo
 })
 export default connect(
   mapStateToProps,

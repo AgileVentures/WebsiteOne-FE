@@ -35,7 +35,7 @@ export class UserProfile extends Component {
   }
 }
 
-const mapStateToProps = store => ({ users: store.users, user: store.userInfo })
+const mapStateToProps = state => ({ users: state.users, user: state.userInfo })
 export default connect(
   mapStateToProps,
   { fetchUserInfo, setLastLocation }

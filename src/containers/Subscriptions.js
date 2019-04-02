@@ -94,10 +94,10 @@ export const Subscriptions = props => {
     </Fragment>
   )
 }
-const mapStateToProps = (store, ownProps) => ({
-  loggedInUser: store.loggedInUser,
+const mapStateToProps = (state, ownProps) => ({
+  loggedInUser: state.loggedInUser,
   cookies: ownProps.cookies,
-  error: store.error
+  error: state.error
 })
 const mapDispatchToProps = dispatch => {
   return {

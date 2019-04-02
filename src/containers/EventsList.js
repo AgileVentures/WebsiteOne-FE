@@ -61,7 +61,7 @@ export class EventsList extends Component {
   }
 }
 
-const mapStateToProps = store => ({ events: store.events })
+const mapStateToProps = state => ({ events: state.events })
 export default connect(
   mapStateToProps,
   { fetchEvents, setLastLocation }

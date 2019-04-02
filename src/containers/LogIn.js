@@ -101,9 +101,9 @@ export class LogIn extends Component {
   }
 }
 
-const mapStateToProps = (store, ownProps) => ({
-  loggedInUser: store.loggedInUser,
-  lastLocation: store.lastLocation,
+const mapStateToProps = (state, ownProps) => ({
+  loggedInUser: state.loggedInUser,
+  lastLocation: state.lastLocation,
   cookies: ownProps.cookies
 })
 export default connect(

@@ -247,7 +247,7 @@ export class ProjectsList extends Component {
   }
 }
 
-const mapStateToProps = store => ({ projects: store.projects, error: store.error })
+const mapStateToProps = state => ({ projects: state.projects, error: state.error })
 export default connect(
   mapStateToProps,
   { fetchProjects, setLastLocation }
