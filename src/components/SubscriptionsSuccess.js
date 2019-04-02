@@ -43,9 +43,9 @@ export const SubscriptionsSuccess = props => {
   )
 }
 
-const mapStateToProps = (store, ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
   cookies: ownProps.cookies,
-  error: store.error
+  error: state.error
 })
 export default connect(
   mapStateToProps
