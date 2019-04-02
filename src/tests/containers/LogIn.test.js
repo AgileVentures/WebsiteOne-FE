@@ -3,6 +3,7 @@ import { LogIn } from '../../containers/LogIn'
 import { mount } from 'enzyme'
 
 describe('LogIn', () => {
+  let wrapper
   const user = {
     id: 1,
     email: 'existing-user@example.com',
@@ -10,7 +11,7 @@ describe('LogIn', () => {
   }
   const props = {
     history: { push: jest.fn() },
-    lastLocation: { path: '/subscriptions/new', search: '?plan=premium' },
+    lastLocation: '',
     cookies: { set: jest.fn() },
     postLogInInfo: jest.fn(
       logInInfo =>
@@ -26,31 +27,8 @@ describe('LogIn', () => {
         })
     )
   }
-  let wrapper = mount(<LogIn {...props} />)
-
-  it('should call handleLogIn and postLogInInfo when the form is submitted', () => {
-    const spy = jest.spyOn(wrapper.instance(), 'handleLogIn')
-    wrapper.instance().forceUpdate()
-    const emailInput = wrapper.find('input').filterWhere(item => {
-      return item.prop('name') === 'email'
-    })
-
-    const passwordInput = wrapper.find('input').filterWhere(item => {
-      return item.prop('name') === 'password'
-    })
-
-    emailInput.simulate('change', {
-      target: { value: 'existing-user@example.com' }
-    })
-
-    passwordInput.simulate('change', {
-      target: { value: 'password' }
-    })
-
-    const submitForm = wrapper.find('Form')
-    submitForm.simulate('submit')
-
-    expect(spy).toHaveBeenCalledTimes(1)
+  beforeEach(() => {
+    wrapper = mount(<LogIn {...props} />)
   })
 
   it('returns the user if postLogInInfo is called with the correct credentials', async () => {
@@ -71,17 +49,100 @@ describe('LogIn', () => {
     }
   })
 
-  it('redirects back to last location', async () => {
+  it('redirects to root when no path is set in lastLocation', async () => {
     expect.assertions(1)
+    const emailInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'email'
+    })
+
+    const passwordInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'password'
+    })
+
+    emailInput.simulate('change', {
+      target: { value: 'existing-user@example.com' }
+    })
+
+    passwordInput.simulate('change', {
+      target: { value: 'password' }
+    })
+
+    const submitForm = wrapper.find('Form')
+    submitForm.simulate('submit')
     await props
       .postLogInInfo({
         email: 'existing-user@example.com',
         password: 'password'
       })
       .then(() => {
-        expect(props.history.push).toBeCalledWith(
-          props.lastLocation.path + props.lastLocation.search
-        )
+        expect(props.history.push).toHaveBeenCalledWith('/')
+      })
+  })
+
+  it('redirects back to last location with search term', async () => {
+    props.lastLocation = { path: '/subscriptions/new', search: '?plan=premium' }
+    wrapper = mount(<LogIn {...props} />)
+
+    expect.assertions(1)
+    const emailInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'email'
+    })
+
+    const passwordInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'password'
+    })
+
+    emailInput.simulate('change', {
+      target: { value: 'existing-user@example.com' }
+    })
+
+    passwordInput.simulate('change', {
+      target: { value: 'password' }
+    })
+
+    const submitForm = wrapper.find('Form')
+    submitForm.simulate('submit')
+    await props
+      .postLogInInfo({
+        email: 'existing-user@example.com',
+        password: 'password'
+      })
+      .then(() => {
+        expect(props.history.push).toHaveBeenCalledWith(props.lastLocation.path + props.lastLocation.search)
+      })
+  })
+
+  it('redirects back to last location without search term', async () => {
+    expect.assertions(1)
+    props.lastLocation = { path: '/events/new' }
+    wrapper = mount(<LogIn {...props} />)
+
+    const emailInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'email'
+    })
+
+    const passwordInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'password'
+    })
+
+    emailInput.simulate('change', {
+      target: { value: 'existing-user@example.com' }
+    })
+
+    passwordInput.simulate('change', {
+      target: { value: 'password' }
+    })
+
+    const submitForm = wrapper.find('Form')
+    submitForm.simulate('submit')
+
+    await props
+      .postLogInInfo({
+        email: 'existing-user@example.com',
+        password: 'password'
+      })
+      .then(() => {
+        expect(props.history.push).toHaveBeenCalledWith('/events/new')
       })
   })
 })

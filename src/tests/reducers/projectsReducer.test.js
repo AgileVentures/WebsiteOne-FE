@@ -1,5 +1,5 @@
 import projectsReducer from '../../reducers/projectsReducer'
-import { GET_PROJECTS } from '../../types'
+import { GET_PROJECTS, GET_ACTIVE_PROJECTS } from '../../types'
 
 describe('reduces projects', () => {
   it('defaults to empty projects if none are passed in', () => {
@@ -10,8 +10,17 @@ describe('reduces projects', () => {
     expect(
       projectsReducer([], {
         type: GET_PROJECTS,
-        payload: ['Project to be added to store']
+        payload: [{ id: 1, title: 'Anvil' }]
       })
-    ).toEqual(['Project to be added to store'])
+    ).toEqual([{ id: 1, title: 'Anvil' }])
+  })
+
+  it('reduces active projects', () => {
+    expect(
+      projectsReducer([], {
+        type: GET_ACTIVE_PROJECTS,
+        payload: [{ id: 1, title: 'Anvil', status: 'active' }]
+      })
+    ).toEqual([{ id: 1, title: 'Anvil', status: 'active' }])
   })
 })
