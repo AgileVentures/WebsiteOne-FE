@@ -7,7 +7,7 @@ import moment from 'moment-timezone'
 const EventSummary = props => {
   let { event } = props
   if (event) {
-    let startTime = moment(event.nextScheduledEvent.time)
+    let startTime = moment(event.start_datetime)
     let endTime = startTime.clone().add(Number(event.duration), 'minutes')
     let timeRange = `${startTime.format('HH:mm')} - ${endTime.format('HH:mm')}  ${moment.tz.guess()}`
     return (
@@ -27,11 +27,15 @@ const EventSummary = props => {
             <Segment padded='very' vertical>
               <Grid columns={2} stackable>
                 <Grid.Column width={8}>
-                  <Header as='h5'>Next scheduled event:</Header>
-                  <Icon name='calendar plus outline' size='large' />
-                  {moment(event.nextScheduledEvent.time).format('MMMM Do YYYY')}
-                  <br />
-                  <br />
+                  {event.nextScheduledEvent
+                    ? <Fragment>
+                      <Header as='h5'>Next scheduled event:</Header>
+                      <Icon name='calendar plus outline' size='large' />
+                      {moment(event.nextScheduledEvent.time).format('MMMM Do YYYY')}
+                      <br />
+                      <br />
+                    </Fragment>
+                    : null}
                   <Icon name='clock outline' size='large' />
                   {timeRange}
                 </Grid.Column>
@@ -58,7 +62,7 @@ const EventSummary = props => {
             </Segment>
           </Grid.Column>
           <Grid.Column width={4} className='event-info-videos'>
-            {event.videos
+            {event.videos ? event.videos
               .filter(video => video.yt_video_id !== null)
               .map(video => (
                 <Fragment key={video.id}>
@@ -66,14 +70,14 @@ const EventSummary = props => {
                     id={video.yt_video_id}
                     placeholder={
                       'https://img.youtube.com/vi/' +
-                        video.yt_video_id +
-                        '/3.jpg'
+                      video.yt_video_id +
+                      '/3.jpg'
                     }
                     source='youtube'
                   />
                   <p>{video.title}</p>
                 </Fragment>
-              ))}
+              )) : null}
           </Grid.Column>
         </Grid>
       </Fragment>
