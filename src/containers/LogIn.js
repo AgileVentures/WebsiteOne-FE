@@ -56,7 +56,7 @@ export class LogIn extends Component {
     window.location.assign('https://github.com/login/oauth/authorize?client_id=4a04051e9e3674a6d3ee')
   }
 
-  render() {
+  render () {
     const { password, email } = this.state
     return (
       <Fragment>
