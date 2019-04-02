@@ -8,3 +8,4 @@ cypress/screenshots
 .env
 .vscode/
 yarn-error.log
+.tool-versions

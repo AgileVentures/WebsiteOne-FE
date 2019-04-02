@@ -175,3 +175,62 @@ Then("I should see the event's info", () => {
       cy.get('div.embed').should('have.length', 1)
     })
 })
+
+Given('I am logged in', () => {
+  cy.fixture('loggedInUser').then(loggedInUser => {
+    cy.route({
+      method: 'POST',
+      url: /\/users\/sign_in/,
+      response: loggedInUser,
+      status: 200
+    }).as('postLogInInfo')
+    cy.visit('/login')
+      .get('input[name=email]')
+      .type('username@user.com')
+      .get('input[name=password]')
+      .type('user1234')
+      .get('button[type=submit]')
+      .click()
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'POST_LOGIN_INFO', payload: loggedInUser })
+  })
+  cy.wait('@postLogInInfo')
+})
+
+Then('I should be able to create a new event quickly', () => {
+  cy.fixture('newlyCreatedEvent').then(newlyCreatedEvent => {
+    cy.route({
+      method: 'POST',
+      url: /\/events/,
+      response: newlyCreatedEvent,
+      status: 200
+    }).as('newlyCreatedEvent')
+    cy.visit('/events/new')
+      .get('h1')
+      .should('contain', 'Creating a new Event')
+      .get('input[name=name]')
+      .type('NewEvent')
+      .get('button[type=submit]')
+      .click()
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEvent })
+  })
+  cy.wait('@newlyCreatedEvent')
+})
+
+Then("I should be on the newly created event's page", () => {
+  cy.url().should('include', 'events/newevent')
+    .get('h2')
+    .should('contain', 'NewEvent')
+    .get('p')
+    .should('contain', 'Event type: PairProgramming')
+    .get('p')
+    .should('contain', 'Event for: All')
+    .get('img.ui.circular.image')
+    .should('have.attr', 'src')
+    .and('contain', 'https://www.gravatar.com/avatar/ad5b3d2d4c25801fcb632cf8014fb555?s=80&d=retro')
+    .get('p')
+    .should('contain', 'created by:')
+})

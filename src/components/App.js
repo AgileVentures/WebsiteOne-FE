@@ -18,6 +18,7 @@ import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
+import EventForm from '../containers/EventForm'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
@@ -73,6 +74,14 @@ class App extends Component {
           <Route path='/premium-mob' component={PremiumMobMembershipPage} />
           <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
           <Route exact path='/events' component={EventsList} />
+          <Route path='/events/new' render={props => {
+            return (
+              <EventForm
+                {...props}
+                cookies={this.props.cookies}
+              />)
+          }}
+          />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>
