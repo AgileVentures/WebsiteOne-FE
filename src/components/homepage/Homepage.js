@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Grid } from 'semantic-ui-react'
 import HomepageModal from './HomepageModal'
-import './Homepage.css'
 import modals from './modals'
+import './Homepage.css'
 
 export class Homepage extends Component {
   renderModals () {

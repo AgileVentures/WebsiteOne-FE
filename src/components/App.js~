@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import UsersList from '../containers/UsersList'
 import UserProfile from '../containers/UserProfile'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/homepage/Homepage'
+import Footer from '../components/Footer'
 import Navbar from './navbar/Navbar'
 import About from '../containers/About'
 import LogIn from '../containers/LogIn'
@@ -26,7 +27,6 @@ class App extends Component {
     return (
       <Fragment>
 <<<<<<< HEAD
-        <BrowserRouter>
           <div>
             <Navbar cookies={this.props.cookies} />
             <Switch>
@@ -80,8 +80,7 @@ class App extends Component {
               <Route path='/events/:slug' component={EventInfo} />
               <Route path='/getting-started' component={GettingStartedPage} />
             </Switch>
-          </div>
-        </BrowserRouter>
+          </div>        
 =======
         <Navbar cookies={this.props.cookies} />
         <Switch>
@@ -143,7 +142,8 @@ class App extends Component {
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>
->>>>>>> create events functionality (#145)
+        <Footer />
+>>>>>>> Add Footer component
       </Fragment>
     )
   }

@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/homepage/Homepage'
+import Footer from '../components/Footer'
 import Navbar from './navbar/Navbar'
 import About from '../containers/About'
 import LogIn from '../containers/LogIn'
@@ -78,6 +79,7 @@ class App extends Component {
               <Route path='/events/:slug' component={EventInfo} />
               <Route path='/getting-started' component={GettingStartedPage} />
             </Switch>
+            <Footer />
           </div>        
       </Fragment>
     )
