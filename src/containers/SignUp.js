@@ -102,7 +102,7 @@ export class SignUp extends Component {
   }
 }
 
-const mapStateToProps = store => ({ signedUpUser: store.signedUpUser })
+const mapStateToProps = state => ({ signedUpUser: state.signedUpUser })
 export default connect(
   mapStateToProps,
   { postSignUpInfo }
