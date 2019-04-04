@@ -52,14 +52,18 @@ export class LogIn extends Component {
       })
   };
 
-  render () {
+  handleOAuthLogin = () => {
+    window.location.assign('https://github.com/login/oauth/authorize?client_id=4a04051e9e3674a6d3ee')
+  }
+
+  render() {
     const { password, email } = this.state
     return (
       <Fragment>
         <Header as='h1' textAlign='center' className='login-h1'>
           Log In
         </Header>
-        <Button>with GitHub</Button>
+        <Button onClick={this.handleOAuthLogin}>with GitHub</Button>
         <Header as='h4' textAlign='center' className='login-h4'>
           Don't have an account? <a href='/signup'>Sign Up</a>
         </Header>
