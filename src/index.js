@@ -5,16 +5,17 @@ import { CookiesProvider } from 'react-cookie'
 import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
+
 import './assets/semantic.css'
 
 render(
-  <CookiesProvider>
+  <CookiesProvider >
     <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>
-  </CookiesProvider>
+  </CookiesProvider >
   ,
   document.getElementById('root')
 )
