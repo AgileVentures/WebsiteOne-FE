@@ -32,9 +32,15 @@ Run tests
 $ yarn test
 ```
 
-**Note :**  At this level, you should be able to run the project. In case an upgrade is needed for semantic UI, following the section below. 
+On windows:
 
-Rebuild the semantic UI asserts 
+```bash
+  yarn windows-test 
+```
+
+**Note :**  At this level, you should be able to run the project. In case an upgrade is needed for semantic UI, following the section below.
+
+Rebuild the semantic UI asserts
 ----------------------------------
 This command needs to be run with **npm** - **yarn** does not support interactive prompt installs
 
