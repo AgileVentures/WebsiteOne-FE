@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {
-  CREATE_PROJECT
+  CREATE_PROJECT, CREATE_PROJECT_FAILURE
 } from '../types'
 
 export let createProject = props => dispatch => {
@@ -10,8 +10,6 @@ export let createProject = props => dispatch => {
     status,
     cookies
   } = props
-  console.log('################')
-  console.log(cookies.get('_WebsiteOne_session'))
   return axios({
     method: 'POST',
     url: '/projects',
@@ -23,7 +21,8 @@ export let createProject = props => dispatch => {
       }
     },
     headers: {
-      Authorization: cookies.get('_WebsiteOne_session')
+      Authorization: cookies.get('_WebsiteOne_session'),
+      Accept: 'application/json'
     }
   }).then(response => {
     dispatch({
@@ -33,4 +32,10 @@ export let createProject = props => dispatch => {
     console.log('++++++')
     console.log(response)
   })
+    .catch(error => {
+      dispatch({
+        type: CREATE_PROJECT_FAILURE,
+        payload: error.message
+      })
+    })
 }
