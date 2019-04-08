@@ -1,4 +1,8 @@
-import { Then, Given, When } from 'cypress-cucumber-preprocessor/steps'
+import {
+  Then,
+  Given,
+  When
+} from 'cypress-cucumber-preprocessor/steps'
 
 Given('the server is running', () => {
   cy.server()
@@ -24,7 +28,10 @@ When(`I click on the Users link in the navbar`, () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_USERS', payload: users })
+      .invoke('dispatch', {
+        type: 'GET_USERS',
+        payload: users
+      })
   })
   cy.wait('@getUsers')
 })
@@ -46,10 +53,15 @@ When("I click on a user's name", () => {
     cy.route(/\/api\/v1\/users\/1/, user).as('getUser')
     cy.get('a')
       .contains(`${user.first_name} ${user.last_name}`)
-      .click({ force: true })
+      .click({
+        force: true
+      })
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_USER_INFO', payload: user })
+      .invoke('dispatch', {
+        type: 'GET_USER_INFO',
+        payload: user
+      })
   })
   cy.wait('@getUser')
 })
@@ -81,7 +93,10 @@ When(`I click on the Projects link in the navbar`, () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_PROJECTS', payload: projects })
+      .invoke('dispatch', {
+        type: 'GET_PROJECTS',
+        payload: projects
+      })
   })
   cy.wait('@getProjects')
 })
@@ -98,10 +113,15 @@ When("I click on the project's title", () => {
     cy.route(/\/api\/v1\/projects\/localsupport/, project).as('getProject')
     cy.get('div')
       .contains('LocalSupport')
-      .click({ force: true })
+      .click({
+        force: true
+      })
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: project })
+      .invoke('dispatch', {
+        type: 'GET_PROJECT_INFO',
+        payload: project
+      })
   })
   cy.wait('@getProject')
   cy.reload()
@@ -137,7 +157,10 @@ When(`I click on the Events link in the navbar`, () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_EVENTS', payload: events })
+      .invoke('dispatch', {
+        type: 'GET_EVENTS',
+        payload: events
+      })
   })
   cy.wait('@getEvents')
 })
@@ -151,10 +174,15 @@ When('I click on an event in the calendar', () => {
     cy.route(/\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/, event).as('getEvent')
     cy.get('.rbc-event-content')
       .contains("'Katherine Johson' Scrum")
-      .click({ force: true })
+      .click({
+        force: true
+      })
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: event })
+      .invoke('dispatch', {
+        type: 'GET_EVENT_INFO',
+        payload: event
+      })
   })
   cy.wait('@getEvent')
 })
@@ -198,7 +226,10 @@ Given('I am logged in', () => {
       .click()
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'POST_LOGIN_INFO', payload: loggedInUser })
+      .invoke('dispatch', {
+        type: 'POST_LOGIN_INFO',
+        payload: loggedInUser
+      })
   })
   cy.wait('@postLogInInfo')
 })
@@ -257,6 +288,8 @@ Then('I should be able to create new projects', () => {
     .type('NewProject')
     .get('textarea[name=description]')
     .type('A new project')
+    .get('select[name=status]')
+    .select('Active')
     .get('button[type=submit]')
     .click()
     .get('h1')
