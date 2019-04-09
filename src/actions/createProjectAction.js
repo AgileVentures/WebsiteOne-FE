@@ -35,7 +35,7 @@ export let createProject = props => dispatch => {
     .catch(error => {
       dispatch({
         type: CREATE_PROJECT_FAILURE,
-        payload: error.message
+        message: error.message
       })
     })
 }
