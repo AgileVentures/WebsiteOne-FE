@@ -1,19 +1,21 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
 import { Provider } from 'react-redux'
-import store from './store'
+import  store  from './store'
 import App from './components/App'
 import './assets/semantic.css'
+import { ConnectedRouter } from 'connected-react-router'
+import history from "./store/history";
+
 
 render(
-  <CookiesProvider>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+  <CookiesProvider>      
+      <Provider store={ store }>
+        <ConnectedRouter history={history} >
+           <App />
+        </ConnectedRouter>
+      </Provider>   
   </CookiesProvider>
   ,
   document.getElementById('root')
@@ -22,3 +24,4 @@ render(
 if (window.Cypress) {
   window.store = store
 }
+

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import UsersList from '../containers/UsersList'
 import UserProfile from '../containers/UserProfile'
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/homepage/Homepage'
@@ -23,8 +23,11 @@ import { withCookies } from 'react-cookie'
 class App extends Component {
   render () {
     return (
-      <Fragment>
+     <Fragment>
+      <BrowserRouter>
+	<div>
         <Navbar cookies={this.props.cookies} />
+        
         <Switch>
           <Route path='/' exact component={Homepage} />
           <Route exact path='/about' component={About} />
@@ -76,6 +79,8 @@ class App extends Component {
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>
+        </div>
+       </BrowserRouter>
       </Fragment>
     )
   }

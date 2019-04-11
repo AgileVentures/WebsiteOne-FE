@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Menu, Container, Image, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { Link, withRouter } from 'react-router-dom'
+//import { withRouter } from 'react-router'
 import logo from '../../images/av-logo.svg'
 import './Navbar.css'
 export class Navbar extends Component {

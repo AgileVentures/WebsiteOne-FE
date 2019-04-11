@@ -11,6 +11,7 @@ import PaginationLinks from '../components/PaginationLinks'
 import ErrorBoundary from '../components/ErrorBoundary'
 import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
+import SimpleStorage from "react-simple-storage";
 
 const projectsPerPage = 12
 export class ProjectsList extends Component {
@@ -30,6 +31,19 @@ export class ProjectsList extends Component {
   };
 
   componentDidMount = async () => {
+    //if(localStorage.hasOwnProperty('selectedLanguageStorage')){
+     //  let filteredProject=JSON.parse(localStorage.getItem('filteredProject'))
+      // this.setState({
+		//selectedLanguage: filteredProject.selectedLanguage,
+		//filteredProjectsList:filteredProject.filteredProjectsList,
+		//pageCount:filteredProject.pageCount,
+	        //firstPage:true,
+		//lastPage:filteredProject.lastPage
+
+		//},()=>{			
+            //this.paginateProjects(this.state.filteredProjectsList)
+		//})
+    //}
     if (!this.props.projects.length) {
       await this.props.fetchProjects()
       if (this.props.error) {
@@ -37,7 +51,8 @@ export class ProjectsList extends Component {
       }
     } else {
       this.paginateProjects(this.props.projects)
-    }
+      }
+    
     this.props.setLastLocation(this.props.location.pathname)
   }
 
@@ -130,7 +145,9 @@ export class ProjectsList extends Component {
         pageCount,
         firstPage: true,
         lastPage: !(pageCount > 1)
-      })
+      },()=>{
+	   localStorage.setItem('filteredProject',JSON.stringify(this.state))	
+	})
     } else {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.setState({
@@ -142,6 +159,7 @@ export class ProjectsList extends Component {
         lastPage: !(pageCount > 1)
       })
     }
+      
   };
 
   handlePageSelect = selectedPage => e => {
@@ -172,6 +190,7 @@ export class ProjectsList extends Component {
 
     return (
       <Fragment>
+       <SimpleStorage parent={this} />
         <Container>
           <Grid>
             <Grid.Row>
@@ -239,7 +258,7 @@ export class ProjectsList extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </Container>
+        </Container>       
       </Fragment>
     )
   }
