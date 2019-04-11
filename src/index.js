@@ -1,19 +1,20 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
+import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
 import './assets/semantic.css'
+import history from './store/history'
 
 render(
   <CookiesProvider>
-    <BrowserRouter>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ConnectedRouter history={history} >
         <App />
-      </Provider>
-    </BrowserRouter>
+      </ConnectedRouter>
+    </Provider>
   </CookiesProvider>
   ,
   document.getElementById('root')

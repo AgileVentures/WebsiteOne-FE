@@ -10,9 +10,12 @@ import userInfo from '../reducers/userInfoReducer'
 import projectInfo from '../reducers/projectInfoReducer'
 import events from '../reducers/eventsReducer'
 import eventInfo from '../reducers/eventInfoReducer'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import history from './history'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
+  router: connectRouter(history),
   users,
   projects,
   loggedInUser,
@@ -27,5 +30,5 @@ const rootReducer = combineReducers({
 
 export default createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(routerMiddleware(history), thunk))
 )
