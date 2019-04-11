@@ -6,7 +6,7 @@ import logo from '../../images/av-logo.svg'
 import './Navbar.css'
 
 export class Navbar extends Component {
-  state = { showHamburgerMenu: false };
+  state = { showHamburgerMenu: false }
   currentPath () {
     // this.props.location.split("/") returns ["", ""] when on homepage
     // and ["", "users", "123"] when on /users/123
