@@ -220,7 +220,18 @@ Then('I should be able to create a new event quickly', () => {
   cy.wait('@newlyCreatedEvent')
 })
 
-Then("I should be on the newly created event's page", () => {
+When("I should be redirected to the event's info page", () => {
+  cy.fixture('newlyCreatedEventInfo').then(newlyCreatedEventInfo => {
+    cy.route(/\/api\/v1\/events\/newevent/, newlyCreatedEventInfo).as('getEvent')
+    cy.visit('/events/newevent')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEventInfo })
+  })
+  cy.wait('@getEvent')
+})
+
+Then("I should see the newly created event's info", () => {
   cy.url().should('include', 'events/newevent')
     .get('h2')
     .should('contain', 'NewEvent')
@@ -230,7 +241,7 @@ Then("I should be on the newly created event's page", () => {
     .should('contain', 'Event for: All')
     .get('img.ui.circular.image')
     .should('have.attr', 'src')
-    .and('contain', 'https://www.gravatar.com/avatar/ad5b3d2d4c25801fcb632cf8014fb555?s=80&d=retro')
+    .and('contain', 'https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro')
     .get('p')
     .should('contain', 'created by:')
 })
