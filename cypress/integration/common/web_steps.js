@@ -29,11 +29,16 @@ When(`I click on the Users link in the navbar`, () => {
   cy.wait('@getUsers')
 })
 
-Then(`I should see 12 cards with basic user info`, () => {
+Then(`I should see {string} cards with basic user info`, (number) => {
   cy.get('h1')
     .should('contain', 'Volunteers Directory')
     .get('.user-card')
-    .should('have.length', 12)
+    .should('have.length', Number(number))
+})
+
+When(`I enter {string} into search bar`, name => {
+  cy.get('input')
+    .type(name)
 })
 
 When("I click on a user's name", () => {
