@@ -7,7 +7,9 @@ Feature: Journey test
     Given I am at the "Home" page
     Then I should see "Scrums"
     When I click on the Users link in the navbar
-    Then I should see 12 cards with basic user info
+    Then I should see "12" cards with basic user info
+    When I enter "Matt" into search bar
+    Then I should see "3" cards with basic user info
     When I click on a user's name
     Then I should see the user's info
     When I click on the Projects link in the navbar
