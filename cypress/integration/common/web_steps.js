@@ -280,19 +280,27 @@ Then("I should see the newly created event's info", () => {
     .should('contain', 'created by:')
 })
 
-Then('I should be able to create new projects', () => {
-  cy.visit('/projects/new')
-    .get('h1')
-    .should('contain', 'Creating a new Project')
-    .get('input[name=title]')
-    .type('NewProject')
-    .get('textarea[name=description]')
-    .type('A new project')
-    .get('select[name=status]')
-    .get('button[type=submit]')
-    .click()
-    .get('h1')
-    .should('contain', 'List of Projects')
-    .get('.project-card')
-    .should('have.length', 12)
+Then('I should be able to create a new project', () => {
+  cy.fixture('newlyCreatedProject').then(newlyCreatedProject => {
+    cy.route({
+      method: 'POST',
+      url: /\/projects/,
+      response: newlyCreatedProject,
+      status: 200
+    }).as('newlyCreatedProject')
+    cy.visit('/projects/new')
+      .get('h1')
+      .should('contain', 'Creating a new Project')
+      .get('input[name=title]')
+      .type('NewProject')
+      .get('textarea[name=description]')
+      .type('A new project')
+      .get('select[name=status]')
+      .get('button[type=submit]')
+      .click()
+    cy.window()
+      .its('store')
+      .invoke('dispatch', {type: 'GET_PROJECT_INFO', payload: newlyCreatedProject})
+   })
+  cy.wait('@newlyCreatedProject')
 })
