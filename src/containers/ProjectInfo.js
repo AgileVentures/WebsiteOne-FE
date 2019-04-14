@@ -34,9 +34,9 @@ export class ProjectInfo extends Component {
   }
 }
 
-const mapStateToProps = (store, ownProps) => ({
-  projects: store.projects,
-  project: store.projectInfo
+const mapStateToProps = (state, ownProps) => ({
+  projects: state.projects,
+  project: state.projectInfo
 })
 export default connect(
   mapStateToProps,

@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/homepage/Homepage'
+import Footer from '../components/Footer'
 import Navbar from './navbar/Navbar'
 import About from '../containers/About'
 import LogIn from '../containers/LogIn'
@@ -18,7 +19,7 @@ import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
-import EventForm from '../containers/EventForm'
+import CreateEventPage from '../containers/CreateEventPage'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
@@ -76,7 +77,7 @@ class App extends Component {
           <Route exact path='/events' component={EventsList} />
           <Route path='/events/new' render={props => {
             return (
-              <EventForm
+              <CreateEventPage
                 {...props}
                 cookies={this.props.cookies}
               />)
@@ -85,6 +86,7 @@ class App extends Component {
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>
+        <Footer />
       </Fragment>
     )
   }
