@@ -3,7 +3,7 @@ import { createProject } from '../../actions/createProjectAction'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import { CREATE_PROJECT } from '../../types'
-import newProject from '../../../cypress/fixtures/createdProject'
+import newProject from '../../../cypress/fixtures/newlyCreatedProject'
 
 describe('createProject', () => {
   const middlewares = [thunk]
