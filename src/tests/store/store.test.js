@@ -18,7 +18,9 @@ describe('Store', () => {
       userInfo: {},
       projectInfo: {},
       events: [],
-      eventInfo: {}
+      eventInfo: {},
+      selectedLanguage2: null,
+      filteredProjectsState: {}
     })
   })
 })

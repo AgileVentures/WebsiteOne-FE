@@ -31,6 +31,7 @@
     "connected-react-router": "^6.3.2",
     "dotenv-webpack": "^1.7.0",
     "global": "^4.3.2",
+    "history": "^4.9.0",
     "izitoast": "^1.4.0",
     "moment-timezone": "^0.5.23",
     "query-string": "^6.2.0",
