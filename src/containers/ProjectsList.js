@@ -11,7 +11,6 @@ import PaginationLinks from '../components/PaginationLinks'
 import ErrorBoundary from '../components/ErrorBoundary'
 import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
-import SimpleStorage from 'react-simple-storage'
 
 const projectsPerPage = 12
 export class ProjectsList extends Component {
@@ -172,8 +171,7 @@ export class ProjectsList extends Component {
     } = this.state
 
     return (
-      <Fragment>
-        <SimpleStorage parent={this} />
+      <Fragment>        
         <Container>
           <Grid>
             <Grid.Row>
