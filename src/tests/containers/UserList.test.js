@@ -5,7 +5,7 @@ import usersFixture from '../../fixtures/users'
 import { StaticRouter } from 'react-router'
 
 describe('UsersList', () => {
-  let wrapper
+  let wrapper, usersList, searchBox
   const context = {}
   wrapper = mount(
     <StaticRouter context={context}>
@@ -23,6 +23,8 @@ describe('UsersList', () => {
       />
     </StaticRouter>
   )
+  usersList = wrapper.find('UsersList')
+  searchBox = wrapper.find('Input')
 
   it('should have a header Volunteers Directory', () => {
     expect(wrapper.find('Header').text()).toBe('Volunteers Directory')
@@ -41,7 +43,6 @@ describe('UsersList', () => {
   })
 
   it('should normalize users for pagination', () => {
-    let usersList = wrapper.find('UsersList')
     let users = usersList.instance().state.users
 
     expect(Object.keys(users).length).toEqual(3)
@@ -54,7 +55,7 @@ describe('UsersList', () => {
       return item.text() === '2'
     })
     paginationLink2.simulate('click')
-    let usersList = wrapper.find('UsersList')
+
     expect(usersList.instance().state.selectedPage).toEqual(2)
     expect(usersList.instance().state.lastPage).toBe(false)
     expect(usersList.instance().state.firstPage).toBe(false)
@@ -65,7 +66,7 @@ describe('UsersList', () => {
       return item.text() === '3'
     })
     paginationLink2.simulate('click')
-    let usersList = wrapper.find('UsersList')
+
     expect(usersList.instance().state.lastPage).toBe(true)
   })
 
@@ -74,14 +75,11 @@ describe('UsersList', () => {
       return item.text() === '1'
     })
     paginationLink2.simulate('click')
-    let usersList = wrapper.find('UsersList')
+
     expect(usersList.instance().state.firstPage).toBe(true)
   })
 
   it('should limit the users list after query is entered in search box', () => {
-    let usersList = wrapper.find('UsersList')
-    let searchBox = wrapper.find('Input')
-
     expect(usersList.instance().state.users[1]).toHaveLength(12)
 
     // For some reason `searchBox.simulate('change', ...)` was not
@@ -90,6 +88,21 @@ describe('UsersList', () => {
 
     expect(usersList.instance().state.users[1]).toHaveLength(1)
     expect(usersList.instance().state.users[1][0].first_name).toEqual('Gordon')
+
+    searchBox.props().onChange({ target: { value: '' } })
+  })
+
+  it('should show no users if query in search box does not match any entry', () => {
+    expect(usersList.instance().state.users[1]).toHaveLength(12)
+
+    searchBox.props().onChange({ target: { value: 'blablabla' } })
+
+    expect(usersList.instance().state.users[1]).toBeUndefined()
+
+    let resultColumns = wrapper.find('CardGroup')
+    expect(resultColumns.text()).toEqual('No users found.')
+
+    searchBox.props().onChange({ target: { value: '' } })
   })
 
   it("shouldn't render a Project component without users", () => {
