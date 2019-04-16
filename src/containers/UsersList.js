@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Card, Grid, Container } from 'semantic-ui-react'
+import { Header, Card, Grid, Container, Input } from 'semantic-ui-react'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import { connect } from 'react-redux'
@@ -68,6 +68,21 @@ export class UsersList extends Component {
     })
   };
 
+  handleSearchInput = e => {
+    const users = this.props.users.filter(user => {
+      const name = this.sanitizeInput(`${user.first_name} ${user.last_name}`)
+      const query = this.sanitizeInput(e.target.value)
+
+      return name.includes(query)
+    })
+
+    this.normalizeUsers(users)
+  };
+
+  sanitizeInput = input => {
+    return input.toLowerCase().trim()
+  };
+
   render () {
     let {
       firstPage,
@@ -83,20 +98,33 @@ export class UsersList extends Component {
             <Grid.Row>
               <Grid.Column width={12}>
                 <Header as='h1'>Volunteers Directory</Header>
-                <Card.Group centered itemsPerRow={3}>
-                  <Paginate
-                    items={usersList}
-                    Component={User}
-                    pageCount={pageCount}
-                  />
-                </Card.Group>
-                <PaginationLinks
-                  handlePageSelect={this.handlePageSelect}
-                  firstPage={firstPage}
-                  lastPage={lastPage}
-                  pageCount={pageCount}
-                  selectedPage={selectedPage}
+                <Input
+                  onChange={this.handleSearchInput}
+                  className='users-list-search-input'
+                  fluid
+                  icon='search'
+                  placeholder='Search...'
                 />
+                <Card.Group centered itemsPerRow={3}>
+                  {usersList ? (
+                    <Paginate
+                      items={usersList}
+                      Component={User}
+                      pageCount={pageCount}
+                    />
+                  ) : (
+                    'No users found.'
+                  )}
+                </Card.Group>
+                {pageCount !== 1 ? (
+                  <PaginationLinks
+                    handlePageSelect={this.handlePageSelect}
+                    firstPage={firstPage}
+                    lastPage={lastPage}
+                    pageCount={pageCount}
+                    selectedPage={selectedPage}
+                  />
+                ) : null}
               </Grid.Column>
             </Grid.Row>
           </Grid>
