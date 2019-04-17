@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { List } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import Footer, { LinksList } from '../../components/Footer'
 
 describe('Footer', () => {
@@ -50,13 +50,12 @@ describe('Footer', () => {
     })
 
     it('renders the correct text and href for each link', () => {
-      const links = wrapper.find(Link);
+      const links = wrapper.find(Link)
 
       for (let i = 0; i < links.length; i++) {
-        expect(links.at(i).prop('to')).toEqual(props[i].href);
-        expect(links.at(i).contains(props[i].text)).toEqual(true);
+        expect(links.at(i).prop('to')).toEqual(props[i].href)
+        expect(links.at(i).contains(props[i].text)).toEqual(true)
       }
-    });
-
+    })
   })
 })
