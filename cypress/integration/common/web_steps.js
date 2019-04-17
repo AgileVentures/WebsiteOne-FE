@@ -304,3 +304,14 @@ Then('I should be able to create a new project', () => {
   })
   cy.wait('@newlyCreatedProject')
 })
+
+When("I should be redirected to the project's info page", () => {
+  cy.fixture('newlyCreatedProjectInfo').then(newlyCreatedProjectInfo => {
+    cy.route(/\/api\/v1\/projects\/newproject/, newlyCreatedProjectInfo).as('getProject')
+    cy.visit('/projects/newproject')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: newlyCreatedProjectInfo })
+  })
+  cy.wait('@getProject')
+})

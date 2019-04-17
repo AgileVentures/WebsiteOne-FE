@@ -14,6 +14,8 @@ export let fetchProjectInfo = slug => dispatch => {
     project.members = members
     project.membersGravatarUrl = membersGravatarUrl
     project.videos = videos
+    console.log('******************')
+    console.log(project)
     dispatch({ type: GET_PROJECT_INFO, payload: project })
   })
 }
