@@ -33,10 +33,10 @@ export const LinksList = ({ links }) => (
             {link.text}
           </Link>
         ) : (
-            <a href={link.href} target='_blank' rel='noreferrer'>
-              {link.text}
-            </a>
-          )}
+          <a href={link.href} target='_blank' rel='noreferrer'>
+            {link.text}
+          </a>
+        )}
       </List.Item>
     ))}
   </List>
