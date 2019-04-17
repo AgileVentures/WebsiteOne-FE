@@ -53,7 +53,7 @@ export class LogIn extends Component {
   };
 
   handleOAuthLogin = () => {
-    window.location.assign('https://github.com/login/oauth/authorize?client_id=4a04051e9e3674a6d3ee')
+    window.location.assign(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`)
   }
 
   render () {
