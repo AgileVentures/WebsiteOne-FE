@@ -29,8 +29,6 @@ export let createProject = props => dispatch => {
       type: CREATE_PROJECT,
       payload: response.data
     })
-    console.log('++++++')
-    console.log(response)
   })
     .catch(error => {
       dispatch({

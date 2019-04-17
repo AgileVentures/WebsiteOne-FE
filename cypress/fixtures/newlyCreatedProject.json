@@ -1,13 +1,13 @@
 {
     "project": {
     "id": 3,
-    "title": "LocalSupport",
-    "description": "VAH's Local Support site is at  www.harrowcn.org.uk",
+    "title": "NewProject",
+    "description": "A new project",
     "status": "Active",
     "created_at": "2018-10-18T20:54:13.525Z",
     "updated_at": "2018-10-18T20:54:13.525Z",
     "user_id": 3,
-    "slug": "localsupport",
+    "slug": "newproject",
     "github_url": "https://github.com/AgileVentures/LocalSupport/",
     "pivotaltracker_url": "https://www.pivotaltracker.com/n/projects/742821",
     "pitch": null,

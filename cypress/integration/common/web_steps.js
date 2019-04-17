@@ -315,3 +315,11 @@ When("I should be redirected to the project's info page", () => {
   })
   cy.wait('@getProject')
 })
+
+Then("I should see the newly created project's info", () => {
+  cy.url().should('include', 'projects/newproject')
+    .get('h1')
+    .should('contain', 'NewProject')
+    .get('h5')
+    .should('contain', 'A new project')
+})

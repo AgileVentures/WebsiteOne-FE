@@ -20,8 +20,6 @@ export class CreateProjectPage extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log('*******')
-    console.log(this.props.cookies)
     this.props.createProject({
       title: this.state.title,
       description: this.state.description,
