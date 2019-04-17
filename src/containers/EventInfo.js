@@ -28,7 +28,7 @@ export class EventInfo extends Component {
     let { event } = this.state
     return (
       <Container className='event-info-container'>
-        <EventSummary event={event} />
+        <EventSummary cookies={this.props.cookies} event={event} />
       </Container>
     )
   }
