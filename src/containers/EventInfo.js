@@ -38,7 +38,6 @@ export class EventInfo extends Component {
     if (this.state.link === '') {
       this.setState({ linkError: true })
     }
-    console.log(this.state.link);
     const { id, name, slug } = this.props.event
     this.props.postEventLink({ id, title: name, slug, link: this.state.link })
   };
