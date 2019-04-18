@@ -14,7 +14,9 @@ const ProjectForm = props => {
       onChange={
         props.onChange
       }
-    /> <Form.TextArea label='Description'
+      required
+    />
+    <Form.TextArea label='Description'
       placeholder='Project description'
       name='description'
       value={
@@ -23,22 +25,17 @@ const ProjectForm = props => {
       onChange={
         props.onChange
       }
+      required
     />
     <select name='status' id='status'
       onChange={
         props.onChange
       }
+      required
     >
       <option value='Active' >Active</option>
       <option value='Inactive'>Inactive</option>
     </select>
-    {/* <Form.Select fluid label='Gender'
-      options={options}
-      value={props.status} onChange={
-        props.onChange
-      }
-      name='status'
-      placeholder='Select status' /> */}
     <Button type='submit' > Submit </Button> </Form >
   )
 }
