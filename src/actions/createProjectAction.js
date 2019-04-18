@@ -5,6 +5,7 @@ import {
 
 export let createProject = props => dispatch => {
   const {
+    history,
     title,
     description,
     status,
@@ -29,6 +30,7 @@ export let createProject = props => dispatch => {
       type: CREATE_PROJECT,
       payload: response.data
     })
+    history.push(`/projects/${response.data.project.slug}`)
   })
     .catch(error => {
       dispatch({

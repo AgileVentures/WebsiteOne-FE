@@ -6,32 +6,27 @@ import { createProject } from '../actions/createProjectAction'
 export class CreateProjectPage extends Component {
   state = {
     title: '',
-    description: ''
+    description: '',
+    status: 'Active'
   }
 
-  handleChange = (e, {
-    name,
-    value
-  }) => {
-    this.setState({
-      [name]: value
-    })
-  }
+  handleChange = (e, { name, value }) => { this.setState({ [name]: value }) }
 
   handleSubmit = event => {
+    const { title, description, status } = this.state
+    const { createProject, history, cookies } = this.props
     event.preventDefault()
-    this.props.createProject({
-      title: this.state.title,
-      description: this.state.description,
-      status: 'active',
-      cookies: this.props.cookies
+    createProject({
+      title,
+      description,
+      status,
+      cookies,
+      history
     })
   }
 
   render () {
-    let {
-      title, description, status
-    } = this.state
+    let { title, description, status } = this.state
     return (
       <Container >
         <Header as='h1'
