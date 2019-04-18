@@ -11,7 +11,7 @@
     "start-test-server": "webpack-dev-server --mode development --port 8082",
     "build": "webpack --mode production",
     "fix": "standard --fix",
-    "test": "set NODE_ENV=testing && standard && jest",
+    "test": "export NODE_ENV=testing && standard && jest",
     "windows-test": "set NODE_ENV=testing&& standard && jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "cypress:ci": "cypress run",
