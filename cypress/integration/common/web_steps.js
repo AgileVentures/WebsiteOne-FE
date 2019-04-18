@@ -202,38 +202,37 @@ Given('I am logged in', () => {
   })
   cy.wait('@postLogInInfo')
 })
-
-Then('I should be able to create a new event quickly', () => {
-  cy.fixture('newlyCreatedEvent').then(newlyCreatedEvent => {
-    cy.route({
-      method: 'POST',
-      url: /\/events/,
-      response: newlyCreatedEvent,
-      status: 200
-    }).as('newlyCreatedEvent')
+Then('I visit the new events page', () => {
+  cy.fixture('activeProjects').then(activeProjects => {
+    cy.route(/\/api\/v1\/projects\/active/, activeProjects).as('fetchActiveProjects')
     cy.visit('/events/new')
       .get('h1')
       .should('contain', 'Creating a new Event')
-      .get('input[name=name]')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', { type: 'GET_ACTIVE_PROJECTS', payload: activeProjects })
+  })
+  cy.wait('@fetchActiveProjects')
+})
+
+Then('I should be able to create a new event quickly', () => {
+  cy.fixture('newlyCreatedEventInfo').then(newlyCreatedEventInfo => {
+    cy.route({
+      method: 'POST',
+      url: /\/events/,
+      response: newlyCreatedEventInfo,
+      status: 200
+    }).as('newlyCreatedEvent')
+    cy.get('input[name=name]')
       .type('NewEvent')
       .get('button[type=submit]')
       .click()
-    cy.window()
-      .its('store')
-      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEvent })
-  })
-  cy.wait('@newlyCreatedEvent')
-})
-
-When("I should be redirected to the event's info page", () => {
-  cy.fixture('newlyCreatedEventInfo').then(newlyCreatedEventInfo => {
-    cy.route(/\/api\/v1\/events\/newevent/, newlyCreatedEventInfo).as('getEvent')
-    cy.visit('/events/newevent')
+      .url().should('include', '/events/newevent')
     cy.window()
       .its('store')
       .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEventInfo })
   })
-  cy.wait('@getEvent')
+  cy.wait('@newlyCreatedEvent')
 })
 
 Then("I should see the newly created event's info", () => {
@@ -246,7 +245,6 @@ Then("I should see the newly created event's info", () => {
     .should('contain', 'Event for: All')
     .get('img.ui.circular.image')
     .should('have.attr', 'src')
-    .and('contain', 'https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro')
     .get('p')
     .should('contain', 'created by:')
 })

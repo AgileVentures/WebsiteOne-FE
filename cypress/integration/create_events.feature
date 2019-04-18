@@ -4,6 +4,6 @@ Feature: Create new event
 
   Scenario: Quick create
     Given I am logged in
+    And I visit the new events page
     Then I should be able to create a new event quickly
-    And I should be redirected to the event's info page
     And I should see the newly created event's info
