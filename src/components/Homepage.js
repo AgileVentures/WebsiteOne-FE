@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Grid, Container } from 'semantic-ui-react'
 import Modal from './HomepageModal'
-import modalContent from './modals'
+import modalContent from '../helpers/modals'
 
-import './Homepage.css'
+import '../assets/Homepage.css'
 
 export class Homepage extends Component {
   modals = modalContent.map(item => <Modal key={item.reactId} content={item} />);
