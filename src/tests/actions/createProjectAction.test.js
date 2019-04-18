@@ -14,7 +14,8 @@ describe('createProject', () => {
     title: 'PairProgramming Rocks',
     description: 'Project all about pair programming',
     status: 'active',
-    cookies: { get: jest.fn() }
+    cookies: { get: jest.fn() },
+    history: { push: jest.fn() }
   }
   beforeEach(() => {
     moxios.install()
@@ -53,5 +54,13 @@ describe('createProject', () => {
         }
       ])
     })
+  })
+
+  it('calls method to push the user to the events info page', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.resolve({ data: newProject })
+    })
+    expect(props.history.push).toHaveBeenCalledTimes(1)
   })
 })
