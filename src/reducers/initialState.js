@@ -9,6 +9,11 @@ export default {
   projectInfo: {},
   events: [],
   eventInfo: {},
+<<<<<<< HEAD
   selectedLanguage2: null,
   filteredProjectsState: {}
+=======
+  selectedLanguage2:null,
+  filteredProjectsState:{}
+>>>>>>> fixed search
 }

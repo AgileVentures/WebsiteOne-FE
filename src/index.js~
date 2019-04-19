@@ -22,8 +22,15 @@ render(
   document.getElementById('root')
 )
 
-
+<<<<<<< HEAD
 if (window.Cypress) {
   window.store = store
 }
 window.store = store
+=======
+//if (window.Cypress) {
+//  window.store = store
+//}
+
+window.store=store
+>>>>>>> fixed search
