@@ -12,6 +12,9 @@ export let postLogInInfo = props => dispatch => {
         email: props.email,
         password: props.password
       }
+    },
+    headers: {
+      Accept: 'application/json'
     }
   }).then(response => {
     dispatch(getUser(response))
