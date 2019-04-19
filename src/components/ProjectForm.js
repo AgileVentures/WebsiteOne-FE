@@ -36,7 +36,7 @@ const ProjectForm = props => {
       <option value='Active' >Active</option>
       <option value='Inactive'>Inactive</option>
     </select>
-    <Button type='submit' > Submit </Button> </Form >
+    <Button type='submit' > Create Project </Button> </Form >
   )
 }
 
