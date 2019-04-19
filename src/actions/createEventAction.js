@@ -22,7 +22,7 @@ export let createEvent = props => dispatch => {
   } = props
   return axios({
     method: 'POST',
-    url: '/events',
+    url: 'http://localhost:3000/events',
     data: {
       event: {
         name,
@@ -41,7 +41,8 @@ export let createEvent = props => dispatch => {
       next_date: startDateFormatted,
       start_time: startTime,
       start_time_tz: timezones,
-      repeat_ends_on: endDate
+      repeat_ends_on: endDate,
+      token: headers
     },
     headers: {
       Authorization: headers,
