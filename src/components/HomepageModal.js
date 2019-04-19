@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Grid, Header } from 'semantic-ui-react'
-import '../assets/HomepageModal.scss'
+import '../assets/HomepageModal.css'
 
 export default ({ content }) => (
   <Container>
