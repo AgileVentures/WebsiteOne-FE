@@ -24,11 +24,11 @@ const LINKS = {
   ]
 }
 
-const LinksList = ({ links }) => (
+export const LinksList = ({ links }) => (
   <List>
     {links.map(link => (
       <List.Item key={link.href}>
-        { link.href.startsWith('/') ? (
+        {link.href.startsWith('/') ? (
           <Link to={link.href}>
             {link.text}
           </Link>
