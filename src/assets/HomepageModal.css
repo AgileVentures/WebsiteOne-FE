@@ -1,0 +1,28 @@
+#landing-page-cards {
+  display: flex;
+  flex: 0 0 auto;
+  background: white;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 35px;
+  margin-top: 35px;
+  border-radius: 5px;
+  box-shadow: 0 10px 35px rgba(50,50,93,.1),0 2px 15px rgba(0,0,0,.07);
+}
+
+.card-pic-wrap {
+  border-radius: 5px 0 0 5px;
+  flex: 0 0 auto;
+  position: relative;
+  img {
+    padding: 25px;
+  }
+}
+
+.card-content {
+  padding: 3em 4em 2em;
+}
+
+.card-content p {
+  font-size: 1.3em;
+}
