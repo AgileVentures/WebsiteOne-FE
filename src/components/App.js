@@ -26,10 +26,9 @@ import { getQueryParams } from '../utils'
 
 const params = getQueryParams()
 class App extends Component {
-  state = { token: params.token }
   isLoggedIn () {
-    if (this.state.token) {
-      this.props.cookies.set('_WebsiteOne_session', this.state.token, {
+    if (params.token) {
+      this.props.cookies.set('_WebsiteOne_session', params.token, {
         path: '/'
       })
     }
