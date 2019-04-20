@@ -32,7 +32,6 @@ export class ProjectsList extends Component {
   };
 
   componentDidMount = async () => {
-    
     if (!this.props.projects.length) {
       await this.props.fetchProjects()
       if (this.props.error) {
@@ -199,9 +198,8 @@ export class ProjectsList extends Component {
       selectedLanguage2,
       pageCount,
       error
-    } = this.state
+    } = this.state    
     
-    console.log('this.props',this.props)
     return (
       <Fragment>
         <Container>
