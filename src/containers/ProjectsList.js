@@ -34,14 +34,13 @@ export class ProjectsList extends Component {
   componentDidMount = async () => {
     if(this.props.selectedLanguage2){
         console.log('filtered projects',this.props.filteredProjectsList)
-	this.setState({
+   	this.setState({pageCount:this.props.filteredProjectsState.pageCount,
                        selectedLanguage2:this.props.selectedLanguage2,
                        filteredProjectsList:this.props.filteredProjectsState.filteredProjectsList,
                        firstPage:this.props.filteredProjectsState.firstPage,
                        lastPage:this.props.filteredProjectsState.lastPage,
-                       pageCount:this.props.filteredProjectsState.pageCount,                       
-                       },
-                       ()=>{this.paginateProjects(this.props.filteredProjectsState.filteredProjectsList)
+                                              
+                       },()=>{this.paginateProjects(this.props.filteredProjectsState.filteredProjectsList)
 	})
     }
     if (!this.props.projects.length) {
@@ -138,7 +137,7 @@ export class ProjectsList extends Component {
     //console.log('language',this.props.selectedlanguage(selectedLanguage))
     //this.props.selectedlanguage(selectedLanguage)
     //if(!selectedLanguage.value){
-       // this.setState({selectedlanguage2:this.props.selectedlanguage(selectedLanguage.value)}
+        //this.setState({selectedlanguage2:this.props.selectedlanguage(selectedLanguage.value)}
 	//})
      //}
     let { projects } = this.state
@@ -156,8 +155,9 @@ export class ProjectsList extends Component {
                                           firstPage:this.state.firstPage,
                                           lastPage:this.state.lastPage,
                                           selectedPage:this.state.selectedPage
-                                        });console.log('this.props.filteredprojectsstate',this.state)})
-    } else {
+                                       });console.log('this.props.filteredprojectsstate',this.state)})
+    } 
+    else {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.setState({
         selectedLanguage2: this.props.selectedlanguage(null),
