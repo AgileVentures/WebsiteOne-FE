@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { Homepage } from '../../../components/homepage/Homepage'
+import { Homepage } from '../../components/Homepage'
 
 describe('Homepage', () => {
   const homepage = (props) => mount(<Homepage />)
@@ -11,14 +11,9 @@ describe('Homepage', () => {
       expect(wrapper.name()).toBe('Homepage')
     })
 
-    it('renders 7 row elements', () => {
+    it('renders 5 row elements', () => {
       const wrapper = homepage()
-      expect(wrapper.find('.row').length).toEqual(7)
-    })
-
-    it('renders 5 <HomepageModals elements', () => {
-      const wrapper = homepage()
-      expect(wrapper.find('HomepageModal').length).toEqual(5)
+      expect(wrapper.find('.row')).toHaveLength(5)
     })
   })
 })

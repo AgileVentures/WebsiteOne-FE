@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import { Header, Image, Grid, Card, Icon, Segment, Embed } from 'semantic-ui-react'
+import { Header, Image, Grid, Card, Icon, Segment } from 'semantic-ui-react'
 import CustomRingLoader from './CustomRingLoader'
+import Videos from './Videos'
 import { Link } from 'react-router-dom'
 import '../assets/ProjectSummary.css'
 
@@ -110,24 +111,7 @@ const ProjectSummary = props => {
             </Grid>
           </Fragment>
         </Grid.Column>
-        <Grid.Column width={4} className='project-info-videos'>
-          {project.videos
-            .filter(video => video.yt_video_id !== null)
-            .map(video => (
-              <Fragment key={video.id}>
-                <Embed
-                  id={video.yt_video_id}
-                  placeholder={
-                    'https://img.youtube.com/vi/' +
-                        video.yt_video_id +
-                        '/3.jpg'
-                  }
-                  source='youtube'
-                />
-                <p>{video.title}</p>
-              </Fragment>
-            ))}
-        </Grid.Column>
+        <Videos name={project} id='project-info-videos' />
       </Grid>
     )
   } else {

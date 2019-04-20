@@ -222,7 +222,7 @@ const UserSummary = props => {
                 className='user-profile-tabs'
               />
             </Grid.Column>
-            <Videos name={user} id='user-profile-videos' />
+            <Videos width={4} name={user} id='user-profile-videos' />
           </Grid.Row>
         </Grid>
       </Fragment>
