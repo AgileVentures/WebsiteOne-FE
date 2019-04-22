@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import UsersList from '../containers/UsersList'
 import UserProfile from '../containers/UserProfile'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/Homepage'
@@ -24,65 +24,65 @@ import { withCookies } from 'react-cookie'
 class App extends Component {
   render () {
     return (
-      <Fragment>        
-          <div>
-            <Navbar cookies={this.props.cookies} />
-            <Switch>
-              <Route path='/' exact component={Homepage} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/users' component={UsersList} />
-              <Route path='/users/:id' component={UserProfile} />
-              <Route
-                path='/login'
-                render={props => {
-                  return (
-                    <LogIn
-                      {...props}
-                      lastLocation={props}
-                      cookies={this.props.cookies}
-                    />
-                  )
-                }}
-              />
-              <Route path='/signup' component={SignUp} />
-              <Route exact path='/projects' component={ProjectsList} />
-              <Route path='/projects/:slug' render={props => {
+      <Fragment>
+        <div>
+          <Navbar cookies={this.props.cookies} />
+          <Switch>
+            <Route path='/' exact component={Homepage} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/users' component={UsersList} />
+            <Route path='/users/:id' component={UserProfile} />
+            <Route
+              path='/login'
+              render={props => {
                 return (
-                  <ProjectInfo
+                  <LogIn
                     {...props}
+                    lastLocation={props}
                     cookies={this.props.cookies}
-                  />)
+                  />
+                )
               }}
-              />
-              <Route exact path='/subscriptions/new' render={props => {
-                return (
-                  <Subscriptions
-                    {...props}
-                    cookies={this.props.cookies}
-                  />)
-              }}
-              />
-              <Route path='/subscriptions/success' render={props => {
-                return (
-                  <SubscriptionsSuccess
-                    {...props}
-                    cookies={this.props.cookies}
-                  />)
-              }}
-              />
-              <Route path='/membership-plans' component={MembershipPlansPage} />
-              <Route path='/premium' component={PremiumMembershipPage} />
-              <Route path='/premium-mob' component={PremiumMobMembershipPage} />
-              <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
-              <Route exact path='/events' component={EventsList} />
-              <Route path='/events/:slug' component={EventInfo} />
-              <Route path='/getting-started' component={GettingStartedPage} />
-            </Switch>
-          </div>        
+            />
+            <Route path='/signup' component={SignUp} />
+            <Route exact path='/projects' component={ProjectsList} />
+            <Route path='/projects/:slug' render={props => {
+              return (
+                <ProjectInfo
+                  {...props}
+                  cookies={this.props.cookies}
+                />)
+            }}
+            />
+            <Route exact path='/subscriptions/new' render={props => {
+              return (
+                <Subscriptions
+                  {...props}
+                  cookies={this.props.cookies}
+                />)
+            }}
+            />
+            <Route path='/subscriptions/success' render={props => {
+              return (
+                <SubscriptionsSuccess
+                  {...props}
+                  cookies={this.props.cookies}
+                />)
+            }}
+            />
+            <Route path='/membership-plans' component={MembershipPlansPage} />
+            <Route path='/premium' component={PremiumMembershipPage} />
+            <Route path='/premium-mob' component={PremiumMobMembershipPage} />
+            <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
+            <Route exact path='/events' component={EventsList} />
+            <Route path='/events/:slug' component={EventInfo} />
+            <Route path='/getting-started' component={GettingStartedPage} />
+          </Switch>
+          <Footer />
+        </div>
       </Fragment>
     )
   }
 }
 
 export default withCookies(App)
-
