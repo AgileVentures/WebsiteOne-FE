@@ -295,7 +295,6 @@ Then('I should be able to create a new project', () => {
       .type('NewProject')
       .get('textarea[name=description]')
       .type('A new project')
-      .get('select[name=status]')
       .get('button[type=submit]')
       .click()
     cy.window()

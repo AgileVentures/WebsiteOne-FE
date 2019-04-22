@@ -32,7 +32,7 @@ export class CreateProjectPage extends Component {
         <Header as='h1'
           textAlign='center' > Creating a new Project </Header>
         <ProjectForm
-          onSubmit={this.handleSubmit}
+          handleSubmit={this.handleSubmit}
           onChange={this.handleChange}
           title={title}
           description={description}

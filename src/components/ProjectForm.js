@@ -3,7 +3,7 @@ import { Button, Form } from 'semantic-ui-react'
 
 const ProjectForm = props => {
   return (<Form onSubmit={
-    props.onSubmit
+    props.handleSubmit
   } >
     <Form.Input label='Title'
       placeholder='Project title'
