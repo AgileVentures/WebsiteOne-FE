@@ -5,7 +5,7 @@ import ProjectForm from '../../components/ProjectForm'
 describe('ProjectForm', () => {
   let wrapper
   let props = {
-    onSubmit: jest.fn()
+    handleSubmit: jest.fn()
   }
 
   beforeEach(() => {
@@ -19,6 +19,6 @@ describe('ProjectForm', () => {
   it('calls onSubmit when the form is submitted', () => {
     const form = wrapper.find('Form')
     form.simulate('submit')
-    expect(props.onSubmit).toHaveBeenCalledTimes(1)
+    expect(props.handleSubmit).toHaveBeenCalledTimes(1)
   })
 })
