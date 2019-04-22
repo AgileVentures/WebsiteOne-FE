@@ -24,7 +24,6 @@ import { withCookies } from 'react-cookie'
 class App extends Component {
   render () {
     return (
-
       <Fragment>
         <div>
           <Navbar cookies={this.props.cookies} />

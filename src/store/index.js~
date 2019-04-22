@@ -10,13 +10,7 @@ import userInfo from '../reducers/userInfoReducer'
 import projectInfo from '../reducers/projectInfoReducer'
 import events from '../reducers/eventsReducer'
 import eventInfo from '../reducers/eventInfoReducer'
-<<<<<<< HEAD
 import { selectedLanguageReducer, filteredProjectsReducer } from '../reducers/userSearchResultReducer.js'
-=======
-//import historyReducer from '../reducers/historyReducer'
-import { selectedLanguageReducer } from '../reducers/userSearchResultReducer.js'
-import { filteredProjectsReducer } from '../reducers/userSearchResultReducer.js'
->>>>>>> fixed search
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 
@@ -33,15 +27,13 @@ const rootReducer = combineReducers({
   userInfo,
   projectInfo,
   events,
-<<<<<<< HEAD
   eventInfo,
   selectedLanguage2: selectedLanguageReducer,
   filteredProjectsState: filteredProjectsReducer
+<<<<<<< HEAD
+
 =======
-  eventInfo,  
-  selectedLanguage2:selectedLanguageReducer,
-  filteredProjectsState:filteredProjectsReducer
->>>>>>> fixed search
+>>>>>>> missing pagination fixed
 })
 
 export default createStore(

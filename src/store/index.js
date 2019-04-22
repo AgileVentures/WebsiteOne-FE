@@ -30,7 +30,6 @@ const rootReducer = combineReducers({
   eventInfo,
   selectedLanguage2: selectedLanguageReducer,
   filteredProjectsState: filteredProjectsReducer
-
 })
 
 export default createStore(

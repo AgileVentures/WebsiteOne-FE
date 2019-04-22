@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import UsersList from '../containers/UsersList'
 import UserProfile from '../containers/UserProfile'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
-import Homepage from '../components/homepage/Homepage'
+import Homepage from '../components/Homepage'
 import Footer from '../components/Footer'
 import Navbar from './navbar/Navbar'
 import About from '../containers/About'
@@ -24,7 +24,10 @@ import { withCookies } from 'react-cookie'
 class App extends Component {
   render () {
     return (
+<<<<<<< HEAD
 
+=======
+>>>>>>> missing pagination fixed
       <Fragment>
         <div>
           <Navbar cookies={this.props.cookies} />

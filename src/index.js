@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
 import './assets/semantic.css'
-// import history from './store/history'
 import { createBrowserHistory } from 'history'
 
 const history = createBrowserHistory()
@@ -22,8 +21,8 @@ render(
   document.getElementById('root')
 )
 
-
 if (window.Cypress) {
   window.store = store
 }
+
 window.store = store

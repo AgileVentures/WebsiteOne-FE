@@ -156,7 +156,6 @@ export class ProjectsList extends Component {
       }, () => { this.props.filteredprojects(this.state) }
 
       )
-
     } else {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.paginateProjects(this.props.projects)
@@ -170,7 +169,6 @@ export class ProjectsList extends Component {
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
       }, () => { this.props.filteredprojects(this.state) })
-
     }
   };
 
@@ -200,7 +198,7 @@ export class ProjectsList extends Component {
       error
     } = this.state    
     
-    return (
+  return (
       <Fragment>
         <Container>
           <Grid>
@@ -277,7 +275,6 @@ export class ProjectsList extends Component {
 
 const mapStateToProps = state => (
   { projects: state.projects, error: state.error, selectedLanguage2: state.selectedLanguage2, filteredProjectsState: state.filteredProjectsState }
-
 )
 
 export default connect(
