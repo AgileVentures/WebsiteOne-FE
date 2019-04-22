@@ -281,7 +281,7 @@ Then("I should see the newly created event's info", () => {
 })
 
 Then('I should be able to create a new project', () => {
-  cy.fixture('newlyCreatedProject').then(newlyCreatedProject => {
+  cy.fixture('newlyCreatedProjectInfo').then(newlyCreatedProject => {
     cy.route({
       method: 'POST',
       url: /\/projects/,
@@ -297,6 +297,7 @@ Then('I should be able to create a new project', () => {
       .type('A new project')
       .get('button[type=submit]')
       .click()
+      .url().should('include', '/projects/newproject')
     cy.window()
       .its('store')
       .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: newlyCreatedProject })
