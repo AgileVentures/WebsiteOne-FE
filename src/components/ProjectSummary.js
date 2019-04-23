@@ -67,7 +67,7 @@ const ProjectSummary = props => {
                                   <a
                                     href={`https://agileventures.slack.com/app_redirect?channel=${
                                       project.slack_channel_name
-                                    }`}
+                                      }`}
                                   >
                                     {project.title}
                                   </a>
@@ -81,7 +81,7 @@ const ProjectSummary = props => {
                     </Card>
                   </Grid.Column>
                 ) : null}
-                {project.members > 0 ? (
+                {project.members.length > 0 ? (
                   <Grid.Column>
                     <Card fluid className='project-info-card'>
                       <Card.Content>
