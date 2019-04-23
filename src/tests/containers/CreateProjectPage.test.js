@@ -5,7 +5,6 @@ import { CreateProjectPage } from '../../containers/CreateProjectPage'
 describe('CreateProjectPage', () => {
   let wrapper
   let props = {
-    history: { push: jest.fn() },
     createProject: jest.fn()
   }
 
