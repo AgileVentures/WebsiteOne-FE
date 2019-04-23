@@ -10,7 +10,7 @@ const SingleFieldForm = props => {
     handleChange,
     handleSubmit,
     error
-  } = props;
+  } = props
 
   return (
     <Segment padded='very' vertical>

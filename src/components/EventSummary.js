@@ -1,5 +1,5 @@
-import React, { Fragment, Component } from 'react'
-import { Header, Segment, Grid, Image, Icon, Form, Button } from 'semantic-ui-react'
+import React, { Fragment } from 'react'
+import { Header, Segment, Grid, Image, Icon } from 'semantic-ui-react'
 import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment-timezone'
 import { connect } from 'react-redux'
@@ -9,7 +9,6 @@ import { postEventLink } from '../actions/postEventLinkAction'
 import SingleFieldForm from './SingleFieldForm'
 
 const EventSummary = props => {
-
   let { event } = props
   if (event) {
     let startTime = moment(event.start_datetime)

@@ -13,7 +13,7 @@ export class EventInfo extends Component {
     linkError: false
   };
 
-  componentDidMount() {
+  componentDidMount () {
     const eventSlug = this.props.match.params.slug
     this.props.setLastLocation(this.props.location.pathname)
     if (this.props.event.slug === this.props.match.params.slug) {
@@ -23,7 +23,7 @@ export class EventInfo extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props.event !== nextProps.event) {
       this.setState({ event: nextProps.event })
     }
@@ -42,7 +42,7 @@ export class EventInfo extends Component {
     this.props.postEventLink({ id, title: name, slug, link: this.state.link })
   };
 
-  render() {
+  render () {
     let { event } = this.state
     return (
       <Container className='event-info-container'>
