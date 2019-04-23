@@ -67,7 +67,7 @@ const ProjectSummary = props => {
                                   <a
                                     href={`https://agileventures.slack.com/app_redirect?channel=${
                                       project.slack_channel_name
-                                      }`}
+                                    }`}
                                   >
                                     {project.title}
                                   </a>
