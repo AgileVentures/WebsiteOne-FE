@@ -7,7 +7,7 @@ import '../assets/ProjectSummary.css'
 
 const ProjectSummary = props => {
   let { project } = props
-  console.log(project);
+  console.log(project)
   if (project) {
     return (
       <Grid columns={2} stackable>
@@ -41,7 +41,7 @@ const ProjectSummary = props => {
                                   <Grid.Row>
                                     <Icon name='github alternate' size='large' />
                                     <a href={repo.url}>{repoName}</a>&nbsp; on GitHub
-                                </Grid.Row>
+                                  </Grid.Row>
                                 </Grid>
                               </Fragment>
                             )
@@ -55,7 +55,7 @@ const ProjectSummary = props => {
                                     {project.title}
                                   </a>
                                   &nbsp; on IssueTracker
-                              </Grid.Row>
+                                </Grid.Row>
                               </Grid>
                             </Fragment>
                           ) : null}
@@ -67,12 +67,12 @@ const ProjectSummary = props => {
                                   <a
                                     href={`https://agileventures.slack.com/app_redirect?channel=${
                                       project.slack_channel_name
-                                      }`}
+                                    }`}
                                   >
                                     {project.title}
                                   </a>
                                   &nbsp; on Slack
-                              </Grid.Row>
+                                </Grid.Row>
                               </Grid>
                             </Fragment>
                             : null}
