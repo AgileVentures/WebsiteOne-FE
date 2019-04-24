@@ -26,6 +26,7 @@ class App extends Component {
   render () {
     return (
       <Fragment>
+       <div>
         <Navbar cookies={this.props.cookies} />
         <Switch>
           <Route path='/' exact component={Homepage} />
@@ -87,6 +88,7 @@ class App extends Component {
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>
         <Footer />
+       </div>
       </Fragment>
     )
   }

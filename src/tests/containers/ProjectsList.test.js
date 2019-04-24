@@ -20,7 +20,9 @@ describe('ProjectsList', () => {
     filteredProjectsList: null,
     error: false,
     setLastLocation: () => {},
-    location: { pathname: '/projects' }
+    location: { pathname: '/projects' },
+    filteredProjectsAction: jest.fn(),
+    selectedLanguageAction: jest.fn()
   }
   wrapper = mount(
     <StaticRouter context={context}>
@@ -53,13 +55,14 @@ describe('ProjectsList', () => {
       <ProjectsList
         projects={paginatedProjectsFixture}
         fetchProjects={() => {}}
+        filteredProjectsAction={() => {}}
         setLastLocation={() => {}}
         location={{ pathname: '/projects' }}
       />
     )
     wrapper.setState(
       {
-        selectedLanguage: { value: 'JavaScript' },
+        selectedLanguage2: { value: 'JavaScript' },
         projects: paginatedProjectsFixture
       },
       () => {
