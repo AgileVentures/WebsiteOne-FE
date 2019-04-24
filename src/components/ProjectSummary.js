@@ -7,7 +7,6 @@ import '../assets/ProjectSummary.css'
 
 const ProjectSummary = props => {
   let { project } = props
-  console.log(project)
   if (project) {
     return (
       <Grid columns={2} stackable>
