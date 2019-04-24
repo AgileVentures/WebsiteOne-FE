@@ -64,7 +64,7 @@ describe('Navbar', () => {
         return item.text() === 'Log out'
       })
       logOutLink.simulate('click')
-      expect(props.cookies.remove).toHaveBeenCalledTimes(1)
+      expect(props.cookies.remove).toHaveBeenCalledTimes(2)
     })
   })
 })
