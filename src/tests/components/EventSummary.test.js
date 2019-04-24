@@ -1,12 +1,14 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import EventSummary from '../../components/EventSummary'
+import SingleFieldForm from '../../components/SingleFieldForm'
 import event from '../../fixtures/eventInfo'
 
 describe('EventSummary', () => {
   let wrapper
   const props = {
-    event
+    event,
+    cookies: { get: value => true }
   }
   beforeEach(() => {
     wrapper = mount(<EventSummary {...props} />)
@@ -26,5 +28,9 @@ describe('EventSummary', () => {
   it('displays a spinner when no event is in the props', () => {
     wrapper = mount(<EventSummary {...props} event={null} />)
     expect(wrapper.find('Loader').props().loading).toBe(true)
+  })
+
+  it('contains a SingleFieldForm component', () => {
+    expect(wrapper.contains(SingleFieldForm)).toEqual(true)
   })
 })

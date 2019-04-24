@@ -2,10 +2,8 @@ import React, { Fragment } from 'react'
 import { Header, Segment, Grid, Image, Icon } from 'semantic-ui-react'
 import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment-timezone'
-import { connect } from 'react-redux'
 import CustomRingLoader from './CustomRingLoader'
 import Videos from './Videos'
-import { postEventLink } from '../actions/postEventLinkAction'
 import SingleFieldForm from './SingleFieldForm'
 
 const EventSummary = props => {
@@ -88,7 +86,4 @@ const EventSummary = props => {
   }
 }
 
-export default connect(
-  null,
-  { postEventLink }
-)(EventSummary)
+export default EventSummary
