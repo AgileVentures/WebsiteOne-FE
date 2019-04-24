@@ -20,6 +20,7 @@ import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
 import CreateEventPage from '../containers/CreateEventPage'
+import CreateProjectPage from '../containers/CreateProjectPage'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
@@ -46,6 +47,12 @@ class App extends Component {
           />
           <Route path='/signup' component={SignUp} />
           <Route exact path='/projects' component={ProjectsList} />
+          <Route exact path='/projects/new' render={props => {
+            return (<CreateProjectPage {...props}
+              cookies={this.props.cookies}
+            />)
+          }}
+          />
           <Route path='/projects/:slug' render={props => {
             return (
               <ProjectInfo
