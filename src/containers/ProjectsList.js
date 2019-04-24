@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Card, Header, Button, Grid, Popup, Icon, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
-import { selectedlanguage, filteredprojects } from '../actions/userSearchResultAction'
+import { selectedLanguageAction, filteredProjectsAction } from '../actions/userSearchResultAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
@@ -139,7 +139,7 @@ export class ProjectsList extends Component {
   }
 
   handleFilterProjects = (selectedLanguage) => {
-    this.props.selectedlanguage(selectedLanguage)
+    this.props.selectedLanguageAction(selectedLanguage)
     let { projects } = this.state
     if (selectedLanguage) {
       let pageCount = Object.keys(this.state.projects[selectedLanguage.value])
@@ -153,7 +153,7 @@ export class ProjectsList extends Component {
         firstPage: true,
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
-      }, () => { this.props.filteredprojects(this.state) }
+      }, () => { this.props.filteredProjectsAction(this.state) }
 
       )
     } else {
@@ -168,7 +168,7 @@ export class ProjectsList extends Component {
         firstPage: true,
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
-      }, () => { this.props.filteredprojects(this.state) })
+      }, () => { this.props.filteredProjectsAction(this.state) })
     }
   };
 
@@ -183,9 +183,9 @@ export class ProjectsList extends Component {
     if (selectedLanguage2) {
       this.setState({
         filteredProjectsList: projects[selectedLanguage2.value][selectedPage]
-      }, () => { this.props.filteredprojects(this.state) })
+      }, () => { this.props.filteredProjectsAction(this.state) })
     } else {
-      this.setState({ projectsList: projects[selectedPage] }, () => { this.props.filteredprojects(this.state) })
+      this.setState({ projectsList: projects[selectedPage] }, () => { this.props.filteredProjectsAction(this.state) })
     }
   };
 
@@ -196,9 +196,9 @@ export class ProjectsList extends Component {
       selectedLanguage2,
       pageCount,
       error
-    } = this.state    
-    
-  return (
+    } = this.state
+
+    return (
       <Fragment>
         <Container>
           <Grid>
@@ -279,5 +279,5 @@ const mapStateToProps = state => (
 
 export default connect(
   mapStateToProps,
-  { fetchProjects, setLastLocation, selectedlanguage, filteredprojects }
+  { fetchProjects, setLastLocation, selectedLanguageAction, filteredProjectsAction }
 )(ProjectsList)

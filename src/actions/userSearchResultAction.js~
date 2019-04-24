@@ -9,7 +9,7 @@ export let selectedlanguage = selectedLanguage => {
 
 export let filteredprojects = props => {
   return {
-	   type: FILTERED_PROJECTS_STATE,
-           payload: props
-         }
+    type: FILTERED_PROJECTS_STATE,
+    payload: props
+  }
 }

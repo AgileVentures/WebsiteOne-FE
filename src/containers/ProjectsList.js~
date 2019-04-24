@@ -156,17 +156,9 @@ export class ProjectsList extends Component {
       }, () => { this.props.filteredprojects(this.state) }
 
       )
-<<<<<<< HEAD
-
     } else {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.paginateProjects(this.props.projects)
-=======
-    } else {
-      let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
-      this.paginateProjects(this.props.projects)
-
->>>>>>> missing pagination fixed
       this.setState({
         selectedLanguage2: selectedLanguage,
         pageCount,
@@ -177,10 +169,6 @@ export class ProjectsList extends Component {
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
       }, () => { this.props.filteredprojects(this.state) })
-<<<<<<< HEAD
-
-=======
->>>>>>> missing pagination fixed
     }
   };
 
@@ -208,13 +196,8 @@ export class ProjectsList extends Component {
       selectedLanguage2,
       pageCount,
       error
-<<<<<<< HEAD
-    } = this.state    
-    
-=======
     } = this.state
 
->>>>>>> missing pagination fixed
     return (
       <Fragment>
         <Container>
@@ -292,14 +275,8 @@ export class ProjectsList extends Component {
 
 const mapStateToProps = state => (
   { projects: state.projects, error: state.error, selectedLanguage2: state.selectedLanguage2, filteredProjectsState: state.filteredProjectsState }
-<<<<<<< HEAD
-
 )
 
-=======
-
-)
->>>>>>> missing pagination fixed
 export default connect(
   mapStateToProps,
   { fetchProjects, setLastLocation, selectedlanguage, filteredprojects }
