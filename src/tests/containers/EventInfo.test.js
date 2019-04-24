@@ -45,4 +45,16 @@ describe('Event Info', () => {
     submitForm.simulate('submit')
     expect(props.postEventLink.mock.calls.length).toBe(1)
   })
+
+  it('calls handleChange when the SingleFieldForm FormInput is changed', () => {
+    wrapper = mount(<EventInfo {...props} event={event} />)
+    const spy = jest.spyOn(wrapper.instance(), 'handleChange')
+    wrapper.instance().forceUpdate()
+    const singleFieldForm = wrapper.find('SingleFieldForm')
+    const input = singleFieldForm.find('input')
+    input.simulate('change', {
+      target: { value: 'test' }
+    })
+    expect(spy).toHaveBeenCalledTimes(1)
+  })
 })

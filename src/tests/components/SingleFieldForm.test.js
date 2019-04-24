@@ -50,7 +50,7 @@ describe('SingleFieldForm', () => {
     expect(mockSubmit.mock.calls.length).toBe(1)
   })
 
-  it('should call handleSubmit when the form is submitted', () => {
+  it('should call handleChange when the input is changed', () => {
     const formInput = wrapper.find('FormInput')
     formInput.simulate('change')
     expect(mockChange.mock.calls.length).toBe(1)
