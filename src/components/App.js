@@ -22,19 +22,9 @@ import EventInfo from '../containers/EventInfo'
 import CreateEventPage from '../containers/CreateEventPage'
 import CreateProjectPage from '../containers/CreateProjectPage'
 import { withCookies } from 'react-cookie'
-import { getQueryParams } from '../utils'
 
-const params = getQueryParams()
 class App extends Component {
-  isLoggedIn () {
-    if (params.token) {
-      this.props.cookies.set('_WebsiteOne_session', params.token, {
-        path: '/'
-      })
-    }
-  }
   render () {
-    this.isLoggedIn()
     return (
       <Fragment>
         <Navbar cookies={this.props.cookies} />
