@@ -153,12 +153,20 @@ export class ProjectsList extends Component {
         firstPage: true,
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
+<<<<<<< HEAD
       }, () => { this.props.filteredProjectsAction(this.state) }
+=======
+      }, () => { this.props.filteredprojects(this.state) }
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 
       )
     } else {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.paginateProjects(this.props.projects)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
       this.setState({
         selectedLanguage2: selectedLanguage,
         pageCount,

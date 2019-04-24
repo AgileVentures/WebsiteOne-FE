@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import UsersList from '../containers/UsersList'
 import UserProfile from '../containers/UserProfile'
+<<<<<<< HEAD
 import { Route, Switch } from 'react-router-dom'
+=======
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/Homepage'
@@ -25,9 +29,12 @@ class App extends Component {
   render () {
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> missing pagination fixed
+=======
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
       <Fragment>
         <div>
           <Navbar cookies={this.props.cookies} />

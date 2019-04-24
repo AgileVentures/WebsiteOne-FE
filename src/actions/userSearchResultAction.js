@@ -7,6 +7,7 @@ export let selectedLanguageAction = selectedLanguage => {
   }
 }
 
+
 export let filteredProjectsAction = props => {
   return {
     type: FILTERED_PROJECTS_STATE,

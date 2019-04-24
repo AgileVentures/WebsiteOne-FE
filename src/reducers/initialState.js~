@@ -10,5 +10,9 @@ export default {
   events: [],
   eventInfo: {},
   selectedLanguage2:null,
+<<<<<<< HEAD
   filteredProjectsState:{}
+=======
+  filteredProjectsList:{}
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 }

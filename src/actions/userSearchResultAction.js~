@@ -1,13 +1,21 @@
 import { SELECTED_LANGUAGE, FILTERED_PROJECTS_STATE } from '../types'
 
+<<<<<<< HEAD
+export let selectedLanguageAction = selectedLanguage => {
+=======
 export let selectedlanguage = selectedLanguage => {
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
   return {
     type: SELECTED_LANGUAGE,
     payload: selectedLanguage
   }
 }
 
+<<<<<<< HEAD
+export let filteredProjectsAction = props => {
+=======
 export let filteredprojects = props => {
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
   return {
     type: FILTERED_PROJECTS_STATE,
     payload: props

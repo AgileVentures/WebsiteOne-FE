@@ -2,7 +2,11 @@ import React, { Component, Fragment } from 'react'
 import { Card, Header, Button, Grid, Popup, Icon, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
+<<<<<<< HEAD
+import { selectedLanguageAction, filteredProjectsAction } from '../actions/userSearchResultAction'
+=======
 import { selectedlanguage, filteredprojects } from '../actions/userSearchResultAction'
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 import { setLastLocation } from '../actions/setLastLocationAction'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
@@ -139,7 +143,11 @@ export class ProjectsList extends Component {
   }
 
   handleFilterProjects = (selectedLanguage) => {
+<<<<<<< HEAD
+    this.props.selectedLanguageAction(selectedLanguage)
+=======
     this.props.selectedlanguage(selectedLanguage)
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
     let { projects } = this.state
     if (selectedLanguage) {
       let pageCount = Object.keys(this.state.projects[selectedLanguage.value])
@@ -153,12 +161,20 @@ export class ProjectsList extends Component {
         firstPage: true,
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
+<<<<<<< HEAD
+      }, () => { this.props.filteredProjectsAction(this.state) }
+=======
       }, () => { this.props.filteredprojects(this.state) }
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 
       )
     } else {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.paginateProjects(this.props.projects)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
       this.setState({
         selectedLanguage2: selectedLanguage,
         pageCount,
@@ -168,7 +184,11 @@ export class ProjectsList extends Component {
         firstPage: true,
         lastPage: !(pageCount > 1),
         selectedPageCheck: false
+<<<<<<< HEAD
+      }, () => { this.props.filteredProjectsAction(this.state) })
+=======
       }, () => { this.props.filteredprojects(this.state) })
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
     }
   };
 
@@ -183,9 +203,15 @@ export class ProjectsList extends Component {
     if (selectedLanguage2) {
       this.setState({
         filteredProjectsList: projects[selectedLanguage2.value][selectedPage]
+<<<<<<< HEAD
+      }, () => { this.props.filteredProjectsAction(this.state) })
+    } else {
+      this.setState({ projectsList: projects[selectedPage] }, () => { this.props.filteredProjectsAction(this.state) })
+=======
       }, () => { this.props.filteredprojects(this.state) })
     } else {
       this.setState({ projectsList: projects[selectedPage] }, () => { this.props.filteredprojects(this.state) })
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
     }
   };
 
@@ -275,9 +301,17 @@ export class ProjectsList extends Component {
 
 const mapStateToProps = state => (
   { projects: state.projects, error: state.error, selectedLanguage2: state.selectedLanguage2, filteredProjectsState: state.filteredProjectsState }
+<<<<<<< HEAD
 )
 
 export default connect(
   mapStateToProps,
+  { fetchProjects, setLastLocation, selectedLanguageAction, filteredProjectsAction }
+=======
+
+)
+export default connect(
+  mapStateToProps,
   { fetchProjects, setLastLocation, selectedlanguage, filteredprojects }
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 )(ProjectsList)

@@ -6,7 +6,10 @@ import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
 import './assets/semantic.css'
+<<<<<<< HEAD
+=======
 // import history from './store/history'
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 import { createBrowserHistory } from 'history'
 
 const history = createBrowserHistory()
@@ -23,7 +26,6 @@ render(
 )
 
 <<<<<<< HEAD
-
 if (window.Cypress) {
   window.store = store
 }
@@ -31,6 +33,6 @@ if (window.Cypress) {
 // if (window.Cypress) {
 //  window.store = store
 // }
+>>>>>>> 4c9c92a30b0cedcb770d5f79d4f84d5bbc690e00
 
->>>>>>> missing pagination fixed
 window.store = store
