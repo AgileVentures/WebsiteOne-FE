@@ -56,6 +56,7 @@ describe('ProjectsList', () => {
         projects={paginatedProjectsFixture}
         fetchProjects={() => {}}
         setLastLocation={() => {}}
+        filteredProjectsAction={() => {}}
         location={{ pathname: '/projects' }}
       />
     )
