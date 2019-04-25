@@ -25,7 +25,7 @@ export const Subscriptions = props => {
     const path = props.location.pathname
     const search = props.location.search
     props.setLastLocation(path, search)
-    if (!props.cookies.get('_WebsiteOne_session') && !props.loggedInUser.data) {
+    if (!props.cookies.get('WebsiteOne_session') && !props.loggedInUser.data) {
       props.history.push({ pathname: '/login' })
     }
     if (props.error.length) {

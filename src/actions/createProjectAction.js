@@ -22,7 +22,7 @@ export let createProject = props => dispatch => {
       }
     },
     headers: {
-      Authorization: cookies.get('_WebsiteOne_session'),
+      Authorization: cookies.get('WebsiteOne_session'),
       Accept: 'application/json'
     }
   }).then(response => {
