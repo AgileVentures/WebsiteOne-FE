@@ -10,5 +10,6 @@ export default {
   events: [],
   eventInfo: {},
   selectedLanguage2: null,
-  filteredProjectsState: {}
+  filteredProjectsState: {},
+  project: {}
 }
