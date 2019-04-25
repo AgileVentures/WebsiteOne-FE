@@ -11,7 +11,7 @@ export class CreateProjectPage extends Component {
     status: 'Active'
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const path = this.props.location.pathname
     this.props.setLastLocation(path)
     if (
@@ -41,7 +41,7 @@ export class CreateProjectPage extends Component {
     })
   }
 
-  render() {
+  render () {
     let { title, description, status } = this.state
     return (
       <Container>
