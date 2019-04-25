@@ -25,4 +25,4 @@ if (window.Cypress) {
   window.store = store
 }
 
-window.store=store
+window.store = store
