@@ -22,7 +22,7 @@ export let createEvent = props => dispatch => {
   } = props
   return axios({
     method: 'POST',
-    url: 'http://localhost:3000/events',
+    url: '/events',
     data: {
       event: {
         name,

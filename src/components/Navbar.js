@@ -2,25 +2,19 @@ import React, { Component, Fragment } from 'react'
 import { Menu, Container, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import logo from '../../images/av-logo.svg'
+import logo from '../images/av-logo.svg'
 import queryString from 'query-string'
 
-import './Navbar.css'
+import '../assets/Navbar.css'
 
 export class Navbar extends Component {
   state = { showHamburgerMenu: false, isLoggedIn: false }
   componentDidMount () {
     const parsed = queryString.parse(this.props.location.search)
     if (parsed.token) {
-      this.props.cookies.set('OAuth_session', `Bearer ${parsed.token}`, {
+      this.props.cookies.set('WebsiteOne_session', parsed.token, {
         path: '/'
       })
-      this.setState({ isLoggedIn: true })
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (this.props.cookies.get('WebsitOne_session') !== nextProps.cookies.get('WebsiteOne_session')) {
       this.setState({ isLoggedIn: true })
     }
   }
@@ -35,7 +29,6 @@ export class Navbar extends Component {
 
   handleRemoveCookies = () => {
     this.setState({ isLoggedIn: false })
-    this.props.cookies.remove('OAuth_session')
     this.props.cookies.remove('WebsiteOne_session')
   }
 
@@ -87,7 +80,7 @@ export class Navbar extends Component {
             >
               <Link to='/getting-started'>Getting Started</Link>
             </Menu.Item>
-            {isLoggedIn || cookies.get('OAuth_session') || cookies.get('WebsiteOne_session') ? (
+            {isLoggedIn || cookies.get('WebsiteOne_session') ? (
               <Menu.Item name='signout' active={activeItem === 'signout'}>
                 <Link to='/' onClick={this.handleRemoveCookies}>
                   <Icon name='sign-out' />
