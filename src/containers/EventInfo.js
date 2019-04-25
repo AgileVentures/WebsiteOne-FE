@@ -42,3 +42,4 @@ export default connect(
   mapStateToProps,
   { fetchEventInfo, setLastLocation }
 )(EventInfo)
+

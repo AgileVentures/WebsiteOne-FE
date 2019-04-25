@@ -72,3 +72,4 @@ const EventSummary = props => {
 }
 
 export default EventSummary
+
