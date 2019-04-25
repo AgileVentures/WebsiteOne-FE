@@ -3,6 +3,7 @@ import { Header, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import ProjectForm from '../components/ProjectForm'
 import { createProject } from '../actions/createProjectAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 export class CreateProjectPage extends Component {
   state = {
     title: '',
@@ -10,7 +11,22 @@ export class CreateProjectPage extends Component {
     status: 'Active'
   }
 
-  handleChange = (e, { name, value }) => { this.setState({ [name]: value }) }
+  componentDidMount() {
+    const path = this.props.location.pathname
+    this.props.setLastLocation(path)
+    if (
+      !this.props.cookies.get('_WebsiteOne_session') &&
+      !this.props.loggedInUser.data
+    ) {
+      this.props.history.push({
+        pathname: '/login'
+      })
+    }
+  }
+
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
 
   handleSubmit = event => {
     const { title, description, status } = this.state
@@ -25,12 +41,14 @@ export class CreateProjectPage extends Component {
     })
   }
 
-  render () {
+  render() {
     let { title, description, status } = this.state
     return (
-      <Container >
-        <Header as='h1'
-          textAlign='center' > Creating a new Project </Header>
+      <Container>
+        <Header as='h1' textAlign='center'>
+          {' '}
+          Creating a new Project{' '}
+        </Header>
         <ProjectForm
           handleSubmit={this.handleSubmit}
           onChange={this.handleChange}
@@ -39,15 +57,18 @@ export class CreateProjectPage extends Component {
           status={status}
           cookies={this.props.cookies}
         />
-      </Container >
+      </Container>
     )
   }
 }
 const mapStateToProps = (store, ownProps) => ({
-  cookies: ownProps.cookies
+  cookies: ownProps.cookies,
+  loggedInUser: store.loggedInUser
 })
 export default connect(
-  mapStateToProps, {
-    createProject
+  mapStateToProps,
+  {
+    createProject,
+    setLastLocation
   }
 )(CreateProjectPage)
