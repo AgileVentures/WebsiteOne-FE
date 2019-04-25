@@ -105,11 +105,7 @@ export class UsersList extends Component {
                   icon='search'
                   placeholder='Search...'
                 />
-<<<<<<< HEAD
-                <Card.Group centered itemsPerRow={3}>
-=======
                 <Card.Group centered itemsPerRow={3} stackable columns={3}>
->>>>>>> 69775c9d815e2953a2187b8473169ebe92b390d3
                   {usersList ? (
                     <Paginate
                       items={usersList}
