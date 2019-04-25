@@ -22,7 +22,7 @@ describe('ProjectsList', () => {
     setLastLocation: () => {},
     location: { pathname: '/projects' },
     filteredProjectsAction: jest.fn(),
-    selectedLanguageAction:jest.fn()
+    selectedLanguageAction: jest.fn()
   }
   wrapper = mount(
     <StaticRouter context={context}>
