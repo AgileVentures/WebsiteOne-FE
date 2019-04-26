@@ -36,4 +36,3 @@ describe('fetchEventInfo action', () => {
     })
   })
 })
-

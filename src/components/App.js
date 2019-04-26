@@ -48,6 +48,12 @@ class App extends Component {
             />
             <Route path='/signup' component={SignUp} />
             <Route exact path='/projects' component={ProjectsList} />
+            <Route exact path='/projects/new' render={props => {
+              return (<CreateProjectPage {...props}
+                cookies={this.props.cookies}
+              />)
+            }}
+            />
             <Route path='/projects/:slug' render={props => {
               return (
                 <ProjectInfo
@@ -55,59 +61,6 @@ class App extends Component {
                   cookies={this.props.cookies}
                 />)
             }}
-<<<<<<< HEAD
-          />
-          <Route path='/signup' component={SignUp} />
-          <Route exact path='/projects' component={ProjectsList} />
-          <Route exact path='/projects/new' render={props => {
-            return (<CreateProjectPage {...props}
-              cookies={this.props.cookies}
-            />)
-          }}
-          />
-          <Route path='/projects/:slug' render={props => {
-            return (
-              <ProjectInfo
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
-          />
-          <Route exact path='/subscriptions/new' render={props => {
-            return (
-              <Subscriptions
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
-          />
-          <Route path='/subscriptions/success' render={props => {
-            return (
-              <SubscriptionsSuccess
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
-          />
-          <Route path='/membership-plans' component={MembershipPlansPage} />
-          <Route path='/premium' component={PremiumMembershipPage} />
-          <Route path='/premium-mob' component={PremiumMobMembershipPage} />
-          <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
-          <Route exact path='/events' component={EventsList} />
-          <Route path='/events/new' render={props => {
-            return (
-              <CreateEventPage
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
-          />
-          <Route path='/events/:slug' component={EventInfo} />
-          <Route path='/getting-started' component={GettingStartedPage} />
-        </Switch>
-        <Footer />
-        </div> 
-=======
             />
             <Route exact path='/subscriptions/new' render={props => {
               return (
@@ -143,7 +96,6 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
->>>>>>> 58b07f2... again 3
       </Fragment>
     )
   }

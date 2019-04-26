@@ -67,4 +67,3 @@ describe('reduces error', () => {
     ).toEqual(['Not found'])
   })
 })
-

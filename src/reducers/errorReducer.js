@@ -28,4 +28,3 @@ const errorReducer = (state = initialState.error, action) => {
 }
 
 export default errorReducer
-
