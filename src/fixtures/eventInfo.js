@@ -51,4 +51,3 @@ export default {
   updatedAt: '2018-03-12T16:30:55.399Z',
   nextScheduledEvent: { event: { id: 2528 }, time: '2018-03-19T16:30:55.399Z' }
 }
-

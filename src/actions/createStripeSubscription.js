@@ -21,4 +21,3 @@ export default (cookies, email, id, dispatch, slug) => {
       })
     })
 }
-

@@ -139,4 +139,3 @@ export default connect(
   mapStateToProps,
   { fetchUsers, setLastLocation }
 )(UsersList)
-

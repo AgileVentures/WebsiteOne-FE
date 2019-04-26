@@ -28,4 +28,3 @@ describe('EventSummary', () => {
     expect(wrapper.find('Loader').props().loading).toBe(true)
   })
 })
-

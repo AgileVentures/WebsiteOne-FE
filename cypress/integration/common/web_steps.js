@@ -323,4 +323,3 @@ Then("I should see the newly created project's info", () => {
     .get('h5')
     .should('contain', 'A new project')
 })
-

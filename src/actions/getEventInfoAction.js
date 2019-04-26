@@ -17,4 +17,3 @@ export let fetchProjectInfo = slug => dispatch => {
     dispatch({ type: GET_PROJECT_INFO, payload: project })
   })
 }
-
