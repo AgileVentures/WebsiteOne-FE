@@ -4,7 +4,8 @@ import {
   CREATE_BILLING_AGREEMENT_FAILURE,
   EXECUTE_BILLING_AGREEMENT_FAILURE,
   CREATE_STRIPE_SUBSCRIPTION_FAILURE,
-  CREATE_EVENT_FAILURE
+  CREATE_EVENT_FAILURE,
+  CREATE_PROJECT_FAILURE
 } from '../../types'
 
 describe('reduces error', () => {
@@ -56,4 +57,14 @@ describe('reduces error', () => {
       })
     ).toEqual(['Not found'])
   })
+
+  it('handles createProject errors', () => {
+    expect(
+      errorReducer([], {
+        type: CREATE_PROJECT_FAILURE,
+        message: 'Not found'
+      })
+    ).toEqual(['Not found'])
+  })
 })
+
