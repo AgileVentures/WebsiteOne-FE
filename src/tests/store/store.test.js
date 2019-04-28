@@ -8,6 +8,7 @@ describe('Store', () => {
     })
 
     expect(store.getState()).toEqual({
+      form: {},
       users: ['Run the tests'],
       loggedInUser: {},
       signedUpUser: {},
