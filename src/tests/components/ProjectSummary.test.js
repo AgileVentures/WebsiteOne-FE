@@ -75,4 +75,44 @@ describe('ProjectSummary', () => {
     })
     expect(linkToMember.text()).toEqual('Matt Rider')
   })
+
+  it('displays card if there issues, source repositories, or a slack channel name', () => {
+    wrapper = mount(
+      <StaticRouter context={context}>
+        <ProjectSummary {...props} />
+      </StaticRouter>
+    )
+    expect(wrapper.contains('Connected on')).toBe(true)
+  })
+
+  it('does not display card if there are no issues, source repositories, or a slack channel name', () => {
+    project.pivotaltracker_url = null
+    project.sourceRepositories = []
+    project.slack_channel_name = null
+    wrapper = mount(
+      <StaticRouter context={context}>
+        <ProjectSummary {...props} />
+      </StaticRouter>
+    )
+    expect(wrapper.contains('Connected on')).toBe(false)
+  })
+
+  it('displays card if there are members', () => {
+    wrapper = mount(
+      <StaticRouter context={context}>
+        <ProjectSummary {...props} />
+      </StaticRouter>
+    )
+    expect(wrapper.contains('Members')).toBe(true)
+  })
+
+  it('does not display card if there are no members', () => {
+    project.members = []
+    wrapper = mount(
+      <StaticRouter context={context}>
+        <ProjectSummary {...props} />
+      </StaticRouter>
+    )
+    expect(wrapper.contains('Members')).toBe(false)
+  })
 })
