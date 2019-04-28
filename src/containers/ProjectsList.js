@@ -25,7 +25,7 @@ export class ProjectsList extends Component {
     filteredProjectsList: null,
     filteredProjects: {},
     totalProjects: null,
-    selectedLanguage2: null,
+    selectedLanguage: null,
     languages: [],
     error: false,
     selectedPageCheck: false
@@ -39,22 +39,22 @@ export class ProjectsList extends Component {
       }
     } else {
       this.paginateProjects(this.props.projects)
-      if (this.props.selectedLanguage2) {
+      if (this.props.selectedLanguage) {
         this.setState({
           projects: this.props.filteredProjectsState.projects,
           pageCount: this.props.filteredProjectsState.pageCount,
-          selectedLanguage2: this.props.selectedLanguage2,
+          selectedLanguage: this.props.selectedLanguage,
           filteredProjectsList: this.props.filteredProjectsState.filteredProjectsList,
           firstPage: this.props.filteredProjectsState.firstPage,
           selectedPage: this.props.filteredProjectsState.selectedPage,
           lastPage: this.props.filteredProjectsState.lastPage,
           selectedPageCheck: true },
         () => {
-          this.handleFilterProjects(this.props.selectedLanguage2)
+          this.handleFilterProjects(this.props.selectedLanguage)
         })
       } else {
         this.setState({ selectedPage: this.props.filteredProjectsState.selectedPage, selectedPageCheck: true },
-          () => { this.handleFilterProjects(this.props.selectedLanguage2) })
+          () => { this.handleFilterProjects(this.props.selectedLanguage) })
       }
     }
     this.props.setLastLocation(this.props.location.pathname)
@@ -138,7 +138,7 @@ export class ProjectsList extends Component {
     return this.state.languages.map(lang => ({ label: lang, value: lang }))
   }
 
-  handleFilterProjects = (selectedLanguage) => {
+  handleFilterProjects = selectedLanguage => {
     this.props.selectedLanguageAction(selectedLanguage)
     let { projects } = this.state
     if (selectedLanguage) {
@@ -146,7 +146,7 @@ export class ProjectsList extends Component {
         .length
 
       this.setState({
-        selectedLanguage2: selectedLanguage,
+        selectedLanguage: selectedLanguage,
         selectedPage: this.state.selectedPageCheck ? this.state.selectedPage : 1,
         filteredProjectsList: this.state.selectedPageCheck ? projects[selectedLanguage.value][this.state.selectedPage] : projects[selectedLanguage.value][1],
         pageCount,
@@ -160,7 +160,7 @@ export class ProjectsList extends Component {
       let pageCount = Math.ceil(this.props.projects.length / projectsPerPage)
       this.paginateProjects(this.props.projects)
       this.setState({
-        selectedLanguage2: selectedLanguage,
+        selectedLanguage: selectedLanguage,
         pageCount,
         selectedPage: this.state.selectedPageCheck ? this.state.selectedPage : 1,
         filteredProjectsList: null,
@@ -174,15 +174,15 @@ export class ProjectsList extends Component {
 
   handlePageSelect = selectedPage => e => {
     e.preventDefault()
-    let { selectedLanguage2, projects } = this.state
+    let { selectedLanguage, projects } = this.state
     this.setState({
       selectedPage,
       firstPage: selectedPage - 1 < 1,
       lastPage: selectedPage + 1 > this.state.pageCount
     })
-    if (selectedLanguage2) {
+    if (selectedLanguage) {
       this.setState({
-        filteredProjectsList: projects[selectedLanguage2.value][selectedPage]
+        filteredProjectsList: projects[selectedLanguage.value][selectedPage]
       }, () => { this.props.filteredProjectsAction(this.state) })
     } else {
       this.setState({ projectsList: projects[selectedPage] }, () => { this.props.filteredProjectsAction(this.state) })
@@ -193,7 +193,7 @@ export class ProjectsList extends Component {
     const {
       projectsList,
       filteredProjectsList,
-      selectedLanguage2,
+      selectedLanguage,
       pageCount,
       error
     } = this.state
@@ -240,7 +240,7 @@ export class ProjectsList extends Component {
                 </div>
                 <div className='search-dropdown'>
                   <Select
-                    value={selectedLanguage2 || this.props.selectedLanguage2}
+                    value={selectedLanguage || this.props.selectedLanguage}
                     options={this.populateLanguagesDropdown()}
                     onChange={this.handleFilterProjects}
                     placeholder='Search for project by programming language...'
@@ -274,7 +274,7 @@ export class ProjectsList extends Component {
 }
 
 const mapStateToProps = state => (
-  { projects: state.projects, error: state.error, selectedLanguage2: state.selectedLanguage2, filteredProjectsState: state.filteredProjectsState }
+  { projects: state.projects, error: state.error, selectedLanguage: state.selectedLanguage, filteredProjectsState: state.filteredProjectsState }
 )
 
 export default connect(

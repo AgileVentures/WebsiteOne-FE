@@ -10,14 +10,10 @@ import userInfo from '../reducers/userInfoReducer'
 import projectInfo from '../reducers/projectInfoReducer'
 import events from '../reducers/eventsReducer'
 import eventInfo from '../reducers/eventInfoReducer'
-import { selectedLanguageReducer, filteredProjectsReducer } from '../reducers/userSearchResultReducer.js'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
-import { createBrowserHistory } from 'history'
+import { selectedLanguageReducer, filteredProjectsReducer } from '../reducers/userSearchResultReducer'
 
-const history = createBrowserHistory()
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
-  router: connectRouter(history),
   users,
   projects,
   loggedInUser,
@@ -28,11 +24,11 @@ const rootReducer = combineReducers({
   projectInfo,
   events,
   eventInfo,
-  selectedLanguage2: selectedLanguageReducer,
+  selectedLanguage: selectedLanguageReducer,
   filteredProjectsState: filteredProjectsReducer
 })
 
 export default createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(routerMiddleware(history), thunk))
+  composeEnhancers(applyMiddleware(thunk))
 )

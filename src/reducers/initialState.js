@@ -9,6 +9,6 @@ export default {
   projectInfo: {},
   events: [],
   eventInfo: {},
-  selectedLanguage2: null,
+  selectedLanguage: null,
   filteredProjectsState: {}
 }

@@ -8,7 +8,6 @@ describe('Store', () => {
     })
 
     expect(store.getState()).toEqual({
-      router: { action: 'POP', location: { hash: '', pathname: '/', search: '', state: undefined } },
       users: ['Run the tests'],
       loggedInUser: {},
       signedUpUser: {},
@@ -19,7 +18,7 @@ describe('Store', () => {
       projectInfo: {},
       events: [],
       eventInfo: {},
-      selectedLanguage2: null,
+      selectedLanguage: null,
       filteredProjectsState: {}
     })
   })

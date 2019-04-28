@@ -56,12 +56,13 @@ describe('ProjectsList', () => {
         projects={paginatedProjectsFixture}
         fetchProjects={() => {}}
         setLastLocation={() => {}}
+        filteredProjectsAction={() => {}}
         location={{ pathname: '/projects' }}
       />
     )
     wrapper.setState(
       {
-        selectedLanguage2: { value: 'JavaScript' },
+        selectedLanguage: { value: 'JavaScript' },
         projects: paginatedProjectsFixture
       },
       () => {

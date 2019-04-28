@@ -1,7 +1,7 @@
 import { SELECTED_LANGUAGE, FILTERED_PROJECTS_STATE } from '../types'
 import initialState from './initialState'
 
-export const selectedLanguageReducer = (state = initialState.selectedLanguage2, action) => {
+export const selectedLanguageReducer = (state = initialState.selectedLanguage, action) => {
   if (action.type === SELECTED_LANGUAGE) {
     return action.payload
   }
