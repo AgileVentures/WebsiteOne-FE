@@ -1,8 +1,8 @@
-import codingWithCat from '../../images/coding-with-cat.svg'
-import realprojects from '../../images/real-projects.svg'
-import runners from '../../images/runners.svg'
-import jobs from '../../images/jobs.svg'
-import scrum from '../../images/scrum.svg'
+import codingWithCat from '../images/coding-with-cat.svg'
+import realprojects from '../images/real-projects.svg'
+import runners from '../images/runners.svg'
+import jobs from '../images/jobs.svg'
+import scrum from '../images/scrum.svg'
 
 const modals = [
   {

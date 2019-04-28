@@ -8,5 +8,6 @@ export default {
   userInfo: {},
   projectInfo: {},
   events: [],
-  eventInfo: {}
+  eventInfo: {},
+  project: {}
 }

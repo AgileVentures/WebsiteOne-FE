@@ -14,7 +14,7 @@ export class LogIn extends Component {
   handleLogIn = event => {
     event.preventDefault()
     const { email, password } = this.state
-    const { cookies, loggedInUser, history, lastLocation, postLogInInfo } = this.props
+    const { cookies, history, lastLocation, postLogInInfo } = this.props
     postLogInInfo({ email, password })
       .then(() => {
         if (lastLocation.path && lastLocation.search) {
@@ -30,7 +30,7 @@ export class LogIn extends Component {
         iziToast.show({
           theme: 'light',
           title: 'Success',
-          message: 'Welcome back, ' + `${loggedInUser.slug}`,
+          message: 'Welcome back, ' + `${this.props.loggedInUser.data.slug}`,
           position: 'topRight',
           color: 'green',
           backgroundColor: 'lime',
