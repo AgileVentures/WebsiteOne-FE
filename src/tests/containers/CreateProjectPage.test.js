@@ -5,6 +5,7 @@ import { CreateProjectPage } from '../../containers/CreateProjectPage'
 describe('CreateProjectPage', () => {
   let wrapper
   let props = {
+    location: { pathname: '/projects/new' },
     createProject: jest.fn()
   }
 
@@ -25,7 +26,9 @@ describe('CreateProjectPage', () => {
     })
     const submitForm = wrapper.find('Form')
     titleInput.simulate('change', { target: { value: 'Predicted Title' } })
-    descriptionInput.simulate('change', { target: { value: 'Happy description here' } })
+    descriptionInput.simulate('change', {
+      target: { value: 'Happy description here' }
+    })
     submitForm.simulate('submit')
 
     expect(props.createProject).toHaveBeenCalledTimes(1)
