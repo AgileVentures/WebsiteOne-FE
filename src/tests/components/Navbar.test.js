@@ -68,7 +68,7 @@ describe('Navbar', () => {
     })
 
     it('sets the cookies if their is a token in the url search', () => {
-      props.location.search = '?token=process.env.SESSION || 'WebsiteOne_session''
+      props.location.search = '?token=WebsiteOne_session'
       mount(
         <Router>
           <Navbar {...props} />
