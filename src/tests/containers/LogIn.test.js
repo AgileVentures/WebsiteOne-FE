@@ -156,7 +156,6 @@ describe('LogIn', () => {
   })
 
   it('redirects to login via github oauth when clickin on login with github', () => {
-    // console.log(wrapper.debug())
     const oauthLogInButton = wrapper.find('button').filterWhere(item => {
       return item.text() === 'with GitHub'
     })

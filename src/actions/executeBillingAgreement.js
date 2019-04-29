@@ -11,7 +11,7 @@ export default (cookies, params, dispatch) => {
       token: params.token
     },
     headers: {
-      Authorization: cookies.get('WebsiteOne_session')
+      Authorization: cookies.get(process.env.SESSION)
     }
   })
     .catch(error => {

@@ -11,7 +11,7 @@ export default (cookies, email, id, dispatch, slug) => {
       plan: slug
     },
     headers: {
-      Authorization: cookies.get('WebsiteOne_session')
+      Authorization: cookies.get(process.env.SESSION)
     }
   })
     .catch(error => {
