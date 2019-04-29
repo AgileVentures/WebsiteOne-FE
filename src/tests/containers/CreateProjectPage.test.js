@@ -4,8 +4,12 @@ import { CreateProjectPage } from '../../containers/CreateProjectPage'
 
 describe('CreateProjectPage', () => {
   let wrapper
-  let props = {
+  const props = {
     location: { pathname: '/projects/new' },
+    setLastLocation: jest.fn(),
+    cookies: { get: jest.fn() },
+    history: { push: jest.fn() },
+    loggedInUser: {},
     createProject: jest.fn()
   }
 
