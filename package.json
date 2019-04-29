@@ -1,0 +1,102 @@
+{
+  "name": "WebsiteOne-FE",
+  "version": "1.0.0",
+  "description": "Front end for WebsiteOne",
+  "main": "index.js",
+  "repository": "git@github.com:AgileVentures/WebsiteOne-FE.git",
+  "author": "AgileVentures",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "start-test-server": "webpack-dev-server --mode development --port 8082",
+    "build": "webpack --mode production",
+    "fix": "standard --fix",
+    "test": "export NODE_ENV=testing && standard && jest",
+    "windows-test": "set NODE_ENV=testing&& standard && jest",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cypress:ci": "cypress run",
+    "cypress:local": "cypress open --config baseUrl=http://localhost:8082",
+    "cypress:install": "cypress install",
+    "e2e:local": "start-server-and-test start-test-server http://localhost:8082 cypress:local",
+    "e2e:ci": "npm-run-all --parallel --race start:ci 'cypress:ci --config baseUrl=http://localhost:8082'",
+    "start:ci": "webpack-dev-server --config ./webpack.config.js --port 8082 --mode production",
+    "now-build": "yarn build"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "dotenv-webpack": "^1.7.0",
+    "global": "^4.3.2",
+    "izitoast": "^1.4.0",
+    "moment-timezone": "^0.5.23",
+    "query-string": "^6.2.0",
+    "react": "16.8.0",
+    "react-big-calendar": "^0.20.3",
+    "react-cookie": "^3.0.8",
+    "react-datepicker": "^2.1.0",
+    "react-dom": "16.8.0",
+    "react-html-parser": "^2.0.2",
+    "react-loading-overlay": "^1.0.1",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-select": "^2.3.0",
+    "react-spinners": "^0.5.1",
+    "react-stripe-checkout": "^2.6.3",
+    "recompose": "^0.30.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.84.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "7",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.2",
+    "css-loader": "^2.0.1",
+    "cypress": "^3.2.0",
+    "cypress-cucumber-preprocessor": "^1.9.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "eslint-plugin-react-hooks": "^1.0.1",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.6.0",
+    "jest-transform-css": "^2.0.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "moxios": "^0.4.0",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
+    "redux-mock-store": "^1.5.3",
+    "regenerator-runtime": "^0.13.1",
+    "sass-loader": "^7.1.0",
+    "standard": "^12.0.1",
+    "start-server-and-test": "^1.7.11",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "src/assets/*"
+    ],
+    "env": [
+      "jest"
+    ],
+    "globals": [
+      "cy"
+    ]
+  }
+}
