@@ -9,10 +9,11 @@ import '../assets/Navbar.css'
 
 export class Navbar extends Component {
   state = { showHamburgerMenu: false, isLoggedIn: false }
+
   componentDidMount () {
     const parsed = queryString.parse(this.props.location.search)
     if (parsed.token) {
-      this.props.cookies.set('WebsiteOne_session', parsed.token, {
+      this.props.cookies.set(process.env.SESSION, parsed.token, {
         path: '/'
       })
       this.setState({ isLoggedIn: true })
@@ -29,7 +30,7 @@ export class Navbar extends Component {
 
   handleRemoveCookies = () => {
     this.setState({ isLoggedIn: false })
-    this.props.cookies.remove('WebsiteOne_session')
+    this.props.cookies.remove(process.env.SESSION)
   }
 
   toggleHamburgerMenu = () => {
@@ -80,7 +81,7 @@ export class Navbar extends Component {
             >
               <Link to='/getting-started'>Getting Started</Link>
             </Menu.Item>
-            {isLoggedIn || cookies.get('WebsiteOne_session') ? (
+            {isLoggedIn || cookies.get(process.env.SESSION) ? (
               <Menu.Item name='signout' active={activeItem === 'signout'}>
                 <Link to='/' onClick={this.handleRemoveCookies}>
                   <Icon name='sign-out' />

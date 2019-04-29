@@ -24,7 +24,7 @@ export class LogIn extends Component {
         } else {
           history.push('/')
         }
-        cookies.set('WebsiteOne_session', this.props.loggedInUser.headers.authorization, {
+        cookies.set(process.env.SESSION, this.props.loggedInUser.headers.authorization, {
           path: '/'
         })
         iziToast.show({
