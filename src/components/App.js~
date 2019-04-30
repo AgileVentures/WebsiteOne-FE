@@ -6,7 +6,7 @@ import ProjectsList from '../containers/ProjectsList'
 import ProjectInfo from '../containers/ProjectInfo'
 import Homepage from '../components/Homepage'
 import Footer from '../components/Footer'
-import Navbar from './navbar/Navbar'
+import Navbar from './Navbar'
 import About from '../containers/About'
 import LogIn from '../containers/LogIn'
 import SignUp from '../containers/SignUp'
@@ -19,10 +19,8 @@ import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
-<<<<<<< HEAD
 import CreateEventPage from '../containers/CreateEventPage'
-=======
->>>>>>> Add EventInfo and EventSummary Components
+import CreateProjectPage from '../containers/CreateProjectPage'
 import { withCookies } from 'react-cookie'
 
 class App extends Component {
@@ -49,6 +47,12 @@ class App extends Component {
           />
           <Route path='/signup' component={SignUp} />
           <Route exact path='/projects' component={ProjectsList} />
+          <Route exact path='/projects/new' render={props => {
+            return (<CreateProjectPage {...props}
+              cookies={this.props.cookies}
+            />)
+          }}
+          />
           <Route path='/projects/:slug' render={props => {
             return (
               <ProjectInfo
@@ -75,7 +79,6 @@ class App extends Component {
           />
           <Route path='/membership-plans' component={MembershipPlansPage} />
           <Route path='/premium' component={PremiumMembershipPage} />
-<<<<<<< HEAD
           <Route path='/premium-mob' component={PremiumMobMembershipPage} />
           <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
           <Route exact path='/events' component={EventsList} />
@@ -89,12 +92,6 @@ class App extends Component {
           />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
-=======
-          <Route path='/premiummob' component={PremiumMobMembershipPage} />
-          <Route path='/premiumf2f' component={PremiumF2FMembershipPage} />
-          <Route exact path='/events' component={EventsList} />
-          <Route path='/events/:slug' component={EventInfo} />
->>>>>>> Add EventInfo and EventSummary Components
         </Switch>
         <Footer />
       </Fragment>
