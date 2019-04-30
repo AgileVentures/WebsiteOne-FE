@@ -28,7 +28,7 @@ export class CreateEventPage extends Component {
   componentDidMount () {
     const path = this.props.location.pathname
     this.props.setLastLocation(path)
-    if (!this.props.cookies.get('_WebsiteOne_session') && !this.props.loggedInUser.data) {
+    if (!this.props.cookies.get(process.env.SESSION || 'WebsiteOne_session') && !this.props.loggedInUser.data) {
       this.props.history.push({ pathname: '/login' })
     }
     if (!this.props.projects.length) {
@@ -76,7 +76,7 @@ export class CreateEventPage extends Component {
     const startDateFormatted = moment(startDate).format('YYYYMMDD')
     const weekdaysLowerCase = weekdays.map(day => day.toLowerCase())
     const { history, createEvent } = this.props
-    const headers = this.props.cookies.get('_WebsiteOne_session')
+    const headers = this.props.cookies.get(process.env.SESSION || 'WebsiteOne_session')
     createEvent({
       headers,
       history,

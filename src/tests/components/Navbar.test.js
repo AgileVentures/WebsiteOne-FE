@@ -1,13 +1,13 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Navbar } from '../../components/navbar/Navbar'
+import { Navbar } from '../../components/Navbar'
 
 describe('Navbar', () => {
   let wrapper
   const props = {
-    location: { pathname: '/users' },
-    cookies: { get: jest.fn(), remove: jest.fn() }
+    location: { pathname: '/users', search: '' },
+    cookies: { get: jest.fn(), remove: jest.fn(), set: jest.fn() }
   }
 
   beforeEach(() => {
@@ -65,6 +65,23 @@ describe('Navbar', () => {
       })
       logOutLink.simulate('click')
       expect(props.cookies.remove).toHaveBeenCalledTimes(1)
+    })
+
+    it('sets the cookies if their is a token in the url search', () => {
+      props.location.search = '?token=WebsiteOne_session'
+      mount(
+        <Router>
+          <Navbar {...props} />
+        </Router>
+      )
+      expect(props.cookies.set).toHaveBeenCalledTimes(1)
+    })
+
+    it('toggles showHamberMenu when user click on the hamburger icon', () => {
+      const navbar = wrapper.find('Navbar')
+      const hamburgerIcon = wrapper.find('.hamburger')
+      hamburgerIcon.simulate('click')
+      expect(navbar.state().showHamburgerMenu).toEqual(true)
     })
   })
 })

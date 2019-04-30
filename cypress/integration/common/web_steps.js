@@ -233,6 +233,7 @@ Given('I am logged in', () => {
   })
   cy.wait('@postLogInInfo')
 })
+
 Then('I visit the new events page', () => {
   cy.fixture('activeProjects').then(activeProjects => {
     cy.route(/\/api\/v1\/projects\/active/, activeProjects).as('fetchActiveProjects')

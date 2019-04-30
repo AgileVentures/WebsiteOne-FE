@@ -41,7 +41,8 @@ export let createEvent = props => dispatch => {
       next_date: startDateFormatted,
       start_time: startTime,
       start_time_tz: timezones,
-      repeat_ends_on: endDate
+      repeat_ends_on: endDate,
+      token: headers
     },
     headers: {
       Authorization: headers,

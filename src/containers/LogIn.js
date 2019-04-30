@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Form, Header, Grid, Checkbox } from 'semantic-ui-react'
+import { Button, Form, Header, Grid, Checkbox, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { postLogInInfo } from '../actions/postLogInInfoAction'
 import iziToast from 'izitoast'
@@ -24,7 +24,7 @@ export class LogIn extends Component {
         } else {
           history.push('/')
         }
-        cookies.set('_WebsiteOne_session', this.props.loggedInUser.headers.authorization, {
+        cookies.set(process.env.SESSION || 'WebsiteOne_session', this.props.loggedInUser.headers.authorization, {
           path: '/'
         })
         iziToast.show({
@@ -52,6 +52,10 @@ export class LogIn extends Component {
       })
   };
 
+  handleOAuthLogin = () => {
+    window.location.assign(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`)
+  }
+
   render () {
     const { password, email } = this.state
     return (
@@ -59,7 +63,21 @@ export class LogIn extends Component {
         <Header as='h1' textAlign='center' className='login-h1'>
           Log In
         </Header>
-        <Header as='h4' textAlign='center' className='login-h4'>
+        <Grid centered>
+          <Grid.Row>
+            <Grid.Column width={2} />
+            <Grid.Column width={8}>
+              <Button
+                color='black'
+                onClick={this.handleOAuthLogin}
+              >
+                <Icon name='github alternate' size='big' />
+                with GitHub
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Header as='h4' textAlign='center'>
           Don't have an account? <a href='/signup'>Sign Up</a>
         </Header>
         <Header as='h4' textAlign='center'>

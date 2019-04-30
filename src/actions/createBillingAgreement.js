@@ -11,7 +11,7 @@ export default (cookies, id, dispatch) => event => {
       plan: id
     },
     headers: {
-      Authorization: cookies.get('_WebsiteOne_session')
+      Authorization: cookies.get(process.env.SESSION || 'WebsiteOne_session')
     }
   })
     .then(response => window.location.assign(response.data.redirect_url))

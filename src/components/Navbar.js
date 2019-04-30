@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { Menu, Container, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import logo from '../../images/av-logo.svg'
-import './Navbar.css'
+import logo from '../images/av-logo.svg'
+import '../assets/Navbar.css'
 
 export class Navbar extends Component {
   state = { showHamburgerMenu: false }
@@ -59,7 +59,6 @@ export class Navbar extends Component {
             <Menu.Item name='events' active={activeItem === 'events'}>
               <Link to='/events'>Events</Link>
             </Menu.Item>
-
             <Menu.Item name='getting-started' active={activeItem === 'getting-started'}>
               <Link to='/getting-started'>
                 Getting Started

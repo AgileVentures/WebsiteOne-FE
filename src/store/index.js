@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 import users from '../reducers/usersReducer'
 import projects from '../reducers/projectsReducer'
 import loggedInUser from '../reducers/loggedInUserReducer'
@@ -14,6 +15,7 @@ import { selectedLanguageReducer, filteredProjectsReducer } from '../reducers/us
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
+  form: formReducer,
   users,
   projects,
   loggedInUser,
