@@ -1,9 +1,5 @@
 import React, { Component, Fragment } from 'react'
-<<<<<<< HEAD
 import { Header, Card, Grid, Container, Input } from 'semantic-ui-react'
-=======
-import { Header, Card, Grid, Container } from 'semantic-ui-react'
->>>>>>> Extract Container from index.js to pages' components
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import { connect } from 'react-redux'
@@ -102,7 +98,6 @@ export class UsersList extends Component {
             <Grid.Row>
               <Grid.Column width={12}>
                 <Header as='h1'>Volunteers Directory</Header>
-<<<<<<< HEAD
                 <Input
                   onChange={this.handleSearchInput}
                   className='users-list-search-input'
@@ -130,22 +125,6 @@ export class UsersList extends Component {
                     selectedPage={selectedPage}
                   />
                 ) : null}
-=======
-                <Card.Group centered itemsPerRow={3}>
-                  <Paginate
-                    items={usersList}
-                    Component={User}
-                    pageCount={pageCount}
-                  />
-                </Card.Group>
-                <PaginationLinks
-                  handlePageSelect={this.handlePageSelect}
-                  firstPage={firstPage}
-                  lastPage={lastPage}
-                  pageCount={pageCount}
-                  selectedPage={selectedPage}
-                />
->>>>>>> Extract Container from index.js to pages' components
               </Grid.Column>
             </Grid.Row>
           </Grid>
