@@ -8,22 +8,22 @@ import '../assets/Navbar.css'
 
 export class Navbar extends Component {
     state = { showHamburgerMenu: false, isLoggedIn: false }
-  componentDidMount () {
-    const parsed = queryString.parse(this.props.location.search)
-    if (parsed.token) {
-      this.props.cookies.set(process.env.SESSION || 'WebsiteOne_session', parsed.token, {
-        path: '/'
-      })
-      this.setState({ isLoggedIn: true })
+    componentDidMount () {
+      const parsed = queryString.parse(this.props.location.search)
+      if (parsed.token) {
+        this.props.cookies.set(process.env.SESSION || 'WebsiteOne_session', parsed.token, {
+          path: '/'
+        })
+        this.setState({ isLoggedIn: true })
+      }
     }
-  }
-  currentPath () {
+    currentPath () {
     // this.props.location.split("/") returns ["", ""] when on homepage
     // and ["", "users", "123"] when on /users/123
     // This function is used to highlight the nav link
-    const pathArray = this.props.location.pathname.split('/')
-    return pathArray[1]
-  }
+      const pathArray = this.props.location.pathname.split('/')
+      return pathArray[1]
+    }
 
   handleRemoveCookies = () => {
     this.setState({ isLoggedIn: false })
@@ -70,7 +70,7 @@ export class Navbar extends Component {
 
             <Menu.Item name='events' active={activeItem === 'events'}>
               <Link to='/events'>Events</Link>
-            </Menu.Item>            
+            </Menu.Item>
             <Menu.Item
               name='getting-started'
               active={activeItem === 'getting-started'}
@@ -94,7 +94,7 @@ export class Navbar extends Component {
                   <Link to='/signup'>Sign up</Link>
                 </Menu.Item>
               </Fragment>
-           )}
+            )}
           </Menu.Menu>
           <Link to='/'>
             <span className='hamburger' onClick={this.toggleHamburgerMenu}>
