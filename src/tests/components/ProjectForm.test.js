@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ProjectForm from '../../components/ProjectForm'
+import { ProjectForm } from '../../components/ProjectForm'
 
 describe('ProjectForm', () => {
   let wrapper
