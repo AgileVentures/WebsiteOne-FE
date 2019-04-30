@@ -3,10 +3,20 @@ import { Menu, Container, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import logo from '../images/av-logo.svg'
+import queryString from 'query-string'
 import '../assets/Navbar.css'
 
 export class Navbar extends Component {
-  state = { showHamburgerMenu: false }
+    state = { showHamburgerMenu: false, isLoggedIn: false }
+  componentDidMount () {
+    const parsed = queryString.parse(this.props.location.search)
+    if (parsed.token) {
+      this.props.cookies.set(process.env.SESSION || 'WebsiteOne_session', parsed.token, {
+        path: '/'
+      })
+      this.setState({ isLoggedIn: true })
+    }
+  }
   currentPath () {
     // this.props.location.split("/") returns ["", ""] when on homepage
     // and ["", "users", "123"] when on /users/123
@@ -16,7 +26,8 @@ export class Navbar extends Component {
   }
 
   handleRemoveCookies = () => {
-    this.props.cookies.remove('_WebsiteOne_session')
+    this.setState({ isLoggedIn: false })
+    this.props.cookies.remove(process.env.SESSION || 'WebsiteOne_session')
   }
 
   toggleHamburgerMenu = () => {
@@ -26,6 +37,7 @@ export class Navbar extends Component {
   }
 
   render () {
+    const { isLoggedIn } = this.state
     const { cookies } = this.props
     const activeItem = this.currentPath()
     const menuView = this.state.showHamburgerMenu ? 'open' : 'close'
@@ -58,19 +70,21 @@ export class Navbar extends Component {
 
             <Menu.Item name='events' active={activeItem === 'events'}>
               <Link to='/events'>Events</Link>
-            </Menu.Item>
-            <Menu.Item name='getting-started' active={activeItem === 'getting-started'}>
-              <Link to='/getting-started'>
-                Getting Started
-              </Link>
-            </Menu.Item>
+            </Menu.Item>            
             <Menu.Item
               name='getting-started'
               active={activeItem === 'getting-started'}
             >
               <Link to='/getting-started'>Getting Started</Link>
             </Menu.Item>
-            {!cookies.get('_WebsiteOne_session') ? (
+            {isLoggedIn || cookies.get(process.env.SESSION || 'WebsiteOne_session') ? (
+              <Menu.Item name='signout' active={activeItem === 'signout'}>
+                <Link to='/' onClick={this.handleRemoveCookies}>
+                  <Icon name='sign-out' />
+                  Log out
+                </Link>
+              </Menu.Item>
+            ) : (
               <Fragment>
                 <Menu.Item name='login' active={activeItem === 'login'}>
                   <Link to='/login'>Login</Link>
@@ -80,14 +94,7 @@ export class Navbar extends Component {
                   <Link to='/signup'>Sign up</Link>
                 </Menu.Item>
               </Fragment>
-            ) : (
-              <Menu.Item name='signout' active={activeItem === 'signout'}>
-                <Link to='/' onClick={this.handleRemoveCookies}>
-                  <Icon name='sign-out' />
-                  Log out
-                </Link>
-              </Menu.Item>
-            )}
+           )}
           </Menu.Menu>
           <Link to='/'>
             <span className='hamburger' onClick={this.toggleHamburgerMenu}>
