@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store'
 import { CREATE_PROJECT } from '../../types'
 import newProject from '../../../cypress/fixtures/newlyCreatedProject'
 
-describe('createProject', () => {
+describe.only('createProject', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
   let store
@@ -13,7 +13,8 @@ describe('createProject', () => {
   const props = {
     title: 'PairProgramming Rocks',
     description: 'Project all about pair programming',
-    status: 'active',
+    slack: 'new slack',
+    status: 'Active',
     cookies: { get: jest.fn() },
     history: { push: jest.fn() }
   }
@@ -25,17 +26,21 @@ describe('createProject', () => {
     moxios.uninstall()
   })
 
-  it('posts project info to Rails backend and returns without error', async () => {
+  it.only('posts project info to Rails backend and returns without error', async () => {
     const expectedActions = [{ type: CREATE_PROJECT, payload: newProject }]
-    expect.assertions(1)
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
+
+      Object.keys(props).forEach(key => {
+        if (newProject.project[`${key}`]) {
+          newProject.project[`${key}`] = props[`${key}`]
+        }
+      })
       request.resolve({ data: newProject })
     })
-
-    return store.dispatch(createProject(props)).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
-    })
+    await store.dispatch(createProject(props))
+    const actionReturn = store.getActions()
+    expect(actionReturn).toEqual(expectedActions)
   })
 
   it('dispatches an error if it is returned', () => {

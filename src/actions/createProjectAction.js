@@ -9,6 +9,7 @@ export let createProject = props => dispatch => {
     title,
     description,
     status,
+    slack,
     cookies
   } = props
   return axios({
@@ -18,7 +19,8 @@ export let createProject = props => dispatch => {
       project: {
         title,
         description,
-        status
+        status,
+        slack
       }
     },
     headers: {
