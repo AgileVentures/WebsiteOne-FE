@@ -1,14 +1,15 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ProjectForm } from '../../components/ProjectForm'
+import ProjectForm from '../../components/ProjectForm'
 
-describe('ProjectForm', () => {
+describe.only('ProjectForm', () => {
   let wrapper
   let props = {
     handleSubmit: jest.fn()
   }
 
   beforeEach(() => {
+    console.log(ProjectForm)
     wrapper = shallow(<ProjectForm {...props} />)
   })
 
