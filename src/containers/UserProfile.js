@@ -7,8 +7,6 @@ import { setLastLocation } from '../actions/setLastLocationAction'
 import '../assets/UserProfile.css'
 
 export class UserProfile extends Component {
-  state = { user: null }
-
   componentDidMount () {
     const userId = Number(this.props.match.params.id)
     this.props.setLastLocation(this.props.location.pathname)
@@ -19,17 +17,10 @@ export class UserProfile extends Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (this.props.user !== nextProps.user) {
-      this.setState({ user: nextProps.user })
-    }
-  }
-
   render () {
-    let { user } = this.state
     return (
       <Container className='user-profile-container'>
-        <UserSummary user={user} />
+        <UserSummary user={this.props.user} />
       </Container>
     )
   }

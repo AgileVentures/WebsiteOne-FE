@@ -7,7 +7,7 @@ import moment from 'moment-timezone'
 
 const EventSummary = props => {
   let { event } = props
-  if (event) {
+  if (event && Object.entries(event).length > 0) {
     let startTime = moment(event.start_datetime)
     let endTime = startTime.clone().add(Number(event.duration), 'minutes')
     let timeRange = `${startTime.format('HH:mm')} - ${endTime.format('HH:mm')}  ${moment.tz.guess()}`

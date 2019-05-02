@@ -15,7 +15,7 @@ export class UsersList extends Component {
       lastPage: true,
       pageCount: null,
       usersList: [],
-      users: {},
+      users: [],
       selectedPage: 1
     }
   }
@@ -29,9 +29,9 @@ export class UsersList extends Component {
     this.props.setLastLocation(this.props.location.pathname)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (this.props.users.length !== nextProps.users.length) {
-      this.normalizeUsers(nextProps.users)
+  componentDidUpdate () {
+    if (this.props.users.length > 0 && this.state.usersList.length === 0) {
+      this.normalizeUsers(this.props.users)
     }
   }
 

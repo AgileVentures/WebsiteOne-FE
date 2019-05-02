@@ -10,7 +10,6 @@ import momentTZ from 'moment-timezone'
 
 export class CreateEventPage extends Component {
   state = {
-    projects: null,
     startDate: new Date(),
     endDate: new Date(),
     name: '',
@@ -35,12 +34,6 @@ export class CreateEventPage extends Component {
       this.props.fetchActiveProjects()
     } else {
       this.setState({ projects: this.props.projects })
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (this.props.projects !== nextProps.projects) {
-      this.setState({ projects: nextProps.projects })
     }
   }
 
@@ -125,6 +118,7 @@ export class CreateEventPage extends Component {
           name={name}
           category={category}
           eventFor={eventFor}
+          projects={this.props.projects}
           projectId={projectId}
           description={description}
           startDate={startDate}

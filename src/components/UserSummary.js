@@ -7,7 +7,7 @@ import '../assets/UserSummary.css'
 
 const UserSummary = props => {
   let { user } = props
-  if (user) {
+  if (user && Object.keys(user).length > 0) {
     const latestUserContributionList = user.contributions
       .sort((a, b) => b - a)
       .slice(0, 6)
