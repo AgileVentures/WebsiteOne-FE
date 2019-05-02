@@ -1,37 +1,39 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
-import { InputField, SelectField, TextAreaField } from 'react-semantic-redux-form'
-import { Field, reduxForm } from 'redux-form'
 
-export const ProjectForm = props => {
-  const options = [
-    { key: 'select', value: '', text: 'Choose One' },
-    { key: 'one', value: 'Active', text: 'Active' },
-    { key: 'two', value: 'Inactive', text: 'Inactive' }
-  ]
-
+const ProjectForm = props => {
   return (
     <Form onSubmit={props.handleSubmit}>
-      <Field name='title' component={InputField}
+      <Form.Input
         label='Title'
-        placeholder='Title' required />
-      <Field name='description' component={TextAreaField}
-        label='Description'
-        placeholder='Description' required />
-      <Field name='status'
-        component={SelectField}
-        label='Status'
-        options={options}
-        placeholder='Status'
+        placeholder='Project title'
+        name='title'
+        value={props.title}
+        onChange={props.onChange}
+        required
       />
-      <Form.Field control={Button} primary
-        type='submit' >
-        Create Project
-      </Form.Field>
+      <Form.TextArea
+        label='Description'
+        placeholder='Project description'
+        name='description'
+        value={props.description}
+        onChange={props.onChange}
+        required
+      />
+      <Form.Input
+        label='Slack channel name'
+        placeholder='Project slack channel name'
+        name='slack'
+        value={props.slack}
+        onChange={props.onChange}
+      />
+      <select name='status' id='status' onChange={props.onChange} required>
+        <option value='Active'>Active</option>
+        <option value='Inactive'>Inactive</option>
+      </select>
+      <Button style={{ margin: '20px auto' }} type='submit'> Create Project </Button>{' '}
     </Form>
   )
 }
 
-export default reduxForm({
-  form: 'Project'
-})(ProjectForm)
+export default ProjectForm

@@ -4,9 +4,21 @@ import { connect } from 'react-redux'
 import ProjectForm from '../components/ProjectForm'
 import { createProject } from '../actions/createProjectAction'
 export class CreateProjectPage extends Component {
-  handleSubmit = values => {
-    const { title, description, status } = values
+  state = {
+    title: '',
+    description: '',
+    slack: '',
+    status: 'Active'
+  }
+
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
+
+  handleSubmit = event => {
+    const { title, description, status } = this.state
     const { createProject, history, cookies } = this.props
+    event.preventDefault()
     createProject({
       title,
       description,
@@ -17,24 +29,32 @@ export class CreateProjectPage extends Component {
   }
 
   render () {
+    let { title, description, status, slack } = this.state
     return (
-      <Container >
-        <Header as='h1'
-          textAlign='center' > Creating a new Project </Header>
+      <Container>
+        <Header as='h1' textAlign='center'>
+          {' '}
+          Creating a new Project{' '}
+        </Header>
         <ProjectForm
-          onSubmit={this.handleSubmit}
+          handleSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          title={title}
+          description={description}
+          slack={slack}
+          status={status}
           cookies={this.props.cookies}
         />
-      </Container >
+      </Container>
     )
   }
 }
-
 const mapStateToProps = (store, ownProps) => ({
   cookies: ownProps.cookies
 })
 export default connect(
-  mapStateToProps, {
+  mapStateToProps,
+  {
     createProject
   }
 )(CreateProjectPage)

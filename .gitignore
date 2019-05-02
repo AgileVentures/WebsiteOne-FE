@@ -7,5 +7,6 @@ cypress/videos
 cypress/screenshots
 .env
 .vscode/
+.idea
 yarn-error.log
 .tool-versions
