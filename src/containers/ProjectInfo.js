@@ -6,7 +6,7 @@ import { Container } from 'semantic-ui-react'
 import ProjectSummary from '../components/ProjectSummary'
 
 export class ProjectInfo extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const projectSlug = this.props.match.params.slug
     this.props.setLastLocation(this.props.location.pathname)
     if (this.props.project.slug === this.props.match.params.slug) {
@@ -16,16 +16,13 @@ export class ProjectInfo extends Component {
     }
   }
 
-  render () {
-    if (Object.entries(this.props.project).length > 0) {
-      return (
-        <Container className='project-info-container'>
-          <ProjectSummary project={this.props.project} />
-        </Container>
-      )
-    } else {
-      return null
-    }
+  render() {
+    let { project } = this.state
+    return (
+      <Container className='project-info-container'>
+        <ProjectSummary project={this.props.project} />
+      </Container>
+    )
   }
 }
 

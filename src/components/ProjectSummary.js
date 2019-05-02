@@ -7,7 +7,7 @@ import '../assets/ProjectSummary.css'
 
 const ProjectSummary = props => {
   let { project } = props
-  if (project) {
+  if (project && Object.keys(project).length > 0) {
     return (
       <Grid columns={2} stackable>
         <Grid.Column width={12}>
@@ -66,7 +66,7 @@ const ProjectSummary = props => {
                                   <a
                                     href={`https://agileventures.slack.com/app_redirect?channel=${
                                       project.slack_channel_name
-                                    }`}
+                                      }`}
                                   >
                                     {project.title}
                                   </a>
