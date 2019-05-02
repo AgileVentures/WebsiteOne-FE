@@ -16,13 +16,14 @@ export class CreateProjectPage extends Component {
   }
 
   handleSubmit = event => {
-    const { title, description, status } = this.state
+    const { title, description, status, slack } = this.state
     const { createProject, history, cookies } = this.props
     event.preventDefault()
     createProject({
       title,
       description,
       status,
+      slack,
       cookies,
       history
     })
