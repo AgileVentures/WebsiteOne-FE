@@ -33,9 +33,17 @@ describe('CreateProjectPage', () => {
     })
     const submitForm = wrapper.find('Form')
     titleInput.simulate('change', { target: { value: 'Predicted Title' } })
-    descriptionInput.simulate('change', { target: { value: 'Happy description here' } })
+    descriptionInput.simulate('change', {
+      target: { value: 'Happy description here' }
+    })
     submitForm.simulate('submit')
 
     expect(props.createProject).toHaveBeenCalledTimes(1)
+  })
+  it('include slack channel input filed', () => {
+    const slackInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'slack'
+    })
+    expect.any(slackInput)
   })
 })

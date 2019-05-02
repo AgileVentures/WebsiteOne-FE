@@ -296,6 +296,8 @@ Then('I should be able to create a new project', () => {
       .type('NewProject')
       .get('textarea[name=description]')
       .type('A new project')
+      .get('input[name=slack]')
+      .type('A new slack')
       .get('button[type=submit]')
       .click()
       .url().should('include', '/projects/newproject')
