@@ -3,6 +3,6 @@
   padding-left: 0;
 }
 
-.ui.button.field-group__button {
+.ui.button.field-group__add, .ui.button.field-group__remove {
   margin-bottom: 20px;
 }

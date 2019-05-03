@@ -10,9 +10,8 @@ const FieldGroup = ({
   meta: { error, submitFailed }
 }) => (
   <ul className='field-group'>
-    <Button key='addButton' type='button' onClick={() => fields.push({})}>Add more {type + 's'}</Button>
+    <Button className='field-group__add' key='addButton' type='button' onClick={() => fields.push({})}>Add more {type + 's'}</Button>
     {submitFailed && error && <span>{error}</span>}
-    <br /><br />
     {fields.map((item, index) => {
       const repoNum = index + 1
       let label
@@ -31,7 +30,7 @@ const FieldGroup = ({
             placeholder='https://github.com/projectname'
           />
           <Button
-            className='field-group__button'
+            className='field-group__remove'
             type='button'
             title='Remove Repo'
             onClick={() => fields.remove(index)} >Remove {type}</Button>
