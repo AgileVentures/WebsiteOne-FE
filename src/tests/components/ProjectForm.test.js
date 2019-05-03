@@ -1,8 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import { ProjectForm } from '../../components/ProjectForm'
-import ConnectedProjectForm from '../../components/ProjectForm'
+import ConnectedProjectForm, { ProjectForm } from '../../components/ProjectForm'
 import store from '../../store'
 
 describe('ProjectForm', () => {
@@ -70,5 +69,4 @@ describe('ProjectForm', () => {
     console.log(wrapper.debug())
     expect(wrapper.find('Field[name="trackers[1].value"]').length).toEqual(0)
   })
-
 })
