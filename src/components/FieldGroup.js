@@ -13,17 +13,17 @@ const FieldGroup = ({
     <Button className='field-group__add' key='addButton' type='button' onClick={() => fields.push({})}>Add more {type + 's'}</Button>
     {submitFailed && error && <span>{error}</span>}
     {fields.map((item, index) => {
-      const repoNum = index + 1
+      const fieldNumber = index + 1
       let label
-      if (repoNum === 1) {
+      if (fieldNumber === 1) {
         label = `${start} (primary)`
       } else {
-        label = `${start} (${repoNum})`
+        label = `${start} (${fieldNumber})`
       }
       return (
         <li key={index}>
           <Field
-            name={`${item}.value`}
+            name={`${type}s[${index}].value`}
             type='text'
             label={label}
             component={InputField}

@@ -15,12 +15,50 @@ describe('FieldGroup', () => {
     }
   ]
   const meta = { error: {}, submitFailed: false }
+  const type = 'testType'
+  const start = 'testStart'
 
   it('renders the component with no errors', () => {
     const wrapper = shallow(
       <FieldGroup fields={testFields} meta={meta} />
     )
     expect(wrapper.find('Field').length).toEqual(2)
+  })
+
+  it('renders the first field with the correct label', () => {
+    const wrapper = shallow(
+      <FieldGroup fields={testFields} meta={meta} type={type} start={start} />
+    )
+    expect(wrapper.find('Field').filterWhere(field => {
+      return field.prop('label') === start + ' (primary)'
+    }).length).toEqual(1)
+  })
+
+  it('renders the second field with the correct label', () => {
+    const wrapper = shallow(
+      <FieldGroup fields={testFields} meta={meta} type={type} start={start} />
+    )
+    expect(wrapper.find('Field').filterWhere(field => {
+      return field.prop('label') === start + ' (2)'
+    }).length).toEqual(1)
+  })
+
+  it('renders the first field with the correct name', () => {
+    const wrapper = shallow(
+      <FieldGroup fields={testFields} meta={meta} type={type} start={start} />
+    )
+    expect(wrapper.find('Field').filterWhere(field => {
+      return field.prop('name') === `${type}s[0].value`
+    }).length).toEqual(1)
+  })
+
+  it('renders the second field with the correct label', () => {
+    const wrapper = shallow(
+      <FieldGroup fields={testFields} meta={meta} type={type} start={start} />
+    )
+    expect(wrapper.find('Field').filterWhere(field => {
+      return field.prop('label') === start + ' (2)'
+    }).length).toEqual(1)
   })
 
   it('adds a field', () => {
