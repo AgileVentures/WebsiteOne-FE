@@ -1,6 +1,9 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
+import { Provider } from 'react-redux'
 import FieldGroup from '../../components/FieldGroup'
+import ProjectForm from '../../components/ProjectForm'
+import store from '../../store'
 
 describe('FieldGroup', () => {
   const testFields = [
@@ -32,6 +35,15 @@ describe('FieldGroup', () => {
     const addButton = wrapper.find('.field-group__add').first()
     addButton.simulate('click')
     expect(mockAdd).toHaveBeenCalled()
+  })
+
+  it('creates an add button with the correct type', () => {
+    const wrapper = mount(
+      <Provider store={store}>
+        <ProjectForm />
+      </Provider>
+    )
+    expect(wrapper.find('.ui.button.field-group__add').first().text()).toEqual('Add more repos')
   })
 
   it('removes a field', () => {
