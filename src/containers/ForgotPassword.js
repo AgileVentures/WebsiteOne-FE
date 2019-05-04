@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Button, Form, Header, Grid } from 'semantic-ui-react'
 
+import '../assets/ForgotPassword.scss'
+
 export default class ForgotPassword extends React.Component {
     state = {
         email: ''
