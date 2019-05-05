@@ -11,6 +11,7 @@ import userInfo from '../reducers/userInfoReducer'
 import projectInfo from '../reducers/projectInfoReducer'
 import events from '../reducers/eventsReducer'
 import eventInfo from '../reducers/eventInfoReducer'
+import { filteredProjectsReducer, selectedLanguageReducer } from '../reducers/userSearchResultReducer.js'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
@@ -24,7 +25,9 @@ const rootReducer = combineReducers({
   userInfo,
   projectInfo,
   events,
-  eventInfo
+  eventInfo,
+  selectedLanguage: selectedLanguageReducer,
+  filteredProjectsState: filteredProjectsReducer
 })
 
 export default createStore(
