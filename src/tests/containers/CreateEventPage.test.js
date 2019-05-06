@@ -29,6 +29,10 @@ describe('CreateEventPage', () => {
     expect(props.history.push).toHaveBeenCalledWith({ pathname: '/login' })
   })
 
+  it('calls fetchActiveProjects when props.projects is empty', () => {
+    expect(props.fetchActiveProjects).toBeCalled()
+  })
+
   it('calls createEvent when the form in submitted', () => {
     const context = {}
     wrapper = mount(
