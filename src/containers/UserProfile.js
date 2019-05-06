@@ -10,9 +10,7 @@ export class UserProfile extends Component {
   componentDidMount () {
     const userId = Number(this.props.match.params.id)
     this.props.setLastLocation(this.props.location.pathname)
-    if (this.props.user.id === this.props.match.params.id) {
-      this.setState({ user: this.props.user })
-    } else {
+    if (this.props.user.id !== this.props.match.params.id) {
       this.props.fetchUserInfo(userId)
     }
   }

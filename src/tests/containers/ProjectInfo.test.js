@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { ProjectInfo } from '../../containers/ProjectInfo'
-import project from '../../fixtures/projectInfo'
 
 describe('ProjectInfo', () => {
   let wrapper
@@ -11,7 +10,7 @@ describe('ProjectInfo', () => {
       slug: 'rundfunk-mitbestimmen'
     },
     fetchProjectInfo: jest.fn(),
-    setLastLocation: () => {},
+    setLastLocation: () => { },
     location: { pathname: '/projects/websiteone' }
   }
   beforeEach(() => {
@@ -24,15 +23,5 @@ describe('ProjectInfo', () => {
 
   it('calls fetchProjectInfo if the project slug is different from the project slug in the url', () => {
     expect(props.fetchProjectInfo).toHaveBeenLastCalledWith(props.match.params.slug)
-  })
-
-  it('sets state if the project props are updated', () => {
-    wrapper.setProps({ project })
-    expect(wrapper.state().project).toEqual(project)
-  })
-
-  it('sets state if the project slug is the same as in the url', () => {
-    wrapper = shallow(<ProjectInfo {...props} project={project} />)
-    expect(wrapper.state().project).toEqual(project)
   })
 })

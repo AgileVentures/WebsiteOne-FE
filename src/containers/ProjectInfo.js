@@ -9,9 +9,7 @@ export class ProjectInfo extends Component {
   componentDidMount () {
     const projectSlug = this.props.match.params.slug
     this.props.setLastLocation(this.props.location.pathname)
-    if (this.props.project.slug === this.props.match.params.slug) {
-      this.setState({ project: this.props.project })
-    } else {
+    if (this.props.project.slug !== this.props.match.params.slug) {
       this.props.fetchProjectInfo(projectSlug)
     }
   }

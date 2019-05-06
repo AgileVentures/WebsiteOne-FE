@@ -42,7 +42,7 @@ export class ProjectsList extends Component {
   }
 
   componentDidUpdate () {
-    if (this.props.projects.length > 0 && this.state.projectsList.length === 0) {
+    if (this.props.projects.length > 0 && this.state.languages.length === 0) {
       this.paginateProjects(this.props.projects)
     }
   }
@@ -61,9 +61,7 @@ export class ProjectsList extends Component {
         lastIndex += 12
       }
     }
-
     this.addLanguagesToProjectsObject(projects, paginatedProjects)
-
     this.setState({
       projects: paginatedProjects,
       pageCount,

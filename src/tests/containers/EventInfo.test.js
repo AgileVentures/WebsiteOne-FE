@@ -11,7 +11,7 @@ describe('Event Info', () => {
       slug: 'weekendcollaboration'
     },
     fetchEventInfo: jest.fn(),
-    setLastLocation: () => {},
+    setLastLocation: () => { },
     location: 'events/madwriter'
   }
   beforeEach(() => {
@@ -20,11 +20,6 @@ describe('Event Info', () => {
 
   it('renders event summary page', () => {
     expect(wrapper.find('EventSummary')).toBeTruthy()
-  })
-
-  it('sets state if the event props are updated', () => {
-    wrapper.setProps({ event })
-    expect(wrapper.state().event).toEqual(event)
   })
 
   it('calls fetchEventInfo if the event slug is different from the event slug in the url', () => {

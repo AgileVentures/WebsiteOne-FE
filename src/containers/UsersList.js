@@ -30,7 +30,7 @@ export class UsersList extends Component {
   }
 
   componentDidUpdate () {
-    if (this.props.users.length > 0 && this.state.usersList.length === 0) {
+    if (this.props.users.length > 0 && this.state.usersList && this.state.usersList.length === 0) {
       this.normalizeUsers(this.props.users)
     }
   }

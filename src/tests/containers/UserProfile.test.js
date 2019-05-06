@@ -8,36 +8,21 @@ describe('UserProfile', () => {
   const props = {
     match: { params: { id: 1 } },
     userId: user.id,
-    user: { id: 2 },
+    user,
     fetchUserInfo: jest.fn(),
-    setLastLocation: () => {},
+    setLastLocation: () => { },
     location: { pathname: '/users/2' }
   }
-  beforeEach(() => {
-    wrapper = mount(<UserProfile {...props} />)
-  })
 
   it('renders UserSummary', () => {
+    wrapper = mount(<UserProfile {...props} />)
+    wrapper.update()
     expect(wrapper.find('UserSummary')).toBeTruthy()
   })
 
   it('calls fetchUserInfo if their user id is different from the user id in the url', () => {
+    props.user.id = 2
+    wrapper = mount(<UserProfile {...props} />)
     expect(props.fetchUserInfo).toHaveBeenCalledWith(props.match.params.id)
-  })
-
-  it('sets state if the user props are updated', () => {
-    wrapper.setProps({ user })
-    expect(wrapper.state().user).toEqual(user)
-  })
-
-  it('sets state if the user id is the same as in the url', () => {
-    wrapper = mount(
-      <UserProfile
-        {...props}
-        user={user}
-      />
-    )
-    wrapper.update()
-    expect(wrapper.state().user).toEqual(user)
   })
 })
