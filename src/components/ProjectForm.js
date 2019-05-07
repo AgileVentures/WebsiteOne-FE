@@ -17,7 +17,7 @@ export const ProjectForm = props => {
         placeholder='Title' required />
       <Field type='url'
         name='image_url' component={InputField}
-        label='Image url'   
+        label='Image url'
         placeholder='Paste a link to your image here' />
       <Field name='description' component={TextAreaField}
         label='Description'
