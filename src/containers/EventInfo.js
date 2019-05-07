@@ -38,8 +38,9 @@ export class EventInfo extends Component {
     if (this.state.link === '') {
       this.setState({ linkError: true })
     }
-    const { id, name, slug } = this.props.event
-    this.props.postEventLink({ id, title: name, slug, link: this.state.link })
+    const { id, name, slug, project_id } = this.props.event
+    const { cookies } = this.props
+    this.props.postEventLink({ id, title: name, slug, link: this.state.link, cookies, project_id })
   };
 
   render () {
@@ -61,7 +62,8 @@ export class EventInfo extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   events: state.event,
-  event: state.eventInfo
+  event: state.eventInfo,
+  cookies: ownProps.cookies
 })
 export default connect(
   mapStateToProps,

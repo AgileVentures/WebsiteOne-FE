@@ -2,7 +2,7 @@ import axios from 'axios'
 import { GET_PROJECT_INFO } from '../types'
 
 export let fetchProjectInfo = slug => dispatch => {
-  return axios.get(`api/v1/projects/${slug}`).then(response => {
+  return axios.get(`http://localhost:3000/api/v1/projects/${slug}`).then(response => {
     let {
       project,
       sourceRepositories,

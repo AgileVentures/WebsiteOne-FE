@@ -28,7 +28,7 @@ const EventSummary = props => {
               <p>Event type: {event.category}</p>
               <p>Event for: {event.for}</p>
             </Segment>
-            {props.cookies.get('_WebsiteOne_session') ? (
+            {props.cookies.get('WebsiteOne_session') ? (
               <SingleFieldForm
                 label='Hangout Link'
                 placeholder='Hangout Link'
