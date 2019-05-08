@@ -294,6 +294,8 @@ Then('I should be able to create a new project', () => {
       .should('contain', 'Creating a new Project')
       .get('input[name=title]')
       .type('NewProject')
+      .get('input[name=image_url]')
+      .type('http://i.imgur.com/WPQcOUl.png')
       .get('textarea[name=description]')
       .type('A new project')
       .get('button[type=submit]')

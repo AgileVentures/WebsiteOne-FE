@@ -18,6 +18,11 @@ export const ProjectForm = props => {
         label='Title'
         placeholder='Title'
       />
+      <Field type='url'
+        name='image_url' component={InputField}
+        label='Image url'
+        placeholder='Paste a link to your image here'
+      />
       <Field name='description' component={TextAreaField}
         label='Description'
         placeholder='Description'
