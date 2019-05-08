@@ -2,15 +2,22 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 
 const FormButton = props => {
-  const handleClass = () => {
-    if (props.type === 'submit') {
-      return 'event-save-button'
+  const handleButtonSecondary = () => {
+    if (props.type === 'secondary') {
+      return true
     }
-    return 'event-cancel-button'
+    return false
+  }
+
+  const handleButtonPrimary = () => {
+    if (props.type === 'primary') {
+      return true
+    }
+    return false
   }
 
   return (
-    <Button fluid className={handleClass()} primary>{props.buttonText}</Button>
+    <Button fluid className={props.className} secondary={handleButtonSecondary()} primary={handleButtonPrimary()} >{props.buttonText}</Button>
   )
 }
 

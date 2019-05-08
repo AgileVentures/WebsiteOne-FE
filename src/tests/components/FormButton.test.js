@@ -8,8 +8,9 @@ describe('<FormButton /> ', () => {
   describe('SumbitButton', () => {
     beforeEach(() => {
       const props = {
-        type: 'submit',
-        buttonText: 'Save'
+        type: 'secondary',
+        buttonText: 'Save',
+        className: 'event-save-button'
       }
       wrapper = shallow(<FormButton {...props} />)
     })
@@ -20,12 +21,16 @@ describe('<FormButton /> ', () => {
     it('contains button with value Save', () => {
       expect(wrapper.find('Button').render().text()).toEqual('Save')
     })
+    it('contains secondary attribute', () => {
+      expect(wrapper.find('Button').prop('secondary')).toBe(true)
+    })
   })
 
   describe('CancelButton', () => {
     const props = {
-      type: 'cancel',
-      buttonText: 'Cancel'
+      type: 'primary',
+      buttonText: 'Cancel',
+      className: 'event-cancel-button'
     }
     beforeEach(() => {
       wrapper = shallow(<FormButton {...props} />)
@@ -36,6 +41,9 @@ describe('<FormButton /> ', () => {
     })
     it('contains button with value Cancel', () => {
       expect(wrapper.find('Button').render().text()).toEqual('Cancel')
+    })
+    it('contains primary attribute', () => {
+      expect(wrapper.find('Button').prop('primary')).toBe(true)
     })
   })
 })
