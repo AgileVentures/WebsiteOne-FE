@@ -18,16 +18,16 @@ describe('<FormButton /> ', () => {
       expect(wrapper.find('Button').hasClass('event-save-button')).toBe(true)
     })
     it('contains button with value Save', () => {
-      expect(wrapper.find('Button').text()).toEqual('Save')
+      expect(wrapper.find('Button').render().text()).toEqual('Save')
     })
   })
 
   describe('CancelButton', () => {
+    const props = {
+      type: 'cancel',
+      buttonText: 'Cancel'
+    }
     beforeEach(() => {
-      const props = {
-        type: 'cancel',
-        buttonText: 'Cancel'
-      }
       wrapper = shallow(<FormButton {...props} />)
     })
 
@@ -35,8 +35,7 @@ describe('<FormButton /> ', () => {
       expect(wrapper.find('Button').hasClass('event-cancel-button')).toBe(true)
     })
     it('contains button with value Cancel', () => {
-      console.log(wrapper.debug())
-      expect(wrapper.find('Button').text()).toEqual('Cancel')
+      expect(wrapper.find('Button').render().text()).toEqual('Cancel')
     })
   })
 })
