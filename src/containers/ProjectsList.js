@@ -185,7 +185,7 @@ export class ProjectsList extends Component {
                       </Header>
                     </Grid.Column>
                     <Grid.Column floated='right' width={3}>
-                      <NewButton href='/projects/new' content='New Project!' />
+                      <NewButton href='/projects/new' content='New Project!' iconId='new-proj-icon' />
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

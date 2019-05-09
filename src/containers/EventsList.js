@@ -34,7 +34,7 @@ export class EventsList extends Component {
                 </Header>
               </Grid.Column>
               <Grid.Column width={1}>
-                <NewButton href='/events/new' content='New Event!' />
+                <NewButton href='/events/new' content='New Event!' iconId='new-event-icon' />
               </Grid.Column>
             </Grid.Row>
           </Grid>

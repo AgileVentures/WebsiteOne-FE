@@ -8,7 +8,7 @@ const NewButton = (props) => {
         position='right center'
         trigger={
           <Button basic style={{ marginTop: '25px' }}>
-            <Icon name='plus' id='new-event-icon' />
+            <Icon name='plus' id={props.iconId} />
           </Button>
         }
         content={props.content}
