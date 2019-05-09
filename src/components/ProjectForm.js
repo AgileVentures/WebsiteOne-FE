@@ -1,6 +1,10 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
-import { InputField, SelectField, TextAreaField } from 'react-semantic-redux-form'
+import {
+  InputField,
+  SelectField,
+  TextAreaField
+} from 'react-semantic-redux-form'
 import { Field, reduxForm } from 'redux-form'
 
 export const ProjectForm = props => {
@@ -12,20 +16,28 @@ export const ProjectForm = props => {
 
   return (
     <Form onSubmit={props.handleSubmit}>
-      <Field name='title' component={InputField}
+      <Field
+        name='title'
+        component={InputField}
         label='Title'
-        placeholder='Title' required />
-      <Field name='description' component={TextAreaField}
+        placeholder='Title'
+        required
+      />
+      <Field
+        name='description'
+        component={TextAreaField}
         label='Description'
-        placeholder='Description' required />
-      <Field name='status'
+        placeholder='Description'
+        required
+      />
+      <Field
+        name='status'
         component={SelectField}
         label='Status'
         options={options}
         placeholder='Status'
       />
-      <Form.Field control={Button} primary
-        type='submit' >
+      <Form.Field control={Button} primary type='submit'>
         Create Project
       </Form.Field>
     </Form>
@@ -33,5 +45,6 @@ export const ProjectForm = props => {
 }
 
 export default reduxForm({
-  form: 'Project'
+  form: 'Project',
+  enableReinitialize: true
 })(ProjectForm)
