@@ -3,6 +3,8 @@ import { Button, Form, Header, Grid, Checkbox, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { postLogInInfo } from '../actions/postLogInInfoAction'
 import iziToast from 'izitoast'
+import config from '../config'
+
 import '../assets/LogIn.scss'
 export class LogIn extends Component {
   state = {
@@ -53,7 +55,11 @@ export class LogIn extends Component {
   };
 
   handleOAuthLogin = () => {
-    window.location.assign(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`)
+    let url = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
+    if (this.props.lastLocation.path) {
+      url = url + `&redirect_uri=${config.APP_URL}${this.props.lastLocation.path.slice(1)}`
+    }
+    window.location.assign(url)
   }
 
   render () {
