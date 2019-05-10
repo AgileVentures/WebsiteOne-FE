@@ -8,9 +8,15 @@ describe('EditProjectPage', () => {
   let wrapper
   const mockStore = configureStore()
   const store = mockStore()
-  let props = {
-    createProject: jest.fn(),
+  const props = {
+    editProject: jest.fn(),
+    location: { pathname: '/projects/edit/:slug' },
     setLastLocation: jest.fn(),
+    cookies: { get: jest.fn() },
+    loggedInUser: {},
+    history: { push: jest.fn() },
+    fetchProjectInfo: jest.fn(),
+    match: { params: {} },
     initialValues: {
       title: 'test',
       description: 'test project',
@@ -37,9 +43,9 @@ describe('EditProjectPage', () => {
     expect(titleInput.text()).toEqual('test')
   })
 
-  it('calls createProject when ProjectForm is filled out and submitted', () => {
+  it('calls editProject when ProjectForm is filled out and submitted', () => {
     const submitForm = wrapper.find('FORM')
     submitForm.simulate('submit')
-    expect(props.createProject).toHaveBeenCalledWith(1)
+    expect(props.editProject).toHaveBeenCalledWith(1)
   })
 })
