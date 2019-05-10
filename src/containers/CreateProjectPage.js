@@ -3,6 +3,8 @@ import { Header, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import ProjectForm from '../components/ProjectForm'
 import { createProject } from '../actions/createProjectAction'
+import '../assets/CreateProjectPage.css'
+
 export class CreateProjectPage extends Component {
   handleSubmit = values => {
     const { title, description, status } = values

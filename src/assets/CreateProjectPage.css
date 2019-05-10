@@ -1,0 +1,8 @@
+.field-group {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ui.button.field-group__add, .ui.button.field-group__remove {
+  margin-bottom: 20px;
+}

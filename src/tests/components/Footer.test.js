@@ -49,12 +49,25 @@ describe('Footer', () => {
       expect(wrapper.find(Link).length).toEqual(props.length)
     })
 
-    it('renders the correct text and href for each link', () => {
+    it('renders the correct text and href for each internal link', () => {
       const links = wrapper.find(Link)
 
       for (let i = 0; i < links.length; i++) {
         expect(links.at(i).prop('to')).toEqual(props[i].href)
         expect(links.at(i).contains(props[i].text)).toEqual(true)
+      }
+    })
+
+    it('renders the correct link for external urls', () => {
+      const props = [
+        { text: 'Text 1', href: 'http://www.test.1' },
+        { text: 'Text 2', href: 'http://www.test.2' },
+        { text: 'Text 3', href: 'http://www.test.3' }
+      ]
+      wrapper = shallow(<LinksList links={props} />)
+      for (let i = 1; i < 4; i++) {
+        const url = 'http://www.test.' + i
+        expect(wrapper.contains(<a href={url} target='_blank' rel='noreferrer'>Text {i}</a>)).toEqual(true)
       }
     })
   })

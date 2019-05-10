@@ -34,6 +34,7 @@ describe('CreateProjectPage', () => {
     const submitForm = wrapper.find('Form')
     titleInput.simulate('change', { target: { value: 'Predicted Title' } })
     descriptionInput.simulate('change', { target: { value: 'Happy description here' } })
+
     submitForm.simulate('submit')
 
     expect(props.createProject).toHaveBeenCalledTimes(1)
