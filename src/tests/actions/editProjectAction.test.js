@@ -2,7 +2,6 @@ import moxios from 'moxios'
 import { editProject } from '../../actions/editProjectAction'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
-import { EDIT_PROJECT } from '../../types'
 import newProject from '../../../cypress/fixtures/newlyCreatedProject'
 
 describe('editProject', () => {
@@ -25,19 +24,6 @@ describe('editProject', () => {
     moxios.uninstall()
   })
 
-  it('posts project info to Rails backend and returns without error', async () => {
-    const expectedActions = [{ type: EDIT_PROJECT, payload: newProject }]
-    expect.assertions(1)
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent()
-      request.resolve({ data: newProject })
-    })
-
-    return store.dispatch(editProject(props)).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
-    })
-  })
-
   it('dispatches an error if it is returned', () => {
     const error = new Error('Request failed with status code 500')
 
@@ -56,7 +42,7 @@ describe('editProject', () => {
     })
   })
 
-  it('calls method to push the user to the events info page', () => {
+  it('calls method to push the user to the project page', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.resolve({ data: newProject })
