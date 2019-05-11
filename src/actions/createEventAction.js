@@ -11,7 +11,7 @@ export let createEvent = props => dispatch => {
     startDate,
     startDateFormatted,
     startTime,
-    project,
+    projectId,
     description,
     timezones,
     duration,
@@ -22,13 +22,13 @@ export let createEvent = props => dispatch => {
   } = props
   return axios({
     method: 'POST',
-    url: 'http://localhost:3000/events',
+    url: '/events',
     data: {
       event: {
         name,
         category,
         for: eventFor,
-        project_id: project,
+        project_id: projectId,
         description,
         duration,
         repeats,

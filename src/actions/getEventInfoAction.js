@@ -3,7 +3,7 @@ import { GET_EVENT_INFO } from '../types'
 
 export let fetchEventInfo = slug => dispatch => {
   return axios
-    .get(`http://localhost:3000/api/v1/events/${slug}`)
+    .get(`/api/v1/events/${slug}`)
     .then(response => {
       let {
         event,

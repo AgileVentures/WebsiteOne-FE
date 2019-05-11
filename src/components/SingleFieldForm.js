@@ -1,5 +1,7 @@
 import React from 'react'
-import { Segment, Form, Button } from 'semantic-ui-react'
+import { Segment, Form, Grid } from 'semantic-ui-react'
+import FormButton from './FormButton'
+import '../assets/SingleFieldForm.css'
 
 const SingleFieldForm = props => {
   const {
@@ -9,11 +11,16 @@ const SingleFieldForm = props => {
     value,
     handleChange,
     handleSubmit,
-    error
+    error,
+    eventActions,
+    cancelEventAction
   } = props
-
   return (
-    <Segment padded='very' vertical>
+    <Segment
+      padded='very'
+      vertical
+      className={eventActions}
+    >
       <Form
         onSubmit={handleSubmit}
         className='link-form'
@@ -26,8 +33,18 @@ const SingleFieldForm = props => {
           value={value}
           onChange={handleChange}
           error={error}
+          required
         />
-        <Button type='submit'>Submit</Button>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column>
+              <FormButton type='negative' buttonText='Cancel' onClick={cancelEventAction} />
+            </Grid.Column>
+            <Grid.Column>
+              <FormButton type='secondary' buttonText='Save' />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Form>
     </Segment>
   )

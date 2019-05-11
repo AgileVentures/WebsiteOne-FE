@@ -8,9 +8,9 @@ import EventSummary from '../components/EventSummary'
 
 export class EventInfo extends Component {
   state = {
-    event: null,
     link: '',
-    linkError: false
+    event: null,
+    eventActions: null
   };
 
   componentDidMount () {
@@ -33,27 +33,30 @@ export class EventInfo extends Component {
     this.setState({ [name]: value })
   };
 
+  handleCancelEventAction = e => {
+    e.preventDefault()
+    this.setState({ eventActions: null })
+  }
+
   handleLinkFormSubmit = e => {
     e.preventDefault()
-    if (this.state.link === '') {
-      this.setState({ linkError: true })
-    }
-    const { id, name, slug, project_id } = this.props.event
+    const { id, name, slug, project_id: projectId } = this.props.event
     const { cookies } = this.props
-    this.props.postEventLink({ id, title: name, slug, link: this.state.link, cookies, project_id })
+    this.props.postEventLink({ id, title: name, slug, link: this.state.link, cookies, projectId })
   };
 
   render () {
-    let { event } = this.state
+    let { event, eventActions, link } = this.state
     return (
       <Container className='event-info-container'>
         <EventSummary
           cookies={this.props.cookies}
           handleChange={this.handleChange}
           handleSubmit={this.handleLinkFormSubmit}
-          value={this.state.link}
-          error={this.state.linkError}
           event={event}
+          link={link}
+          eventActions={eventActions}
+          handleCancelEventAction={this.handleCancelEventAction}
         />
       </Container>
     )

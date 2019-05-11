@@ -13,7 +13,7 @@ export let createProject = props => dispatch => {
   } = props
   return axios({
     method: 'POST',
-    url: 'http://localhost:3000/projects',
+    url: '/projects',
     data: {
       project: {
         title,

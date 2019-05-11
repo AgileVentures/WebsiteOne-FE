@@ -40,8 +40,18 @@ describe('SingleFieldForm', () => {
     expect(wrapper.find(`FormInput[error=true]`)).toHaveLength(1)
   })
 
-  it('should have a Button', () => {
-    expect(wrapper.find('Button')).toHaveLength(1)
+  it('should have a Cancel Button', () => {
+    const cancelButton = wrapper.find('FormButton').filterWhere(item => {
+      return item.render().text() === 'Cancel'
+    })
+    expect(cancelButton).toHaveLength(1)
+  })
+
+  it('should have a Save Button', () => {
+    const saveButton = wrapper.find('FormButton').filterWhere(item => {
+      return item.render().text() === 'Save'
+    })
+    expect(saveButton).toHaveLength(1)
   })
 
   it('should call handleSubmit when the form is submitted', () => {

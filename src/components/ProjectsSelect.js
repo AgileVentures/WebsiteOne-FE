@@ -10,7 +10,7 @@ const ProjectsSelect = props => {
   return (
     <Form.Select
       label='Project'
-      name='project'
+      name='projectId'
       options={projectOptions}
       value={projectId}
       onChange={handleChange}
