@@ -8,7 +8,6 @@ export let editProject = props => dispatch => {
     url: `/projects/${id}`,
     data: {
       project: {
-        id,
         title,
         description,
         status
