@@ -40,7 +40,7 @@ describe('EditProjectPage', () => {
     const titleInput = wrapper.find('input').filterWhere(item => {
       return item.prop('name') === 'title'
     })
-    expect(titleInput.text()).toEqual('test')
+    expect(titleInput.text()).toEqual(props.initialValues.title)
   })
 
   it('calls editProject when ProjectForm is filled out and submitted', () => {
