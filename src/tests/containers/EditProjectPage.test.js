@@ -17,7 +17,7 @@ describe('EditProjectPage', () => {
     history: { push: jest.fn() },
     fetchProjectInfo: jest.fn(),
     match: { params: {} },
-    initialValues: {
+    projectInfo: {
       title: 'test',
       description: 'test project',
       status: 'Active'
@@ -40,7 +40,7 @@ describe('EditProjectPage', () => {
     const titleInput = wrapper.find('input').filterWhere(item => {
       return item.prop('name') === 'title'
     })
-    expect(titleInput.text()).toEqual(props.initialValues.title)
+    expect(titleInput.text()).toEqual('test')
   })
 
   it('calls editProject when ProjectForm is filled out and submitted', () => {
