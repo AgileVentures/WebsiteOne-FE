@@ -12,7 +12,7 @@ RUN yarn build
 
 # Server the production build created with NginX
 FROM nginx:1.13.9-alpine
-LABEL app="sfn-client"
+LABEL app="websiteone-fe"
 
 COPY --from=production-build ./dist /usr/share/nginx/html
 COPY docker-config/vhost.conf /etc/nginx/conf.d/default.conf
