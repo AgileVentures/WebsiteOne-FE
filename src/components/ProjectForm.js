@@ -11,6 +11,7 @@ import { validateProjectForm } from '../helpers/validators'
 
 export const ProjectForm = props => {
   const { handleSubmit, submitting } = props
+  console.log(props)
   const options = [
     { key: 'select', value: '', text: 'Choose One' },
     { key: 'one', value: 'Active', text: 'Active' },
@@ -57,7 +58,7 @@ export const ProjectForm = props => {
         component={FieldGroup}
       />
       <Form.Field control={Button} primary type='submit' disabled={submitting}>
-        Create Project
+        Submit
       </Form.Field>
     </Form>
   )

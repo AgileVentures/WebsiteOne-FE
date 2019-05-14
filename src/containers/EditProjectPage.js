@@ -7,32 +7,27 @@ import { fetchProjectInfo } from '../actions/getProjectInfoAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
 
 export class EditProjectPage extends Component {
-  componentDidMount () {
+  componentDidMount() {
     // Set last path
     const path = this.props.location.pathname
     this.props.setLastLocation(path)
 
     // Check if user is login
-    /*
     if (
-      !this.props.cookies.get('_WebsiteOne_session') &&
+      !this.props.cookies.get('WebsiteOne_session') &&
       !this.props.loggedInUser.data
     ) {
       this.props.history.push({
         pathname: '/login'
       })
-      */
-
+    }
     // Get Project info by slug
     this.props.fetchProjectInfo(this.props.match.params.slug)
     console.log(this.props.projectInfo)
   }
 
-  componentDidUpdate () {
-    console.log(this.props.projectInfo)
-  }
-
   handleSubmit = values => {
+    console.log(values)
     const { title, description, status } = values
     const { editProject, history, cookies, projectInfo } = this.props
     editProject({
@@ -45,7 +40,7 @@ export class EditProjectPage extends Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <Container>
         <Header as='h1' textAlign='center'>
