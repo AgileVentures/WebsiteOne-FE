@@ -18,9 +18,10 @@ describe('EditProjectPage', () => {
     fetchProjectInfo: jest.fn(),
     match: { params: {} },
     projectInfo: {
-      title: 'test',
-      description: 'test project',
-      status: 'Active'
+      id: {},
+      title: {},
+      description: {},
+      status: {}
     }
   }
 
@@ -36,16 +37,23 @@ describe('EditProjectPage', () => {
     expect(wrapper.find('ProjectForm')).toHaveLength(1)
   })
 
-  it('fills fields with existing project info', () => {
-    const titleInput = wrapper.find('input').filterWhere(item => {
-      return item.prop('name') === 'title'
-    })
-    expect(titleInput.text()).toEqual('test')
+  it('fetch existing project info', () => {
+    expect(props.fetchProjectInfo).toHaveBeenCalledTimes(2)
   })
 
   it('calls editProject when ProjectForm is filled out and submitted', () => {
-    const submitForm = wrapper.find('FORM')
+    const titleInput = wrapper.find('input').filterWhere(item => {
+      return item.prop('name') === 'title'
+    })
+    const descriptionInput = wrapper.find('textarea').filterWhere(item => {
+      return item.prop('name') === 'description'
+    })
+    const submitForm = wrapper.find('Form')
+    titleInput.simulate('change', { target: { value: 'Predicted Title' } })
+    descriptionInput.simulate('change', {
+      target: { value: 'Happy description here' }
+    })
     submitForm.simulate('submit')
-    expect(props.editProject).toHaveBeenCalledWith(1)
+    expect(props.editProject).toHaveBeenCalledTimes(1)
   })
 })
