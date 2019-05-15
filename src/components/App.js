@@ -19,6 +19,7 @@ import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
+import EditEventPage from '../containers/EditEventPage'
 import CreateEventPage from '../containers/CreateEventPage'
 import CreateProjectPage from '../containers/CreateProjectPage'
 import { withCookies } from 'react-cookie'
@@ -90,6 +91,7 @@ class App extends Component {
               />)
           }}
           />
+          <Route path='/events/:slug/edit' component={EditEventPage} />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>

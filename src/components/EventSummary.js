@@ -3,6 +3,7 @@ import { Header, Segment, Grid, Image, Icon } from 'semantic-ui-react'
 import CustomRingLoader from './CustomRingLoader'
 import Videos from './Videos'
 import ReactHtmlParser from 'react-html-parser'
+import { Link } from 'react-router-dom'
 import moment from 'moment-timezone'
 
 const EventSummary = props => {
@@ -64,6 +65,11 @@ const EventSummary = props => {
           </Grid.Column>
           <Videos name={event} id='event-info-videos' />
         </Grid>
+        <Link to={`/events/${event.slug}/edit`}>
+          <button>
+            Edit
+          </button>
+        </Link>
       </Fragment>
     )
   } else {
