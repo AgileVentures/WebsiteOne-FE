@@ -300,7 +300,7 @@ Then('I should be able to create a new project', () => {
       .get('textarea[name=description]')
       .type('A new project')
       .get('textarea[name= slack_channel_name]')
-      .type('A new project')
+      .type('slack_channel_name')
       .get('button[type=submit]')
       .click()
       .url().should('include', '/projects/newproject')
