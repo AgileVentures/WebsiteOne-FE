@@ -31,10 +31,13 @@ describe('CreateProjectPage', () => {
     const descriptionInput = wrapper.find('textarea').filterWhere(item => {
       return item.prop('name') === 'description'
     })
+    const slackInput = wrapper.find('textarea').filterWhere(item => {
+      return item.prop('name') === 'slack_channel_name'
+    })
     const submitForm = wrapper.find('Form')
     titleInput.simulate('change', { target: { value: 'Predicted Title' } })
     descriptionInput.simulate('change', { target: { value: 'Happy description here' } })
-
+    slackInput.simulate('change', { target: { value: 'slackInput' } })
     submitForm.simulate('submit')
 
     expect(props.createProject).toHaveBeenCalledTimes(1)
