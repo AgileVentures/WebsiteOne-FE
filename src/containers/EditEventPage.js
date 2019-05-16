@@ -4,21 +4,33 @@ import { connect } from 'react-redux'
 import CustomRingLoader from '../components/CustomRingLoader'
 import EventForm from '../components/EventForm'
 class EditEventPage extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { event: null }
+  }
   componentDidMount () {
     this.props.fetchEventInfo()
   }
-  handleChange (e, { name, value }) {
+  componentDidUpdate (prevprops) {
+    if (this.props.eventInfo.slug && !this.state.slug) {
+      this.setState({ ...this.props.eventInfo })
+    }
+  }
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
   };
   handleStartDateChange = date => {
+    this.setState({ startDate: date })
   };
   handleEndDateChange = date => {
+    this.setState({ endDate: date })
   };
   handleSubmit= event => {
   };
   render () {
-    let { eventInfo } = this.props
+    let { slug } = this.state
     return (
-      !eventInfo.slug
+      slug == null
         ? <CustomRingLoader />
         : <div>
           <EventForm
@@ -26,7 +38,7 @@ class EditEventPage extends Component {
             handleChange={this.handleChange}
             handleStartDateChange={this.handleStartDateChange}
             handleEndDateChange={this.handleEndDateChange}
-            {...eventInfo}
+            {...this.state}
           />
         </div>
     )
