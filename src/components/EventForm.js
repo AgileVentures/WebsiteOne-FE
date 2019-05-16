@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import { Form, Grid, Container } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import { Link } from 'react-router-dom'
+import { Field, reduxForm } from 'redux-form'
+import { InputField, SelectField, TextAreaField } from 'react-semantic-redux-form'
 import TimezonesSelect from './TimezonesSelect'
 import ProjectsSelect from './ProjectsSelect'
 import EventCategorySelect from './EventCategorySelect'
@@ -37,18 +39,17 @@ export const EventForm = props => {
       <Form onSubmit={handleSubmit}>
         <Grid columns={2}>
           <Grid.Column width={8}>
-            <Form.Input
-              label='Name'
+            <Field
               name='name'
-              value={name}
-              onChange={handleChange}
-              required
+              component={InputField}
+              label='Name'
+              placeholder='Name'
             />
-            <Form.TextArea
-              label='Description'
+            <Field
               name='description'
-              value={description}
-              onChange={handleChange}
+              component={TextAreaField}
+              label='Description'
+              placeholder='Description'
             />
             <Grid columns={2}>
               <Grid.Row>
@@ -78,21 +79,19 @@ export const EventForm = props => {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-            <TimezonesSelect timezones={timezones} handleChange={handleChange} />
-            <Form.Input
+            <TimezonesSelect timezones={timezones} />
+            <Field
               label='Duration'
+              component={InputField}
               name='duration'
               type='number'
-              value={duration}
-              onChange={handleChange}
-              required
             />
           </Grid.Column>
           <Grid.Column width={8} >
-            <EventCategorySelect category={category} handleChange={handleChange} />
-            <EventForSelect eventFor={eventFor} handleChange={handleChange} />
-            <ProjectsSelect projectId={projectId} projects={projects} handleChange={handleChange} />
-            <EventRepeatsSelect repeats={repeats} handleChange={handleChange} />
+            <EventCategorySelect category={props.initialValues.category} />
+            <EventForSelect eventFor={eventFor} />
+            <ProjectsSelect projectId={projectId} projects={projects} />
+            <EventRepeatsSelect repeats={repeats} />
             {repeats && repeats !== 'never' ? (
               <Fragment>
                 <DaysOfTheWeekSelect handleChange={handleChange} />
@@ -127,4 +126,4 @@ export const EventForm = props => {
   )
 }
 
-export default EventForm
+export default reduxForm({ form: 'eventForm' })(EventForm)

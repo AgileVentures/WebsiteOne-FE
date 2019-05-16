@@ -1,9 +1,10 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
 import { pure } from 'recompose'
+import { Field } from 'redux-form'
+import { SelectField } from 'react-semantic-redux-form'
 
 const EventForSelect = props => {
-  const { eventFor, handleChange } = props
+  const { eventFor } = props
   const eventForOptions = [
     { key: 'all', text: 'All', value: 'All' },
     {
@@ -13,12 +14,12 @@ const EventForSelect = props => {
     }
   ]
   return (
-    <Form.Select
+    <Field
       label='For'
       name='eventFor'
       options={eventForOptions}
       value={eventFor}
-      onChange={handleChange}
+      component={SelectField}
     />
   )
 }

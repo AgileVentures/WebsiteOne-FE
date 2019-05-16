@@ -118,22 +118,26 @@ export class CreateEventPage extends Component {
           Creating a new Event
         </Header>
         <EventForm
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          handleStartDateChange={this.handleStartDateChange}
-          handleEndDateChange={this.handleEndDateChange}
-          name={name}
-          category={category}
-          eventFor={eventFor}
-          projectId={projectId}
-          description={description}
-          startDate={startDate}
+          initialValues={{ category: 'Pair Programming' }}
+          projects={this.props.projects}
           timezones={timezones}
-          duration={duration}
-          repeats={repeats}
-          weekdays={weekdays}
-          repeatEnds={repeatEnds}
-          endDate={endDate}
+          // handleSubmit={this.handleSubmit}
+          // handleChange={this.handleChange}
+          // handleStartDateChange={this.handleStartDateChange}
+          // handleEndDateChange={this.handleEndDateChange}
+          // name={name}
+          // category={category}
+          // eventFor={eventFor}
+          // projectId={projectId}
+          // description={description}
+          // startDate={startDate}
+          // timezones={timezones}
+          // duration={duration}
+          // repeats={repeats}
+          // weekdays={weekdays}
+          // repeatEnds={repeatEnds}
+          // endDate={endDate}
+          // props={this.props.projects}
         />
       </Fragment>
     )

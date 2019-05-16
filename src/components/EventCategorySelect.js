@@ -1,21 +1,23 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { Field } from 'redux-form'
+import { SelectField } from 'react-semantic-redux-form'
 import { pure } from 'recompose'
 
 const EventCategorySelect = props => {
-  const { category, handleChange } = props
+  const { category } = props
+  console.log(category)
   const categoryOptions = [
     { key: 'pp', text: 'PairProgramming', value: 'PairProgramming' },
     { key: 'scrum', text: 'Scrum', value: 'Scrum' },
     { key: 'client', text: 'ClientMeeting', value: 'ClientMeeting' }
   ]
   return (
-    <Form.Select
+    <Field
       label='Category'
       name='category'
+      component={SelectField}
       options={categoryOptions}
       value={category}
-      onChange={handleChange}
     />
   )
 }
