@@ -1,9 +1,14 @@
 import React from 'react'
 import { Container, Button, Form, Header, Grid } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import iziToast from 'izitoast'
+import queryString from 'query-string'
+
+import { putEditPassword } from '../actions/putEditPassword'
 
 import '../assets/EditPassword.scss'
 
-export default class EditPassword extends React.Component {
+class EditPassword extends React.Component {
     state = {
         password: '',
         passwordConfirmation: ''
@@ -18,9 +23,40 @@ export default class EditPassword extends React.Component {
     }
 
     handleSubmit = (e) => {
-      console.log('Submitted: ' + this.state.email)
-      // PUT         /users/password
       e.preventDefault()
+
+      const { password, passwordConfirmation } = this.state
+      const { putEditPassword, location } = this.props
+      const parsedQuery = queryString.parse(location.search)
+      const resetPasswordToken =  parsedQuery.reset_password_token
+
+      putEditPassword({ password, passwordConfirmation, resetPasswordToken })
+        .then((user) => {
+          console.log('IN COMPONENT: ', user)
+
+          iziToast.show({
+            theme: 'light',
+            title: 'Success',
+            message: 'Your password has been changed successfully.',
+            position: 'topRight',
+            color: 'green',
+            backgroundColor: 'lime',
+            timeout: 3000,
+            balloon: true
+          })
+        })
+        .catch(() => {
+          iziToast.show({
+            theme: 'light',
+            title: 'Sorry',
+            message: 'Something went wrong.',
+            position: 'topRight',
+            color: 'red',
+            backgroundColor: 'lightcoral',
+            timeout: 3000,
+            balloon: true
+          })
+        })
     }
 
     render () {
@@ -56,3 +92,8 @@ export default class EditPassword extends React.Component {
       )
     }
 }
+
+export default connect(
+  null,
+  { putEditPassword }
+)(EditPassword)

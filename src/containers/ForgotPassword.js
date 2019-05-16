@@ -1,9 +1,13 @@
 import React from 'react'
 import { Container, Button, Form, Header, Grid } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import iziToast from 'izitoast'
+
+import { postResetPassword } from '../actions/postResetPassword'
 
 import '../assets/EditPassword.scss'
 
-export default class ForgotPassword extends React.Component {
+class ForgotPassword extends React.Component {
     state = {
       email: ''
     }
@@ -13,9 +17,37 @@ export default class ForgotPassword extends React.Component {
     }
 
     handleSubmit = (e) => {
-      console.log('Submitted: ' + this.state.email)
-      // POST         /users/password
       e.preventDefault()
+
+      const { email } = this.state
+      const { history, postResetPassword } = this.props
+      postResetPassword({ email })
+        .then(() => {
+          history.push('/login')
+
+          iziToast.show({
+            theme: 'light',
+            title: 'Success',
+            message: 'You will receive an email with instructions about how to reset your password in a few minutes.',
+            position: 'topRight',
+            color: 'green',
+            backgroundColor: 'lime',
+            timeout: 3000,
+            balloon: true
+          })
+        })
+        .catch(() => {
+          iziToast.show({
+            theme: 'light',
+            title: 'Sorry',
+            message: 'Email is not registered',
+            position: 'topRight',
+            color: 'red',
+            backgroundColor: 'lightcoral',
+            timeout: 3000,
+            balloon: true
+          })
+        })
     }
 
     render () {
@@ -44,3 +76,8 @@ export default class ForgotPassword extends React.Component {
       )
     }
 }
+
+export default connect(
+  null,
+  { postResetPassword }
+)(ForgotPassword)
