@@ -28,7 +28,7 @@ export const ProjectForm = props => {
         placeholder='Description'
       />
       <Field name='slack_channel_name' component={TextAreaField}
-        label='slack channel name'
+        label='Slack channel name'
         placeholder='slack_channel_name'
       />
       <Field name='status'
