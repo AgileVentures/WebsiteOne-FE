@@ -91,7 +91,7 @@ class App extends Component {
               />)
           }}
           />
-          <Route path='/events/:slug/edit' component={EditEventPage} />
+          <Route path='/events/:slug/edit' component={EditEventPage} cookies={this.props.cookies} />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>

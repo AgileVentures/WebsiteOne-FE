@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { fetchEventInfo } from '../actions/getEventInfoAction'
+import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import CustomRingLoader from '../components/CustomRingLoader'
 import EventForm from '../components/EventForm'
+import { updateEvent } from '../actions/updateEventAction'
+import moment from 'moment'
+import momentTZ from 'moment-timezone'
+
 class EditEventPage extends Component {
   constructor (props) {
     super(props)
@@ -13,7 +18,22 @@ class EditEventPage extends Component {
   }
   componentDidUpdate (prevprops) {
     if (this.props.eventInfo.slug && !this.state.slug) {
-      this.setState({ ...this.props.eventInfo })
+      this.setState({
+        projects: null,
+        startDate: new Date(),
+        endDate: new Date(),
+        name: '',
+        category: 'PairProgramming',
+        eventFor: 'All',
+        projectId: 64,
+        description: '',
+        timezones: momentTZ.tz.guess(),
+        duration: 30,
+        repeats: 'never',
+        weekdays: [],
+        repeatEnds: '',
+        ...this.props.eventInfo
+      })
     }
   }
   handleChange = (e, { name, value }) => {
@@ -26,13 +46,55 @@ class EditEventPage extends Component {
     this.setState({ endDate: date })
   };
   handleSubmit= event => {
+    event.preventDefault()
+    const {
+      slug,
+      name,
+      category,
+      eventFor,
+      projectId,
+      description,
+      startDate,
+      timezones,
+      duration,
+      repeats,
+      weekdays,
+      repeatEnds,
+      endDate } = this.state
+    const startTime = moment(startDate).format('h:mm a')
+    const startDateFormatted = moment(startDate).format('YYYYMMDD')
+    const weekdaysLowerCase = weekdays.map(day => day.toLowerCase())
+    const { history, updateEvent } = this.props
+    const headers = this.props.cookies.get(process.env.SESSION || 'WebsiteOne_session')
+    updateEvent({
+      slug,
+      headers,
+      history,
+      name,
+      category,
+      eventFor,
+      projectId,
+      description,
+      startDate,
+      startDateFormatted,
+      startTime,
+      timezones,
+      duration,
+      repeats,
+      weekdaysLowerCase,
+      repeatEnds,
+      endDate
+    })
   };
   render () {
     let { slug } = this.state
     return (
       slug == null
         ? <CustomRingLoader />
-        : <div>
+        : <Fragment>
+          <Header as='h1' textAlign='center'>
+          Creating a new Event
+          </Header>
           <EventForm
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
@@ -40,22 +102,25 @@ class EditEventPage extends Component {
             handleEndDateChange={this.handleEndDateChange}
             {...this.state}
           />
-        </div>
+        </Fragment>
     )
   }
 }
 
 export default connect(
-  (state, ownProps) => {
+  (store, ownProps) => {
     return {
-      eventInfo: state.eventInfo
+      eventInfo: store.eventInfo,
+      cookies: ownProps.cookies,
+      loggedInUser: store.loggedInUser
     }
   }
   ,
   (dispath, ownProps) => {
     let { slug } = ownProps.match.params
     return {
-      fetchEventInfo: () => dispath(fetchEventInfo(slug))
+      fetchEventInfo: () => dispath(fetchEventInfo(slug)),
+      updateEvent
     }
   }
 )(EditEventPage)
