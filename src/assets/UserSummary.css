@@ -8,13 +8,28 @@
   height: 250px !important;
 }
 
-.user-profile-header {
+.user-profile-karma {
+  color: #ee7335 !important;
+  margin-left: 5px !important;
+}
+
+#user-profile-name-baseline {
+  font-size: 19.5px;
+  margin-top: 6px;
+}
+
+#user-profile-karma-baseline {
+  display: flex;
+  align-items: baseline;
+  font-size: 20px;
+}
+
+#user-profile-card-content {
   margin-left: 10px;
 }
 
-.user-profile-karma {
-  color: #ee7335 !important;
-  margin-left: 1.0rem !important;
+.user-profile-card-titles {
+  margin-left: -15px;
 }
 
 .font-awesome-icon {
@@ -44,12 +59,14 @@
   font-size: 0.96rem;
 }
 
-.user-profile-activity-icon, .github-commit-count-icon {
+.user-profile-activity-icon,
+.github-commit-count-icon {
   margin: 0px 3px;
 }
 
 @media only screen and (max-width: 800px) {
-  .user-profile-name, .user-profile-karma {
+  .user-profile-name,
+  .user-profile-karma {
     margin: 0.85rem 0.5rem !important;
   }
 }
