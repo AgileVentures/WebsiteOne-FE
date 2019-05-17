@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UPDATE_EVENT_INFO } from '../types'
+import { UPDATE_EVENT_FAILURE } from '../types'
 
 export let updateEvent = props => dispatch => {
   const {
@@ -22,8 +22,8 @@ export let updateEvent = props => dispatch => {
     endDate
   } = props
   return axios({
-    method: 'POST',
-    url: '/events',
+    method: 'PUT',
+    url: `/events/${slug}`,
     data: {
       event: {
         slug,
@@ -52,13 +52,13 @@ export let updateEvent = props => dispatch => {
     }
   })
     .then(response => {
-      dispatch({ type: GET_EVENT_INFO, payload: response.data })
+      console.log(response)
       history.push(`/events/${response.data.event.slug}`)
     })
-    // .catch(error => {
-    //   dispatch({
-    //     type: CREATE_EVENT_FAILURE,
-    //     message: error.message
-    //   })
-    // })
+    .catch(error => {
+      dispatch({
+        type: UPDATE_EVENT_FAILURE,
+        message: error.message
+      })
+    })
 }

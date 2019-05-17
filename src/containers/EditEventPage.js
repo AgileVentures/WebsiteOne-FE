@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { fetchEventInfo } from '../actions/getEventInfoAction'
+import { fetchActiveProjects } from '../actions/fetchActiveProjectsAction'
+import { setLastLocation } from '../actions/setLastLocationAction'
 import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import CustomRingLoader from '../components/CustomRingLoader'
@@ -9,17 +11,23 @@ import moment from 'moment'
 import momentTZ from 'moment-timezone'
 
 class EditEventPage extends Component {
-  constructor (props) {
-    super(props)
-    this.state = { event: null }
-  }
+  state = { event: null }
+
   componentDidMount () {
-    this.props.fetchEventInfo()
+    const path = this.props.location.pathname
+    this.props.setLastLocation(path)
+    if (!this.props.cookies.get(process.env.SESSION || 'WebsiteOne_session') && !this.props.loggedInUser.data) {
+      this.props.history.push({ pathname: '/login' })
+    }
+    if (!this.props.projects.length) {
+      this.props.fetchActiveProjects()
+      this.props.fetchEventInfo(this.props.match.params.slug)
+    }
   }
+
   componentDidUpdate (prevprops) {
     if (this.props.eventInfo.slug && !this.state.slug) {
       this.setState({
-        projects: null,
         startDate: new Date(),
         endDate: new Date(),
         name: '',
@@ -87,7 +95,7 @@ class EditEventPage extends Component {
     })
   };
   render () {
-    let { slug } = this.state
+    let { slug, projectId } = this.state
     return (
       slug == null
         ? <CustomRingLoader />
@@ -100,6 +108,8 @@ class EditEventPage extends Component {
             handleChange={this.handleChange}
             handleStartDateChange={this.handleStartDateChange}
             handleEndDateChange={this.handleEndDateChange}
+            projects={this.props.projects}
+            projectId={projectId}
             {...this.state}
           />
         </Fragment>
@@ -107,20 +117,33 @@ class EditEventPage extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  eventInfo: state.eventInfo,
+  projects: state.projects,
+  cookies: ownProps.cookies,
+  loggedInUser: state.loggedInUser
+})
+
 export default connect(
-  (store, ownProps) => {
-    return {
-      eventInfo: store.eventInfo,
-      cookies: ownProps.cookies,
-      loggedInUser: store.loggedInUser
-    }
-  }
-  ,
-  (dispath, ownProps) => {
-    let { slug } = ownProps.match.params
-    return {
-      fetchEventInfo: () => dispath(fetchEventInfo(slug)),
-      updateEvent
-    }
-  }
+  mapStateToProps,
+  { fetchActiveProjects, updateEvent, setLastLocation, fetchEventInfo }
 )(EditEventPage)
+
+// export default connect(
+//   (state, ownProps) => {
+//     return {
+//       eventInfo: state.eventInfo,
+//       projects: state.projects,
+//       cookies: ownProps.cookies,
+//       loggedInUser: store.loggedInUser
+//     }
+//   }
+//   ,
+//   (dispatch, ownProps) => {
+//     let { slug } = ownProps.match.params
+//     return {
+//       fetchEventInfo: () => dispatch(fetchEventInfo(slug)),
+//       updateEvent
+//     }
+//   }
+// )(EditEventPage)
