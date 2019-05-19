@@ -49,11 +49,12 @@ export class EditPassword extends React.Component {
             balloon: true
           })
         })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error)
           iziToast.show({
             theme: 'light',
             title: 'Sorry',
-            message: 'Something went wrong.',
+            message: 'Something went wrong. Probably reset token is not valid.',
             position: 'topRight',
             color: 'red',
             backgroundColor: 'lightcoral',
