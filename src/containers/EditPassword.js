@@ -10,8 +10,8 @@ import '../assets/EditPassword.scss'
 
 class EditPassword extends React.Component {
     state = {
-        password: '',
-        passwordConfirmation: ''
+      password: '',
+      passwordConfirmation: ''
     }
 
     handlePasswordChange = (e) => {
@@ -28,7 +28,7 @@ class EditPassword extends React.Component {
       const { password, passwordConfirmation } = this.state
       const { cookies, history, putEditPassword, location } = this.props
       const parsedQuery = queryString.parse(location.search)
-      const resetPasswordToken =  parsedQuery.reset_password_token
+      const resetPasswordToken = parsedQuery.reset_password_token
 
       putEditPassword({ password, passwordConfirmation, resetPasswordToken })
         .then(() => {
