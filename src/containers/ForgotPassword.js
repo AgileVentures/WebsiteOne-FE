@@ -7,7 +7,7 @@ import { postResetPassword } from '../actions/postResetPassword'
 
 import '../assets/EditPassword.scss'
 
-class ForgotPassword extends React.Component {
+export class ForgotPassword extends React.Component {
     state = {
       email: ''
     }
