@@ -8,7 +8,7 @@ import { putEditPassword } from '../actions/putEditPassword'
 
 import '../assets/EditPassword.scss'
 
-class EditPassword extends React.Component {
+export class EditPassword extends React.Component {
     state = {
       password: '',
       passwordConfirmation: ''
