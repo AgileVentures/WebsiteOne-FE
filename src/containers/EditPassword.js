@@ -79,6 +79,7 @@ class EditPassword extends React.Component {
                     type='password'
                     onChange={this.handlePasswordChange}
                     value={this.state.password}
+                    required
                   />
                   <Form.Input
                     name='password_confirmation'
@@ -86,6 +87,7 @@ class EditPassword extends React.Component {
                     type='password'
                     onChange={this.handlePasswordConfirmationChange}
                     value={this.state.passwordConfirmation}
+                    required
                   />
                   <Button fluid secondary>Change password</Button>
                 </Form>

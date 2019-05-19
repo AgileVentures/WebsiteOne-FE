@@ -66,6 +66,7 @@ export class ForgotPassword extends React.Component {
                     type='email'
                     onChange={this.handleChange}
                     value={this.state.email}
+                    required
                   />
                   <Button fluid secondary>Send me reset password instructions</Button>
                 </Form>
