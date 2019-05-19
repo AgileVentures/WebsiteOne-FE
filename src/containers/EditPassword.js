@@ -26,13 +26,17 @@ class EditPassword extends React.Component {
       e.preventDefault()
 
       const { password, passwordConfirmation } = this.state
-      const { putEditPassword, location } = this.props
+      const { cookies, history, putEditPassword, location } = this.props
       const parsedQuery = queryString.parse(location.search)
       const resetPasswordToken =  parsedQuery.reset_password_token
 
       putEditPassword({ password, passwordConfirmation, resetPasswordToken })
-        .then((user) => {
-          console.log('IN COMPONENT: ', user)
+        .then(() => {
+          history.push('/')
+
+          cookies.set(process.env.SESSION || 'WebsiteOne_session', this.props.loggedInUser.headers.authorization, {
+            path: '/'
+          })
 
           iziToast.show({
             theme: 'light',
@@ -93,7 +97,12 @@ class EditPassword extends React.Component {
     }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  loggedInUser: state.loggedInUser,
+  cookies: ownProps.cookies
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   { putEditPassword }
 )(EditPassword)

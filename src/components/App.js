@@ -35,7 +35,16 @@ class App extends Component {
           <Route exact path='/about' component={About} />
           <Route exact path='/users' component={UsersList} />
           <Route path='/users/password/new' component={ForgotPassword} />
-          <Route path='/users/password/edit' component={EditPassword} />
+          <Route path='/users/password/edit'
+            render={props => {
+              return (
+                <EditPassword
+                  {...props}
+                  cookies={this.props.cookies}
+                />
+              )
+            }}
+          />
           <Route path='/users/:id' component={UserProfile} />
           <Route
             path='/login'

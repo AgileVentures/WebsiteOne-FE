@@ -14,7 +14,6 @@ export let postResetPassword = props => dispatch => {
       Accept: 'application/json'
     }
   }).then(response => {
-    console.log(response);
     dispatch({ type: POST_RESET_PASSWORD, payload: true })
   })
 }
