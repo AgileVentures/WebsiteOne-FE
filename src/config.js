@@ -10,9 +10,9 @@ const config = {
     API_BASE_URL: 'https://staging.websiteone.agileventures.org/'
   },
   development: {
-    AUTH_API: 'http://localhost:3000/login',
+    AUTH_API: 'https://develop.websiteone.agileventures.org/login',
     APP_URL: `http://localhost:${process.env.PORT}/`,
-    API_BASE_URL: 'http://localhost:3000'
+    API_BASE_URL: 'https://develop.websiteone.agileventures.org/'
   },
   testing: {
     AUTH_API: '', // Todo add url for testing,
