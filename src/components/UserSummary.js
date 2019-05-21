@@ -147,24 +147,37 @@ const UserSummary = props => {
                   src={`${user.gravatarUrl}`}
                   className='user-profile-image'
                 />
-                <Card.Content>
+                <Card.Content id='user-profile-card-content'>
                   <Card.Header className='user-profile-header'>
                     <Grid stackable>
                       <Grid.Row>
-                        <p className='user-profile-name'>
+                        <p
+                          className='user-profile-name'
+                          id='user-profile-name-baseline'
+                        >
                           {user.first_name
                             ? user.first_name + ' ' + user.last_name
                             : user.slug.substring(0, 15)}
                         </p>
-                        <p className='user-profile-karma'>
-                          <Icon name='fire' size='large' className='fire-icon' /> {}
+                        <p
+                          className='user-profile-karma'
+                          id='user-profile-karma-baseline'
+                        >
+                          <Icon
+                            name='fire'
+                            size='large'
+                            className='fire-icon'
+                          />{' '}
+                          {}
                           {user.karmaTotal}
                         </p>
                       </Grid.Row>
                     </Grid>
                   </Card.Header>
                   <Card.Meta>
-                    {user.title_list.map(title => title + ' ')}
+                    <span className='user-profile-card-titles'>
+                      {user.title_list.map(title => title + ' ')}
+                    </span>
                   </Card.Meta>
                   <Card.Description>
                     <Grid>
@@ -188,10 +201,12 @@ const UserSummary = props => {
                           className='github-commit-count-icon'
                         />
                         <a href={user.github_profile_url}>
-                          {user.github_profile_url ? user.github_profile_url.replace(
-                            'https://github.com/',
-                            ''
-                          ) : null}
+                          {user.github_profile_url
+                            ? user.github_profile_url.replace(
+                              'https://github.com/',
+                              ''
+                            )
+                            : null}
                         </a>
                       </Grid.Row>
                     </Grid>
