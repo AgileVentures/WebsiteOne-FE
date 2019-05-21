@@ -17,6 +17,15 @@ describe('CreateProjectPage', () => {
     wrapper = mount(<CreateProjectPage {...props} />)
   })
 
+  it('setsLastLocation with path', () => {
+    expect(props.setLastLocation).toHaveBeenCalledWith(props.location.pathname)
+  })
+
+  it('redirects users to login if not logged in', () => {
+    props.cookies.get.mockReturnValue(false)
+    expect(props.history.push).toHaveBeenCalledWith({ pathname: '/login' })
+  })
+
   it('renders ProjectForm', () => {
     expect(wrapper.find('ProjectForm')).toHaveLength(1)
   })
