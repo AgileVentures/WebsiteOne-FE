@@ -32,7 +32,7 @@ export class CreateProjectPage extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <Container>
         <Header as='h1' textAlign='center'>
