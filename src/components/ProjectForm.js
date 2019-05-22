@@ -4,7 +4,7 @@ import { InputField, SelectField, TextAreaField } from 'react-semantic-redux-for
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import FieldGroup from './FieldGroup'
 import { validateProjectForm } from '../helpers/validators'
-
+// TODO
 export const ProjectForm = props => {
   const { handleSubmit, submitting } = props
   const options = [
