@@ -329,3 +329,31 @@ Then("I should see the newly created project's info", () => {
     .get('h5')
     .should('contain', 'A new project')
 })
+
+Then('I visit event details page', () => {
+  cy.fixture('activeProjects').then(activeProjects => {
+    cy.route(/\/api\/v1\/projects\/active/, activeProjects).as('fetchActiveProjects')
+  })
+  cy.fixture('event1').then(event => {
+    cy.route(
+      /\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/,
+      event
+    )
+  })
+  cy.visit('/events/katherine-johnson-scrum-and-pair-hookup/')
+})
+
+Then('I click on the edit event link', () => {
+  cy.get('button').click()
+})
+Then(`I change name into {string} and description into {string}`, (title, description) => {
+  cy.get('input[name=name]')
+    .clear()
+    .type(title)
+    .get('textarea[name=description]')
+    .clear()
+    .type(description)
+    .get('button').contains('Save')
+    .click()
+}
+)

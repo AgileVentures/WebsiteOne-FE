@@ -64,13 +64,14 @@ const EventSummary = props => {
             </Segment>
           </Grid.Column>
           <Videos name={event} id='event-info-videos' />
-        </Grid>
-        <Link to={`/events/${event.slug}/edit`}>
-          <button>
+          <Link to={`/events/${event.slug}/edit`}>
+            <button>
             Edit
-          </button>
-        </Link>
+            </button>
+          </Link>
+        </Grid>
       </Fragment>
+
     )
   } else {
     return <CustomRingLoader />
