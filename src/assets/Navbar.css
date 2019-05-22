@@ -1,0 +1,40 @@
+.navbar {
+  background-color: #34495E !important;
+}
+
+/* Hamburger Menu */
+@media only screen and (max-width: 767px){
+.close{
+  height: 0;
+  -webkit-transition: 0.3s;
+  transition: height 0.3s;
+  overflow-y: hidden;
+}
+
+.open{
+  height: 400px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  overflow-y: visible;
+}
+
+.hamburger {
+  position: absolute;
+  margin: 0px;
+  padding: 3px 12px 0px 12px;
+  right: 35px;
+  top: 13px;
+  box-sizing: border-box;
+  border: 1.25px solid #fff;
+  border-radius: 5px;
+  text-align: center;
+  text-indent: 0;
+}
+}
+
+@media only screen and (min-width: 767px){
+  .hamburger {
+    display: none;
+  }
+}
+/* Hamburger Menu End */

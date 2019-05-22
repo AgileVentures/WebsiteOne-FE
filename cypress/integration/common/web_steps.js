@@ -233,6 +233,7 @@ Given('I am logged in', () => {
   })
   cy.wait('@postLogInInfo')
 })
+
 Then('I visit the new events page', () => {
   cy.fixture('activeProjects').then(activeProjects => {
     cy.route(/\/api\/v1\/projects\/active/, activeProjects).as('fetchActiveProjects')
@@ -256,7 +257,8 @@ Then('I should be able to create a new event quickly', () => {
     }).as('newlyCreatedEvent')
     cy.get('input[name=name]')
       .type('NewEvent')
-      .get('button[type=submit]')
+      .get('button')
+      .contains('Save')
       .click()
       .url().should('include', '/events/newevent')
     cy.window()
@@ -293,8 +295,12 @@ Then('I should be able to create a new project', () => {
       .should('contain', 'Creating a new Project')
       .get('input[name=title]')
       .type('NewProject')
+      .get('input[name=image_url]')
+      .type('http://i.imgur.com/WPQcOUl.png')
       .get('textarea[name=description]')
       .type('A new project')
+      .get('textarea[name= slack_channel_name]')
+      .type('slack_channel_name')
       .get('button[type=submit]')
       .click()
       .url().should('include', '/projects/newproject')

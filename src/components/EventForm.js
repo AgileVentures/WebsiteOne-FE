@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Button, Form, Grid, Container } from 'semantic-ui-react'
+import { Form, Grid, Container } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import { Link } from 'react-router-dom'
 import TimezonesSelect from './TimezonesSelect'
@@ -9,6 +9,7 @@ import EventForSelect from './EventForSelect'
 import EventRepeatsSelect from './EventRepeatsSelect'
 import DaysOfTheWeekSelect from './DaysOfTheWeekSelect'
 import EventRepeatEndsSelect from './EventRepeatEndsSelect'
+import FormButton from './FormButton'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import '../assets/eventForm.css'
@@ -114,11 +115,11 @@ export const EventForm = props => {
           </Grid.Column>
           <Grid.Column width={8}>
             <Link to={'/events'}>
-              <Button fluid className='event-cancel-button' primary>Cancel</Button>
+              <FormButton type='primary' buttonText='Cancel' className='event-cancel-button' />
             </Link>
           </Grid.Column>
           <Grid.Column width={8}>
-            <Button type='submit' fluid className='event-save-button' secondary>Save</Button>
+            <FormButton type='secondary' buttonText='Save' className='event-save-button' />
           </Grid.Column>
         </Grid>
       </Form>

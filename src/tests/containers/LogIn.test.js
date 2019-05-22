@@ -4,6 +4,7 @@ import { mount } from 'enzyme'
 
 describe('LogIn', () => {
   let wrapper
+  const { assign } = window.location
   const user = {
     id: 1,
     email: 'existing-user@example.com',
@@ -29,6 +30,14 @@ describe('LogIn', () => {
   }
   beforeEach(() => {
     wrapper = mount(<LogIn {...props} />)
+    Object.defineProperty(window.location, 'assign', {
+      configurable: true
+    })
+    window.location.assign = jest.fn()
+  })
+
+  afterEach(() => {
+    window.location.assign = assign
   })
 
   it('returns the user if postLogInInfo is called with the correct credentials', async () => {
@@ -144,5 +153,13 @@ describe('LogIn', () => {
       .then(() => {
         expect(props.history.push).toHaveBeenCalledWith('/events/new')
       })
+  })
+
+  it('redirects to login via github oauth when clickin on login with github', () => {
+    const oauthLogInButton = wrapper.find('button').filterWhere(item => {
+      return item.text() === 'with GitHub'
+    })
+    oauthLogInButton.simulate('click')
+    expect(window.location.assign).toBeCalledTimes(1)
   })
 })

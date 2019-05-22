@@ -38,15 +38,18 @@
     "react-cookie": "^3.0.8",
     "react-datepicker": "^2.1.0",
     "react-dom": "16.8.0",
+    "react-favicon": "^0.0.16",
     "react-html-parser": "^2.0.2",
     "react-loading-overlay": "^1.0.1",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.3.0",
+    "react-semantic-redux-form": "^1.2.6",
     "react-spinners": "^0.5.1",
     "react-stripe-checkout": "^2.6.3",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
+    "redux-form": "^8.2.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.84.0",
     "url": "^0.11.0"
@@ -85,7 +88,7 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.3.1"
   },
   "standard": {
     "parser": "babel-eslint",
