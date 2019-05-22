@@ -17,11 +17,11 @@ describe('CreateProjectPage', () => {
     wrapper = mount(<CreateProjectPage {...props} />)
   })
 
-  it('setsLastLocation with path', () => {
+  it('setLastLocation with path', () => {
     expect(props.setLastLocation).toHaveBeenCalledWith(props.location.pathname)
   })
 
-  it('redirects users to login if not logged in', () => {
+  it('redirect users to login if not logged in', () => {
     props.cookies.get.mockReturnValue(false)
     expect(props.history.push).toHaveBeenCalledWith({ pathname: '/login' })
   })
