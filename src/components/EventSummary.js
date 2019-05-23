@@ -63,10 +63,14 @@ const EventSummary = props => {
               </Grid>
             </Segment>
           </Grid.Column>
-          <Videos name={event} id='event-info-videos' />
+          {
+            (event.videos)
+              ? <Videos name={event} id='event-info-videos' />
+              : null
+          }
           <Link to={`/events/${event.slug}/edit`}>
             <button>
-            Edit
+              Edit
             </button>
           </Link>
         </Grid>

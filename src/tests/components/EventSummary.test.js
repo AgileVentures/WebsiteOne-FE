@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import EventSummary from '../../components/EventSummary'
 import event from '../../fixtures/eventInfo'
+import { BrowserRouter } from 'react-router-dom'
 
 describe('EventSummary', () => {
   let wrapper
@@ -9,7 +10,7 @@ describe('EventSummary', () => {
     event
   }
   beforeEach(() => {
-    wrapper = mount(<EventSummary {...props} />)
+    wrapper = mount(<BrowserRouter><EventSummary {...props} /></BrowserRouter>)
   })
 
   it('it displays event name', () => {
