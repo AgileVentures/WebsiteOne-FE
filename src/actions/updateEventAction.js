@@ -52,7 +52,6 @@ export let updateEvent = props => dispatch => {
     }
   })
     .then(response => {
-      console.log(response)
       history.push(`/events/${response.data.event.slug}`)
     })
     .catch(error => {
