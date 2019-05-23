@@ -12,6 +12,7 @@ export class EventInfo extends Component {
     const eventSlug = this.props.match.params.slug
     this.props.setLastLocation(this.props.location.pathname)
     this.props.fetchEventInfo(eventSlug)
+    this.setState({ event: this.props.event })
   }
 
   componentWillReceiveProps (nextProps) {
