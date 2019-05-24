@@ -10,7 +10,7 @@ import { updateEvent } from '../actions/updateEventAction'
 import moment from 'moment'
 import momentTZ from 'moment-timezone'
 
-class EditEventPage extends Component {
+export class EditEventPage extends Component {
   state = { event: null }
 
   componentDidMount () {
