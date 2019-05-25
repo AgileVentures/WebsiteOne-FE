@@ -1,6 +1,9 @@
 import React from 'react'
 import { Segment, Form, Grid } from 'semantic-ui-react'
+import { Field, reduxForm } from 'redux-form'
+import { InputField } from 'react-semantic-redux-form'
 import FormButton from './FormButton'
+import { validateSingleFieldForm } from '../helpers/validators'
 import '../assets/SingleFieldForm.css'
 
 const SingleFieldForm = props => {
@@ -8,8 +11,6 @@ const SingleFieldForm = props => {
     label,
     placeholder,
     name,
-    value,
-    handleChange,
     handleSubmit,
     error,
     eventActions,
@@ -26,14 +27,12 @@ const SingleFieldForm = props => {
         className='link-form'
         size='large'
       >
-        <Form.Input
+        <Field
           label={label}
           placeholder={placeholder}
           name={name}
-          value={value}
-          onChange={handleChange}
+          component={InputField}
           error={error}
-          required
         />
         <Grid columns={2}>
           <Grid.Row>
@@ -50,4 +49,7 @@ const SingleFieldForm = props => {
   )
 }
 
-export default SingleFieldForm
+export default reduxForm({
+  form: 'SingleFieldForm',
+  validate: validateSingleFieldForm
+})(SingleFieldForm)

@@ -38,11 +38,14 @@ export class EventInfo extends Component {
     this.setState({ eventActions: null })
   }
 
-  handleLinkFormSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault()
-    const { id, name, slug, project_id: projectId } = this.props.event
-    const { cookies } = this.props
-    this.props.postEventLink({ id, title: name, slug, link: this.state.link, cookies, projectId })
+    if (this.props.form.SingleFieldForm.values) {
+      const { link } = this.props.form.SingleFieldForm.values
+      const { id, name, slug, project_id: projectId } = this.props.event
+      const { cookies } = this.props
+      this.props.postEventLink({ id, title: name, slug, link, cookies, projectId })
+    }
   };
 
   render () {
@@ -52,7 +55,7 @@ export class EventInfo extends Component {
         <EventSummary
           cookies={this.props.cookies}
           handleChange={this.handleChange}
-          handleSubmit={this.handleLinkFormSubmit}
+          handleSubmit={this.handleSubmit}
           event={event}
           link={link}
           eventActions={eventActions}
@@ -66,7 +69,8 @@ export class EventInfo extends Component {
 const mapStateToProps = (state, ownProps) => ({
   events: state.event,
   event: state.eventInfo,
-  cookies: ownProps.cookies
+  cookies: ownProps.cookies,
+  form: state.form
 })
 export default connect(
   mapStateToProps,

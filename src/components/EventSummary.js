@@ -19,7 +19,6 @@ const EventSummary = props => {
   let {
     event,
     cookies,
-    link,
     handleChange,
     handleSubmit,
     eventActions,
@@ -69,8 +68,6 @@ const EventSummary = props => {
               label='Hangout Link'
               placeholder='Hangout Link'
               name='link'
-              value={link}
-              handleChange={handleChange}
               handleSubmit={handleSubmit}
               eventActions={eventActions ? undefined : 'hide-form'}
               cancelEventAction={handleCancelEventAction}

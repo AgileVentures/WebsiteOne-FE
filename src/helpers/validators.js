@@ -44,3 +44,16 @@ export const validateProjectForm = values => {
   }
   return errors
 }
+
+export const validateSingleFieldForm = values => {
+  const errors = {}
+  if (!values.link) {
+    errors.link = 'Required'
+  }
+  // if (values.link) {
+  //   if (!isValidUrl(values.link)) {
+  //     errors.link = 'Must be a valid URL'
+  //   }
+  // }
+  return errors
+}
