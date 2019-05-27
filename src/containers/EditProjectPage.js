@@ -7,7 +7,7 @@ import { fetchProjectInfo } from '../actions/getProjectInfoAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
 
 export class EditProjectPage extends Component {
-  componentDidMount() {
+  componentDidMount () {
     // Set last path
     const path = this.props.location.pathname
     this.props.setLastLocation(path)
@@ -41,7 +41,7 @@ export class EditProjectPage extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <Container>
         <Header as='h1' textAlign='center'>
