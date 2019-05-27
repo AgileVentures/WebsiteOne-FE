@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Card, Header, Button, Grid, Popup, Icon, Container } from 'semantic-ui-react'
+import { Card, Header, Grid, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/getProjectsAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
@@ -9,6 +9,7 @@ import Project from '../components/Project'
 import Paginate from '../components/Paginate'
 import PaginationLinks from '../components/PaginationLinks'
 import ErrorBoundary from '../components/ErrorBoundary'
+import NewButton from '../components/NewButton'
 import '../assets/LogIn.scss'
 import '../assets/ProjectsList.css'
 
@@ -184,17 +185,7 @@ export class ProjectsList extends Component {
                       </Header>
                     </Grid.Column>
                     <Grid.Column floated='right' width={3}>
-                      <a href='/projects/new'>
-                        <Popup
-                          position='right center'
-                          trigger={
-                            <Button basic style={{ marginTop: '16px' }}>
-                              <Icon name='plus' id='new-proj-icon' />
-                            </Button>
-                          }
-                          content='New Project!'
-                        />
-                      </a>
+                      <NewButton href='/projects/new' content='New Project!' iconId='new-proj-icon' />
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

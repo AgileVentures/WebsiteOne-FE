@@ -42,7 +42,7 @@ describe('editProject', () => {
     })
   })
 
-  it('calls method to push the user to the project page', () => {
+  it('calls method to push the user to the events info page', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.resolve({ data: newProject })

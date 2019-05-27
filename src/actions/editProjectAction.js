@@ -18,9 +18,7 @@ export let editProject = props => dispatch => {
       Accept: 'application/json'
     }
   })
-    .then(response => {
-      history.push(`/projects/${response.data.project.slug}`)
-    })
+    .then(response => history.push(`/projects/${response.data.project.slug}`))
     .catch(error => {
       dispatch({
         type: EDIT_PROJECT_FAILURE,
