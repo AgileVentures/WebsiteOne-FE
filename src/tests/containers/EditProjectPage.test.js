@@ -1,12 +1,16 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import moxios from 'moxios'
+import thunk from 'redux-thunk'
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { EditProjectPage } from '../../containers/EditProjectPage'
+import newProject from '../../../cypress/fixtures/newlyCreatedProject'
 
 describe('EditProjectPage', () => {
   let wrapper
-  const mockStore = configureStore()
+  const middlewares = [thunk]
+  const mockStore = configureStore(middlewares)
   const store = mockStore()
   const props = {
     editProject: jest.fn(),
@@ -26,12 +30,17 @@ describe('EditProjectPage', () => {
   }
 
   beforeEach(() => {
+    // moxios.install()
     wrapper = mount(
       <Provider store={store}>
         <EditProjectPage {...props} />
       </Provider>
     )
   })
+
+  // afterEach(() => {
+  //   moxios.uninstall()
+  // })
 
   it('renders ProjectForm', () => {
     expect(wrapper.find('ProjectForm')).toHaveLength(1)
@@ -55,5 +64,13 @@ describe('EditProjectPage', () => {
     })
     submitForm.simulate('submit')
     expect(props.editProject).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls method to push the user to the project info page', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.resolve({ data: newProject })
+    })
+    expect(props.history.push).toHaveBeenCalledTimes(1)
   })
 })

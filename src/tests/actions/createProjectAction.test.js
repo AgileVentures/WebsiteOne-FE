@@ -61,7 +61,6 @@ describe('createProject', () => {
       const request = moxios.requests.mostRecent()
       request.resolve({ data: newProject })
     })
-    // expect(props.history.push).toHaveBeenCalledTimes(1)
-    expect(data).toEqual(newProject)
+    expect(props.history.push).toHaveBeenCalledTimes(1)
   })
 })

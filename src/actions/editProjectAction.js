@@ -2,7 +2,7 @@ import axios from 'axios'
 import { EDIT_PROJECT_FAILURE } from '../types'
 
 export let editProject = props => dispatch => {
-  const { id, history, title, description, status, cookies } = props
+  const { id, title, description, status, cookies } = props
   return axios({
     method: 'PUT',
     url: `/projects/${id}`,
@@ -18,7 +18,7 @@ export let editProject = props => dispatch => {
       Accept: 'application/json'
     }
   })
-    .then(response => history.push(`/projects/${response.data.project.slug}`))
+    .then(response => console.log(response))
     .catch(error => {
       dispatch({
         type: EDIT_PROJECT_FAILURE,

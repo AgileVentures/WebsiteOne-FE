@@ -11,7 +11,6 @@ import { validateProjectForm } from '../helpers/validators'
 
 export const ProjectForm = props => {
   const { handleSubmit, submitting } = props
-  console.log(props)
   const options = [
     { key: 'select', value: '', text: 'Choose One' },
     { key: 'one', value: 'Active', text: 'Active' },
