@@ -19,10 +19,8 @@ export class EditEventPage extends Component {
     if (!this.props.cookies.get(process.env.SESSION || 'WebsiteOne_session') && !this.props.loggedInUser.data) {
       this.props.history.push({ pathname: '/login' })
     }
-    if (!this.props.projects.length) {
-      this.props.fetchActiveProjects()
-      this.props.fetchEventInfo(this.props.match.params.slug)
-    }
+    this.props.fetchActiveProjects()
+    this.props.fetchEventInfo(this.props.match.params.slug)
   }
 
   componentDidUpdate (prevprops) {
@@ -53,7 +51,7 @@ export class EditEventPage extends Component {
   handleEndDateChange = date => {
     this.setState({ endDate: date })
   };
-  handleSubmit= event => {
+  handleSubmit = event => {
     event.preventDefault()
     const {
       slug,
@@ -101,7 +99,7 @@ export class EditEventPage extends Component {
         ? <CustomRingLoader />
         : <Fragment>
           <Header as='h1' textAlign='center'>
-          Creating a new Event
+            Editing Event
           </Header>
           <EventForm
             handleSubmit={this.handleSubmit}
@@ -128,22 +126,3 @@ export default connect(
   mapStateToProps,
   { fetchActiveProjects, updateEvent, setLastLocation, fetchEventInfo }
 )(EditEventPage)
-
-// export default connect(
-//   (state, ownProps) => {
-//     return {
-//       eventInfo: state.eventInfo,
-//       projects: state.projects,
-//       cookies: ownProps.cookies,
-//       loggedInUser: store.loggedInUser
-//     }
-//   }
-//   ,
-//   (dispatch, ownProps) => {
-//     let { slug } = ownProps.match.params
-//     return {
-//       fetchEventInfo: () => dispatch(fetchEventInfo(slug)),
-//       updateEvent
-//     }
-//   }
-// )(EditEventPage)
