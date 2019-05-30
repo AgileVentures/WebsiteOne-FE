@@ -17,12 +17,10 @@ export let editProject = props => dispatch => {
       Authorization: cookies.get(process.env.SESSION || 'WebsiteOne_session'),
       Accept: 'application/json'
     }
-  })
-    .then(response => console.log(response))
-    .catch(error => {
-      dispatch({
-        type: EDIT_PROJECT_FAILURE,
-        message: error.message
-      })
+  }).catch(error => {
+    dispatch({
+      type: EDIT_PROJECT_FAILURE,
+      message: error.message
     })
+  })
 }

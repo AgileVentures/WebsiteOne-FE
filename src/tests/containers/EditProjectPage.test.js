@@ -13,7 +13,12 @@ describe('EditProjectPage', () => {
   const mockStore = configureStore(middlewares)
   const store = mockStore()
   const props = {
-    editProject: jest.fn(),
+    editProject: jest.fn(
+      () =>
+        new Promise((resolve, reject) => {
+          resolve()
+        })
+    ),
     location: { pathname: '/projects/edit/:slug' },
     setLastLocation: jest.fn(),
     cookies: { get: jest.fn() },

@@ -27,19 +27,20 @@ export class EditProjectPage extends Component {
     this.props.fetchProjectInfo(this.props.match.params.slug)
   }
 
-  handleSubmit = async values => {
+  handleSubmit = values => {
     console.log(values)
     const { title, description, status } = values
     const { editProject, history, cookies, projectInfo } = this.props
-    await editProject({
+    editProject({
       id: projectInfo.id,
       title,
       description,
       status,
       cookies,
       history
+    }).then(() => {
+      history.push(`/projects/${this.props.match.params.slug}`)
     })
-    history.push(`/projects/${this.props.match.params.slug}`)
   }
 
   render () {
