@@ -13,7 +13,6 @@ export class EditProjectPage extends Component {
     this.props.setLastLocation(path)
 
     // Check if user is login
-    /*
     if (
       !this.props.cookies.get('WebsiteOne_session') &&
       !this.props.loggedInUser.data
@@ -22,7 +21,7 @@ export class EditProjectPage extends Component {
         pathname: '/login'
       })
     }
-    */
+
     // Get Project info by slug
     this.props.fetchProjectInfo(this.props.match.params.slug)
   }

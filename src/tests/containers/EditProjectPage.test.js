@@ -35,7 +35,7 @@ describe('EditProjectPage', () => {
   }
 
   beforeEach(() => {
-    // moxios.install()
+    moxios.install()
     wrapper = mount(
       <Provider store={store}>
         <EditProjectPage {...props} />
@@ -43,9 +43,9 @@ describe('EditProjectPage', () => {
     )
   })
 
-  // afterEach(() => {
-  //   moxios.uninstall()
-  // })
+  afterEach(() => {
+    moxios.uninstall()
+  })
 
   it('renders ProjectForm', () => {
     expect(wrapper.find('ProjectForm')).toHaveLength(1)
