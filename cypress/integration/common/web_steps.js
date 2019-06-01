@@ -303,29 +303,49 @@ Then('I should be able to create a new project', () => {
       .type('slack_channel_name')
       .get('button[type=submit]')
       .click()
-      .url().should('include', '/projects/newproject')
+      .url()
+      .should('include', '/projects/newproject')
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: newlyCreatedProject })
+      .invoke('dispatch', {
+        type: 'GET_PROJECT_INFO',
+        payload: newlyCreatedProject
+      })
   })
   cy.wait('@newlyCreatedProject')
 })
 
 When("I should be redirected to the project's info page", () => {
   cy.fixture('newlyCreatedProjectInfo').then(newlyCreatedProjectInfo => {
-    cy.route(/\/api\/v1\/projects\/newproject/, newlyCreatedProjectInfo).as('getProject')
+    cy.route(/\/api\/v1\/projects\/newproject/, newlyCreatedProjectInfo).as(
+      'getProject'
+    )
     cy.visit('/projects/newproject')
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_PROJECT_INFO', payload: newlyCreatedProjectInfo })
+      .invoke('dispatch', {
+        type: 'GET_PROJECT_INFO',
+        payload: newlyCreatedProjectInfo
+      })
   })
   cy.wait('@getProject')
 })
 
 Then("I should see the newly created project's info", () => {
-  cy.url().should('include', 'projects/newproject')
+  cy.url()
+    .should('include', 'projects/newproject')
     .get('h1')
     .should('contain', 'NewProject')
     .get('h5')
     .should('contain', 'A new project')
 })
+
+// Given('Edit button on project info page is clicked', () => {})
+
+// Then('I should be redirected to the edit project page', () => {})
+
+// Then('I should see edit project page fields populated with existing project info', () => {})
+
+// Then('I should be able to edit project', () => {})
+
+// Then('I should see edits on project's info page', () => {})
