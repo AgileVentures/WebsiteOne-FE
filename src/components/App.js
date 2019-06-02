@@ -9,6 +9,8 @@ import Footer from '../components/Footer'
 import Navbar from './Navbar'
 import About from '../containers/About'
 import LogIn from '../containers/LogIn'
+import ForgotPassword from '../containers/ForgotPassword'
+import EditPassword from '../containers/EditPassword'
 import SignUp from '../containers/SignUp'
 import Subscriptions from '../containers/Subscriptions'
 import SubscriptionsSuccess from './SubscriptionsSuccess'
@@ -32,6 +34,17 @@ class App extends Component {
           <Route path='/' exact component={Homepage} />
           <Route exact path='/about' component={About} />
           <Route exact path='/users' component={UsersList} />
+          <Route path='/users/password/new' component={ForgotPassword} />
+          <Route path='/users/password/edit'
+            render={props => {
+              return (
+                <EditPassword
+                  {...props}
+                  cookies={this.props.cookies}
+                />
+              )
+            }}
+          />
           <Route path='/users/:id' component={UserProfile} />
           <Route
             path='/login'
