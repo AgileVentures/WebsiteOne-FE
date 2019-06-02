@@ -30,8 +30,8 @@ describe('putEditPassword action', () => {
     return store
       .dispatch(
         putEditPassword({
-          password: 'qwer1234',
-          password_confirmation: 'qwer1234',
+          password: 'qwer12345',
+          password_confirmation: 'qwer12345',
           reset_password_token: '8vCMoB568u2m-1AWGt55'
         })
       )
