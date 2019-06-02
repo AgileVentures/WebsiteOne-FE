@@ -3,7 +3,7 @@ import { Container, Button, Form, Header, Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import iziToast from 'izitoast'
 
-import { postResetPassword } from '../actions/postResetPassword'
+import { postResetPassword } from '../actions/postResetPasswordAction'
 
 import '../assets/EditPassword.scss'
 

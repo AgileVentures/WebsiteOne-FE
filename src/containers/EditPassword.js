@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import iziToast from 'izitoast'
 import queryString from 'query-string'
 
-import { putEditPassword } from '../actions/putEditPassword'
+import { putEditPassword } from '../actions/putEditPasswordAction'
 
 import '../assets/EditPassword.scss'
 
