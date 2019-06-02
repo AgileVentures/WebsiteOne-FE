@@ -8,7 +8,7 @@ const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 let store
 
-describe('postLogInInfo action', () => {
+describe('postResetPassword action', () => {
   beforeEach(() => {
     moxios.install()
     store = mockStore({})
@@ -18,7 +18,7 @@ describe('postLogInInfo action', () => {
     moxios.uninstall()
   })
 
-  it('posts login info to an external api', () => {
+  it('posts user email with password to reset to an external api', () => {
     const expectedActions = [{ type: POST_RESET_PASSWORD, payload: true }]
 
     moxios.wait(() => {
