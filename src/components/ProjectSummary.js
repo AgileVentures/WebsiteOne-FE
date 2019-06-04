@@ -19,13 +19,29 @@ const ProjectSummary = props => {
                 className='project-info-image'
               />
             ) : null}
-            <Header as='h1'>{project.title}</Header>
+            <div className='ui stackable two column grid'>
+              <div className='twelve wide column'>
+                <Header as='h1'>{project.title}</Header>
+              </div>
+              <div className='ui two wide column'>
+                <Link
+                  to={`/projects/edit/${project.slug}`}
+                  title='Edit Project'
+                  className='ui primary button'
+                  style={{ marginTop: '30px' }}
+                >
+                  Edit
+                </Link>
+              </div>
+            </div>
             <Segment raised>
               <Header as='h5'>{project.description}</Header>
             </Segment>
             <Grid columns={2} stackable>
               <Grid.Row>
-                {(project.pivotaltracker_url || project.sourceRepositories.length > 0 || project.slack_channel_name) ? (
+                {project.pivotaltracker_url ||
+                project.sourceRepositories.length > 0 ||
+                project.slack_channel_name ? (
                   <Grid.Column width={8}>
                     <Card fluid raised className='project-info-card'>
                       <Card.Content>
