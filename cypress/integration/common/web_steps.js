@@ -340,12 +340,41 @@ Then("I should see the newly created project's info", () => {
     .should('contain', 'A new project')
 })
 
-// Given('Edit button on project info page is clicked', () => {})
+Given('Edit button on project info page is clicked', () => {
+  cy.visit('/projects/shf-project')
+    .get('.ui.primary.button')
+    .click()
+})
 
-// Then('I should be redirected to the edit project page', () => {})
+Then('I should be redirected to the edit project page', () => {
+  expect(window.location.href).to.equal('/projects/edit/shf-project')
+})
 
-// Then('I should see edit project page fields populated with existing project info', () => {})
+Then(
+  'I should see edit project page fields populated with existing project info',
+  () => {
+    cy.get('input[name=title]')
+      .should('contain', 'shf-project')
+      .get()
+      .should('contain', '')
+      .get()
+      .should('contain', '')
+  }
+)
 
-// Then('I should be able to edit project', () => {})
+Then('I should be able to edit project fields', () => {
+  cy.get('input[name=title]')
+    .type('shf-project updated')
+    .get()
+    .type('')
+    .get()
+    .type('')
+})
 
-// Then('I should see edits on project's info page', () => {})
+Then('I should be able to submit edits', () => {
+  cy.get('button[type=submit').click()
+})
+
+// Then('I should be redirected to project's info page', () => {})
+
+// Then('I should see project's info updated, () => {})
