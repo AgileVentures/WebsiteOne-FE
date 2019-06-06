@@ -347,34 +347,46 @@ Given('Edit button on project info page is clicked', () => {
 })
 
 Then('I should be redirected to the edit project page', () => {
-  expect(window.location.href).to.equal('/projects/edit/shf-project')
+  cy.url().should('include', '/projects/edit/shf-project')
 })
 
 Then(
   'I should see edit project page fields populated with existing project info',
   () => {
     cy.get('input[name=title]')
-      .should('contain', 'shf-project')
-      .get()
-      .should('contain', '')
-      .get()
-      .should('contain', '')
+      .should('contain', 'SHF Project')
+      .get('textarea[name=description]')
+      .should(
+        'contain',
+        'Membership system for Sveriges Hundföretagare (Swedish Dog Industry Association).'
+      )
   }
 )
 
 Then('I should be able to edit project fields', () => {
   cy.get('input[name=title]')
-    .type('shf-project updated')
+    .type('Updated SHF Project')
+    .get('textarea[name=description]')
+    .type(
+      'Updated Membership system for Sveriges Hundföretagare (Swedish Dog Industry Association).'
+    )
     .get()
-    .type('')
-    .get()
-    .type('')
 })
 
 Then('I should be able to submit edits', () => {
   cy.get('button[type=submit').click()
 })
 
-// Then('I should be redirected to project's info page', () => {})
+Then("I should be redirected to project's info page", () => {
+  cy.url().should('include', '/projects/shf-project')
+})
 
-// Then('I should see project's info updated, () => {})
+Then("I should see project's info updated", () => {
+  cy.get('h1')
+    .should('contain', 'Updated SHF Project')
+    .get('h5')
+    .should(
+      'contain',
+      'Updated Membership system for Sveriges Hundföretagare (Swedish Dog Industry Association).'
+    )
+})

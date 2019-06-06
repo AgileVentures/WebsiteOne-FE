@@ -27,7 +27,6 @@ export class EditProjectPage extends Component {
   }
 
   handleSubmit = values => {
-    console.log(values)
     const { title, description, status } = values
     const { editProject, history, cookies, projectInfo } = this.props
     editProject({
