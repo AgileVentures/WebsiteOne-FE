@@ -1,0 +1,9 @@
+.git
+*Dockerfile*
+*docker-compose*
+node_modules
+*README.md*
+*.eslintrc*
+CODE_OF_CONDUCT.md
+CONTRIBUTION_GUIDE.md
+.env
