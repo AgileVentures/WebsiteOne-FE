@@ -1,17 +1,15 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import SingleFieldForm from '../../components/SingleFieldForm'
+import { SingleFieldForm } from '../../components/SingleFieldForm'
 
 describe('SingleFieldForm', () => {
   const mockSubmit = jest.fn()
-  const mockChange = jest.fn()
   const props = {
     label: 'testLabel',
     placeholder: 'Test Placeholder',
     name: 'test',
     value: 'initial value',
     handleSubmit: mockSubmit,
-    handleChange: mockChange,
     error: true
   }
   const wrapper = shallow(<SingleFieldForm {...props} />)
@@ -20,24 +18,20 @@ describe('SingleFieldForm', () => {
     expect(wrapper.find('Form')).toHaveLength(1)
   })
 
-  it('should have a FormInput', () => {
-    expect(wrapper.find('FormInput')).toHaveLength(1)
+  it('should have a Field', () => {
+    expect(wrapper.find('Field')).toHaveLength(1)
   })
 
-  it('should have the correct label for the FormInput', () => {
-    expect(wrapper.find(`FormInput[label="${props.label}"]`)).toHaveLength(1)
+  it('should have the correct label for the Field', () => {
+    expect(wrapper.find(`Field[label="${props.label}"]`)).toHaveLength(1)
   })
 
-  it('should have the correct name for the FormInput', () => {
-    expect(wrapper.find(`FormInput[name="${props.name}"]`)).toHaveLength(1)
+  it('should have the correct name for the Field', () => {
+    expect(wrapper.find(`Field[name="${props.name}"]`)).toHaveLength(1)
   })
 
-  it('should have the correct value for the FormInput', () => {
-    expect(wrapper.find(`FormInput[value="${props.value}"]`)).toHaveLength(1)
-  })
-
-  it('should show an error on the FormInput', () => {
-    expect(wrapper.find(`FormInput[error=true]`)).toHaveLength(1)
+  it('should show an error on the Field', () => {
+    expect(wrapper.find(`Field[error=true]`)).toHaveLength(1)
   })
 
   it('should have a Cancel Button', () => {
@@ -58,11 +52,5 @@ describe('SingleFieldForm', () => {
     const submitForm = wrapper.find('Form')
     submitForm.simulate('submit')
     expect(mockSubmit.mock.calls.length).toBe(1)
-  })
-
-  it('should call handleChange when the input is changed', () => {
-    const formInput = wrapper.find('FormInput')
-    formInput.simulate('change')
-    expect(mockChange.mock.calls.length).toBe(1)
   })
 })

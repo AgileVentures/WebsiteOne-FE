@@ -6,7 +6,7 @@ import FormButton from './FormButton'
 import { validateSingleFieldForm } from '../helpers/validators'
 import '../assets/SingleFieldForm.css'
 
-const SingleFieldForm = props => {
+export const SingleFieldForm = props => {
   const {
     label,
     placeholder,

@@ -2,9 +2,13 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { EventInfo } from '../../containers/EventInfo'
 import event from '../../fixtures/eventInfo'
+import configureStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 
 describe('Event Info', () => {
   let wrapper
+  const mockStore = configureStore()
+  const store = mockStore()
   const props = {
     match: { params: { slug: 'madwriter' } },
     event: {
@@ -14,7 +18,12 @@ describe('Event Info', () => {
     fetchEventInfo: jest.fn(),
     postEventLink: jest.fn(),
     setLastLocation: () => { },
-    location: 'events/madwriter'
+    location: 'events/madwriter',
+    form: {
+      SingleFieldForm: {
+        values: jest.fn()
+      }
+    }
   }
   beforeEach(() => {
     wrapper = shallow(<EventInfo {...props} />)
@@ -39,22 +48,13 @@ describe('Event Info', () => {
   })
 
   it('calls postEventLink when SingleFieldForm is submitted', () => {
-    wrapper = mount(<EventInfo {...props} event={event} />)
+    wrapper = mount(
+      <Provider store={store}>
+        <EventInfo {...props} event={event} />
+      </Provider>)
     const singleFieldForm = wrapper.find('SingleFieldForm')
     const submitForm = singleFieldForm.find('Form')
     submitForm.simulate('submit')
     expect(props.postEventLink.mock.calls.length).toBe(1)
-  })
-
-  it('calls handleChange when the SingleFieldForm FormInput is changed', () => {
-    wrapper = mount(<EventInfo {...props} event={event} />)
-    const spy = jest.spyOn(wrapper.instance(), 'handleChange')
-    wrapper.instance().forceUpdate()
-    const singleFieldForm = wrapper.find('SingleFieldForm')
-    const input = singleFieldForm.find('input')
-    input.simulate('change', {
-      target: { value: 'test' }
-    })
-    expect(spy).toHaveBeenCalledTimes(1)
   })
 })
