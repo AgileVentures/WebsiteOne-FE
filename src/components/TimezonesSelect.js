@@ -1,21 +1,21 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
 import momentTZ from 'moment-timezone'
 import { pure } from 'recompose'
+import { Field } from 'redux-form'
+import { SelectField } from 'react-semantic-redux-form'
 
 const TimezonesSelect = props => {
   const timeZonesOptions = momentTZ.tz.names().map((timeZone, i) => {
     return { key: i, text: timeZone, value: timeZone }
   })
-  const { timezones, handleChange } = props
+  const { timezones } = props
   return (
-    <Form.Select
+    <Field
       options={timeZonesOptions}
       search
       name='timezones'
       value={timezones}
-      onChange={handleChange}
-      lazyLoad
+      component={SelectField}
     />
   )
 }
