@@ -93,7 +93,7 @@ class App extends Component {
           />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
-          <Route path='/getting-started2' component={GettingStartedPage2} />
+          <Route path='/getting-started-2' component={GettingStartedPage2} />
         </Switch>
         <Footer />
       </Fragment>
