@@ -1,8 +1,4 @@
-import {
-  Then,
-  Given,
-  When
-} from 'cypress-cucumber-preprocessor/steps'
+import { Then, Given, When } from 'cypress-cucumber-preprocessor/steps'
 
 Given('the server is running', () => {
   cy.server()
@@ -36,7 +32,7 @@ When(`I click on the Users link in the navbar`, () => {
   cy.wait('@getUsers')
 })
 
-Then(`I should see {string} cards with basic user info`, (number) => {
+Then(`I should see {string} cards with basic user info`, number => {
   cy.get('h1')
     .should('contain', 'Volunteers Directory')
     .get('.user-card')
@@ -44,8 +40,7 @@ Then(`I should see {string} cards with basic user info`, (number) => {
 })
 
 When(`I enter {string} into search bar`, name => {
-  cy.get('input')
-    .type(name)
+  cy.get('input').type(name)
 })
 
 When("I click on a user's name", () => {
@@ -171,7 +166,10 @@ Then('I should see a calendar with events', () => {
 
 When('I click on an event in the calendar', () => {
   cy.fixture('event').then(event => {
-    cy.route(/\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/, event).as('getEvent')
+    cy.route(
+      /\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/,
+      event
+    ).as('getEvent')
     cy.get('.rbc-event-content')
       .contains("'Katherine Johson' Scrum")
       .click({
@@ -189,7 +187,10 @@ When('I click on an event in the calendar', () => {
 
 Then("I should see the event's info", () => {
   cy.get('h2')
-    .should('contain', "'Katherine Johnson' Scrum and Pair Hookup - All Welcome :-) Discuss Any Project, Ask Any Question, Or Just Listen In :-)")
+    .should(
+      'contain',
+      "'Katherine Johnson' Scrum and Pair Hookup - All Welcome :-) Discuss Any Project, Ask Any Question, Or Just Listen In :-)"
+    )
     .get('p')
     .should('contain', 'Event type: Scrum')
     .get('p')
@@ -198,7 +199,10 @@ Then("I should see the event's info", () => {
     .should('contain', 'Next scheduled event:')
     .get('img.ui.circular.image')
     .should('have.attr', 'src')
-    .and('contain', 'https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro')
+    .and(
+      'contain',
+      'https://www.gravatar.com/avatar/9249736dae1898d537770886061c06f9?s=32&d=retro'
+    )
     .get('p')
     .should('contain', 'created by:')
     .get('p')
@@ -236,13 +240,18 @@ Given('I am logged in', () => {
 
 Then('I visit the new events page', () => {
   cy.fixture('activeProjects').then(activeProjects => {
-    cy.route(/\/api\/v1\/projects\/active/, activeProjects).as('fetchActiveProjects')
+    cy.route(/\/api\/v1\/projects\/active/, activeProjects).as(
+      'fetchActiveProjects'
+    )
     cy.visit('/events/new')
       .get('h1')
       .should('contain', 'Creating a new Event')
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_ACTIVE_PROJECTS', payload: activeProjects })
+      .invoke('dispatch', {
+        type: 'GET_ACTIVE_PROJECTS',
+        payload: activeProjects
+      })
   })
   cy.wait('@fetchActiveProjects')
 })
@@ -260,16 +269,21 @@ Then('I should be able to create a new event quickly', () => {
       .get('button')
       .contains('Save')
       .click()
-      .url().should('include', '/events/newevent')
+      .url()
+      .should('include', '/events/newevent')
     cy.window()
       .its('store')
-      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEventInfo })
+      .invoke('dispatch', {
+        type: 'GET_EVENT_INFO',
+        payload: newlyCreatedEventInfo
+      })
   })
   cy.wait('@newlyCreatedEvent')
 })
 
 Then("I should see the newly created event's info", () => {
-  cy.url().should('include', 'events/newevent')
+  cy.url()
+    .should('include', 'events/newevent')
     .get('h2')
     .should('contain', 'NewEvent')
     .get('p')
