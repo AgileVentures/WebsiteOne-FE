@@ -9,5 +9,3 @@ Feature: Edit project
     Then I should see edit project page fields populated with existing project info
     Then I should be able to edit project fields
     Then I should be able to submit edits
-    Then I should be redirected to project's info page
-    Then I should see project's info updated

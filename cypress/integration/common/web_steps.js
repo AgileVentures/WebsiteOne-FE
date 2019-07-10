@@ -355,52 +355,75 @@ Then("I should see the newly created project's info", () => {
 })
 
 Given('Edit button on project info page is clicked', () => {
-  cy.visit('/projects/shf-project')
-    .get('.ui.primary.button')
-    .click()
+  cy.fixture('project').then(project => {
+    cy.route(/\/api\/v1\/projects\/localsupport/, project).as(
+      'editProject'
+    )
+    cy.visit('/projects/localsupport')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', {
+        type: 'GET_PROJECT_INFO',
+        payload: project
+      })
+    cy.get('a[title="Edit Project"]')
+      .click()
+  })
+  cy.wait('@editProject')
 })
 
 Then('I should be redirected to the edit project page', () => {
-  cy.url().should('include', '/projects/edit/shf-project')
+  cy.url().should('include', '/projects/edit/localsupport')
 })
 
 Then(
   'I should see edit project page fields populated with existing project info',
   () => {
     cy.get('input[name=title]')
-      .should('contain', 'SHF Project')
+      .should('have.value', 'LocalSupport')
       .get('textarea[name=description]')
       .should(
         'contain',
-        'Membership system for Sveriges Hundföretagare (Swedish Dog Industry Association).'
+        "VAH's Local Support site is at  www.harrowcn.org.uk"
       )
   }
 )
 
 Then('I should be able to edit project fields', () => {
   cy.get('input[name=title]')
-    .type('Updated SHF Project')
+    .type(' updated')
     .get('textarea[name=description]')
     .type(
-      'Updated Membership system for Sveriges Hundföretagare (Swedish Dog Industry Association).'
+      ' updated!'
     )
-    .get()
 })
 
 Then('I should be able to submit edits', () => {
-  cy.get('button[type=submit').click()
-})
 
-Then("I should be redirected to project's info page", () => {
-  cy.url().should('include', '/projects/shf-project')
-})
-
-Then("I should see project's info updated", () => {
-  cy.get('h1')
-    .should('contain', 'Updated SHF Project')
+  cy.fixture('projectUpdated').then(projectUpdated => {
+    cy.route({
+      method: 'PUT',
+      url: /\/projects/,
+      response: projectUpdated,
+      status: 200
+    }).as('updatedProject')
+    cy.get('button[type=submit]').click()
+    
+    cy.url().should('include', '/projects/localsupport')
+    cy.window()
+      .its('store')
+      .invoke('dispatch', {
+        type: 'GET_PROJECT_INFO',
+        payload: projectUpdated
+      })
+    cy
+    .get('h1')
+    .should('contain', 'LocalSupport updated')
     .get('h5')
     .should(
       'contain',
-      'Updated Membership system for Sveriges Hundföretagare (Swedish Dog Industry Association).'
+      "VAH's Local Support site is at  www.harrowcn.org.uk updated!"
     )
+  })
+  cy.wait('@updatedProject')
 })
