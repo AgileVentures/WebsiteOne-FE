@@ -45,6 +45,7 @@ describe('EditProjectPage', () => {
 
   afterEach(() => {
     moxios.uninstall()
+    jest.clearAllMocks()
   })
 
   it('renders ProjectForm', () => {
@@ -52,7 +53,7 @@ describe('EditProjectPage', () => {
   })
 
   it('fetch existing project info', () => {
-    expect(props.fetchProjectInfo).toHaveBeenCalledTimes(2)
+    expect(props.fetchProjectInfo).toHaveBeenCalledTimes(1)
   })
 
   it('calls editProject when ProjectForm is filled out and submitted', () => {
