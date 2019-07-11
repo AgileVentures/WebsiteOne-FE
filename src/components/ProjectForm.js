@@ -1,6 +1,10 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
-import { InputField, SelectField, TextAreaField } from 'react-semantic-redux-form'
+import {
+  InputField,
+  SelectField,
+  TextAreaField
+} from 'react-semantic-redux-form'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import FieldGroup from './FieldGroup'
 import { validateProjectForm } from '../helpers/validators'
@@ -14,24 +18,33 @@ export const ProjectForm = props => {
   ]
   return (
     <Form onSubmit={handleSubmit}>
-      <Field name='title' component={InputField}
+      <Field
+        name='title'
+        component={InputField}
         label='Title'
         placeholder='Title'
       />
-      <Field type='url'
-        name='image_url' component={InputField}
+      <Field
+        type='url'
+        name='image_url'
+        component={InputField}
         label='Image url'
         placeholder='Paste a link to your image here'
       />
-      <Field name='description' component={TextAreaField}
+      <Field
+        name='description'
+        component={TextAreaField}
         label='Description'
         placeholder='Description'
       />
-      <Field name='slack_channel_name' component={TextAreaField}
+      <Field
+        name='slack_channel_name'
+        component={TextAreaField}
         label='Slack channel name'
         placeholder='slack_channel_name'
       />
-      <Field name='status'
+      <Field
+        name='status'
         component={SelectField}
         label='Status'
         options={options}
@@ -47,10 +60,10 @@ export const ProjectForm = props => {
         name='trackers'
         type='tracker'
         start='Issue Tracker'
-        component={FieldGroup} />
-      <Form.Field control={Button} primary
-        type='submit' disabled={submitting}>
-        Create Project
+        component={FieldGroup}
+      />
+      <Form.Field control={Button} primary type='submit' disabled={submitting}>
+        Submit
       </Form.Field>
     </Form>
   )
@@ -58,5 +71,6 @@ export const ProjectForm = props => {
 
 export default reduxForm({
   form: 'Project',
+  enableReinitialize: true,
   validate: validateProjectForm
 })(ProjectForm)

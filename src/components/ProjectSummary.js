@@ -19,67 +19,88 @@ const ProjectSummary = props => {
                 className='project-info-image'
               />
             ) : null}
-            <Header as='h1'>{project.title}</Header>
+            <div className='ui stackable two column grid'>
+              <div className='twelve wide column'>
+                <Header as='h1'>{project.title}</Header>
+              </div>
+              <div className='ui two wide column'>
+                <Link
+                  to={`/projects/edit/${project.slug}`}
+                  title='Edit Project'
+                  className='ui primary button'
+                  style={{ marginTop: '30px' }}
+                >
+                  Edit
+                </Link>
+              </div>
+            </div>
             <Segment raised>
               <Header as='h5'>{project.description}</Header>
             </Segment>
             <Grid columns={2} stackable>
               <Grid.Row>
-                {(project.pivotaltracker_url || project.sourceRepositories.length > 0 || project.slack_channel_name) ? (
+                {project.pivotaltracker_url ||
+                project.sourceRepositories.length > 0 ||
+                project.slack_channel_name ? (
                   <Grid.Column width={8}>
-                    <Card fluid raised className='project-info-card'>
+                      <Card fluid raised className='project-info-card'>
                       <Card.Content>
-                        <Card.Header>Connected on</Card.Header>
-                        <Card.Description className='project-info-card-description'>
+                          <Card.Header>Connected on</Card.Header>
+                          <Card.Description className='project-info-card-description'>
                           {project.sourceRepositories.map(repo => {
-                            let array = repo.url.split('/')
-                            let repoName = array[array.length - 1] || array[array.length - 2]
-                            return (
-                              <Fragment key={repo.id}>
-                                <Grid>
-                                  <Grid.Row>
-                                    <Icon name='github alternate' size='large' />
-                                    <a href={repo.url}>{repoName}</a>&nbsp; on GitHub
-                                  </Grid.Row>
-                                </Grid>
-                              </Fragment>
-                            )
-                          })}
+                              let array = repo.url.split('/')
+                              let repoName =
+                              array[array.length - 1] || array[array.length - 2]
+                              return (
+                                <Fragment key={repo.id}>
+                                  <Grid>
+                                    <Grid.Row>
+                                      <Icon
+                                        name='github alternate'
+                                        size='large'
+                                      />
+                                      <a href={repo.url}>{repoName}</a>&nbsp; on
+                                    GitHub
+                                    </Grid.Row>
+                                  </Grid>
+                                </Fragment>
+                              )
+                            })}
                           {project.pivotaltracker_url ? (
-                            <Fragment key={project.id}>
+                              <Fragment key={project.id}>
                               <Grid>
-                                <Grid.Row>
+                                  <Grid.Row>
                                   <Icon name='bug' size='large' />
                                   <a href={project.pivotaltracker_url}>
-                                    {project.title}
-                                  </a>
+                                      {project.title}
+                                    </a>
                                   &nbsp; on IssueTracker
                                 </Grid.Row>
-                              </Grid>
+                                </Grid>
                             </Fragment>
-                          ) : null}
-                          {project.slack_channel_name
-                            ? <Fragment key={project.slack_channel_name}>
+                            ) : null}
+                          {project.slack_channel_name ? (
+                              <Fragment key={project.slack_channel_name}>
                               <Grid>
-                                <Grid.Row>
+                                  <Grid.Row>
                                   <Icon name='slack hash' size='large' />
                                   <a
-                                    href={`https://agileventures.slack.com/app_redirect?channel=${
-                                      project.slack_channel_name
-                                    }`}
-                                  >
-                                    {project.title}
-                                  </a>
+                                      href={`https://agileventures.slack.com/app_redirect?channel=${
+                                        project.slack_channel_name
+                                      }`}
+                                    >
+                                      {project.title}
+                                    </a>
                                   &nbsp; on Slack
                                 </Grid.Row>
-                              </Grid>
+                                </Grid>
                             </Fragment>
-                            : null}
+                            ) : null}
                         </Card.Description>
-                      </Card.Content>
+                        </Card.Content>
                     </Card>
-                  </Grid.Column>
-                ) : null}
+                    </Grid.Column>
+                  ) : null}
                 {project.members.length > 0 ? (
                   <Grid.Column>
                     <Card fluid className='project-info-card'>
@@ -93,11 +114,17 @@ const ProjectSummary = props => {
                                   <Grid.Row>
                                     <Image
                                       src={
-                                        project.membersGravatarUrl[`${member.slug}`]
+                                        project.membersGravatarUrl[
+                                          `${member.slug}`
+                                        ]
                                       }
-                                    />&nbsp;
+                                    />
+                                    &nbsp;
                                     <Link to={`/users/${member.id}`}>
-                                      {member.first_name ? `${member.first_name} ${member.last_name}`
+                                      {member.first_name
+                                        ? `${member.first_name} ${
+                                          member.last_name
+                                        }`
                                         : member.slug}
                                     </Link>
                                   </Grid.Row>
@@ -110,7 +137,7 @@ const ProjectSummary = props => {
                     </Card>
                   </Grid.Column>
                 ) : null}
-                <Grid.Column></Grid.Column>
+                <Grid.Column />
               </Grid.Row>
             </Grid>
           </Fragment>

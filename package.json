@@ -93,7 +93,8 @@
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "src/assets/*"
+      "src/assets/*",
+      "src/components/ProjectSummary.js"
     ],
     "env": [
       "jest"

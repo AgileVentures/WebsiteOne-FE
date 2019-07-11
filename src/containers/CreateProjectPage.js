@@ -20,14 +20,16 @@ export class CreateProjectPage extends Component {
 
   render () {
     return (
-      <Container >
-        <Header as='h1'
-          textAlign='center' > Creating a new Project </Header>
+      <Container>
+        <Header as='h1' textAlign='center'>
+          {' '}
+          Creating a new Project{' '}
+        </Header>
         <ProjectForm
           onSubmit={this.handleSubmit}
           cookies={this.props.cookies}
         />
-      </Container >
+      </Container>
     )
   }
 }
@@ -36,7 +38,8 @@ const mapStateToProps = (store, ownProps) => ({
   cookies: ownProps.cookies
 })
 export default connect(
-  mapStateToProps, {
+  mapStateToProps,
+  {
     createProject
   }
 )(CreateProjectPage)
