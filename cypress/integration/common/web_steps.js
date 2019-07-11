@@ -399,7 +399,6 @@ Then('I should be able to edit project fields', () => {
 })
 
 Then('I should be able to submit edits', () => {
-
   cy.fixture('projectUpdated').then(projectUpdated => {
     cy.route({
       method: 'PUT',
@@ -408,7 +407,7 @@ Then('I should be able to submit edits', () => {
       status: 200
     }).as('updatedProject')
     cy.get('button[type=submit]').click()
-    
+
     cy.url().should('include', '/projects/localsupport')
     cy.window()
       .its('store')
@@ -417,13 +416,13 @@ Then('I should be able to submit edits', () => {
         payload: projectUpdated
       })
     cy
-    .get('h1')
-    .should('contain', 'LocalSupport updated')
-    .get('h5')
-    .should(
-      'contain',
-      "VAH's Local Support site is at  www.harrowcn.org.uk updated!"
-    )
+      .get('h1')
+      .should('contain', 'LocalSupport updated')
+      .get('h5')
+      .should(
+        'contain',
+        "VAH's Local Support site is at  www.harrowcn.org.uk updated!"
+      )
   })
   cy.wait('@updatedProject')
 })
