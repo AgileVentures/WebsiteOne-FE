@@ -65,5 +65,5 @@ export class EventsList extends Component {
 const mapStateToProps = state => ({ events: state.events })
 export default connect(
   mapStateToProps,
-  {  setLastLocation }
+  { setLastLocation }
 )(EventsList)

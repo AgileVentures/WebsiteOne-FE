@@ -15,15 +15,15 @@ console.log('client', client)
 
 const ApolloApp = AppComponent => (
   <CookiesProvider>
-  <Favicon url='https://www.agileventures.org/favicon.ico?v=2' />
-  <BrowserRouter>
-    <Provider store={store}>
-      <ApolloProvider client={client}>
-        <AppComponent />
-      </ApolloProvider>
-    </Provider>
-  </BrowserRouter>
-</CookiesProvider>
+    <Favicon url='https://www.agileventures.org/favicon.ico?v=2' />
+    <BrowserRouter>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <AppComponent />
+        </ApolloProvider>
+      </Provider>
+    </BrowserRouter>
+  </CookiesProvider>
 )
 
 render(ApolloApp(App), document.getElementById('root'))
