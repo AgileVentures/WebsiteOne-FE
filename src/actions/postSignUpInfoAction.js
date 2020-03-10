@@ -4,9 +4,11 @@ import { POST_SIGNUP_INFO } from '../types'
 export let getUser = user => ({ type: POST_SIGNUP_INFO, payload: user })
 
 export let postSignUpInfo = props => dispatch => {
+  console.log('env', process.env.NODE_ENV)
+
   return axios({
     method: 'post',
-    url: '/users',
+    url: '/signup',
     data: {
       user: {
         email: props.email,
