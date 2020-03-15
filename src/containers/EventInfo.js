@@ -6,16 +6,13 @@ import { Container } from 'semantic-ui-react'
 import EventSummary from '../components/EventSummary'
 
 export class EventInfo extends Component {
-  state = { event: null };
+  state = { event: null }
 
   componentDidMount () {
     const eventSlug = this.props.match.params.slug
     this.props.setLastLocation(this.props.location.pathname)
-    if (this.props.event.slug === this.props.match.params.slug) {
-      this.setState({ event: this.props.event })
-    } else {
-      this.props.fetchEventInfo(eventSlug)
-    }
+    this.props.fetchEventInfo(eventSlug)
+    this.setState({ event: this.props.event })
   }
 
   componentWillReceiveProps (nextProps) {
@@ -25,7 +22,7 @@ export class EventInfo extends Component {
   }
 
   render () {
-    let { event } = this.state
+    const { event } = this.state
     return (
       <Container className='event-info-container'>
         <EventSummary event={event} />

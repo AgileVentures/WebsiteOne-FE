@@ -4,7 +4,8 @@ import {
   EXECUTE_BILLING_AGREEMENT_FAILURE,
   CREATE_STRIPE_SUBSCRIPTION_FAILURE,
   CREATE_EVENT_FAILURE,
-  CREATE_PROJECT_FAILURE
+  CREATE_PROJECT_FAILURE,
+  UPDATE_EVENT_FAILURE
 } from '../types'
 import initialState from './initialState'
 
@@ -21,6 +22,8 @@ const errorReducer = (state = initialState.error, action) => {
     case CREATE_EVENT_FAILURE:
       return [action.message]
     case CREATE_PROJECT_FAILURE:
+      return [action.message]
+    case UPDATE_EVENT_FAILURE:
       return [action.message]
     default:
       return state

@@ -19,6 +19,7 @@ import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
+import EditEventPage from '../containers/EditEventPage'
 import CreateEventPage from '../containers/CreateEventPage'
 import CreateProjectPage from '../containers/CreateProjectPage'
 import { withCookies } from 'react-cookie'
@@ -85,6 +86,14 @@ class App extends Component {
           <Route path='/events/new' render={props => {
             return (
               <CreateEventPage
+                {...props}
+                cookies={this.props.cookies}
+              />)
+          }}
+          />
+          <Route path='/events/:slug/edit' render={props => {
+            return (
+              <EditEventPage
                 {...props}
                 cookies={this.props.cookies}
               />)

@@ -329,3 +329,57 @@ Then("I should see the newly created project's info", () => {
     .get('h5')
     .should('contain', 'A new project')
 })
+
+Then('I visit event details page', () => {
+  cy.fixture('activeProjects').then(activeProjects => {
+    cy.route(/\/api\/v1\/projects\/active/, activeProjects).as('fetchActiveProjects')
+  })
+  cy.fixture('eventInfo').then(eventInfo => {
+    cy.route(
+      /\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/,
+      eventInfo
+    )
+    cy.visit('/events/katherine-johnson-scrum-and-pair-hookup/')
+  })
+})
+
+Then('I click on the edit event link', () => {
+  cy.get('button').click()
+})
+
+Then(`I change name into {string} and description into {string}`, (title, description) => {
+  cy.get('input[name=name]')
+    .clear()
+    .type(title)
+    .get('textarea[name=description]')
+    .clear()
+    .type(description)
+  // This function is declared here, in order to provide (title and description) to the assertion statements
+  Then('I save event modifications', () => {
+    cy.fixture('updateEventInfo').then(updateEventInfo => {
+      cy.route({
+        method: 'PUT',
+        url: '/events/katherine-johnson-scrum-and-pair-hookup',
+        response: updateEventInfo,
+        status: 200
+      }).as('updateRequest')
+      cy.route(
+        /\/api\/v1\/events\/katherine-johnson-scrum-and-pair-hookup/,
+        updateEventInfo
+      )
+      cy.get('button').contains('Save')
+        .click()
+      cy.wait('@updateRequest').then((xhr) => {
+        expect(xhr.request.body.event.name).to.equal(title)
+        expect(xhr.request.body.event.description).to.equal(description)
+      })
+    })
+  })
+})
+
+Then(`I should see title equal to {string} and description into {string}`, (name, description) => {
+  cy.get('h2')
+    .contains(name)
+    .get('h5')
+    .contains(description)
+})
