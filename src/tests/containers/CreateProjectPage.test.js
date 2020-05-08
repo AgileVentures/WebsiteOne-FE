@@ -8,7 +8,12 @@ describe('CreateProjectPage', () => {
   let wrapper
   const mockStore = configureStore()
   const store = mockStore()
-  let props = {
+  const props = {
+    location: { pathname: '/projects/new' },
+    setLastLocation: jest.fn(),
+    cookies: { get: jest.fn() },
+    history: { push: jest.fn() },
+    loggedInUser: {},
     createProject: jest.fn()
   }
 
@@ -18,6 +23,15 @@ describe('CreateProjectPage', () => {
         <CreateProjectPage {...props} />
       </Provider>
     )
+  })
+
+  it('setLastLocation with path', () => {
+    expect(props.setLastLocation).toHaveBeenCalledWith(props.location.pathname)
+  })
+
+  it('redirect users to login if not logged in', () => {
+    props.cookies.get.mockReturnValue(false)
+    expect(props.history.push).toHaveBeenCalledWith({ pathname: '/login' })
   })
 
   it('renders ProjectForm', () => {
@@ -36,7 +50,9 @@ describe('CreateProjectPage', () => {
     })
     const submitForm = wrapper.find('Form')
     titleInput.simulate('change', { target: { value: 'Predicted Title' } })
-    descriptionInput.simulate('change', { target: { value: 'Happy description here' } })
+    descriptionInput.simulate('change', {
+      target: { value: 'Happy description here' }
+    })
     slackInput.simulate('change', { target: { value: 'slackInput' } })
     submitForm.simulate('submit')
 
