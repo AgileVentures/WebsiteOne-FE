@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { EventsList } from '../../containers/EventsList'
-import events from '../../fixtures/events'
+import eventsList from '../../fixtures/events'
 
 describe('Events List', () => {
   let wrapper
@@ -23,6 +23,7 @@ describe('Events List', () => {
   })
 
   it('redirects to event info page when an event is selected in the calendar', () => {
+    const { events } = eventsList
     wrapper = mount(<EventsList {...props} events={events} />)
     let eventToSelect = wrapper.find('div').filterWhere(item => {
       return item.hasClass('rbc-event-content')
