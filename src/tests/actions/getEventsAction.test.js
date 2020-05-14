@@ -20,7 +20,7 @@ describe('fetchEvents action', () => {
   })
 
   it('fetches events from an external api', async (done) => {
-    const expectedActions = [{ type: GET_EVENTS, payload: eventsResponse }]
+    const expectedActions = [{ type: GET_EVENTS, payload: eventsResponse.events }]
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.resolve({ data: eventsResponse })
