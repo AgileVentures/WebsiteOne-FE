@@ -19,7 +19,7 @@ describe('ProjectsList', () => {
       }),
     filteredProjectsList: null,
     error: false,
-    setLastLocation: () => {},
+    setLastLocation: () => { },
     location: { pathname: '/projects' }
   }
   wrapper = mount(
@@ -52,8 +52,8 @@ describe('ProjectsList', () => {
     const wrapper = shallow(
       <ProjectsList
         projects={paginatedProjectsFixture}
-        fetchProjects={() => {}}
-        setLastLocation={() => {}}
+        fetchProjects={() => { }}
+        setLastLocation={() => { }}
         location={{ pathname: '/projects' }}
       />
     )
@@ -95,8 +95,8 @@ describe('ProjectsList', () => {
       <StaticRouter context={context}>
         <ProjectsList
           projects={{ 1: [] }}
-          fetchProjects={() => {}}
-          setLastLocation={() => {}}
+          fetchProjects={() => { }}
+          setLastLocation={() => { }}
           location={{ pathname: '/projects' }}
         />
       </StaticRouter>
@@ -104,27 +104,12 @@ describe('ProjectsList', () => {
     expect(wrapper.find('Project')).toHaveLength(0)
   })
 
-  it('should test componentWillReceiveProps', () => {
+  it('should call paginateProjects', () => {
     const wrapper = shallow(
       <ProjectsList
         projects={[]}
-        fetchProjects={() => {}}
-        setLastLocation={() => {}}
-        location={{ pathname: '/projects' }}
-      />
-    )
-    wrapper.setProps({ projects: [{ id: 1, languages: [] }] })
-    expect(wrapper.instance().state.projects).toEqual({
-      '1': [{ id: 1, languages: [] }]
-    })
-  })
-
-  it('should call normalizeFilteredProjects', () => {
-    const wrapper = shallow(
-      <ProjectsList
-        projects={[]}
-        fetchProjects={() => {}}
-        setLastLocation={() => {}}
+        fetchProjects={() => { }}
+        setLastLocation={() => { }}
         location={{ pathname: '/projects' }}
       />
     )
@@ -151,8 +136,8 @@ describe('ProjectsList', () => {
       <ProjectsList
         projects={[]}
         error={[]}
-        fetchProjects={() => {}}
-        setLastLocation={() => {}}
+        fetchProjects={() => { }}
+        setLastLocation={() => { }}
         location={{ pathname: '/projects' }}
       />
     )

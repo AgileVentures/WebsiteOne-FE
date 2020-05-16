@@ -88,7 +88,7 @@ export let user = {
   deleted_at: null,
   event_participation_count: 0,
   can_see_dashboard: false,
-  skill_list: [],
+  skill_list: ['Java', 'C++'],
   title_list: ['Mentor'],
   karmaTotal: 108,
   gravatarUrl:

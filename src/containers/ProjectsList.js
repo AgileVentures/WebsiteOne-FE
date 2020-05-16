@@ -42,12 +42,9 @@ export class ProjectsList extends Component {
     this.props.setLastLocation(this.props.location.pathname)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (
-      this.props.projects.length !== nextProps.projects.length &&
-      !nextProps.projects[0].error
-    ) {
-      this.paginateProjects(nextProps.projects)
+  componentDidUpdate () {
+    if (this.props.projects.length > 0 && this.state.languages.length === 0) {
+      this.paginateProjects(this.props.projects)
     }
   }
 
@@ -65,9 +62,7 @@ export class ProjectsList extends Component {
         lastIndex += 12
       }
     }
-
     this.addLanguagesToProjectsObject(projects, paginatedProjects)
-
     this.setState({
       projects: paginatedProjects,
       pageCount,
@@ -181,7 +176,7 @@ export class ProjectsList extends Component {
                   <Grid.Row>
                     <Grid.Column floated='left' width={9}>
                       <Header className='projects-list-header' as='h1'>
-                      List of Projects
+                        List of Projects
                       </Header>
                     </Grid.Column>
                     <Grid.Column floated='right' width={3}>
@@ -191,14 +186,14 @@ export class ProjectsList extends Component {
                 </Grid>
                 <div>
                   <p>
-                  To get involved in any of the projects, join one of the
+                    To get involved in any of the projects, join one of the
                     <Link to={`/events`}> scrums </Link>and reach out to us, or
                   send us an email at
                     <a href='mailto:info@agileventures.org'>
                       {' '}
-                    info@agileventures.org
+                      info@agileventures.org
                     </a>
-                  .
+                    .
                   </p>
                 </div>
                 <div className='search-dropdown'>

@@ -29,18 +29,8 @@ describe('CreateEventPage', () => {
     expect(props.history.push).toHaveBeenCalledWith({ pathname: '/login' })
   })
 
-  it('sets state with projects if received from props', () => {
-    const expected = [{ id: 3, name: 'Project1' }]
-    props.projects = expected
-    wrapper = shallow(<CreateEventPage {...props} />)
-    expect(wrapper.state().projects).toEqual(expected)
-  })
-
-  it('sets state when props are updated', () => {
-    const expected = [{ id: 3, name: 'Project1' }]
-    wrapper.setProps({ projects: expected })
-    wrapper = shallow(<CreateEventPage {...props} />)
-    expect(wrapper.state().projects).toEqual(expected)
+  it('calls fetchActiveProjects when props.projects is empty', () => {
+    expect(props.fetchActiveProjects).toBeCalled()
   })
 
   it('calls createEvent when the form in submitted', () => {

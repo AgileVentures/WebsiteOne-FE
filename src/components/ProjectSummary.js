@@ -7,7 +7,7 @@ import '../assets/ProjectSummary.css'
 
 const ProjectSummary = props => {
   let { project } = props
-  if (project) {
+  if (project && Object.keys(project).length > 0) {
     return (
       <Grid columns={2} stackable>
         <Grid.Column width={12}>
