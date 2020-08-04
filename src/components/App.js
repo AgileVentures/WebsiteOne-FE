@@ -17,6 +17,7 @@ import PremiumMembershipPage from '../containers/PremiumMembershipPage'
 import PremiumMobMembershipPage from '../containers/PremiumMobMembershipPage'
 import PremiumF2FMembershipPage from '../containers/PremiumF2FMembershipPage'
 import GettingStartedPage from '../containers/GettingStartedPage'
+import GettingStartedPage2 from '../containers/GettingStartedPage2'
 import EventsList from '../containers/EventsList'
 import EventInfo from '../containers/EventInfo'
 import CreateEventPage from '../containers/CreateEventPage'
@@ -47,51 +48,52 @@ class App extends Component {
           />
           <Route path='/signup' component={SignUp} />
           <Route exact path='/projects' component={ProjectsList} />
-          <Route exact path='/projects/new' render={props => {
-            return (<CreateProjectPage {...props}
-              cookies={this.props.cookies}
-            />)
-          }}
+          <Route
+            exact
+            path='/projects/new'
+            render={props => {
+              return (
+                <CreateProjectPage {...props} cookies={this.props.cookies} />
+              )
+            }}
           />
-          <Route path='/projects/:slug' render={props => {
-            return (
-              <ProjectInfo
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            path='/projects/:slug'
+            render={props => {
+              return <ProjectInfo {...props} cookies={this.props.cookies} />
+            }}
           />
-          <Route exact path='/subscriptions/new' render={props => {
-            return (
-              <Subscriptions
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            exact
+            path='/subscriptions/new'
+            render={props => {
+              return <Subscriptions {...props} cookies={this.props.cookies} />
+            }}
           />
-          <Route path='/subscriptions/success' render={props => {
-            return (
-              <SubscriptionsSuccess
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            path='/subscriptions/success'
+            render={props => {
+              return (
+                <SubscriptionsSuccess {...props} cookies={this.props.cookies} />
+              )
+            }}
           />
           <Route path='/membership-plans' component={MembershipPlansPage} />
           <Route path='/premium' component={PremiumMembershipPage} />
           <Route path='/premium-mob' component={PremiumMobMembershipPage} />
           <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
           <Route exact path='/events' component={EventsList} />
-          <Route path='/events/new' render={props => {
-            return (
-              <CreateEventPage
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            path='/events/new'
+            render={props => {
+              return (
+                <CreateEventPage {...props} cookies={this.props.cookies} />
+              )
+            }}
           />
           <Route path='/events/:slug' component={EventInfo} />
           <Route path='/getting-started' component={GettingStartedPage} />
+          <Route path='/getting-started-2' component={GettingStartedPage2} />
         </Switch>
         <Footer />
       </Fragment>
