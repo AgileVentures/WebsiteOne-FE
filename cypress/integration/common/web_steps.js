@@ -255,15 +255,20 @@ Then('I should be able to create a new event quickly', () => {
       response: newlyCreatedEventInfo,
       status: 200
     }).as('newlyCreatedEvent')
+    cy.route({
+      url: '/api/v1/events/newevent',
+      body: newlyCreatedEventInfo,
+      status: 200
+    })
     cy.get('input[name=name]')
       .type('NewEvent')
       .get('button')
       .contains('Save')
       .click()
       .url().should('include', '/events/newevent')
-    cy.window()
-      .its('store')
-      .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEventInfo })
+    // cy.window()
+    //   .its('store')
+    //   .invoke('dispatch', { type: 'GET_EVENT_INFO', payload: newlyCreatedEventInfo })
   })
   cy.wait('@newlyCreatedEvent')
 })
