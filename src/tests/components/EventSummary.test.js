@@ -1,15 +1,24 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import EventSummary from '../../components/EventSummary'
+import SingleFieldForm from '../../components/SingleFieldForm'
 import event from '../../fixtures/eventInfo'
+import configureStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 
 describe('EventSummary', () => {
   let wrapper
+  const mockStore = configureStore()
+  const store = mockStore()
   const props = {
-    event
+    event,
+    cookies: { get: value => true }
   }
   beforeEach(() => {
-    wrapper = mount(<EventSummary {...props} />)
+    wrapper = mount(
+      <Provider store={store}>
+        <EventSummary {...props} />
+      </Provider>)
   })
 
   it('it displays event name', () => {
@@ -24,7 +33,13 @@ describe('EventSummary', () => {
   })
 
   it('displays a spinner when no event is in the props', () => {
-    wrapper = mount(<EventSummary {...props} event={null} />)
+    wrapper = mount(<Provider store={store}>
+      <EventSummary {...props} event={null} />
+    </Provider>)
     expect(wrapper.find('Loader').props().loading).toBe(true)
+  })
+
+  it('contains a SingleFieldForm component', () => {
+    expect(wrapper.contains(SingleFieldForm)).toEqual(true)
   })
 })

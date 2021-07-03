@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchEventInfo } from '../actions/getEventInfoAction'
 import { setLastLocation } from '../actions/setLastLocationAction'
+import { postEventLink } from '../actions/postEventLinkAction'
 import { Container } from 'semantic-ui-react'
 import EventSummary from '../components/EventSummary'
 
 export class EventInfo extends Component {
-  state = { event: null };
+  state = {
+    link: '',
+    event: null,
+    eventActions: null
+  };
 
   componentDidMount () {
     const eventSlug = this.props.match.params.slug
@@ -24,11 +29,38 @@ export class EventInfo extends Component {
     }
   }
 
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  };
+
+  handleCancelEventAction = e => {
+    e.preventDefault()
+    this.setState({ eventActions: null })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    if (this.props.form.SingleFieldForm.values) {
+      const { link } = this.props.form.SingleFieldForm.values
+      const { id, name, slug, project_id: projectId } = this.props.event
+      const { cookies } = this.props
+      this.props.postEventLink({ id, title: name, slug, link, cookies, projectId })
+    }
+  };
+
   render () {
-    let { event } = this.state
+    let { event, eventActions, link } = this.state
     return (
       <Container className='event-info-container'>
-        <EventSummary event={event} />
+        <EventSummary
+          cookies={this.props.cookies}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          event={event}
+          link={link}
+          eventActions={eventActions}
+          handleCancelEventAction={this.handleCancelEventAction}
+        />
       </Container>
     )
   }
@@ -36,9 +68,11 @@ export class EventInfo extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   events: state.event,
-  event: state.eventInfo
+  event: state.eventInfo,
+  cookies: ownProps.cookies,
+  form: state.form
 })
 export default connect(
   mapStateToProps,
-  { fetchEventInfo, setLastLocation }
+  { fetchEventInfo, setLastLocation, postEventLink }
 )(EventInfo)

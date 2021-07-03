@@ -16,8 +16,25 @@ const FormButton = props => {
     return false
   }
 
+  const handleButtonNegative = () => {
+    if (props.type === 'negative') {
+      return true
+    }
+    return false
+  }
+
   return (
-    <Button fluid className={props.className} secondary={handleButtonSecondary()} primary={handleButtonPrimary()} >{props.buttonText}</Button>
+    <Button
+      fluid
+      type={props.type}
+      className={props.className}
+      secondary={handleButtonSecondary()}
+      primary={handleButtonPrimary()}
+      negative={handleButtonNegative()}
+      onClick={props.onClick}
+    >
+      {props.buttonText}
+    </Button>
   )
 }
 

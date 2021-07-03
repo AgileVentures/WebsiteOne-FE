@@ -110,7 +110,8 @@ export class CreateEventPage extends Component {
       repeats,
       weekdays,
       repeatEnds,
-      endDate
+      endDate,
+      projects
     } = this.state
     return (
       <Fragment>
@@ -126,6 +127,7 @@ export class CreateEventPage extends Component {
           category={category}
           eventFor={eventFor}
           projectId={projectId}
+          projects={projects}
           description={description}
           startDate={startDate}
           timezones={timezones}

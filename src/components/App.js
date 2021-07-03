@@ -61,36 +61,41 @@ class App extends Component {
               />)
           }}
           />
-          <Route exact path='/subscriptions/new' render={props => {
-            return (
-              <Subscriptions
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            exact
+            path='/subscriptions/new'
+            render={props => {
+              return <Subscriptions {...props} cookies={this.props.cookies} />
+            }}
           />
-          <Route path='/subscriptions/success' render={props => {
-            return (
-              <SubscriptionsSuccess
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            path='/subscriptions/success'
+            render={props => {
+              return (
+                <SubscriptionsSuccess {...props} cookies={this.props.cookies} />
+              )
+            }}
           />
           <Route path='/membership-plans' component={MembershipPlansPage} />
           <Route path='/premium' component={PremiumMembershipPage} />
           <Route path='/premium-mob' component={PremiumMobMembershipPage} />
           <Route path='/premium-f2f' component={PremiumF2FMembershipPage} />
           <Route exact path='/events' component={EventsList} />
-          <Route path='/events/new' render={props => {
-            return (
-              <CreateEventPage
-                {...props}
-                cookies={this.props.cookies}
-              />)
-          }}
+          <Route
+            path='/events/new'
+            render={props => {
+              return (
+                <CreateEventPage {...props} cookies={this.props.cookies} />
+              )
+            }}
           />
-          <Route path='/events/:slug' component={EventInfo} />
+          <Route
+            path='/events/:slug'
+            render={props => {
+              return <EventInfo {...props} cookies={this.props.cookies} />
+            }}
+          />
+          {/* <Route path='/events/:slug' component={EventInfo} /> */}
           <Route path='/getting-started' component={GettingStartedPage} />
         </Switch>
         <Footer />
