@@ -22,6 +22,7 @@ import EventInfo from '../containers/EventInfo'
 import CreateEventPage from '../containers/CreateEventPage'
 import CreateProjectPage from '../containers/CreateProjectPage'
 import { withCookies } from 'react-cookie'
+import { EditEventPage } from '../containers/EditEventPage';
 
 class App extends Component {
   render () {
@@ -88,6 +89,15 @@ class App extends Component {
                 {...props}
                 cookies={this.props.cookies}
               />)
+          }}
+          />
+          <Route path = 'events/edit' render={props => {
+            return(
+              <EditEventPage
+              {...props}
+              cookies={this.props.cookies}
+              />
+            )
           }}
           />
           <Route path='/events/:slug' component={EventInfo} />
