@@ -31,7 +31,7 @@
     "dotenv-webpack": "^1.7.0",
     "global": "^4.3.2",
     "izitoast": "^1.4.0",
-    "moment-timezone": "^0.5.23",
+    "moment-timezone": "^0.5.35",
     "query-string": "^6.2.0",
     "react": "16.8.0",
     "react-big-calendar": "^0.20.3",
